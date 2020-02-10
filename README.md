@@ -41,5 +41,7 @@ The output of the unit test is in a html file at "ProjectFolder"/build/reports/t
 
 The executable jar file run the Main Class that creates sample objects from Scrabble and prints out there initialized states. 
 
+The documentation is in the Doxygen folder as a pdf.
+
 Note: This project was made made on Windows 10 and was tested on Windows 10, other operating systems have not been test. 
 Therefore there may be compatibility issues with other operating systems. 
