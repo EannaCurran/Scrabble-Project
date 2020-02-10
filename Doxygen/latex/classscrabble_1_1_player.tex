@@ -1,0 +1,171 @@
+\hypertarget{classscrabble_1_1_player}{}\doxysection{scrabble.\+Player Class Reference}
+\label{classscrabble_1_1_player}\index{scrabble.Player@{scrabble.Player}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classscrabble_1_1_player_a0c5b6fe022f3f733986ae2498b1f5b28}{Player}} (String name\+Player, \mbox{\hyperlink{classscrabble_1_1_pool}{Pool}} pool)
+\item 
+void \mbox{\hyperlink{classscrabble_1_1_player_a494c1f90101da9f17facc86a03ccac7f}{player\+Reset}} (String new\+Name)
+\item 
+String \mbox{\hyperlink{classscrabble_1_1_player_a160b6f4f311d59587a5c7465b5033e8c}{get\+Name}} ()
+\item 
+void \mbox{\hyperlink{classscrabble_1_1_player_a6871c1ecc4bf683b808fa8630e790435}{set\+Name}} (String name)
+\item 
+int \mbox{\hyperlink{classscrabble_1_1_player_a860c9667ad06860c04a5d21a9dc94ae6}{get\+Score}} ()
+\item 
+void \mbox{\hyperlink{classscrabble_1_1_player_a0b31d116d0c1e3f5b655043a443e2bfb}{increase\+Score}} (int score\+Increase)
+\item 
+void \mbox{\hyperlink{classscrabble_1_1_player_a11a7af8faddac841458949c1fa57f326}{decrease\+Score}} (int score\+Decrease)
+\item 
+\mbox{\hyperlink{classscrabble_1_1_frame}{Frame}} \mbox{\hyperlink{classscrabble_1_1_player_a64a4390036d88082a61c9d7411d28e19}{get\+Player\+Frame}} ()
+\item 
+String \mbox{\hyperlink{classscrabble_1_1_player_ab5aacefd3ede41f3d0dbffd76de74f83}{to\+String}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class that represents a player. Contains the information of each players 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classscrabble_1_1_player_a0c5b6fe022f3f733986ae2498b1f5b28}\label{classscrabble_1_1_player_a0c5b6fe022f3f733986ae2498b1f5b28}} 
+\index{scrabble.Player@{scrabble.Player}!Player@{Player}}
+\index{Player@{Player}!scrabble.Player@{scrabble.Player}}
+\doxysubsubsection{\texorpdfstring{Player()}{Player()}}
+{\footnotesize\ttfamily scrabble.\+Player.\+Player (\begin{DoxyParamCaption}\item[{String}]{name\+Player,  }\item[{\mbox{\hyperlink{classscrabble_1_1_pool}{Pool}}}]{pool }\end{DoxyParamCaption})}
+
+\mbox{\hyperlink{classscrabble_1_1_player}{Player}} Constructor
+
+
+\begin{DoxyParams}{Parameters}
+{\em name\+Player} & String for the name of the \mbox{\hyperlink{classscrabble_1_1_player}{Player}} \\
+\hline
+{\em pool} & Reference to the \mbox{\hyperlink{classscrabble_1_1_pool}{Pool}} of the game \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Invalid\+Player\+Name\+Exception} & If inputted name is invalid \\
+\hline
+\end{DoxyExceptions}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classscrabble_1_1_player_a11a7af8faddac841458949c1fa57f326}\label{classscrabble_1_1_player_a11a7af8faddac841458949c1fa57f326}} 
+\index{scrabble.Player@{scrabble.Player}!decreaseScore@{decreaseScore}}
+\index{decreaseScore@{decreaseScore}!scrabble.Player@{scrabble.Player}}
+\doxysubsubsection{\texorpdfstring{decreaseScore()}{decreaseScore()}}
+{\footnotesize\ttfamily void scrabble.\+Player.\+decrease\+Score (\begin{DoxyParamCaption}\item[{int}]{score\+Decrease }\end{DoxyParamCaption})}
+
+Mutator method for score to decrease the players score
+
+
+\begin{DoxyParams}{Parameters}
+{\em score\+Decrease} & The value for the score to be increased by \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Invalid\+Player\+Score\+Exception} & If a negative value is passed into Decrease\+\_\+\+Score \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classscrabble_1_1_player_a160b6f4f311d59587a5c7465b5033e8c}\label{classscrabble_1_1_player_a160b6f4f311d59587a5c7465b5033e8c}} 
+\index{scrabble.Player@{scrabble.Player}!getName@{getName}}
+\index{getName@{getName}!scrabble.Player@{scrabble.Player}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily String scrabble.\+Player.\+get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accessor Method for Name
+
+\begin{DoxyReturn}{Returns}
+The name of the player 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classscrabble_1_1_player_a64a4390036d88082a61c9d7411d28e19}\label{classscrabble_1_1_player_a64a4390036d88082a61c9d7411d28e19}} 
+\index{scrabble.Player@{scrabble.Player}!getPlayerFrame@{getPlayerFrame}}
+\index{getPlayerFrame@{getPlayerFrame}!scrabble.Player@{scrabble.Player}}
+\doxysubsubsection{\texorpdfstring{getPlayerFrame()}{getPlayerFrame()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classscrabble_1_1_frame}{Frame}} scrabble.\+Player.\+get\+Player\+Frame (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accessing Method player\textquotesingle{}s frame
+
+\begin{DoxyReturn}{Returns}
+The value of player\+Frame 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classscrabble_1_1_player_a860c9667ad06860c04a5d21a9dc94ae6}\label{classscrabble_1_1_player_a860c9667ad06860c04a5d21a9dc94ae6}} 
+\index{scrabble.Player@{scrabble.Player}!getScore@{getScore}}
+\index{getScore@{getScore}!scrabble.Player@{scrabble.Player}}
+\doxysubsubsection{\texorpdfstring{getScore()}{getScore()}}
+{\footnotesize\ttfamily int scrabble.\+Player.\+get\+Score (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accessor Method for \mbox{\hyperlink{classscrabble_1_1_player}{Player}} Score
+
+\begin{DoxyReturn}{Returns}
+The \mbox{\hyperlink{classscrabble_1_1_player}{Player}}\textquotesingle{}s Score 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classscrabble_1_1_player_a0b31d116d0c1e3f5b655043a443e2bfb}\label{classscrabble_1_1_player_a0b31d116d0c1e3f5b655043a443e2bfb}} 
+\index{scrabble.Player@{scrabble.Player}!increaseScore@{increaseScore}}
+\index{increaseScore@{increaseScore}!scrabble.Player@{scrabble.Player}}
+\doxysubsubsection{\texorpdfstring{increaseScore()}{increaseScore()}}
+{\footnotesize\ttfamily void scrabble.\+Player.\+increase\+Score (\begin{DoxyParamCaption}\item[{int}]{score\+Increase }\end{DoxyParamCaption})}
+
+Mutator method for score to increase the players score
+
+
+\begin{DoxyParams}{Parameters}
+{\em score\+Increase} & The value for the score to be increased by \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Invalid\+Player\+Score\+Exception} & If player\textquotesingle{}s score is increased by a negative value \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classscrabble_1_1_player_a494c1f90101da9f17facc86a03ccac7f}\label{classscrabble_1_1_player_a494c1f90101da9f17facc86a03ccac7f}} 
+\index{scrabble.Player@{scrabble.Player}!playerReset@{playerReset}}
+\index{playerReset@{playerReset}!scrabble.Player@{scrabble.Player}}
+\doxysubsubsection{\texorpdfstring{playerReset()}{playerReset()}}
+{\footnotesize\ttfamily void scrabble.\+Player.\+player\+Reset (\begin{DoxyParamCaption}\item[{String}]{new\+Name }\end{DoxyParamCaption})}
+
+Resetting the score and name of the player
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Name} & The new player name after the player is reset \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Invalid\+Player\+Name\+Exception} & If inputted name is invalid \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classscrabble_1_1_player_a6871c1ecc4bf683b808fa8630e790435}\label{classscrabble_1_1_player_a6871c1ecc4bf683b808fa8630e790435}} 
+\index{scrabble.Player@{scrabble.Player}!setName@{setName}}
+\index{setName@{setName}!scrabble.Player@{scrabble.Player}}
+\doxysubsubsection{\texorpdfstring{setName()}{setName()}}
+{\footnotesize\ttfamily void scrabble.\+Player.\+set\+Name (\begin{DoxyParamCaption}\item[{String}]{name }\end{DoxyParamCaption})}
+
+Mutator Method for name
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The new Name of the \mbox{\hyperlink{classscrabble_1_1_player}{Player}} \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Invalid\+Player\+Name\+Exception} & If inputted name is invalid \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classscrabble_1_1_player_ab5aacefd3ede41f3d0dbffd76de74f83}\label{classscrabble_1_1_player_ab5aacefd3ede41f3d0dbffd76de74f83}} 
+\index{scrabble.Player@{scrabble.Player}!toString@{toString}}
+\index{toString@{toString}!scrabble.Player@{scrabble.Player}}
+\doxysubsubsection{\texorpdfstring{toString()}{toString()}}
+{\footnotesize\ttfamily String scrabble.\+Player.\+to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+A to\+String method to print the \mbox{\hyperlink{classscrabble_1_1_player}{Player}} class variables \begin{DoxyReturn}{Returns}
+The \mbox{\hyperlink{classscrabble_1_1_player}{Player}} class variables 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/scrabble/Player.\+java\end{DoxyCompactItemize}

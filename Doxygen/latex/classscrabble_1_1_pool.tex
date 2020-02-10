@@ -1,0 +1,120 @@
+\hypertarget{classscrabble_1_1_pool}{}\doxysection{scrabble.\+Pool Class Reference}
+\label{classscrabble_1_1_pool}\index{scrabble.Pool@{scrabble.Pool}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classscrabble_1_1_pool_adeb6ea9d5d04bd186421fd6bdba3b146}{pool\+Fill}} ()  throws Invalid\+Tile\+Exception 
+\item 
+String \mbox{\hyperlink{classscrabble_1_1_pool_ae22a3eec24dd33075d120ad185f54aca}{to\+String}} ()
+\item 
+\mbox{\hyperlink{classscrabble_1_1_tile}{Tile}} \mbox{\hyperlink{classscrabble_1_1_pool_a1b5b7ae95ac0e6ab34caa02c3aa84fe6}{remove\+Tile}} ()  throws Invalid\+Pool\+Exception
+\item 
+void \mbox{\hyperlink{classscrabble_1_1_pool_a53fad4fc217a4e6b7ab524f99b404787}{receive\+Tile}} (\mbox{\hyperlink{classscrabble_1_1_tile}{Tile}} tile\+Added)
+\item 
+int \mbox{\hyperlink{classscrabble_1_1_pool_a4161911cf1e783bf6336e7b8fcc4adac}{tiles\+In\+Pool}} ()
+\item 
+boolean \mbox{\hyperlink{classscrabble_1_1_pool_ab9cc3461e32fb01709aa7f05d17ba113}{is\+Empty}} ()
+\item 
+\mbox{\hyperlink{classscrabble_1_1_pool_a64e84233c89dec1bcb8ebe3d6ca703dd}{Pool}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classscrabble_1_1_pool_a1a1bfe1a5ed6b25d1b57f51882159b6b}\label{classscrabble_1_1_pool_a1a1bfe1a5ed6b25d1b57f51882159b6b}} 
+static void {\bfseries main} (String\mbox{[}$\,$\mbox{]} args)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class that represent a Character \mbox{\hyperlink{classscrabble_1_1_tile}{Tile}} for the Game of Scrabble 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classscrabble_1_1_pool_a64e84233c89dec1bcb8ebe3d6ca703dd}\label{classscrabble_1_1_pool_a64e84233c89dec1bcb8ebe3d6ca703dd}} 
+\index{scrabble.Pool@{scrabble.Pool}!Pool@{Pool}}
+\index{Pool@{Pool}!scrabble.Pool@{scrabble.Pool}}
+\doxysubsubsection{\texorpdfstring{Pool()}{Pool()}}
+{\footnotesize\ttfamily scrabble.\+Pool.\+Pool (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\hyperlink{classscrabble_1_1_pool}{Pool}} constructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classscrabble_1_1_pool_ab9cc3461e32fb01709aa7f05d17ba113}\label{classscrabble_1_1_pool_ab9cc3461e32fb01709aa7f05d17ba113}} 
+\index{scrabble.Pool@{scrabble.Pool}!isEmpty@{isEmpty}}
+\index{isEmpty@{isEmpty}!scrabble.Pool@{scrabble.Pool}}
+\doxysubsubsection{\texorpdfstring{isEmpty()}{isEmpty()}}
+{\footnotesize\ttfamily boolean scrabble.\+Pool.\+is\+Empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Method to Check if the pool is empty
+
+\begin{DoxyReturn}{Returns}
+True if pool is empty 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classscrabble_1_1_pool_adeb6ea9d5d04bd186421fd6bdba3b146}\label{classscrabble_1_1_pool_adeb6ea9d5d04bd186421fd6bdba3b146}} 
+\index{scrabble.Pool@{scrabble.Pool}!poolFill@{poolFill}}
+\index{poolFill@{poolFill}!scrabble.Pool@{scrabble.Pool}}
+\doxysubsubsection{\texorpdfstring{poolFill()}{poolFill()}}
+{\footnotesize\ttfamily void scrabble.\+Pool.\+pool\+Fill (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) throws \mbox{\hyperlink{classscrabble_1_1exceptions_1_1_invalid_tile_exception}{Invalid\+Tile\+Exception}}}
+
+Function to fill the array with the set amount of each \mbox{\hyperlink{classscrabble_1_1_tile}{Tile}} in the standard English rules
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Invalid\+Tile\+Exception} & \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classscrabble_1_1_pool_a53fad4fc217a4e6b7ab524f99b404787}\label{classscrabble_1_1_pool_a53fad4fc217a4e6b7ab524f99b404787}} 
+\index{scrabble.Pool@{scrabble.Pool}!receiveTile@{receiveTile}}
+\index{receiveTile@{receiveTile}!scrabble.Pool@{scrabble.Pool}}
+\doxysubsubsection{\texorpdfstring{receiveTile()}{receiveTile()}}
+{\footnotesize\ttfamily void scrabble.\+Pool.\+receive\+Tile (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classscrabble_1_1_tile}{Tile}}}]{tile\+Added }\end{DoxyParamCaption})}
+
+Method to take in a tile and add it to a pool
+
+
+\begin{DoxyParams}{Parameters}
+{\em tile\+Added} & The tile to be added to the pool \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classscrabble_1_1_pool_a1b5b7ae95ac0e6ab34caa02c3aa84fe6}\label{classscrabble_1_1_pool_a1b5b7ae95ac0e6ab34caa02c3aa84fe6}} 
+\index{scrabble.Pool@{scrabble.Pool}!removeTile@{removeTile}}
+\index{removeTile@{removeTile}!scrabble.Pool@{scrabble.Pool}}
+\doxysubsubsection{\texorpdfstring{removeTile()}{removeTile()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classscrabble_1_1_tile}{Tile}} scrabble.\+Pool.\+remove\+Tile (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) throws \mbox{\hyperlink{classscrabble_1_1exceptions_1_1_invalid_pool_exception}{Invalid\+Pool\+Exception}}}
+
+Method to remove a random tile from the pool and return the tile that was removed
+
+\begin{DoxyReturn}{Returns}
+The tile which was randomly removed from the pool 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Invalid\+Pool\+Exception} & If the pool is empty \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classscrabble_1_1_pool_a4161911cf1e783bf6336e7b8fcc4adac}\label{classscrabble_1_1_pool_a4161911cf1e783bf6336e7b8fcc4adac}} 
+\index{scrabble.Pool@{scrabble.Pool}!tilesInPool@{tilesInPool}}
+\index{tilesInPool@{tilesInPool}!scrabble.Pool@{scrabble.Pool}}
+\doxysubsubsection{\texorpdfstring{tilesInPool()}{tilesInPool()}}
+{\footnotesize\ttfamily int scrabble.\+Pool.\+tiles\+In\+Pool (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Method to find the number of tiles in pool
+
+\begin{DoxyReturn}{Returns}
+The number of tiles in pool 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classscrabble_1_1_pool_ae22a3eec24dd33075d120ad185f54aca}\label{classscrabble_1_1_pool_ae22a3eec24dd33075d120ad185f54aca}} 
+\index{scrabble.Pool@{scrabble.Pool}!toString@{toString}}
+\index{toString@{toString}!scrabble.Pool@{scrabble.Pool}}
+\doxysubsubsection{\texorpdfstring{toString()}{toString()}}
+{\footnotesize\ttfamily String scrabble.\+Pool.\+to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\hyperlink{classscrabble_1_1_pool}{Pool}} to\+String Method
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classscrabble_1_1_pool}{Pool}} information in the form of a String 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/scrabble/Pool.\+java\end{DoxyCompactItemize}

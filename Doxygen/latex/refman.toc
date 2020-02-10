@@ -1,0 +1,60 @@
+\@ifundefined {etoctocstyle}{\let \etoc@startlocaltoc \@gobble \let \etoc@settocdepth \@gobble \let \etoc@depthtag \@gobble \let \etoc@setlocaltop \@gobble }{}
+\contentsline {chapter}{\numberline {1}Hierarchical Index}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Class Hierarchy}{1}{section.1.1}%
+\contentsline {chapter}{\numberline {2}Class Index}{3}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Class List}{3}{section.2.1}%
+\contentsline {chapter}{\numberline {3}Class Documentation}{5}{chapter.3}%
+\contentsline {section}{\numberline {3.1}scrabble.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Frame Class Reference}{5}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Constructor \& Destructor Documentation}{5}{subsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.1.1}Frame()}{5}{subsubsection.3.1.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Member Function Documentation}{5}{subsection.3.1.2}%
+\contentsline {subsubsection}{\numberline {3.1.2.1}addTile()}{6}{subsubsection.3.1.2.1}%
+\contentsline {subsubsection}{\numberline {3.1.2.2}checkTiles()}{6}{subsubsection.3.1.2.2}%
+\contentsline {subsubsection}{\numberline {3.1.2.3}fillFrame()}{6}{subsubsection.3.1.2.3}%
+\contentsline {subsubsection}{\numberline {3.1.2.4}isEmpty()}{6}{subsubsection.3.1.2.4}%
+\contentsline {subsubsection}{\numberline {3.1.2.5}removeTiles()}{6}{subsubsection.3.1.2.5}%
+\contentsline {subsubsection}{\numberline {3.1.2.6}returnFrame()}{7}{subsubsection.3.1.2.6}%
+\contentsline {subsubsection}{\numberline {3.1.2.7}swapTiles()}{7}{subsubsection.3.1.2.7}%
+\contentsline {subsubsection}{\numberline {3.1.2.8}toString()}{7}{subsubsection.3.1.2.8}%
+\contentsline {section}{\numberline {3.2}scrabble.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}exceptions.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Invalid\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Frame\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Exception Class Reference}{8}{section.3.2}%
+\contentsline {section}{\numberline {3.3}scrabble.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}exceptions.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Invalid\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Player\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Name\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Exception Class Reference}{8}{section.3.3}%
+\contentsline {section}{\numberline {3.4}scrabble.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}exceptions.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Invalid\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Player\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Score\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Exception Class Reference}{9}{section.3.4}%
+\contentsline {section}{\numberline {3.5}scrabble.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}exceptions.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Invalid\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pool\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Exception Class Reference}{9}{section.3.5}%
+\contentsline {section}{\numberline {3.6}scrabble.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}exceptions.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Invalid\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Tile\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Exception Class Reference}{9}{section.3.6}%
+\contentsline {section}{\numberline {3.7}scrabble.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Main Class Reference}{10}{section.3.7}%
+\contentsline {section}{\numberline {3.8}scrabble.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Player Class Reference}{10}{section.3.8}%
+\contentsline {subsection}{\numberline {3.8.1}Detailed Description}{10}{subsection.3.8.1}%
+\contentsline {subsection}{\numberline {3.8.2}Constructor \& Destructor Documentation}{10}{subsection.3.8.2}%
+\contentsline {subsubsection}{\numberline {3.8.2.1}Player()}{10}{subsubsection.3.8.2.1}%
+\contentsline {subsection}{\numberline {3.8.3}Member Function Documentation}{11}{subsection.3.8.3}%
+\contentsline {subsubsection}{\numberline {3.8.3.1}decreaseScore()}{11}{subsubsection.3.8.3.1}%
+\contentsline {subsubsection}{\numberline {3.8.3.2}getName()}{11}{subsubsection.3.8.3.2}%
+\contentsline {subsubsection}{\numberline {3.8.3.3}getPlayerFrame()}{12}{subsubsection.3.8.3.3}%
+\contentsline {subsubsection}{\numberline {3.8.3.4}getScore()}{12}{subsubsection.3.8.3.4}%
+\contentsline {subsubsection}{\numberline {3.8.3.5}increaseScore()}{12}{subsubsection.3.8.3.5}%
+\contentsline {subsubsection}{\numberline {3.8.3.6}playerReset()}{12}{subsubsection.3.8.3.6}%
+\contentsline {subsubsection}{\numberline {3.8.3.7}setName()}{13}{subsubsection.3.8.3.7}%
+\contentsline {subsubsection}{\numberline {3.8.3.8}toString()}{13}{subsubsection.3.8.3.8}%
+\contentsline {section}{\numberline {3.9}scrabble.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pool Class Reference}{13}{section.3.9}%
+\contentsline {subsection}{\numberline {3.9.1}Detailed Description}{14}{subsection.3.9.1}%
+\contentsline {subsection}{\numberline {3.9.2}Constructor \& Destructor Documentation}{14}{subsection.3.9.2}%
+\contentsline {subsubsection}{\numberline {3.9.2.1}Pool()}{14}{subsubsection.3.9.2.1}%
+\contentsline {subsection}{\numberline {3.9.3}Member Function Documentation}{14}{subsection.3.9.3}%
+\contentsline {subsubsection}{\numberline {3.9.3.1}isEmpty()}{14}{subsubsection.3.9.3.1}%
+\contentsline {subsubsection}{\numberline {3.9.3.2}poolFill()}{14}{subsubsection.3.9.3.2}%
+\contentsline {subsubsection}{\numberline {3.9.3.3}receiveTile()}{15}{subsubsection.3.9.3.3}%
+\contentsline {subsubsection}{\numberline {3.9.3.4}removeTile()}{15}{subsubsection.3.9.3.4}%
+\contentsline {subsubsection}{\numberline {3.9.3.5}tilesInPool()}{15}{subsubsection.3.9.3.5}%
+\contentsline {subsubsection}{\numberline {3.9.3.6}toString()}{16}{subsubsection.3.9.3.6}%
+\contentsline {section}{\numberline {3.10}scrabble.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pool\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Test Class Reference}{16}{section.3.10}%
+\contentsline {section}{\numberline {3.11}scrabble.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Tile Class Reference}{16}{section.3.11}%
+\contentsline {subsection}{\numberline {3.11.1}Detailed Description}{16}{subsection.3.11.1}%
+\contentsline {subsection}{\numberline {3.11.2}Constructor \& Destructor Documentation}{16}{subsection.3.11.2}%
+\contentsline {subsubsection}{\numberline {3.11.2.1}Tile()}{16}{subsubsection.3.11.2.1}%
+\contentsline {subsection}{\numberline {3.11.3}Member Function Documentation}{17}{subsection.3.11.3}%
+\contentsline {subsubsection}{\numberline {3.11.3.1}getCharacter()}{17}{subsubsection.3.11.3.1}%
+\contentsline {subsubsection}{\numberline {3.11.3.2}getValue()}{17}{subsubsection.3.11.3.2}%
+\contentsline {subsubsection}{\numberline {3.11.3.3}main()}{17}{subsubsection.3.11.3.3}%
+\contentsline {subsubsection}{\numberline {3.11.3.4}setCharacter()}{18}{subsubsection.3.11.3.4}%
+\contentsline {subsubsection}{\numberline {3.11.3.5}toString()}{18}{subsubsection.3.11.3.5}%
+\contentsline {chapter}{Index}{19}{section*.18}%
