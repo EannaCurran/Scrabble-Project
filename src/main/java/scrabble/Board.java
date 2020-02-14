@@ -15,8 +15,21 @@ public class Board {
 
     }
 
-    public void printBoard(){
+    @Override
+    public String toString(){
+        String result = "/t/t Scrabble Board";
 
+        for(int i=0;i<15;i++)
+        {
+            result = result + "\n________________________________________________\n";
+
+            if(i<9)
+            {
+                result = result + " ";
+            }
+        }
+
+        return null;
     }
 
     // Eanna
