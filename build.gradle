@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+
     //id 'application' Removed until FX is add to Scrabble
     id 'org.openjfx.javafxplugin' version '0.0.8'
 }
