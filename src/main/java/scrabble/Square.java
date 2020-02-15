@@ -1,7 +1,13 @@
 package scrabble;
 
+/**
+ * The Square Class represents the square on the Scrabble Board as objects
+ */
 public class Square {
 
+    /**
+     * SquareType is an Enum of possible Types of Square on the Scrabble Board
+     */
     enum SquareType{
         NORMAL,
         START,
@@ -11,8 +17,24 @@ public class Square {
         TRIPLE_LETTER;
     }
 
-    public Square(SquareType type){
+    /**
+     * The Tile on the Square on the Board
+     */
+    private Tile squareTile;
 
+    /**
+     * The SquareType of the Square
+     */
+    private SquareType squareType;
+
+    /**
+     * Square Constructor
+     *
+     * @param type The SquareType of the Square
+     */
+    public Square(SquareType type){
+        squareType = type;
+        squareTile = null;
     }
 
     public SquareType getType(){
