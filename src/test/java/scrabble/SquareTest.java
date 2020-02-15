@@ -74,7 +74,6 @@ public class SquareTest {
                 () -> assertEquals(X, testSquare.get(1).getTile(), "The Square getTile method did not return the correct Tile.\n")
         );
 
-
     }
 
     @Test
@@ -99,6 +98,26 @@ public class SquareTest {
     @DisplayName("Test Square setNormal Method")
     void testSetNormal(){
 
+        //setNormal on testSquares
+        for (int i = 0; i < 6; i++) {
+            testSquare.get(i).setNormal();
+        }
+
+        // assertAll so that all assertions are run and reported together
+        assertAll("Testing the setNormal method on different square types\n",
+                //Assert that a NORMAL square getType returns NORMAL
+                () -> assertEquals(Square.SquareType.NORMAL, testSquare.get(0).getType(),"The Square setNormal method did not set Type to NORMAL Square.\n"),
+                //Assert that a TRIPLE_WORD square getType returns NORMAL
+                () -> assertEquals(Square.SquareType.NORMAL, testSquare.get(1).getType(),"The Square setNormal method did not set Type to NORMAL Square.\n"),
+                //Assert that a TRIPLE_LETTER square getType returns NORMAL
+                () -> assertEquals(Square.SquareType.NORMAL, testSquare.get(2).getType(),"The Square setNormal method did not set Type to NORMAL Square.\n"),
+                //Assert that a DOUBLE_WORD square getType returns NORMAL
+                () -> assertEquals(Square.SquareType.NORMAL, testSquare.get(3).getType(),"The Square setNormal method did not set Type to NORMAL Square.\n"),
+                //Assert that a DOUBLE_LETTER square getType returns NORMAL
+                () -> assertEquals(Square.SquareType.NORMAL, testSquare.get(4).getType(),"The Square setNormal method did not set Type to NORMAL Square.\n"),
+                //Assert that a START square getType returns NORMAL
+                () -> assertEquals(Square.SquareType.NORMAL, testSquare.get(5).getType(),"The Square setNormal method did not set Type to NORMAL Square.\n")
+        );
 
     }
 
