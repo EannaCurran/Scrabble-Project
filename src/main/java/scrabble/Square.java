@@ -14,7 +14,7 @@ public class Square {
         DOUBLE_WORD,
         TRIPLE_WORD,
         DOUBLE_LETTER,
-        TRIPLE_LETTER;
+        TRIPLE_LETTER
     }
 
     /**
@@ -46,9 +46,13 @@ public class Square {
         return squareType;
     }
 
-
+    /**
+     * Accessor Method for the Tile on the Square
+     *
+     * @return The Tile on the Square
+     */
     public Tile getTile(){
-        return null;
+        return squareTile;
     }
 
     public Boolean isEmpty(){
