@@ -136,4 +136,40 @@ class TileTest {
         assertThrows(InvalidTileException.class, () -> testTiles.get(2).setCharacter('P'), "The Tile constructor didn't throw an InvalidTileException when a digit was passed as the char argument.\n");
 
     }
+
+    @Test
+    @DisplayName("Tile Test for compareTo on Tile")
+    void tileTestCompareTo(){
+
+        Tile G = new Tile('G');
+
+        // assertAll so that all assertions are run and reported together
+        assertAll("Testing that the setCharacter returns the correct value for blank Tile\n",
+                //Assert that compareTo will return 1 when B is compared to testTiles 0
+                ()-> assertEquals(1, G.compareTo(testTiles.get(0)),"The Tile compareTo did not return the correct value\n"),
+                //Assert that compareTo will return 0 when G is compared to testTiles 1
+                ()-> assertEquals(0, G.compareTo(testTiles.get(1)),"The Tile compareTo did not return the correct value\n"),
+                //Assert that compareTo will return -1 when G is compared to testTiles 2
+                ()-> assertEquals(-1, G.compareTo(testTiles.get(2)),"The Tile compareTo did not return the correct value\n"),
+                //Assert that compareTo will return 1 when G is compared to testTiles 3
+                ()-> assertEquals(1, G.compareTo(testTiles.get(3)),"The Tile compareTo did not return the correct value\n")
+        );
+    }
+
+    @Test
+    @DisplayName("Tile Test for compareTo on Tile with same Character, different Value")
+    void tileTestCompareToSameChar(){
+        Tile G = new Tile('G');
+
+        //Setting Blank Tile to 'G'
+        testTiles.get(3).setCharacter('G');
+
+        // assertAll so that all assertions are run and reported together
+        assertAll("Testing that the setCharacter returns the correct value for blank Tile\n",
+                //Assert that compareTo will return 1 when G is compared to testTiles 3
+                ()-> assertEquals(1, G.compareTo(testTiles.get(3)),"The Tile compareTo did not return the correct value\n"),
+                //Assert that compareTo will return -1 when testTiles 3 is compared to G
+                ()-> assertEquals(-1, testTiles.get(3).compareTo(G),"The Tile compareTo did not return the correct value\n")
+        );
+    }
 }
