@@ -64,12 +64,25 @@ public class Square {
         return squareTile == null;
     }
 
+    /**
+     * Method to set the SquareType of a Square to NORMAL
+     */
     public void setNormal(){
-
+        squareType = SquareType.NORMAL;
     }
 
+    /**
+     * Mutator Method for Tile on Square
+     *
+     * @param tile Tile to be placed on the Square
+     */
     public void setTile(Tile tile){
+        if (isEmpty()){
+            throw new
+        }
+        else{
 
+        }
     }
 
     @Override
