@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * Class that represent a Character Tile for the Game of Scrabble
  */
-public class Tile {
+public class Tile implements Comparable<Tile> {
 
 
     /**
@@ -22,6 +22,54 @@ public class Tile {
      */
     private short value;
 
+    /**
+     * Method to compare Tile objects by Character then Value
+     *
+     * @param t Tile for this tile to be compared to
+     * @return Returns 0 if equal. Returns 1 if this Character is greater or Characters are equals and this Value is greater else returns -1
+     */
+    @Override
+    public int compareTo(Tile t) {
+        int result;
+
+        //If they are equal result = 0
+        if (this.equals(t)){
+            result = 0;
+        }
+        //Else if the characters are equal
+        else if(this.getCharacter() == t.getCharacter()){
+            //If this value is greater result = 1 else result = -1
+            result = this.getValue() > t.getValue()? 1 : -1;
+        }
+        //Else compare Characters
+        else {
+            //If this Character is greater result = 1 else result = -1
+            result = this.getCharacter() > t.getCharacter()? 1 : -1;
+        }
+
+        return result;
+
+    }
+
+    /**
+     * Method to see if this Tile equals another object
+     *
+     * @param obj Object to be compared to
+     * @return Returns True if the objects are equal
+     */
+    @Override
+    public boolean equals(Object obj) {
+
+        //If obj is an instance of Tile
+        if (obj instanceof Tile){
+            //If the Character and Value are the same then return
+            return this.getCharacter() == ((Tile) obj).getCharacter() && this.getValue() == ((Tile) obj).getValue();
+        }
+        //Else use super.equals
+        else {
+            return super.equals(obj);
+        }
+    }
 
     /**
      * Method to return the value of a char for tiles
