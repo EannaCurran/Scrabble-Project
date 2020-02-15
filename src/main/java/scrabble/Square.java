@@ -90,8 +90,60 @@ public class Square {
         }
     }
 
+    /**
+     * toString Method for Square
+     *
+     * @return the String form of Square
+     */
     @Override
     public String toString() {
-        return super.toString();
+        String result;
+
+        //If the Square isEmpty string will be of SquareType
+        if (isEmpty()){
+
+            //Switch Statement to find the corresponding SquareType string for the Square
+            switch (squareType){
+
+                case TRIPLE_WORD:
+                    result = " 3W ";
+                    break;
+
+                case TRIPLE_LETTER:
+                    result = " 3L ";
+                    break;
+
+                case DOUBLE_WORD:
+                    result = " 2W ";
+                    break;
+
+                case DOUBLE_LETTER:
+                    result = " 2L ";
+                    break;
+
+                case START:
+                    result = " ** ";
+                    break;
+
+                default:
+                    result = "    ";
+            }
+        }
+        //Else string is the Character and Value of the Tile on Square
+        else {
+            //The Character of the Tile
+            result = getTile().getCharacter() + " ";
+
+            //If the Value is a single digit
+            if (getTile().getValue() < 10){
+                result = result + " " + getTile().getValue();
+            }
+            //Else the value is a double digit
+            else {
+                result = result + getTile().getValue();
+            }
+        }
+
+        return result;
     }
 }

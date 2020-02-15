@@ -25,7 +25,7 @@ public class SquareTest {
         testSquare.add(new Square(Square.SquareType.NORMAL));
         testSquare.get(testSquare.size()-1).setTile(new Tile('A'));
         testSquare.add(new Square(Square.SquareType.NORMAL));
-        testSquare.get(testSquare.size()-1).setTile(new Tile('X'));
+        testSquare.get(testSquare.size()-1).setTile(new Tile('Q'));
 
     }
 
@@ -49,8 +49,8 @@ public class SquareTest {
                 () -> assertEquals(" ** ", testSquare.get(5).toString(),"The Square toString method did not return the correct string for a START Square.\n"),
                 //Assert that if a NORMAL square with Tile A is printed it returns the correct string
                 () -> assertEquals("A  1", testSquare.get(6).toString(),"The Square toString method did not return the correct string for a NORMAL Square with Tile A.\n"),
-                //Assert that if a NORMAL square with Tile X is printed it returns the correct string
-                () -> assertEquals("X 10", testSquare.get(7).toString(),"The Square toString method did not return the correct string for a NORMAL Square with Tile X.\n")
+                //Assert that if a NORMAL square with Tile Q is printed it returns the correct string
+                () -> assertEquals("Q 10", testSquare.get(7).toString(),"The Square toString method did not return the correct string for a NORMAL Square with Tile Q.\n")
         );
     }
 
@@ -61,17 +61,17 @@ public class SquareTest {
 
         //Tiles for Testing
         Tile A = new Tile('A');
-        Tile X = new Tile('X');
+        Tile Q = new Tile('Q');
 
         testSquare.get(0).setTile(A);
-        testSquare.get(1).setTile(X);
+        testSquare.get(1).setTile(Q);
 
         // assertAll so that all assertions are run and reported together
         assertAll("Testing the setTile method \n",
                 //Assert that a NORMAL square with setTile A getType returns the correct Tile
                 () -> assertEquals(A, testSquare.get(0).getTile(), "The Square setTile method did not set the correct Tile.\n"),
-                //Assert that a square with setTile X getType returns the correct Tile
-                () -> assertEquals(X, testSquare.get(1).getTile(), "The Square getTile method did not return the correct Tile.\n")
+                //Assert that a square with setTile Q getType returns the correct Tile
+                () -> assertEquals(Q, testSquare.get(1).getTile(), "The Square getTile method did not return the correct Tile.\n")
         );
 
     }
@@ -82,14 +82,14 @@ public class SquareTest {
 
         //Tiles for Testing
         Tile A = new Tile('A');
-        Tile X = new Tile('X');
+        Tile Q = new Tile('Q');
 
         // assertAll so that all assertions are run and reported together
         assertAll("Testing the getTile method\n",
                 //Assert that a NORMAL square with Tile A getType returns the correct Tile
                 () -> assertTrue(A.equals(testSquare.get(6).getTile()),"The Square getTile method did not return the correct Tile for a NORMAL Square with Tile A.\n"),
-                //Assert that a NORMAL square with Tile X getType returns the correct Tile
-                () -> assertTrue(X.equals(testSquare.get(7).getTile()),"The Square getTile method did not return the correct Tile for a NORMAL Square with Tile X.\n")
+                //Assert that a NORMAL square with Tile Q getType returns the correct Tile
+                () -> assertTrue(Q.equals(testSquare.get(7).getTile()),"The Square getTile method did not return the correct Tile for a NORMAL Square with Tile Q.\n")
         );
 
     }
@@ -141,8 +141,8 @@ public class SquareTest {
                 () -> assertEquals(Square.SquareType.START, testSquare.get(5).getType(),"The Square getType method did not return the correct SquareType for a START Square.\n"),
                 //Assert that a NORMAL square with Tile A getType returns the correct SquareType
                 () -> assertEquals(Square.SquareType.NORMAL, testSquare.get(6).getType(),"The Square getType method did not return the correct SquareType for a NORMAL Square with Tile A.\n"),
-                //Assert that a NORMAL square with Tile X getType returns the correct SquareType
-                () -> assertEquals(Square.SquareType.NORMAL, testSquare.get(7).getType(),"The Square getType method did not return the correct SquareType for a NORMAL Square with Tile X.\n")
+                //Assert that a NORMAL square with Tile Q getType returns the correct SquareType
+                () -> assertEquals(Square.SquareType.NORMAL, testSquare.get(7).getType(),"The Square getType method did not return the correct SquareType for a NORMAL Square with Tile Q.\n")
         );
 
     }
