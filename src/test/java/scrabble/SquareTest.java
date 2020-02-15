@@ -66,6 +66,17 @@ public class SquareTest {
     @DisplayName("Test Square getTile Method")
     void testGetTile(){
 
+        //Tiles for Testing
+        Tile A = new Tile('A');
+        Tile X = new Tile('X');
+
+        // assertAll so that all assertions are run and reported together
+        assertAll("Testing the getTile method on different square types\n",
+                //Assert that a NORMAL square with Tile A getType returns the correct Tile
+                () -> assertEquals(A.equals(testSquare.get(6).getTile()),"The Square getTile method did not return the correct Tile for a NORMAL Square with Tile A.\n"),
+                //Assert that a NORMAL square with Tile X getType returns the correct Tile
+                () -> assertEquals(X.equals(testSquare.get(7).getTile()),"The Square getTile method did not return the correct Tile for a NORMAL Square with Tile X.\n")
+        );
 
     }
 
