@@ -1,5 +1,7 @@
 package scrabble;
 
+import scrabble.exceptions.InvalidSquareException;
+
 /**
  * The Square Class represents the square on the Scrabble Board as objects
  */
@@ -75,13 +77,16 @@ public class Square {
      * Mutator Method for Tile on Square
      *
      * @param tile Tile to be placed on the Square
+     * @throws InvalidSquareException The Square has a Tile on it already
      */
     public void setTile(Tile tile){
+        //If the square isEmpty set the tile
         if (isEmpty()){
-            throw new
+            squareTile = tile;
         }
+        //Else throw an Exception
         else{
-
+            throw new InvalidSquareException("The Square has a Tile on it!");
         }
     }
 
