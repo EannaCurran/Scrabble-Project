@@ -59,6 +59,21 @@ public class SquareTest {
     @DisplayName("Test Square setTile Method")
     void testSetTile(){
 
+        //Tiles for Testing
+        Tile A = new Tile('A');
+        Tile X = new Tile('X');
+
+        testSquare.get(0).setTile(A);
+        testSquare.get(1).setTile(X);
+
+        // assertAll so that all assertions are run and reported together
+        assertAll("Testing the setTile method \n",
+                //Assert that a NORMAL square with setTile A getType returns the correct Tile
+                () -> assertEquals(A, testSquare.get(0).getTile(), "The Square setTile method did not set the correct Tile.\n"),
+                //Assert that a square with setTile X getType returns the correct Tile
+                () -> assertEquals(X, testSquare.get(1).getTile(), "The Square getTile method did not return the correct Tile.\n")
+        );
+
 
     }
 
@@ -71,11 +86,11 @@ public class SquareTest {
         Tile X = new Tile('X');
 
         // assertAll so that all assertions are run and reported together
-        assertAll("Testing the getTile method on different square types\n",
+        assertAll("Testing the getTile method\n",
                 //Assert that a NORMAL square with Tile A getType returns the correct Tile
-                () -> assertEquals(A.equals(testSquare.get(6).getTile()),"The Square getTile method did not return the correct Tile for a NORMAL Square with Tile A.\n"),
+                () -> assertTrue(A.equals(testSquare.get(6).getTile()),"The Square getTile method did not return the correct Tile for a NORMAL Square with Tile A.\n"),
                 //Assert that a NORMAL square with Tile X getType returns the correct Tile
-                () -> assertEquals(X.equals(testSquare.get(7).getTile()),"The Square getTile method did not return the correct Tile for a NORMAL Square with Tile X.\n")
+                () -> assertTrue(X.equals(testSquare.get(7).getTile()),"The Square getTile method did not return the correct Tile for a NORMAL Square with Tile X.\n")
         );
 
     }
