@@ -55,8 +55,13 @@ public class Square {
         return squareTile;
     }
 
+    /**
+     * Method to find if the Square has a Tile
+     *
+     * @return True if the Square has no Tile on it
+     */
     public Boolean isEmpty(){
-        return false;
+        return squareTile == null;
     }
 
     public void setNormal(){
