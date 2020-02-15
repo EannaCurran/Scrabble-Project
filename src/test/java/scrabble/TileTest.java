@@ -144,7 +144,7 @@ class TileTest {
         Tile G = new Tile('G');
 
         // assertAll so that all assertions are run and reported together
-        assertAll("Testing that the setCharacter returns the correct value for blank Tile\n",
+        assertAll("Testing that the compareTo returns the correct value\n",
                 //Assert that compareTo will return 1 when B is compared to testTiles 0
                 ()-> assertEquals(1, G.compareTo(testTiles.get(0)),"The Tile compareTo did not return the correct value\n"),
                 //Assert that compareTo will return 0 when G is compared to testTiles 1
@@ -165,11 +165,44 @@ class TileTest {
         testTiles.get(3).setCharacter('G');
 
         // assertAll so that all assertions are run and reported together
-        assertAll("Testing that the setCharacter returns the correct value for blank Tile\n",
+        assertAll("Testing that the compareTo returns the correct value for the same Character\n",
                 //Assert that compareTo will return 1 when G is compared to testTiles 3
                 ()-> assertEquals(1, G.compareTo(testTiles.get(3)),"The Tile compareTo did not return the correct value\n"),
                 //Assert that compareTo will return -1 when testTiles 3 is compared to G
                 ()-> assertEquals(-1, testTiles.get(3).compareTo(G),"The Tile compareTo did not return the correct value\n")
         );
+    }
+
+    @Test
+    @DisplayName("Tile Test for equals on Tile with same Character, different Value")
+    void tileTestEqualsSameChar(){
+        Tile G = new Tile('G');
+
+        //Setting Blank Tile to 'G'
+        testTiles.get(3).setCharacter('G');
+
+        // assertAll so that all assertions are run and reported together
+        assertAll("Testing that the equals returns the correct value\n",
+                //Assert that equal will return False
+                ()-> assertFalse(G.equals(testTiles.get(3)),"The Tile equals returned True\n"),
+                //Assert that equal will return False
+                ()-> assertFalse(testTiles.get(3).equals(G),"The Tile equals returned True\n")
+        );
+
+    }
+
+    @Test
+    @DisplayName("Tile Test for equals on Tile ")
+    void tileTestEquals(){
+        Tile G = new Tile('G');
+
+        // assertAll so that all assertions are run and reported together
+        assertAll("Testing that the equals returns the correct value\n",
+                //Assert that equal will return True
+                ()-> assertTrue(G.equals(testTiles.get(1)),"The Tile equals returned False\n"),
+                //Assert that equal will return False
+                ()-> assertFalse(G.equals(testTiles.get(0)),"The Tile equals returned True\n")
+        );
+
     }
 }
