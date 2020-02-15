@@ -37,9 +37,15 @@ public class Square {
         squareTile = null;
     }
 
+    /**
+     * Accessor Method for the SquareType of the Square
+     *
+     * @return The SquareType of the Square
+     */
     public SquareType getType(){
-        return null;
+        return squareType;
     }
+
 
     public Tile getTile(){
         return null;
