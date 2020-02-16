@@ -147,7 +147,7 @@ public class Board {
     }
 
     /**
-     * toString method that prints the board
+     * toString method that prints the Board
      *
      * @return Returns the board as a string
      */
