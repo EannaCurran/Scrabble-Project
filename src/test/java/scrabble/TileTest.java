@@ -203,6 +203,29 @@ class TileTest {
                 //Assert that equal will return False
                 ()-> assertFalse(G.equals(testTiles.get(0)),"The Tile equals returned True\n")
         );
+    }
+
+    @Test
+    @DisplayName("Tile Test for setNull on Blank Tile")
+    void tileTestSetNull(){
+
+        //Setting Blank Tile to not null
+        testTiles.get(3).setCharacter('B');
+
+        //Setting Blank Tile to null
+        testTiles.get(3).setNull();
+
+        //Assert the Blank tile was set back to null
+        assertEquals(' ', testTiles.get(3).getCharacter(), "The Tile setNull did not set the Character of Blank Tile Back to Null\n");
+
+    }
+
+    @Test
+    @DisplayName("Tile Test for setNull on non Blank")
+    void tileTestSetNullNonBlank(){
+
+        //Assert that setNull on a non Blank Tile throws InvalidTileException
+        assertThrows( InvalidTileException.class, ()-> testTiles.get(0).setNull(), "The Tile setNull did not throw InvalidTileException for a non Blank Tile\n");
 
     }
 }
