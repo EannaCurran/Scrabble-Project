@@ -68,9 +68,15 @@ public class Square {
 
     /**
      * Method to set the SquareType of a Square to NORMAL
+     *
+     * @return The SquareType of the Square before setting to normal
      */
-    public void setNormal(){
+    public SquareType setNormal(){
+        SquareType temp = squareType;
+
         squareType = SquareType.NORMAL;
+
+        return temp;
     }
 
     /**
