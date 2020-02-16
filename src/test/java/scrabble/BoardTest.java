@@ -62,7 +62,6 @@ public class BoardTest {
     void centreSquareTest()
     {
 
-
     }
 
 }

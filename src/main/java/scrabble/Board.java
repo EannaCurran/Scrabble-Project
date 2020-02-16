@@ -116,6 +116,18 @@ public class Board {
 
     }
 
+    public boolean CoordinateValidationCheck(int i, int j)
+    {
+
+        return i < 15 && i >= 0 && j < 15 && j >= 0;
+
+    }
+
+    public Square getSquare(int i, int j)
+    {
+        return this.boardSquares[i][j];
+    }
+
 
     /**
      * toString method that prints the board
