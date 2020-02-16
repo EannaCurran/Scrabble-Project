@@ -3,17 +3,19 @@
 **Authors:** Group 9: The Good, The Bad and The Ugly
 
     John O'Donnell - 18368983
-    Éanna Curran
-    Killian Callaghan
+    Éanna Curran - 18311676
+    Killian Callaghan - 18332783
 
 ### **Scrabble Game**
 
 **Classes**
 
-    Player - Used to create objects that represent the players in Scrabble
-    Frame - Used to create objects that represent the players' character frames in Scrabble
+    Player - Used to create objects that represents the players in Scrabble
+    Frame - Used to create objects that represents the players' character frames in Scrabble
     Pool - Used to create an object that represents the pool bag of tiles in Scrabble
-    Tile - Used to create objects that represent the character tiles in Scrabble
+    Tile - Used to create objects that represents the character tiles in Scrabble
+    Square - Used to create objects that represents the squares on the board in Scrabble
+    Board - Used to create object that reprensents the board in Scrabble
     Main - Is the class containing the main method ececuted by the jar and creates and prints the pool and players with there frames and tiles
     
 Custom Exceptions
@@ -22,7 +24,9 @@ Custom Exceptions
      InvalidPlayerNameException - Custom Exception for name in Player Class
      InvalidPlayerScoreException - Custom Exception for Score in Player Class
      InvalidPoolException - Custom Exception for Pool Class 
-     InvalidTileException - Custom Exception for Tile Class  
+     InvalidTileException - Custom Exception for Tile Class 
+     InvalidSquareException - Custom Exception for Square Class
+     InvalidBoardException - Custom Exception for Board Class 
     
 **JUnit Tests**
 
@@ -30,6 +34,8 @@ Custom Exceptions
     FrameTest - Tests Frame Class
     PoolTest - Tests Pool Class
     TileTest - Tests Tile Class
+    SquareTest - Tests Square Class
+    BoardTest - Tests Board Class
     
 **Project Notes:**
 
