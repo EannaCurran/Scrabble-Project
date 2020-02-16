@@ -157,9 +157,7 @@ public class Board {
             //Loop for the column index
             for(int j=0; j<15; j++)
             {
-                //PLACEHOLDER
-                result = result + "    |";
-                //result = result + boardSquares[i][j] + "|";
+                result = result + boardSquares[i][j] + "|";
             }
         }
 
