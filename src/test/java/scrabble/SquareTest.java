@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import scrabble.exceptions.InvalidSquareException;
 
 import java.util.ArrayList;
 
@@ -73,7 +74,15 @@ public class SquareTest {
                 //Assert that a square with setTile Q getType returns the correct Tile
                 () -> assertEquals(Q, testSquare.get(1).getTile(), "The Square getTile method did not return the correct Tile.\n")
         );
+    }
 
+    @Test
+    @DisplayName("Test Square setTile Method on full Square")
+    void testSetTileFullSquare(){
+        //Tile for Testing
+        Tile A = new Tile('A');
+
+        assertThrows(InvalidSquareException.class, ()-> testSquare.get(6).setTile(A), "The Square setTile method did not throw an InvalidSquareException when used on full Square\n");
     }
 
     @Test
