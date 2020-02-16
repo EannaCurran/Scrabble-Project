@@ -108,6 +108,12 @@ public class Board {
 
     public void resetBoard(){
 
+        //Set boardSquare
+        boardSquares = new Square[15][15];
+
+        //Fill the boardSquares
+        newBoard();
+
     }
 
 
