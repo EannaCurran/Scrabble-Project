@@ -1,5 +1,7 @@
 package scrabble;
 
+import scrabble.exceptions.InvalidBoardException;
+
 import java.util.ArrayList;
 
 
@@ -116,18 +118,33 @@ public class Board {
 
     }
 
+    /**
+     *
+     * @param i row coordinate
+     * @param j column coordinate
+     * @return True if inside Board, false if outside the Board
+     */
     public boolean CoordinateValidationCheck(int i, int j)
     {
-
         return i < 15 && i >= 0 && j < 15 && j >= 0;
-
     }
 
+    /**
+     *
+     * @param i row coordinate
+     * @param j column coordinate
+     * @return The Square at i and j
+     * @throws InvalidBoardException Coordinates are not inside the Board
+     */
     public Square getSquare(int i, int j)
     {
-        return this.boardSquares[i][j];
+        if (CoordinateValidationCheck(i, j)){
+            return this.boardSquares[i][j];
+        }
+        else {
+            throw new InvalidBoardException("Coordinates are not inside the board.");
+        }
     }
-
 
     /**
      * toString method that prints the board
