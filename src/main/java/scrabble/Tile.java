@@ -186,7 +186,7 @@ public class Tile implements Comparable<Tile> {
     /**
      * Method to set Blank Tiles Character back to null
      *
-     * @throws InvalidTileException Id the tile is not a blank tile
+     * @throws InvalidTileException If the tile is not a blank tile
      */
     public void setNull(){
         if (getValue() == 0){
