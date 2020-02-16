@@ -106,17 +106,39 @@ public class SquareTest {
         // assertAll so that all assertions are run and reported together
         assertAll("Testing the setNormal method on different square types\n",
                 //Assert that a NORMAL square getType returns NORMAL
-                () -> assertEquals(Square.SquareType.NORMAL, testSquare.get(0).getType(),"The Square setNormal method did not set Type to NORMAL Square.\n"),
+                () -> assertEquals(Square.SquareType.NORMAL, testSquare.get(0).getType(),"The Square setNormal method did not set Type to NORMAL SquareType.\n"),
                 //Assert that a TRIPLE_WORD square getType returns NORMAL
-                () -> assertEquals(Square.SquareType.NORMAL, testSquare.get(1).getType(),"The Square setNormal method did not set Type to NORMAL Square.\n"),
+                () -> assertEquals(Square.SquareType.NORMAL, testSquare.get(1).getType(),"The Square setNormal method did not set Type to NORMAL SquareType.\n"),
                 //Assert that a TRIPLE_LETTER square getType returns NORMAL
-                () -> assertEquals(Square.SquareType.NORMAL, testSquare.get(2).getType(),"The Square setNormal method did not set Type to NORMAL Square.\n"),
+                () -> assertEquals(Square.SquareType.NORMAL, testSquare.get(2).getType(),"The Square setNormal method did not set Type to NORMAL SquareType.\n"),
                 //Assert that a DOUBLE_WORD square getType returns NORMAL
-                () -> assertEquals(Square.SquareType.NORMAL, testSquare.get(3).getType(),"The Square setNormal method did not set Type to NORMAL Square.\n"),
+                () -> assertEquals(Square.SquareType.NORMAL, testSquare.get(3).getType(),"The Square setNormal method did not set Type to NORMAL SquareType.\n"),
                 //Assert that a DOUBLE_LETTER square getType returns NORMAL
-                () -> assertEquals(Square.SquareType.NORMAL, testSquare.get(4).getType(),"The Square setNormal method did not set Type to NORMAL Square.\n"),
+                () -> assertEquals(Square.SquareType.NORMAL, testSquare.get(4).getType(),"The Square setNormal method did not set Type to NORMAL SquareType.\n"),
                 //Assert that a START square getType returns NORMAL
-                () -> assertEquals(Square.SquareType.NORMAL, testSquare.get(5).getType(),"The Square setNormal method did not set Type to NORMAL Square.\n")
+                () -> assertEquals(Square.SquareType.NORMAL, testSquare.get(5).getType(),"The Square setNormal method did not set Type to NORMAL SquareType.\n")
+        );
+
+    }
+
+    @Test
+    @DisplayName("Test Square setNormal Method returns correct SquareType")
+    void testSetNormalReturn(){
+
+        // assertAll so that all assertions are run and reported together
+        assertAll("Testing the setNormal method return value on different square types\n",
+                //Assert that a NORMAL square getType returns NORMAL
+                () -> assertEquals(Square.SquareType.NORMAL, testSquare.get(0).setNormal(),"The Square setNormal method did not return the expected SquareType.\n"),
+                //Assert that a TRIPLE_WORD square setNormal returns TRIPLE_WORD
+                () -> assertEquals(Square.SquareType.TRIPLE_WORD, testSquare.get(1).setNormal(),"The Square setNormal method did not return the expected SquareType.\n"),
+                //Assert that a TRIPLE_LETTER square setNormal returns TRIPLE_LETTER
+                () -> assertEquals(Square.SquareType.TRIPLE_LETTER, testSquare.get(2).setNormal(),"The Square setNormal method did not return the expected SquareType.\n"),
+                //Assert that a DOUBLE_WORD square setNormal returns DOUBLE_WORD
+                () -> assertEquals(Square.SquareType.DOUBLE_WORD, testSquare.get(3).setNormal(),"The Square setNormal method did not return the expected SquareType.\n"),
+                //Assert that a DOUBLE_LETTER square setNormal returns DOUBLE_LETTER
+                () -> assertEquals(Square.SquareType.DOUBLE_LETTER, testSquare.get(4).setNormal(),"The Square setNormal method did not return the expected SquareType.\n"),
+                //Assert that a START square setNormal returns START
+                () -> assertEquals(Square.SquareType.START, testSquare.get(5).setNormal(),"The Square setNormal method did not return the expected SquareType.\n")
         );
 
     }
