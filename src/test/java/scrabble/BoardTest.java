@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import scrabble.exceptions.InvalidBoardException;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -55,6 +54,15 @@ public class BoardTest {
                 "______________________________________________________________________________\n" +
                 "15| 3W |    |    | 2L |    |    |    | 3W |    |    |    | 2L |    |    | 3W |";
         assertEquals(startingBoard, boardTest.toString());
+    }
+
+    //Testing that a letter overwrites the centre square correctly
+    @Test
+    @DisplayName("Letter overwrites the centre square correctly")
+    void centreSquareTest()
+    {
+
+
     }
 
 }
