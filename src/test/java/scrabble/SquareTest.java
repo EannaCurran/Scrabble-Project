@@ -82,7 +82,18 @@ public class SquareTest {
         //Tile for Testing
         Tile A = new Tile('A');
 
+        //Assert that setTile throws InvalidSquareException when Square is full
         assertThrows(InvalidSquareException.class, ()-> testSquare.get(6).setTile(A), "The Square setTile method did not throw an InvalidSquareException when used on full Square\n");
+    }
+
+    @Test
+    @DisplayName("Test Square setTile Method with null Tile")
+    void testSetTileNullTile(){
+        //Tile for Testing
+        Tile nullTile = new Tile(' ');
+
+        //Assert that setTile throws InvalidSquareException when null Tile is inputted
+        assertThrows(InvalidSquareException.class, ()-> testSquare.get(0).setTile(nullTile), "The Square setTile method did not throw an InvalidSquareException when null Tile was inputted\n");
     }
 
     @Test
