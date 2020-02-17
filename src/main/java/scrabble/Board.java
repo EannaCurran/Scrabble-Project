@@ -4,6 +4,8 @@ import scrabble.exceptions.InvalidBoardException;
 import scrabble.exceptions.InvalidFrameException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 
 
 /**
@@ -196,6 +198,32 @@ public class Board {
 
 
     /**
+     * Method to check that a move from the player is valid
+     * @param player: Player making the move
+     * @param word: List of tiles requested to make the move
+     * @param positions: Positions entered to place each Tile
+     */
+    public void checkValidMove(Player player, ArrayList<Tile> word, int[][] positions){
+
+        // Checks that the word length is greater than 0
+        checkWordLength(word);
+
+        // Checks that the player has each of the Tiles in their Frame
+        checkPlayerHasTiles(player, word);
+
+        // Checks that all co-ordinates are on the board
+        checkValidPosition(positions);
+
+
+        // Checks that none of the entered positions don't already contain Tiles
+        checkPositionContainsTile(positions);
+
+        // Checks that all the positions are in a line
+        checkPositionDirection(positions);
+    }
+
+
+    /**
      * Method to place a Tile on the board
      *
      * @param tile: Tile to be placed on the board
@@ -209,21 +237,18 @@ public class Board {
     }
 
 
-    public boolean checkValidMove(ArrayList<Tile> word){
-        return true;
-    }
-
-
     /**
      * Method to validate that a position passed in is on the board
      *
      * @param position: Position to check if its on the board
      */
-    private void checkValidPosition(int position){
+    private void checkValidPosition(int[][] position){
 
         // Checks if the position is in the range of the board, if not exception is thrown
-        if(position < 0 ||  position > 14){
-            throw new InvalidBoardException("position not on board");
+        for(int[] ints : position){
+            if(ints[0] < 0 || ints[0] > 14 || ints[1] < 0 || ints[1] > 14){
+                throw new InvalidBoardException("position not on board");
+            }
         }
     }
 
@@ -237,7 +262,7 @@ public class Board {
     private void checkPlayerHasTiles(Player player, ArrayList<Tile> word){
 
         // Checks if the player has every Tile in their Frame, if not exception is thrown
-        if(!(player.getPlayerFrame().checkTiles(word)) ){
+        if(!(player.getPlayerFrame().checkTiles(word))){
             throw new InvalidFrameException("Player doesn't have the necessary tiles");
         }
     }
@@ -260,17 +285,68 @@ public class Board {
      * Method to check if a position on the Board already has a Tile in it
      * @param position: Co-ordinates to check if a Tile in already in it
      */
-    private void checkPositionContainsTile(int[] position){
+    private void checkPositionContainsTile(int[][] position){
 
         // Checks that the position has a tile in it, if it does exception is thrown
-        if(!(boardSquares[position[0]][position[1]].isEmpty())){
-            throw new InvalidBoardException("Position already contains a tile");
+        for(int[] ints : position){
+            if(!(boardSquares[ints[0]][ints[1]].isEmpty())){
+                throw new InvalidBoardException("Position already contains a tile");
+            }
         }
-
     }
 
+
+    /**
+     * Method to check that a list of positions to place a word is in a line
+     * @param position: List of co-ordinates to check they are part of a line of Tiles
+     */
+    private void checkPositionDirection(int[][] position){
+
+        // Storing which orientation the list of positions are in
+        boolean tempVertical = true;
+
+        // Loops to check which direct the list of positions are not in the vertical direction
+        for(int j = 0; j < position.length - 1;j++){
+
+            if(position[j][0] != position[j+1][0]){
+
+                tempVertical = false;
+                break;
+            }
+        }
+
+        // Check that tile tiles in the vertical direction
+        if(tempVertical){
+
+            // Sorts the values in position based on the j direction
+            Arrays.sort(position, Comparator.comparingInt(a -> a[1]));
+
+            // Checks that all there is no gap from the co-ordinates in position, if there is exception is thrown
+            for(int j = 0; j < position.length - 1;j++){
+
+                if(!(position[j][1]+1 == position[j+1][1] || !boardSquares[position[j][0]][position[j][1]+1].isEmpty())){
+
+                    throw new InvalidBoardException("Tiles are not in a line on the board");
+                }
+            }
+
+            return;
+        }
+
+        // Sorts the values in position based on the i direction
+        Arrays.sort(position, Comparator.comparingInt(a -> a[0]));
+
+        // Checks that all there is no gap from the co-ordinates in position, if there is exception is thrown
+        for(int j = 0; j < position.length - 1;j++){
+
+            if(!(position[j][0]+1 == position[j+1][0] || !boardSquares[position[j][0]+1][position[j][1]].isEmpty())){
+
+                throw new InvalidBoardException("Tiles are not in a line on the board");
+            }
+        }
+    }
+
+
     public static void main(String[] args) {
-        Board board = new Board();
-        System.out.println(board);
     }
 }
