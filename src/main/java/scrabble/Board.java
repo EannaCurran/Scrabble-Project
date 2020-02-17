@@ -1,6 +1,7 @@
 package scrabble;
 
 import scrabble.exceptions.InvalidBoardException;
+import scrabble.exceptions.InvalidFrameException;
 
 import java.util.ArrayList;
 
@@ -215,12 +216,29 @@ public class Board {
 
     /**
      * Method to validate that a position passed in is on the board
+     *
      * @param position: Position to check if its on the board
      */
     private void checkValidPosition(int position){
+
         // Checks if the position is in the range of the board, if not exception is thrown
         if(position < 0 ||  position > 14){
             throw new InvalidBoardException("position not on board");
+        }
+    }
+
+
+    /**
+     * Method to validate if the Player placing a list of Tiles has each Tile in his Frame
+     *
+     * @param player: Player to check if they have the necessary Tiles
+     * @param word: List of Tiles to check
+     */
+    private void checkPlayerHasTiles(Player player, ArrayList<Tile> word){
+
+        // Checks if the player has every Tile in their Frame, if not exception is thrown
+        if(!(player.getPlayerFrame().checkTiles(word)) ){
+            throw new InvalidFrameException("Player doesn't have the necessary tiles");
         }
     }
 
