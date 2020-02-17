@@ -255,6 +255,20 @@ public class Board {
         }
     }
 
+
+    /**
+     * Method to check if a position on the Board already has a Tile in it
+     * @param position: Co-ordinates to check if a Tile in already in it
+     */
+    private void checkPositionContainsTile(int[] position){
+
+        // Checks that the position has a tile in it, if it does exception is thrown
+        if(!(boardSquares[position[0]][position[1]].isEmpty())){
+            throw new InvalidBoardException("Position already contains a tile");
+        }
+
+    }
+
     public static void main(String[] args) {
         Board board = new Board();
         System.out.println(board);
