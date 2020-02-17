@@ -16,6 +16,8 @@ public class BoardTest {
         boardTest = new Board();
     }
 
+    // BOARD TOSTRING TESTS
+
     //Tests board is printed correctly
     @Test
     @DisplayName("Testing a new board prints correctly")
@@ -230,6 +232,34 @@ public class BoardTest {
         assertEquals(boardPrintTest, boardTest.toString(),"The board did not print the way it was expected");
     }
 
+
+    //GETSQUARE TESTS
+
+    @Test
+    @DisplayName("Testing the coordinates i and j for the method getSquare")
+    void coordinateInsideCorners()
+    {
+        assertAll("Testing the coordinates i and j are inside the Board",
+                () ->assertDoesNotThrow(() -> boardTest.getSquare(0,0), "getSquare threw a InvalidBoardException when the coordinates are (0,0).\n"),
+                () ->assertDoesNotThrow(() -> boardTest.getSquare(14,14), "getSquare threw a InvalidBoardException when the coordinates are (14,14).\n"),
+                () ->assertDoesNotThrow(() -> boardTest.getSquare(0,14), "getSquare threw a InvalidBoardException when the coordinates are (14,14).\n"),
+                () ->assertDoesNotThrow(() -> boardTest.getSquare(14,0), "getSquare threw a InvalidBoardException when the coordinates are (14,14).\n"),
+                () ->assertDoesNotThrow(() -> boardTest.getSquare(0,14), "getSquare threw a InvalidBoardException when the coordinates are (14,14).\n")
+        );
+    }
+
+    @Test
+    @DisplayName("Testing the coordinates i and j are outside the Board")
+    void coordinateOutsideCorners()
+    {
+        assertAll("Testing the coordinates i and j are inside the Board",
+                () ->assertThrows(InvalidBoardException.class,() -> boardTest.getSquare(-1,-1), "getSquare threw a InvalidBoardException when the coordinates are (0,0).\n"),
+                () ->assertThrows(InvalidBoardException.class,() -> boardTest.getSquare(15,15), "getSquare threw a InvalidBoardException when the coordinates are (14,14).\n"),
+                () ->assertThrows(InvalidBoardException.class,() -> boardTest.getSquare(-1,15), "getSquare threw a InvalidBoardException when the coordinates are (14,14).\n"),
+                () ->assertThrows(InvalidBoardException.class,() -> boardTest.getSquare(15,-1), "getSquare threw a InvalidBoardException when the coordinates are (14,14).\n"),
+                () ->assertThrows(InvalidBoardException.class,() -> boardTest.getSquare(-1,15), "getSquare threw a InvalidBoardException when the coordinates are (14,14).\n")
+        );
+    }
 
 
 
