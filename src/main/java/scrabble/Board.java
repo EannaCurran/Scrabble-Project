@@ -212,6 +212,18 @@ public class Board {
         return true;
     }
 
+
+    /**
+     * Method to validate that a position passed in is on the board
+     * @param position: Position to check if its on the board
+     */
+    private void checkValidPosition(int position){
+        // Checks if the position is in the range of the board, if not exception is thrown
+        if(position < 0 ||  position > 14){
+            throw new InvalidBoardException("position not on board");
+        }
+    }
+
     public static void main(String[] args) {
         Board board = new Board();
         System.out.println(board);
