@@ -193,14 +193,23 @@ public class Board {
         return result;
     }
 
-    // Eanna
+
+    /**
+     * Method to place a Tile on the board
+     *
+     * @param tile: Tile to be placed on the board
+     * @param position_i: I position on the Board to place the Tile
+     * @param position_j J position on the Board to place the Tile
+     */
+    private void placeTile(Tile tile, int position_i, int position_j){
+
+        // Places the tile passed in onto the ij position on the board
+        boardSquares[position_i][position_j].setTile(tile);
+    }
+
 
     public boolean checkValidMove(ArrayList<Tile> word){
         return true;
-    }
-
-    public void placeWord(ArrayList<Tile> word){
-
     }
 
     public static void main(String[] args) {
