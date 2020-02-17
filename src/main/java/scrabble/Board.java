@@ -122,18 +122,18 @@ public class Board {
     }
 
     /**
-     *
+     * Method checks if coordinates are valid
      * @param i row coordinate
      * @param j column coordinate
      * @return True if inside Board, false if outside the Board
      */
-    public boolean CoordinateValidationCheck(int i, int j)
+    private boolean CoordinateValidationCheck(int i, int j)
     {
         return i < 15 && i >= 0 && j < 15 && j >= 0;
     }
 
     /**
-     *
+     * Method that returns a specific board square
      * @param i row coordinate
      * @param j column coordinate
      * @return The Square at i and j
@@ -150,7 +150,7 @@ public class Board {
     }
 
     /**
-     * toString method that prints the board
+     * toString method that prints the Board
      *
      * @return Returns the board as a string
      */
