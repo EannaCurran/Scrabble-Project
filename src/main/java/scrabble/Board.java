@@ -242,6 +242,19 @@ public class Board {
         }
     }
 
+
+    /**
+     * Method to check that words to be placed on the board are longer than 0 tiles
+     * @param word: List of Tiles to check
+     */
+    private void checkWordLength(ArrayList<Tile> word){
+
+        // Checks that the word contains a Tile, if not exception is thrown
+        if(word.size() == 0){
+            throw new InvalidBoardException("Word must be longer than 0 tiles");
+        }
+    }
+
     public static void main(String[] args) {
         Board board = new Board();
         System.out.println(board);
