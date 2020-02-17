@@ -1,6 +1,12 @@
 package scrabble;
 
+import scrabble.exceptions.InvalidBoardException;
+
+import java.lang.management.PlatformLoggingMXBean;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 
 
 /**
@@ -162,15 +168,110 @@ public class Board {
 
     // Eanna
 
-    public boolean checkValidMove(ArrayList<Tile> word){
-        return true;
+    private void placeTile(Tile tile, int position_i, int position_j){
+            boardSquares[position_i][position_j].setTile(tile);
     }
 
-    public void placeWord(ArrayList<Tile> word){
+    public void checkValidMove(Player player, ArrayList<Tile> word, int[][] positions){
+
+        boolean Vertical;
+
+        checkWordLength(word);
+        checkPlayerHasTiles(player, word);
+
+        for(int i = 0; i < positions.length; i++){
+            for(int j = 0; j < 2; j++){
+                checkValidPosition(positions[i][j]);
+            }
+
+            checkPositionContainsTile(positions[i]);
+        }
+
+        Vertical = checkPositionDirection(positions);
+
+    }
+
+    private void checkValidPosition(int position){
+        if(position < 0 ||  position > 14){
+            throw new InvalidBoardException("position not on board");
+        }
+    }
+
+    private void checkPlayerHasTiles(Player player, ArrayList<Tile> word){
+        if(!(player.getPlayerFrame().checkTiles(word)) ){
+            throw new InvalidBoardException("Player doesn't have the necessary tiles");
+        }
+    }
+
+    private void checkWordLength(ArrayList<Tile> word){
+        if(word.size() == 0){
+            throw new InvalidBoardException("Word must be longer than 0 tiles");
+        }
+    }
+
+    private void checkPositionContainsTile(int[] position){
+        if(!(boardSquares[position[0]][position[1]].isEmpty())){
+            throw new InvalidBoardException("Position already contains a tile");
+        }
+
+    }
+
+    private boolean checkPositionDirection(int[][] position){
+
+        boolean tempVertical = false;
+        for(int j = 0; j < position.length - 1;j++){
+            if(position[j][0] == position[j+1][0]){
+
+                tempVertical = true;
+            }
+            else{
+                tempVertical = false;
+                break;
+            }
+        }
+
+        if(tempVertical == true){
+            Arrays.sort(position, Comparator.comparingInt(a -> a[1]));
+            for(int j = 0; j < position.length - 1;j++){
+                if(!(position[j][1]+1 == position[j+1][1] || !boardSquares[position[j][0]][position[j][1]+1].isEmpty())){
+
+                    throw new InvalidBoardException("Tiles are not in a line on the board");
+                }
+            }
+            return true;
+        }
+
+        for(int i = 0; i < position.length - 1; i++){
+
+            if(position[i][1] == position[i+1][1]){
+
+                tempVertical = false;
+            }
+            else {
+                throw new InvalidBoardException("tiles in line aok");
+
+            }
+
+        }
+
+        if(tempVertical == false){
+            Arrays.sort(position, Comparator.comparingInt(a -> a[0]));
+            System.out.println(Arrays.deepToString(position));
+            for(int j = 0; j < position.length - 1;j++){
+                System.out.println(position[j+1][0]);
+                if(!(position[j][0]+1 == position[j+1][0] || !boardSquares[position[j][0]+1][position[j][1]].isEmpty())){
+
+                    throw new InvalidBoardException("Tiles are not in a line on the board");
+                }
+            }
+        }
+
+        return false;
 
     }
 
     public static void main(String[] args) {
-        Board board = new Board();
+
     }
+
 }
