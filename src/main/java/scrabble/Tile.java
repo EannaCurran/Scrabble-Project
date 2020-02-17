@@ -184,6 +184,20 @@ public class Tile implements Comparable<Tile> {
 
 
     /**
+     * Method to set Blank Tiles Character back to null
+     *
+     * @throws InvalidTileException If the tile is not a blank tile
+     */
+    public void setNull(){
+        if (getValue() == 0){
+            character = ' ';
+        }
+        else{
+            throw new InvalidTileException("Only Blank Tiles can be set Null!");
+        }
+    }
+
+    /**
      * Constructor for Tile
      *
      * @param c Character for the Tile

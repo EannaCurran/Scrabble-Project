@@ -68,21 +68,33 @@ public class Square {
 
     /**
      * Method to set the SquareType of a Square to NORMAL
+     *
+     * @return The SquareType of the Square before setting to normal
      */
-    public void setNormal(){
+    public SquareType setNormal(){
+        SquareType temp = squareType;
+
         squareType = SquareType.NORMAL;
+
+        return temp;
     }
 
     /**
      * Mutator Method for Tile on Square
      *
      * @param tile Tile to be placed on the Square
-     * @throws InvalidSquareException The Square has a Tile on it already
+     * @throws InvalidSquareException The Square has a Tile on it already or the Tile is a null Tile
      */
     public void setTile(Tile tile){
         //If the square isEmpty set the tile
         if (isEmpty()){
-            squareTile = tile;
+            //If the tile is a Blank tile set to null
+            if (tile.getCharacter() == ' '){
+                throw new InvalidSquareException("The Square can not contain a Null Tile");
+            }
+            else{
+                squareTile = tile;
+            }
         }
         //Else throw an Exception
         else{
