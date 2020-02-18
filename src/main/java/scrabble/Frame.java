@@ -192,6 +192,19 @@ public class Frame {
         return true;
     }
 
+    public Tile getTile(char a){
+        Tile temp = new Tile(' ');
+        for(Tile t: playerFrame){
+            if(t.getCharacter() == a){
+                temp = playerFrame.get(playerFrame.indexOf(t));
+                playerFrame.remove(t);
+                break;
+
+            }
+        }
+        return temp;
+    }
+
 
     /**
      * Method overriding the toString method
@@ -213,6 +226,9 @@ public class Frame {
 
         // Returns the formatted text
         return text;
+    }
+
+    public static void main(String[] args) {
     }
 
 }
