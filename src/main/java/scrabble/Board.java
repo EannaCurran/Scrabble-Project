@@ -203,7 +203,7 @@ public class Board {
      * @param word: List of tiles requested to make the move
      * @param positions: Positions entered to place each Tile
      */
-    public void checkValidMove(Player player, ArrayList<Tile> word, int[][] positions){
+    public void checkValidMove(Player player, char[] word, int[][] positions){
 
         // Checks that the word length is greater than 0
         checkWordLength(word);
@@ -220,6 +220,8 @@ public class Board {
 
         // Checks that all the positions are in a line
         checkPositionDirection(positions);
+
+        checkWordConnects(positions);
     }
 
 
@@ -234,6 +236,10 @@ public class Board {
 
         // Places the tile passed in onto the ij position on the board
         boardSquares[position_i][position_j].setTile(tile);
+    }
+
+    public void placeTiles(Player player, char[] tiles, int[][] positions){
+
     }
 
 
@@ -259,12 +265,13 @@ public class Board {
      * @param player: Player to check if they have the necessary Tiles
      * @param word: List of Tiles to check
      */
-    private void checkPlayerHasTiles(Player player, ArrayList<Tile> word){
+    private void checkPlayerHasTiles(Player player, char[] word){
 
         // Checks if the player has every Tile in their Frame, if not exception is thrown
-        if(!(player.getPlayerFrame().checkTiles(word))){
+        /* temp remove since gradle is acting up
+            if (!(player.getPlayerFrame().checkTiles(word))){
             throw new InvalidFrameException("Player doesn't have the necessary tiles");
-        }
+        }**/
     }
 
 
@@ -272,10 +279,10 @@ public class Board {
      * Method to check that words to be placed on the board are longer than 0 tiles
      * @param word: List of Tiles to check
      */
-    private void checkWordLength(ArrayList<Tile> word){
+    private void checkWordLength(char[] word){
 
         // Checks that the word contains a Tile, if not exception is thrown
-        if(word.size() == 0){
+        if(word.length == 0){
             throw new InvalidBoardException("Word must be longer than 0 tiles");
         }
     }
@@ -309,7 +316,6 @@ public class Board {
         for(int j = 0; j < position.length - 1;j++){
 
             if(position[j][0] != position[j+1][0]){
-
                 tempVertical = false;
                 break;
             }
@@ -321,10 +327,10 @@ public class Board {
             // Sorts the values in position based on the j direction
             Arrays.sort(position, Comparator.comparingInt(a -> a[1]));
 
-            // Checks that all there is no gap from the co-ordinates in position, if there is exception is thrown
+            // Checks that all there is no gap from the co-ordinates in position and co-ordinates are not diagonal, if there is exception is thrown
             for(int j = 0; j < position.length - 1;j++){
 
-                if(!(position[j][1]+1 == position[j+1][1] || !boardSquares[position[j][0]][position[j][1]+1].isEmpty())){
+                if((!(position[j][1]+1 == position[j+1][1] && position[0][j] != position[0][j+1]) || !boardSquares[position[j][0]][position[j][1]+1].isEmpty())){
 
                     throw new InvalidBoardException("Tiles are not in a line on the board");
                 }
@@ -336,10 +342,10 @@ public class Board {
         // Sorts the values in position based on the i direction
         Arrays.sort(position, Comparator.comparingInt(a -> a[0]));
 
-        // Checks that all there is no gap from the co-ordinates in position, if there is exception is thrown
+        // Checks that all there is no gap from the co-ordinates in position and co-ordinates are not diagonal, if there is exception is thrown
         for(int j = 0; j < position.length - 1;j++){
 
-            if(!(position[j][0]+1 == position[j+1][0] || !boardSquares[position[j][0]+1][position[j][1]].isEmpty())){
+            if((!(position[j][0]+1 == position[j+1][0] && position[1][j] != position[1][j+1]) || !boardSquares[position[j][0]+1][position[j][1]].isEmpty())){
 
                 throw new InvalidBoardException("Tiles are not in a line on the board");
             }
@@ -347,6 +353,117 @@ public class Board {
     }
 
 
+    /**
+     * Method to check if a list of positions connect with a tile already on the board
+     * @param position: List of positions to check if any of them would connect with a tile on the board
+     */
+    private void checkWordConnects(int[][] position){
+
+        // Boolean to store if a connecting tile has been found
+        boolean connectCheck = false;
+
+        // Check if a the first tile of the game has been placed, since it doesn't need to have a connecting tile
+        if(boardSquares[7][7].isEmpty() ){
+
+            // If the first tile of the game hasn't been placed and the position [7][7] is not passed in, exception is thrown
+            for (int[] ints : position) {
+                if (ints[0] == 7 && ints[1] == 7) {
+                    return;
+                }
+            }
+            throw new InvalidBoardException("First word in game must be placed within [7][7]");
+        }
+
+        // Loops through each co-ordinate in position, checks if any of the surrounding positions contain tiles, if it does
+        // connectCheck is set to true and loop is broken, edge guarding included for any positions on the edge of the board;
+        for (int[] ints : position) {
+
+            // Edge guard for position [0][0]
+            if (ints[0] == 0 && ints[1] == 0) {
+                if (!(boardSquares[ints[0] + 1][ints[1]].isEmpty() && boardSquares[ints[0]][ints[1] + 1].isEmpty())) {
+                    connectCheck = true;
+                    break;
+                }
+            }
+
+            // Edge guard for position [14][0]
+            else if (ints[0] == 14 && ints[1] == 0) {
+                if (!(boardSquares[ints[0] - 1][ints[1]].isEmpty() && boardSquares[ints[0]][ints[1] + 1].isEmpty())) {
+                    connectCheck = true;
+                    break;
+                }
+            }
+
+            // Edge guard for position [14][14]
+            else if (ints[0] == 14 && ints[1] == 14) {
+                if (!(boardSquares[ints[0] - 1][ints[1]].isEmpty() && boardSquares[ints[0]][ints[1] - 1].isEmpty())) {
+                    connectCheck = true;
+                    break;
+                }
+            }
+
+            // Edge guard for position [0][14]
+            else if (ints[0] == 0 && ints[1] == 14) {
+                if (!(boardSquares[ints[0] + 1][ints[1]].isEmpty() && boardSquares[ints[0]][ints[1] - 1].isEmpty())) {
+                    connectCheck = true;
+                    break;
+                }
+            }
+
+            // Edge guard for left side of the board
+            else if (ints[0] == 0) {
+                if (!(boardSquares[ints[0] + 1][ints[1]].isEmpty() && boardSquares[ints[0]][ints[1] - 1].isEmpty() && boardSquares[ints[0]][ints[1] + 1].isEmpty())) {
+                    connectCheck = true;
+                    break;
+                }
+            }
+
+            // Edge guard for right side of the board
+            else if (ints[1] == 14) {
+                if (!(boardSquares[ints[0] - 1][ints[1]].isEmpty() && boardSquares[ints[0]][ints[1] - 1].isEmpty() && boardSquares[ints[0]][ints[1] + 1].isEmpty())) {
+                    connectCheck = true;
+                    break;
+                }
+            }
+
+            // Edge guard for bottom for board
+            else if (ints[0] == 14) {
+                if (!(boardSquares[ints[0] - 1][ints[1]].isEmpty() && boardSquares[ints[0]][ints[1] - 1].isEmpty() && boardSquares[ints[0] + 1][ints[1]].isEmpty())) {
+                    connectCheck = true;
+                    break;
+                }
+            }
+
+            // Edge guard for top of board
+            else if (ints[1] == 0) {
+                if (!(boardSquares[ints[0] + 1][ints[1]].isEmpty() && boardSquares[ints[0]][ints[1] + 1].isEmpty() && boardSquares[ints[0]][ints[1] - 1].isEmpty())) {
+                    connectCheck = true;
+                    break;
+                }
+            }
+
+            // Normal check for positions not on the corner of the board
+            else {
+                if (!(boardSquares[ints[0] + 1][ints[1]].isEmpty() && boardSquares[ints[0]][ints[1] + 1].isEmpty() && boardSquares[ints[0] - 1][ints[1]].isEmpty() && boardSquares[ints[0]][ints[1] - 1].isEmpty())) {
+                    connectCheck = true;
+                    break;
+                }
+            }
+        }
+
+        // If none of the positions connect to a tile on the board, InvalidException is thrown
+        if(!connectCheck){
+            throw new InvalidBoardException("Placed tiles not connected to any tiles");
+        }
+    }
+
+
     public static void main(String[] args) {
+        Pool pool = new Pool();
+        Frame frame = new Frame(pool);
+        Board board = new Board();
+        int[][] move = {{7,6},{7,7}};
+        board.checkWordConnects(move);
+
     }
 }
