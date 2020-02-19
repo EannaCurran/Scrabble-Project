@@ -238,8 +238,12 @@ public class Board {
         boardSquares[position_i][position_j].setTile(tile);
     }
 
-    public void placeTiles(Player player, char[] tiles, int[][] positions){
+    public void placeTiles(Player player, char[] word, int[][] positions){
+        checkValidMove(player, word, positions);
 
+        for(int i = 0; i < positions.length; i++){
+            placeTile(player.getPlayerFrame().getTile(word[i]), positions[i][0], positions[i][1]);
+        }
     }
 
 
@@ -330,7 +334,7 @@ public class Board {
             // Checks that all there is no gap from the co-ordinates in position and co-ordinates are not diagonal, if there is exception is thrown
             for(int j = 0; j < position.length - 1;j++){
 
-                if((!(position[j][1]+1 == position[j+1][1] && position[0][j] != position[0][j+1]) || !boardSquares[position[j][0]][position[j][1]+1].isEmpty())){
+                if((!((position[j][1]+1 == position[j+1][1] && position[j][0] == position[j+1][0]) || !boardSquares[position[j][0]][position[j][1]+1].isEmpty()))){
 
                     throw new InvalidBoardException("Tiles are not in a line on the board");
                 }
@@ -345,9 +349,9 @@ public class Board {
         // Checks that all there is no gap from the co-ordinates in position and co-ordinates are not diagonal, if there is exception is thrown
         for(int j = 0; j < position.length - 1;j++){
 
-            if((!(position[j][0]+1 == position[j+1][0] && position[1][j] != position[1][j+1]) || !boardSquares[position[j][0]+1][position[j][1]].isEmpty())){
+            if((!((position[j][0]+1 == position[j+1][0] && position[j][1] == position[j + 1][1] || !boardSquares[position[j][0]+1][position[j][1]].isEmpty())))){
 
-                throw new InvalidBoardException("Tiles are not in a line on the board");
+                throw new InvalidBoardException("Tiles are not in a line on bbbthe board");
             }
         }
     }
@@ -459,11 +463,21 @@ public class Board {
 
 
     public static void main(String[] args) {
-        Pool pool = new Pool();
-        Frame frame = new Frame(pool);
         Board board = new Board();
-        int[][] move = {{7,6},{7,7}};
-        board.checkWordConnects(move);
+        Pool pool = new Pool();
+        Player player = new Player("a", pool);
+        player.getPlayerFrame().returnFrame().clear();
+        ArrayList<Tile> tiles = new ArrayList<>();
+        tiles.add(new Tile('A'));
+        tiles.add(new Tile('B'));
+        tiles.add(new Tile('C'));
+        char[] word = {'C','A','B'};
+        board.boardSquares[7][7].setTile(new Tile('A'));
+        int[][] position = {{7,8},{7,9},{7,10}};
+        player.getPlayerFrame().addTile(new Tile('A'));
+        player.getPlayerFrame().addTile(new Tile('B'));
+        player.getPlayerFrame().addTile(new Tile('C'));
+        board.placeTiles(player, word, position);
 
     }
 }

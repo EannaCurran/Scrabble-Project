@@ -87,7 +87,7 @@ public class Frame {
         Tile temp = playerFrame.get(i);
 
         // Checks that the index of the Tile in within the range of the Frame size
-        if(i >= 0 && i < playerFrame.size()) {
+        if(i >= 0 && i <= 6) {
             playerFrame.remove(i);
         }
 
@@ -132,14 +132,16 @@ public class Frame {
         ArrayList<Tile> removedTiles = new ArrayList<>();
 
         // Checks if each Tile passed in is in the Frame
-        try {
+        if(checkTiles(tiles)){
+
             // Removes each Tile from the playerFrame
-            for (Tile t : tiles) {
+            for(Tile t: tiles){
                 removedTiles.add(removeTile(playerFrame.indexOf(t)));
             }
-        }catch(Exception e){
+        }
 
         // If a Tiles passed in are not in the playerFrame, then a InvalidFrameException is thrown
+        else{
             throw new InvalidFrameException("Tiles not in the frame, therefore tiles cannot be removed");
         }
 
@@ -227,8 +229,8 @@ public class Frame {
     }
 
     public ArrayList<Tile> getTiles(char[] word){
-        ArrayList<Tile> temp = new ArrayList<Tile>();
-        if(checkWord(word) == true){
+        ArrayList<Tile> temp = new ArrayList<>();
+        if(checkWord(word)){
             for(char a: word){
                 temp.add(getTile(a));
             }
