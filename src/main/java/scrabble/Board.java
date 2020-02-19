@@ -282,10 +282,10 @@ public class Board {
 
 
     /**
-     * Method to check that words to be placed on the board are longer than 0 tiles
+     * Method to check that words to be placed on the board are valid lengths
      * @param word: List of Tiles to check
      */
-    private void checkWordLength(char[] word){
+    public void checkWordLength(char[] word){
 
         // Checks that the word contains a Tile, if not exception is thrown
         if(word.length == 0){

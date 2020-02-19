@@ -285,8 +285,9 @@ public class BoardTest {
     }
 
     @Test
-    @DisplayName("Testing validate lists of co-ordinates on the board")
+    @DisplayName("Testing validation for lists of co-ordinates to place Tiles on the board")
     void testCheckValidPosition(){
+
         int[][] validPositions = {{14,14}, {13,14}, {0,0}};
         int[][] invalidLargePositions = {{15,15}};
         int[][] invalidNegativePositions = {{-1,-1}};
@@ -301,6 +302,21 @@ public class BoardTest {
                 () -> assertThrows(InvalidBoardException.class, () -> boardTest.checkValidPosition(invalidMixedPositions), "Position not on board"),
                 () -> assertThrows(InvalidBoardException.class, () -> boardTest.checkValidPosition(invalidNoPositions), "Invalid number of positions entered"),
                 () -> assertThrows(InvalidBoardException.class, () -> boardTest.checkValidPosition(invalidMoreThanSevenPositions), "Invalid number of positions entered")
+        );
+    }
+
+    @Test
+    @DisplayName("Testing validation for number of Tiles to place at a time")
+    void testCheckWordLength(){
+
+        char[] emptyWord = {};
+        char[] validSizeWord = {'A','A','A','A'};
+        char[] invalidSizeWord = {'A','A','A','A','A','A','A','A'};
+
+        assertAll("Testing that the player cannot request to put down a word outside of the range of their Frame",
+                () -> assertThrows(InvalidBoardException.class, () -> boardTest.checkWordLength(emptyWord), "Word must be longer than 0 tiles"),
+                () -> assertThrows(InvalidBoardException.class, () -> boardTest.checkWordLength(invalidSizeWord), "Cannot place more than 7 tiles"),
+                () -> assertDoesNotThrow(() -> boardTest.checkWordLength(validSizeWord), "checkWordLength does not throw exception because valid size of word")
         );
     }
 
