@@ -243,7 +243,7 @@ public class Board {
         checkValidMove(player, word, positions);
 
         for(int i = 0; i < positions.length; i++){
-            placeTile(player.getPlayerFrame().getTile(word[i]), positions[i][0], positions[i][1]);
+            placeTile(player.getPlayerFrame().getChar(word[i]), positions[i][0], positions[i][1]);
         }
     }
 
@@ -276,7 +276,7 @@ public class Board {
     public void checkPlayerHasTiles(Player player, char[] word){
 
         // Checks if the player has every Tile in their Frame, if not exception is thrown
-        if (!(player.getPlayerFrame().checkWord(word))){
+        if (!(player.getPlayerFrame().checkChars(word))){
             throw new InvalidBoardException("Player doesn't have the necessary tiles");
         }
     }
@@ -469,18 +469,5 @@ public class Board {
 
 
     public static void main(String[] args) {
-        Board board = new Board();
-        Pool pool = new Pool();
-        Player player = new Player("a", pool);
-        player.getPlayerFrame().returnFrame().clear();
-        ArrayList<Tile> tiles = new ArrayList<>();
-        tiles.add(new Tile('A'));
-        tiles.add(new Tile('B'));
-        tiles.add(new Tile('C'));
-        char[] word = {'A'};
-        char[] word2 = {'E'};
-        board.boardSquares[7][7].setTile(new Tile('A'));
-        int[][] position = {{7,8}};
-        board.checkPositionContainsTile(position);
     }
 }
