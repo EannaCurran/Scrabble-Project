@@ -59,6 +59,10 @@ public class Board {
         }
     }
 
+    public Square[][] getBoardSquares(){
+        return this.boardSquares;
+    }
+
     /**
      * Method to find the SquareType of a Square in a quadrant of the Board
      *

@@ -21,6 +21,25 @@ public class Main {
         //Print the pools state after the player are made
         System.out.println("Pool after Players are initialized:\n" + pool);
 
+        Board board = new Board();
+        System.out.println("Initalised board:\n"+ board.toString());
+
+        //User inputting the desired letter to place
+        //and the coordinates of where they want to place it on the board
+        char playerCharInput = 'E';
+        int playerRowInput = 7;
+        int playerColumnInput = 7;
+        if(player1.charUserInputCheck(playerCharInput))
+        {
+            Tile tileToBePlaced = player1.getPlayerFrame().getChar(playerCharInput);
+            board.getSquare(playerRowInput,playerColumnInput).setTile(tileToBePlaced);
+
+        }
+
+        //board.getSquare(5,7).setTile(new Tile('Q'));
+        System.out.println("Placed a tile on the board:\n"+ board.toString());
+
+
     }
 
 
