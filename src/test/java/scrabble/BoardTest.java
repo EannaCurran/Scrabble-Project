@@ -266,7 +266,7 @@ public class BoardTest {
     }
 
     @Test
-    @DisplayName("hey")
+    @DisplayName("Testing validating for checking if player has the tiles in their Frame")
     void testCheckPlayerHasTiles()
     {
         playerTest.getPlayerFrame().returnFrame().clear();
@@ -280,10 +280,29 @@ public class BoardTest {
         assertAll("Testing the Player has Tiles with/without certain characters in Frame",
                 () -> assertThrows(InvalidBoardException.class,() -> boardTest.checkPlayerHasTiles(playerTest, emptyChar), "Cannot check for no characters in Frame"),
                 () -> assertThrows(InvalidBoardException.class,() -> boardTest.checkPlayerHasTiles(playerTest, charPlayerDoesNotHave),"Player doesn't have the necessary tiles"),
-                () -> assertDoesNotThrow(() -> boardTest.checkPlayerHasTiles(playerTest, charPlayerHas), "Player doesn't have the necessary tiles")
+                () -> assertDoesNotThrow(() -> boardTest.checkPlayerHasTiles(playerTest, charPlayerHas), "Player has the necessary tiles")
         );
     }
 
+    @Test
+    @DisplayName("Testing validate lists of co-ordinates on the board")
+    void testCheckValidPosition(){
+        int[][] validPositions = {{14,14}, {13,14}, {0,0}};
+        int[][] invalidLargePositions = {{15,15}};
+        int[][] invalidNegativePositions = {{-1,-1}};
+        int[][] invalidMixedPositions = {{3,2}, {15,15}};
+        int[][] invalidNoPositions = {};
+        int[][] invalidMoreThanSevenPositions = {{1,1}, {1,2} , {1,3}, {1,4}, {1,5}, {1,6}, {1,7}, {1,8}};
+
+        assertAll("Testing that the player cannot input invalid co-ordinates for their move",
+                () -> assertDoesNotThrow(() -> boardTest.checkValidPosition(validPositions), "checkValidPosition does not throw exception for tiles within range of board"),
+                () -> assertThrows(InvalidBoardException.class, () -> boardTest.checkValidPosition(invalidLargePositions), "Position not on board"),
+                () -> assertThrows(InvalidBoardException.class, () -> boardTest.checkValidPosition(invalidNegativePositions), "Position not on board"),
+                () -> assertThrows(InvalidBoardException.class, () -> boardTest.checkValidPosition(invalidMixedPositions), "Position not on board"),
+                () -> assertThrows(InvalidBoardException.class, () -> boardTest.checkValidPosition(invalidNoPositions), "Invalid number of positions entered"),
+                () -> assertThrows(InvalidBoardException.class, () -> boardTest.checkValidPosition(invalidMoreThanSevenPositions), "Invalid number of positions entered")
+        );
+    }
 
 
 }

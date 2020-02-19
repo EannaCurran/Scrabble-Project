@@ -252,12 +252,15 @@ public class Board {
      *
      * @param position: Position to check if its on the board
      */
-    private void checkValidPosition(int[][] position){
+    public void checkValidPosition(int[][] position){
 
         // Checks if the position is in the range of the board, if not exception is thrown
+        if(position.length == 0 || position.length > 7){
+            throw new InvalidBoardException("Invalid number of positions entered");
+        }
         for(int[] ints : position){
             if(ints[0] < 0 || ints[0] > 14 || ints[1] < 0 || ints[1] > 14){
-                throw new InvalidBoardException("position not on board");
+                throw new InvalidBoardException("Position not on board");
             }
         }
     }
@@ -287,6 +290,9 @@ public class Board {
         // Checks that the word contains a Tile, if not exception is thrown
         if(word.length == 0){
             throw new InvalidBoardException("Word must be longer than 0 tiles");
+        }
+        if(word.length > 7){
+            throw new InvalidBoardException("Cannot place more than 7 tiles");
         }
     }
 
