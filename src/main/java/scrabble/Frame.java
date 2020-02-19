@@ -1,5 +1,6 @@
 package scrabble;
 
+import scrabble.exceptions.InvalidBoardException;
 import scrabble.exceptions.InvalidFrameException;
 import scrabble.exceptions.InvalidTileException;
 
@@ -190,14 +191,12 @@ public class Frame {
     public boolean checkWord(char[] word){
         // Loops through each Tile passed in
 
-        Frame tempFrame = (Frame)playerFrame.clone();
-        for(char a: word) {
-
+        if(word.length == 0){
+            throw new InvalidBoardException("Cannot check for no characters in Frame");
+        }
+        for (char c : word) {
             // Checks if any of the of the Tiles passed in are not in the Frame, if so false is returned
-            if ((tempFrame.checkTile(a))) {
-                tempFrame.getTile(a);
-            }
-            else{
+            if (!(checkTile(c))) {
                 return false;
             }
         }
@@ -208,6 +207,7 @@ public class Frame {
 
     public boolean checkTile(char a){
         for(Tile t: playerFrame){
+
             if(t.getCharacter() == a){
                 return true;
             }

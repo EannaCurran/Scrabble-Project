@@ -269,13 +269,12 @@ public class Board {
      * @param player: Player to check if they have the necessary Tiles
      * @param word: List of Tiles to check
      */
-    private void checkPlayerHasTiles(Player player, char[] word){
+    public void checkPlayerHasTiles(Player player, char[] word){
 
         // Checks if the player has every Tile in their Frame, if not exception is thrown
-        /* temp remove since gradle is acting up
-            if (!(player.getPlayerFrame().checkTiles(word))){
-            throw new InvalidFrameException("Player doesn't have the necessary tiles");
-        }**/
+        if (!(player.getPlayerFrame().checkWord(word))){
+            throw new InvalidBoardException("Player doesn't have the necessary tiles");
+        }
     }
 
 
@@ -471,13 +470,15 @@ public class Board {
         tiles.add(new Tile('A'));
         tiles.add(new Tile('B'));
         tiles.add(new Tile('C'));
-        char[] word = {'C','A','B'};
+        char[] word = {'A'};
+        char[] word2 = {'E'};
         board.boardSquares[7][7].setTile(new Tile('A'));
-        int[][] position = {{7,8},{7,9},{7,10}};
+        int[][] position = {{7,8}};
         player.getPlayerFrame().addTile(new Tile('A'));
         player.getPlayerFrame().addTile(new Tile('B'));
         player.getPlayerFrame().addTile(new Tile('C'));
         board.placeTiles(player, word, position);
+        board.checkPlayerHasTiles(player, word2);
 
     }
 }

@@ -10,10 +10,14 @@ import static org.junit.jupiter.api.Assertions.*;
 public class BoardTest {
 
     private Board boardTest;
+    private Pool poolTest;
+    private Player playerTest;
     @BeforeEach
     void setup()
     {
+        poolTest = new Pool();
         boardTest = new Board();
+        playerTest = new Player("Test" , poolTest);
     }
 
     // BOARD TOSTRING TESTS
@@ -258,6 +262,25 @@ public class BoardTest {
                 () ->assertThrows(InvalidBoardException.class,() -> boardTest.getSquare(-1,15), "getSquare threw a InvalidBoardException when the coordinates are (14,14).\n"),
                 () ->assertThrows(InvalidBoardException.class,() -> boardTest.getSquare(15,-1), "getSquare threw a InvalidBoardException when the coordinates are (14,14).\n"),
                 () ->assertThrows(InvalidBoardException.class,() -> boardTest.getSquare(-1,15), "getSquare threw a InvalidBoardException when the coordinates are (14,14).\n")
+        );
+    }
+
+    @Test
+    @DisplayName("hey")
+    void testCheckPlayerHasTiles()
+    {
+        playerTest.getPlayerFrame().returnFrame().clear();
+        playerTest.getPlayerFrame().addTile(new Tile('A'));
+        playerTest.getPlayerFrame().addTile(new Tile('B'));
+        playerTest.getPlayerFrame().addTile(new Tile('C'));
+        char[] emptyChar = {};
+        char[] charPlayerHas = {'A','B','C'};
+        char[] charPlayerDoesNotHave = {'E','F','G'};
+
+        assertAll("Testing the Player has Tiles with/without certain characters in Frame",
+                () -> assertThrows(InvalidBoardException.class,() -> boardTest.checkPlayerHasTiles(playerTest, emptyChar), "Cannot check for no characters in Frame"),
+                () -> assertThrows(InvalidBoardException.class,() -> boardTest.checkPlayerHasTiles(playerTest, charPlayerDoesNotHave),"Player doesn't have the necessary tiles"),
+                () -> assertDoesNotThrow(() -> boardTest.checkPlayerHasTiles(playerTest, charPlayerHas), "Player doesn't have the necessary tiles")
         );
     }
 
