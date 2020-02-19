@@ -172,11 +172,20 @@ public class Frame {
     /**
      * Method which checks if a series of Tiles are currently in the Frame
      *
-     * @param word: List of tiles to be checked
+     * @param tiles: List of tiles to be checked
      * @return boolean: Result for if the Frame contains all the Tiles
      */
-    public boolean checkTiles(char[] word){
+    public boolean checkTiles(ArrayList<Tile> tiles){
+        for(Tile tile: tiles){
+            if(!(playerFrame.contains(tile))){
+                return false;
+            }
+        }
+        return true;
 
+    }
+
+    public boolean checkWord(char[] word){
         // Loops through each Tile passed in
 
         Frame tempFrame = (Frame)playerFrame.clone();
@@ -219,7 +228,7 @@ public class Frame {
 
     public ArrayList<Tile> getTiles(char[] word){
         ArrayList<Tile> temp = new ArrayList<Tile>();
-        if(checkTiles(word) == true){
+        if(checkWord(word) == true){
             for(char a: word){
                 temp.add(getTile(a));
             }
