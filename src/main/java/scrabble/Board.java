@@ -221,6 +221,7 @@ public class Board {
         // Checks that all the positions are in a line
         checkPositionDirection(positions);
 
+        // Checks that the inputted positions connect to a Tile already on the board
         checkWordConnects(positions);
     }
 
@@ -301,7 +302,7 @@ public class Board {
      * Method to check if a position on the Board already has a Tile in it
      * @param position: Co-ordinates to check if a Tile in already in it
      */
-    private void checkPositionContainsTile(int[][] position){
+    public void checkPositionContainsTile(int[][] position){
 
         // Checks that the position has a tile in it, if it does exception is thrown
         for(int[] ints : position){

@@ -320,5 +320,24 @@ public class BoardTest {
         );
     }
 
+    @Test
+    @DisplayName("Testing that Players cannot place Tiles on positions already containing Tiles")
+    void testCheckPositionContainsTile(){
+
+        playerTest.getPlayerFrame().removeTile(0);
+        playerTest.getPlayerFrame().addTile(new Tile('A'));
+        char[] playerTile = {'A'};
+        int[][] positionOfTile = {{7,7}};
+        int[][] positionNotOfTile = {{8,8}};
+        int[][] positionsContainingTile = {{8,9},{6,2}, {7,7}};
+        boardTest.placeTiles(playerTest, playerTile, positionOfTile);
+
+        assertAll("Testing that player cannot put Tiles on Board positions already containing Tiles",
+                () -> assertDoesNotThrow(() -> boardTest.checkPositionContainsTile(positionNotOfTile), "Does not throw exception for positions without Tiles"),
+                () -> assertThrows(InvalidBoardException.class, () -> boardTest.checkPositionContainsTile(positionOfTile), "Position already contains a tile"),
+                () -> assertThrows(InvalidBoardException.class, () -> boardTest.checkPositionContainsTile(positionsContainingTile), "Position already contains a tile")
+        );
+    }
+
 
 }
