@@ -132,16 +132,14 @@ public class Frame {
         ArrayList<Tile> removedTiles = new ArrayList<>();
 
         // Checks if each Tile passed in is in the Frame
-        if(checkTiles(tiles)){
-
+        try {
             // Removes each Tile from the playerFrame
-            for(Tile t: tiles){
+            for (Tile t : tiles) {
                 removedTiles.add(removeTile(playerFrame.indexOf(t)));
             }
-        }
+        }catch(Exception e){
 
         // If a Tiles passed in are not in the playerFrame, then a InvalidFrameException is thrown
-        else{
             throw new InvalidFrameException("Tiles not in the frame, therefore tiles cannot be removed");
         }
 
@@ -174,22 +172,36 @@ public class Frame {
     /**
      * Method which checks if a series of Tiles are currently in the Frame
      *
-     * @param tiles: List of tiles to be checked
+     * @param word: List of tiles to be checked
      * @return boolean: Result for if the Frame contains all the Tiles
      */
-    public boolean checkTiles(ArrayList<Tile> tiles){
+    public boolean checkTiles(char[] word){
 
         // Loops through each Tile passed in
-        for(Tile tile: tiles) {
+
+        Frame tempFrame = (Frame)playerFrame.clone();
+        for(char a: word) {
 
             // Checks if any of the of the Tiles passed in are not in the Frame, if so false is returned
-            if (!(playerFrame.contains(tile))) {
+            if ((tempFrame.checkTile(a))) {
+                tempFrame.getTile(a);
+            }
+            else{
                 return false;
             }
         }
 
         // If all the Tiles passed in are in the Frame, true is returned
         return true;
+    }
+
+    public boolean checkTile(char a){
+        for(Tile t: playerFrame){
+            if(t.getCharacter() == a){
+                return true;
+            }
+        }
+        return false;
     }
 
     public Tile getTile(char a){
@@ -202,6 +214,20 @@ public class Frame {
 
             }
         }
+        return temp;
+    }
+
+    public ArrayList<Tile> getTiles(char[] word){
+        ArrayList<Tile> temp = new ArrayList<Tile>();
+        if(checkTiles(word) == true){
+            for(char a: word){
+                temp.add(getTile(a));
+            }
+        }
+        else{
+            throw new InvalidFrameException("Frame doesn't have the requested tiles");
+        }
+
         return temp;
     }
 
