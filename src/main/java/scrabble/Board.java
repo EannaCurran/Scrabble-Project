@@ -233,7 +233,7 @@ public class Board {
      * @param position_i: I position on the Board to place the Tile
      * @param position_j J position on the Board to place the Tile
      */
-    private void placeTile(Tile tile, int position_i, int position_j){
+    public void placeTile(Tile tile, int position_i, int position_j){
 
         // Places the tile passed in onto the ij position on the board
         boardSquares[position_i][position_j].setTile(tile);
@@ -251,16 +251,16 @@ public class Board {
     /**
      * Method to validate that a position passed in is on the board
      *
-     * @param position: Position to check if its on the board
+     * @param positions: Position to check if its on the board
      */
-    public void checkValidPosition(int[][] position){
+    public void checkValidPosition(int[][] positions){
 
         // Checks if the position is in the range of the board, if not exception is thrown
-        if(position.length == 0 || position.length > 7){
+        if(positions.length == 0 || positions.length > 7){
             throw new InvalidBoardException("Invalid number of positions entered");
         }
-        for(int[] ints : position){
-            if(ints[0] < 0 || ints[0] > 14 || ints[1] < 0 || ints[1] > 14){
+        for(int[] position : positions){
+            if(!CoordinateValidationCheck(position[0], position[1])){
                 throw new InvalidBoardException("Position not on board");
             }
         }
@@ -481,11 +481,6 @@ public class Board {
         char[] word2 = {'E'};
         board.boardSquares[7][7].setTile(new Tile('A'));
         int[][] position = {{7,8}};
-        player.getPlayerFrame().addTile(new Tile('A'));
-        player.getPlayerFrame().addTile(new Tile('B'));
-        player.getPlayerFrame().addTile(new Tile('C'));
-        board.placeTiles(player, word, position);
-        board.checkPlayerHasTiles(player, word2);
-
+        board.checkPositionContainsTile(position);
     }
 }

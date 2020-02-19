@@ -266,6 +266,18 @@ public class BoardTest {
     }
 
     @Test
+    @DisplayName("Testing that Tiles can be placed on the board")
+    void testPlaceTile(){
+
+        Tile tile = new Tile('A');
+        boardTest.placeTile(tile, 7, 7);
+        
+        assertEquals(tile, boardTest.getSquare(7,7).getTile());
+    }
+
+
+
+    @Test
     @DisplayName("Testing validating for checking if player has the tiles in their Frame")
     void testCheckPlayerHasTiles()
     {
@@ -338,6 +350,7 @@ public class BoardTest {
                 () -> assertThrows(InvalidBoardException.class, () -> boardTest.checkPositionContainsTile(positionsContainingTile), "Position already contains a tile")
         );
     }
+
 
 
 }
