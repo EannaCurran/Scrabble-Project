@@ -219,7 +219,7 @@ public class Board {
         checkPositionContainsTile(positions);
 
         // Checks that all the positions are in a line
-        checkPositionDirection(positions);
+        checkPositionLine(positions);
 
         // Checks that the inputted positions connect to a Tile already on the board
         checkWordConnects(positions);
@@ -317,7 +317,7 @@ public class Board {
      * Method to check that a list of positions to place a word is in a line
      * @param position: List of co-ordinates to check they are part of a line of Tiles
      */
-    private void checkPositionDirection(int[][] position){
+    public void checkPositionLine(int[][] position){
 
         // Storing which orientation the list of positions are in
         boolean tempVertical = true;

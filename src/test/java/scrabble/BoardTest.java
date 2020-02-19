@@ -271,7 +271,7 @@ public class BoardTest {
 
         Tile tile = new Tile('A');
         boardTest.placeTile(tile, 7, 7);
-        
+
         assertEquals(tile, boardTest.getSquare(7,7).getTile());
     }
 
@@ -332,6 +332,7 @@ public class BoardTest {
         );
     }
 
+
     @Test
     @DisplayName("Testing that Players cannot place Tiles on positions already containing Tiles")
     void testCheckPositionContainsTile(){
@@ -350,6 +351,29 @@ public class BoardTest {
                 () -> assertThrows(InvalidBoardException.class, () -> boardTest.checkPositionContainsTile(positionsContainingTile), "Position already contains a tile")
         );
     }
+
+    @Test
+    @DisplayName("Testing that Tiles can only be placed with a line of Tiles")
+    void testCheckPositionLine(){
+
+        boardTest.placeTile(new Tile('A'), 7,7);
+        int[][] verticalPositions = {{8,8}, {9,8}, {10,8}};
+        int[][] horizontalPositions = {{8,8}, {8,9}, {8,10}};
+        int[][] invalidVerticalPosition ={{8,8}, {10,8}, {11,8}};
+        int[][] invalidHorizontalPosition = {{8,8}, {8,10}, {8,11}};
+        int[][] verticalPositionsWithTiles ={{6,7},{8,7},{9,7}};
+        int[][] horizontalPositionsWithTiles = {{7,6},{7,8},{7,9}};
+
+        assertAll("Testing that Players can  only place Tiles in a line unless Tile on Board is part of the line",
+                () -> assertDoesNotThrow(() -> boardTest.checkPositionLine(verticalPositions), "Positions are in a valid line on the board"),
+                () -> assertDoesNotThrow(() -> boardTest.checkPositionLine(horizontalPositions), "Positions are in a valid line on the board"),
+                () -> assertThrows(InvalidBoardException.class, () -> boardTest.checkPositionLine(invalidVerticalPosition), "Tiles are not in a line on the board"),
+                () -> assertThrows(InvalidBoardException.class, () -> boardTest.checkPositionLine(invalidHorizontalPosition), "Tiles are not in a line on the board"),
+                () -> assertDoesNotThrow(() -> boardTest.checkPositionLine(verticalPositionsWithTiles), "Positions are in a valid line on the board"),
+                () -> assertDoesNotThrow(() -> boardTest.checkPositionLine(horizontalPositionsWithTiles), "Positions are in a valid line on the board")
+        );
+    }
+
 
 
 
