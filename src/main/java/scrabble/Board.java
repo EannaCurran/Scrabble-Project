@@ -233,7 +233,7 @@ public class Board {
      * @param position_i: I position on the Board to place the Tile
      * @param position_j J position on the Board to place the Tile
      */
-    public void placeTile(Tile tile, int position_i, int position_j){
+     protected void placeTile(Tile tile, int position_i, int position_j){
 
         // Places the tile passed in onto the ij position on the board
         boardSquares[position_i][position_j].setTile(tile);
@@ -253,7 +253,7 @@ public class Board {
      *
      * @param positions: Position to check if its on the board
      */
-    public void checkValidPosition(int[][] positions){
+    protected void checkValidPosition(int[][] positions){
 
         // Checks if the position is in the range of the board, if not exception is thrown
         if(positions.length == 0 || positions.length > 7){
@@ -273,7 +273,7 @@ public class Board {
      * @param player: Player to check if they have the necessary Tiles
      * @param word: List of Tiles to check
      */
-    public void checkPlayerHasTiles(Player player, char[] word){
+    protected void checkPlayerHasTiles(Player player, char[] word){
 
         // Checks if the player has every Tile in their Frame, if not exception is thrown
         if (!(player.getPlayerFrame().checkChars(word))){
@@ -286,7 +286,7 @@ public class Board {
      * Method to check that words to be placed on the board are valid lengths
      * @param word: List of Tiles to check
      */
-    public void checkWordLength(char[] word){
+    protected void checkWordLength(char[] word){
 
         // Checks that the word contains a Tile, if not exception is thrown
         if(word.length == 0){
@@ -302,7 +302,7 @@ public class Board {
      * Method to check if a position on the Board already has a Tile in it
      * @param position: Co-ordinates to check if a Tile in already in it
      */
-    public void checkPositionContainsTile(int[][] position){
+    protected void checkPositionContainsTile(int[][] position){
 
         // Checks that the position has a tile in it, if it does exception is thrown
         for(int[] ints : position){
@@ -317,7 +317,7 @@ public class Board {
      * Method to check that a list of positions to place a word is in a line
      * @param position: List of co-ordinates to check they are part of a line of Tiles
      */
-    public void checkPositionLine(int[][] position){
+    protected void checkPositionLine(int[][] position){
 
         // Storing which orientation the list of positions are in
         boolean tempVertical = true;
@@ -328,6 +328,15 @@ public class Board {
             if(position[j][0] != position[j+1][0]){
                 tempVertical = false;
                 break;
+            }
+        }
+
+        //Loops to check that the horizontal list of positions are in on the same 
+        if(!tempVertical){
+            for(int j = 0; j < position.length - 1;j++){
+                if(position[j][1] != position[j+1][1]){
+                    throw new InvalidBoardException("Tiles are not in a line on the board");
+                }
             }
         }
 
@@ -357,7 +366,7 @@ public class Board {
 
             if((!((position[j][0]+1 == position[j+1][0] && position[j][1] == position[j + 1][1] || !boardSquares[position[j][0]+1][position[j][1]].isEmpty())))){
 
-                throw new InvalidBoardException("Tiles are not in a line on bbbthe board");
+                throw new InvalidBoardException("Tiles are not in a line on the board");
             }
         }
     }
@@ -469,5 +478,13 @@ public class Board {
 
 
     public static void main(String[] args) {
+        Board board = new Board();
+        board.boardSquares[7][7].setTile(new Tile('A'));
+        board.boardSquares[8][8].setTile(new Tile('A'));
+        board.boardSquares[9][9].setTile(new Tile('A'));
+        int[][] moves = {{6,7},{7,8},{8,9}};
+        board.checkPositionLine(moves);
+
+
     }
 }
