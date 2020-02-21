@@ -253,7 +253,7 @@ public class Board {
 
         // Loops through each move and places the Tile on the Board
         for(int i = 0; i < positions.length; i++){
-            placeTile(player.getPlayerFrame().getChar(word[i]), positions[i][0], positions[i][1]);
+            placeTile(player.getPlayerFrame().getCharTile(word[i]), positions[i][0], positions[i][1]);
         }
     }
 
@@ -488,7 +488,7 @@ public class Board {
 
 
     public static void main(String[] args){
-
+        Board board = new Board();
 
     }
 }

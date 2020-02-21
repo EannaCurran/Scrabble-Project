@@ -124,7 +124,7 @@ public class Frame {
      * Method to remove a list of Tiles from the Frame
      *
      * @param tiles: List of Tiles to be removed
-     * @return removedTiles: Tiles that were removed from the frmae
+     * @return removedTiles: Tiles that were removed from the frame
      * @throws InvalidFrameException: If the Tiles to be removed are in the Frame
      */
     public ArrayList<Tile> removeTiles(ArrayList<Tile> tiles){
@@ -196,15 +196,18 @@ public class Frame {
      */
     public boolean checkChars(char[] word){
         // Loops through each Character passed in
-
+        Frame temp = this;
         if(word.length == 0){
             throw new InvalidBoardException("Cannot check for no characters in Frame");
         }
 
         for (char c : word) {
             // Checks if any of the of the character passed in not Tiles in the Frame, if so false is returned
-            if (!(checkChar(c))) {
+            if (!(temp.checkChar(c))) {
                 return false;
+            }
+            else{
+                temp.removeChar(c);
             }
         }
 
@@ -238,7 +241,7 @@ public class Frame {
      * @param letter: Character of Tile wanted
      * @return Tile with given character
      */
-    public Tile getChar(char letter){
+    public Tile getCharTile(char letter){
 
         // Creates a temporary Tile
         Tile temp = new Tile(' ');
@@ -249,7 +252,6 @@ public class Frame {
             // If the Frame contains a Tile with the wanted character, it is removed from the Frame and returned
             if(t.getCharacter() == letter){
                 temp = playerFrame.get(playerFrame.indexOf(t));
-                playerFrame.remove(t);
                 return temp;
 
             }
@@ -262,6 +264,30 @@ public class Frame {
 
         return null;
     }
+    public char getCharLetter(char letter){
+
+        // Creates a temporary Tile
+        Tile temp = new Tile(' ');
+
+        // Loops through each Tile in Frame
+        for(Tile t: playerFrame){
+
+            // If the Frame contains a Tile with the wanted character, it is removed from the Frame and returned
+            if(t.getCharacter() == letter){
+                temp = playerFrame.get(playerFrame.indexOf(t));
+                return temp.getCharacter();
+
+            }
+        }
+
+        // If the wanted character is not found, exception is thrown
+        if(temp.getCharacter() == ' '){
+            throw new InvalidFrameException("Frame does not have Tile with character " + letter);
+        }
+
+        return ' ';
+    }
+
 
 
     /**
@@ -279,7 +305,7 @@ public class Frame {
 
             // Adds each of the Tiles of given characters to the ArrayList
             for(char letter: word){
-                temp.add(getChar(letter));
+                temp.add(getCharTile(letter));
             }
         }
 
@@ -311,7 +337,6 @@ public class Frame {
         // If the Tile cannot be found, exception is thrown
         throw new InvalidFrameException("Frame doesn't contain a Tile with character " + letter);
     }
-
 
 
     /**
