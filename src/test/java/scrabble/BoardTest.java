@@ -294,7 +294,7 @@ public class BoardTest {
 
     @Test
     @DisplayName("Testing validating for when the  Player doesn't has the Tiles in their Frame")
-    void testCheckPlayerDoesNotHasTiles()
+    void testCheckPlayerDoesNotHaveTiles()
     {
         // Clears and places new Tiles into Players Frame
         playerTest.getPlayerFrame().returnFrame().clear();
@@ -311,7 +311,7 @@ public class BoardTest {
         assertAll("Testing that the Player doesn't have Tiles with certain characters in their Frame\n",
 
                 // Asserts that an exception is thrown for checking an empty list
-                () -> assertThrows(InvalidBoardException.class,() -> boardTest.checkPlayerHasTiles(playerTest, emptyChar), "Cannot check for no characters in Frame\n"),
+                () -> assertThrows(IllegalArgumentException.class,() -> boardTest.checkPlayerHasTiles(playerTest, emptyChar), "Cannot check for no characters in Frame\n"),
                 // Asserts that an exception is thrown for checking a list of characters not in the Frame
                 () -> assertThrows(InvalidBoardException.class,() -> boardTest.checkPlayerHasTiles(playerTest, charPlayerDoesNotHave),"Player doesn't have the necessary tiles\n"),
                 // Asserts that an exception is thrown for checking a list of characters with some not in the Frame

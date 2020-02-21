@@ -488,7 +488,17 @@ public class Board {
 
 
     public static void main(String[] args){
+        Pool pool = new Pool();
+        Player player = new Player("abba",pool);
         Board board = new Board();
+        player.getPlayerFrame().returnFrame().clear();
 
+        player.getPlayerFrame().addTile(new Tile('A'));
+        player.getPlayerFrame().addTile(new Tile('B'));
+        player.getPlayerFrame().addTile(new Tile('C'));
+
+        char[] emptyChar = {};
+        char[] charPlayerDoesNotHave = {'E','F','G'};
+        char[] charPlayerHasSome = {'A', 'E', 'C'};
     }
 }

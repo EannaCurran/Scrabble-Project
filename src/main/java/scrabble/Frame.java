@@ -188,6 +188,10 @@ public class Frame {
      */
     public boolean checkTiles(ArrayList<Tile> tiles){
 
+        if(tiles.size() == 0){
+            throw new IllegalArgumentException("Cannot check for 0 tiles in Frame");
+        }
+
         Frame temp = this;
 
         for(Tile tile: tiles){
@@ -209,16 +213,22 @@ public class Frame {
      * @return Boolean answer
      */
     public boolean checkTiles(char[] word){
+
+        if(word.length == 0){
+            throw new IllegalArgumentException("Cannot check for 0 tiles in Frame");
+        }
         // Loops through each Character passed in
         Frame temp = this;
 
         for (char c : word) {
             // Checks if any of the of the character passed in not Tiles in the Frame, if so false is returned
-            if (!(temp.checkTile(c))) {
-                return false;
+            if ((temp.checkTile(c))) {
+
+                temp.removeTile(c);
             }
             else{
-                temp.removeTile(c);
+
+                return false;
             }
         }
 
