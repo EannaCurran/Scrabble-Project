@@ -216,6 +216,7 @@ class FrameTest {
     void toStringFilledFrame(){
 
         // Adds tileList to emptyFrame
+        System.out.println(emptyFrame.toString());
         for(Tile tile: tileList) {
             emptyFrame.addTile(tile);
         }

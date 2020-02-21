@@ -79,15 +79,11 @@ public class Frame {
      * Method to remove a single Tile from the Frame
      *
      * @param i: Tile index to be removed
-     * @return temp: The tile that was removed
      * @throws InvalidTileException: If index is not in the Frame
      */
-    Tile removeTile(int i){
 
-        // Creates a temporary hold for the Tile to be removed
-        Tile temp = playerFrame.get(i);
+    public void removeTile(int i){
 
-        // Checks that the index of the Tile in within the range of the Frame size
         if(i >= 0 && i <= 6) {
             playerFrame.remove(i);
         }
@@ -95,11 +91,74 @@ public class Frame {
         else{
 
             // Throws a InvalidTile Exception if the index is not in the range of the Frame size
-            throw new InvalidTileException("Tile index not in frame");
+            throw new InvalidFrameException("Index not in range of Frame");
+        }
+    }
+
+
+    public void removeTile(char c){
+
+        for(Tile t: playerFrame){
+            if(t.getCharacter() == c){
+                playerFrame.remove(t);
+                return;
+            }
+        }
+        throw new InvalidFrameException("Tile not in frame");
+    }
+
+    public void removeTile(Tile t){
+
+        for(Tile t2: playerFrame){
+            if(t2.getCharacter() == t.getCharacter()){
+                playerFrame.remove(t);
+
+                break;
+            }
         }
 
-        // Returns the Tile that was removed
-        return temp;
+    }
+
+    public void removeTiles(char[] word){
+
+        if(word.length > 7){
+            throw new IllegalArgumentException("Invalid number of characters to find in remove in Frame");
+        }
+        if(checkTiles(word)){
+            for(char c: word) {
+                removeTile(c);
+            }
+
+        }
+        else{
+            throw new InvalidFrameException("Tiles not in the frame, therefore tiles cannot be removed");
+        }
+
+    }
+
+    /**
+     * Method to remove a list of Tiles from the Frame
+     *
+     * @param tiles: List of Tiles to be removed
+     * @throws InvalidFrameException: If the Tiles to be removed are in the Frame
+     */
+    public void removeTiles(ArrayList<Tile> tiles){
+
+        // Checks if each Tile passed in is in the Frame
+        if(checkTiles(tiles)){
+
+            // Removes each Tile from the playerFrame
+            for(Tile t: tiles){
+                removeTile(t);
+            }
+        }
+
+        // If a Tiles passed in are not in the playerFrame, then a InvalidFrameException is thrown
+        else{
+            throw new InvalidFrameException("Tiles not in the frame, therefore tiles cannot be removed");
+        }
+
+        // Returns the removed Tiles
     }
 
 
@@ -120,35 +179,143 @@ public class Frame {
     }
 
 
+
     /**
-     * Method to remove a list of Tiles from the Frame
+     * Method which checks if a series of Tiles are currently in the Frame
      *
-     * @param tiles: List of Tiles to be removed
-     * @return removedTiles: Tiles that were removed from the frame
-     * @throws InvalidFrameException: If the Tiles to be removed are in the Frame
+     * @param tiles: List of tiles to be checked
+     * @return boolean: Result for if the Frame contains all the Tiles
      */
-    public ArrayList<Tile> removeTiles(ArrayList<Tile> tiles){
+    public boolean checkTiles(ArrayList<Tile> tiles){
 
-        // Creates an empty ArrayList to store the Tiles that are removed from playerFrame
-        ArrayList<Tile> removedTiles = new ArrayList<>();
+        Frame temp = this;
 
-        // Checks if each Tile passed in is in the Frame
-        if(checkTiles(tiles)){
+        for(Tile tile: tiles){
+            if(!(temp.checkTile(tile))){
+                return false;
+            }
+            else{
+                temp.removeTile(tile);
+            }
+        }
+        return true;
 
-            // Removes each Tile from the playerFrame
-            for(Tile t: tiles){
-                removedTiles.add(removeTile(playerFrame.indexOf(t)));
+    }
+
+
+    /**
+     * Method to check if a list of characters are in the Frame
+     * @param word: List of characters to check
+     * @return Boolean answer
+     */
+    public boolean checkTiles(char[] word){
+        // Loops through each Character passed in
+        Frame temp = this;
+
+        for (char c : word) {
+            // Checks if any of the of the character passed in not Tiles in the Frame, if so false is returned
+            if (!(temp.checkTile(c))) {
+                return false;
+            }
+            else{
+                temp.removeTile(c);
             }
         }
 
-        // If a Tiles passed in are not in the playerFrame, then a InvalidFrameException is thrown
-        else{
-            throw new InvalidFrameException("Tiles not in the frame, therefore tiles cannot be removed");
+        // If all the Tiles passed in are in the Frame, true is returned
+        return true;
+    }
+
+
+    /**
+     * Method to check if the Frame has a Tile with a given character
+     * @param letter: Character to check if it is within Frame
+     * @return Boolean answer
+     */
+     private boolean checkTile(char letter){
+
+        // Loops through each Tile in Frame
+        for(Tile t: playerFrame){
+
+            // If any Tile in the Frame has the same character as letter, true is returned, if not false is returned
+            if(t.getCharacter() == letter){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    private boolean checkTile(Tile tile){
+        for(Tile t: playerFrame){
+            if(t.equals(tile)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+
+
+    /**
+     * Method that retrieves a Tile with a given character from the Frame
+     * @param c: Character of Tile wanted
+     * @return Tile with given character
+     */
+
+    public Tile getTile(char c) {
+
+
+        // Loops through each Tile in Frame
+        for (Tile tile : playerFrame) {
+
+            // If the Frame contains a Tile with the wanted character, it is removed from the Frame and returned
+            if (tile.getCharacter() == c) {
+                return tile;
+
+            }
+            throw new IllegalArgumentException("Tile not in board");
+        }
+        return null;
+    }
+
+    public Tile getTile(int i){
+        if(i < 0 || i > 7){
+            throw new IllegalArgumentException("Index not in range of Board");
+        }
+        return playerFrame.get(i);
+    }
+
+
+    /**
+     * Method to retrieve a list of Tile with given characters from Frame
+     * @param word list of wanted character Tiles
+     * @return List of Tiles
+     */
+    public ArrayList<Tile> getTiles(char[] word){
+
+        // Creates a temporary ArrayList of Tiles
+        ArrayList<Tile> temp = new ArrayList<>();
+
+        // Checks if each character in word is in the Frame, if not exception is thrown
+        if(checkTiles(word)){
+
+            // Adds each of the Tiles of given characters to the ArrayList
+            for(char letter: word){
+                temp.add(getTile(letter));
+            }
         }
 
-        // Returns the removed Tiles
-        return removedTiles;
+        else{
+            throw new InvalidFrameException("Frame doesn't have the requested tiles");
+        }
+
+        // Returns the ArrayList
+        return temp;
     }
+
+
 
 
     /**
@@ -169,173 +336,6 @@ public class Frame {
         for(Tile tile: tiles){
             this.framePool.receiveTile(tile);
         }
-    }
-
-
-    /**
-     * Method which checks if a series of Tiles are currently in the Frame
-     *
-     * @param tiles: List of tiles to be checked
-     * @return boolean: Result for if the Frame contains all the Tiles
-     */
-    public boolean checkTiles(ArrayList<Tile> tiles){
-        for(Tile tile: tiles){
-            if(!(playerFrame.contains(tile))){
-                return false;
-            }
-        }
-        return true;
-
-    }
-
-
-    /**
-     * Method to check if a list of characters are in the Frame
-     * @param word: List of characters to check
-     * @return Boolean answer
-     */
-    public boolean checkChars(char[] word){
-        // Loops through each Character passed in
-        Frame temp = this;
-        if(word.length == 0){
-            throw new InvalidBoardException("Cannot check for no characters in Frame");
-        }
-
-        for (char c : word) {
-            // Checks if any of the of the character passed in not Tiles in the Frame, if so false is returned
-            if (!(temp.checkChar(c))) {
-                return false;
-            }
-            else{
-                temp.removeChar(c);
-            }
-        }
-
-        // If all the Tiles passed in are in the Frame, true is returned
-        return true;
-    }
-
-
-    /**
-     * Method to check if the Frame has a Tile with a given character
-     * @param letter: Character to check if it is within Frame
-     * @return Boolean answer
-     */
-    private boolean checkChar(char letter){
-
-        // Loops through each Tile in Frame
-        for(Tile t: playerFrame){
-
-            // If any Tile in the Frame has the same character as letter, true is returned, if not false is returned
-            if(t.getCharacter() == letter){
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-
-    /**
-     * Method that retrieves a Tile with a given character from the Frame
-     * @param letter: Character of Tile wanted
-     * @return Tile with given character
-     */
-    public Tile getCharTile(char letter){
-
-        // Creates a temporary Tile
-        Tile temp = new Tile(' ');
-
-        // Loops through each Tile in Frame
-        for(Tile t: playerFrame){
-
-            // If the Frame contains a Tile with the wanted character, it is removed from the Frame and returned
-            if(t.getCharacter() == letter){
-                temp = playerFrame.get(playerFrame.indexOf(t));
-                return temp;
-
-            }
-        }
-
-        // If the wanted character is not found, exception is thrown
-        if(temp.getCharacter() == ' '){
-            throw new InvalidFrameException("Frame does not have Tile with character " + letter);
-        }
-
-        return null;
-    }
-    public char getCharLetter(char letter){
-
-        // Creates a temporary Tile
-        Tile temp = new Tile(' ');
-
-        // Loops through each Tile in Frame
-        for(Tile t: playerFrame){
-
-            // If the Frame contains a Tile with the wanted character, it is removed from the Frame and returned
-            if(t.getCharacter() == letter){
-                temp = playerFrame.get(playerFrame.indexOf(t));
-                return temp.getCharacter();
-
-            }
-        }
-
-        // If the wanted character is not found, exception is thrown
-        if(temp.getCharacter() == ' '){
-            throw new InvalidFrameException("Frame does not have Tile with character " + letter);
-        }
-
-        return ' ';
-    }
-
-
-
-    /**
-     * Method to retrieve a list of Tile with given characters from Frame
-     * @param word list of wanted character Tiles
-     * @return List of Tiles
-     */
-    public ArrayList<Tile> getTiles(char[] word){
-
-        // Creates a temporary ArrayList of Tiles
-        ArrayList<Tile> temp = new ArrayList<>();
-
-        // Checks if each character in word is in the Frame, if not exception is thrown
-        if(checkChars(word)){
-
-            // Adds each of the Tiles of given characters to the ArrayList
-            for(char letter: word){
-                temp.add(getCharTile(letter));
-            }
-        }
-
-        else{
-            throw new InvalidFrameException("Frame doesn't have the requested tiles");
-        }
-
-        // Returns the ArrayList
-        return temp;
-    }
-
-
-    /**
-     * Method to remove a Tile with a given character from the Frame
-     * @param letter: Character to be removed
-     */
-    private void removeChar(char letter){
-
-        // Loops through every Tile in the Frame
-        for(Tile tile: playerFrame) {
-
-            // If one of the Tiles has the same character, it is removed
-            if (tile.getCharacter() == letter) {
-                playerFrame.remove(tile);
-                return;
-            }
-        }
-
-        // If the Tile cannot be found, exception is thrown
-        throw new InvalidFrameException("Frame doesn't contain a Tile with character " + letter);
     }
 
 
@@ -362,6 +362,8 @@ public class Frame {
     }
 
     public static void main(String[] args) {
+        Pool pool = new Pool();
+        Frame frame = new Frame(pool);
     }
 
 }

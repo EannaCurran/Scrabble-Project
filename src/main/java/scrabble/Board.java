@@ -253,7 +253,7 @@ public class Board {
 
         // Loops through each move and places the Tile on the Board
         for(int i = 0; i < positions.length; i++){
-            placeTile(player.getPlayerFrame().getCharTile(word[i]), positions[i][0], positions[i][1]);
+            placeTile(player.getPlayerFrame().getTile(word[i]), positions[i][0], positions[i][1]);
         }
     }
 
@@ -286,7 +286,7 @@ public class Board {
     protected void checkPlayerHasTiles(Player player, char[] word){
 
         // Checks if the player has every Tile in their Frame, if not exception is thrown
-        if (!(player.getPlayerFrame().checkChars(word))){
+        if (!(player.getPlayerFrame().checkTiles(word))){
             throw new InvalidBoardException("Player doesn't have the necessary Tiles\n");
         }
     }
