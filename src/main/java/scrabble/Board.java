@@ -229,7 +229,7 @@ public class Board {
     /**
      * Method to place a Tile on the board
      *
-     * @param tile: Tile to be placed on the board
+     * @param tile: Tile to be placed on the Board
      * @param position_i: I position on the Board to place the Tile
      * @param position_j J position on the Board to place the Tile
      */
@@ -239,9 +239,19 @@ public class Board {
         boardSquares[position_i][position_j].setTile(tile);
     }
 
+
+    /**
+     * Method for a Player to place a list of Tiles on the Board
+     * @param player: Person to place Tiles
+     * @param word: Characters to place on the Board
+     * @param positions: List of positions to place Tiles on the Board
+     */
     public void placeTiles(Player player, char[] word, int[][] positions){
+
+        // Validates the players move
         checkValidMove(player, word, positions);
 
+        // Loops through each move and places the Tile on the Board
         for(int i = 0; i < positions.length; i++){
             placeTile(player.getPlayerFrame().getChar(word[i]), positions[i][0], positions[i][1]);
         }
@@ -257,11 +267,11 @@ public class Board {
 
         // Checks if the position is in the range of the board, if not exception is thrown
         if(positions.length == 0 || positions.length > 7){
-            throw new InvalidBoardException("Invalid number of positions entered");
+            throw new InvalidBoardException("Invalid number of positions entered\n");
         }
         for(int[] position : positions){
             if(!CoordinateValidationCheck(position[0], position[1])){
-                throw new InvalidBoardException("Position not on board");
+                throw new InvalidBoardException("Position not on Board\n");
             }
         }
     }
@@ -277,7 +287,7 @@ public class Board {
 
         // Checks if the player has every Tile in their Frame, if not exception is thrown
         if (!(player.getPlayerFrame().checkChars(word))){
-            throw new InvalidBoardException("Player doesn't have the necessary tiles");
+            throw new InvalidBoardException("Player doesn't have the necessary Tiles\n");
         }
     }
 
@@ -290,10 +300,10 @@ public class Board {
 
         // Checks that the word contains a Tile, if not exception is thrown
         if(word.length == 0){
-            throw new InvalidBoardException("Word must be longer than 0 tiles");
+            throw new InvalidBoardException("Word must be longer than 0 Tiles\n");
         }
         if(word.length > 7){
-            throw new InvalidBoardException("Cannot place more than 7 tiles");
+            throw new InvalidBoardException("Cannot place more than 7 Tiles\n");
         }
     }
 
@@ -307,7 +317,7 @@ public class Board {
         // Checks that the position has a tile in it, if it does exception is thrown
         for(int[] ints : position){
             if(!(boardSquares[ints[0]][ints[1]].isEmpty())){
-                throw new InvalidBoardException("Position already contains a tile");
+                throw new InvalidBoardException("Position already contains a Tile\n");
             }
         }
     }
@@ -331,11 +341,11 @@ public class Board {
             }
         }
 
-        //Loops to check that the horizontal list of positions are in on the same 
+        //Loops to check that the horizontal list of positions are in on the same
         if(!tempVertical){
             for(int j = 0; j < position.length - 1;j++){
                 if(position[j][1] != position[j+1][1]){
-                    throw new InvalidBoardException("Tiles are not in a line on the board");
+                    throw new InvalidBoardException("Tiles are not in a line on the Board\n");
                 }
             }
         }
@@ -351,7 +361,7 @@ public class Board {
 
                 if((!((position[j][1]+1 == position[j+1][1] && position[j][0] == position[j+1][0]) || !boardSquares[position[j][0]][position[j][1]+1].isEmpty()))){
 
-                    throw new InvalidBoardException("Tiles are not in a line on the board");
+                    throw new InvalidBoardException("Tiles are not in a line on the Board\n");
                 }
             }
 
@@ -366,7 +376,7 @@ public class Board {
 
             if((!((position[j][0]+1 == position[j+1][0] && position[j][1] == position[j + 1][1] || !boardSquares[position[j][0]+1][position[j][1]].isEmpty())))){
 
-                throw new InvalidBoardException("Tiles are not in a line on the board");
+                throw new InvalidBoardException("Tiles are not in a line on the Board\n");
             }
         }
     }
@@ -390,7 +400,7 @@ public class Board {
                     return;
                 }
             }
-            throw new InvalidBoardException("First word in game must be placed within [7][7]");
+            throw new InvalidBoardException("First word in game must be placed within [7][7]\n");
         }
 
         // Loops through each co-ordinate in position, checks if any of the surrounding positions contain tiles, if it does
@@ -472,18 +482,12 @@ public class Board {
 
         // If none of the positions connect to a tile on the board, InvalidException is thrown
         if(!connectCheck){
-            throw new InvalidBoardException("Placed tiles not connected to any tiles");
+            throw new InvalidBoardException("Placed Tiles not connected to any Tiles\n");
         }
     }
 
 
-    public static void main(String[] args) {
-        Board board = new Board();
-        board.boardSquares[7][7].setTile(new Tile('A'));
-        board.boardSquares[8][8].setTile(new Tile('A'));
-        board.boardSquares[9][9].setTile(new Tile('A'));
-        int[][] moves = {{6,7},{7,8},{8,9}};
-        board.checkPositionLine(moves);
+    public static void main(String[] args){
 
 
     }
