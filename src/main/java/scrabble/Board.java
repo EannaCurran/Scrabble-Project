@@ -1,9 +1,7 @@
 package scrabble;
 
 import scrabble.exceptions.InvalidBoardException;
-import scrabble.exceptions.InvalidFrameException;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 
@@ -12,6 +10,11 @@ import java.util.Comparator;
  * The Board Class represents the Board for the Scrabble Game as an object
  */
 public class Board {
+
+    /**
+     * Constant value for Board size
+     */
+    public final static int BOARD_SIZE = 15;
 
     /**
      * The Array of Square that holds the 15x15 Squares of the Board
@@ -24,7 +27,7 @@ public class Board {
     public Board(){
 
         //Set boardSquare
-        boardSquares = new Square[15][15];
+        boardSquares = new Square[BOARD_SIZE][BOARD_SIZE];
 
         //Fill the boardSquares
         newBoard();
@@ -113,27 +116,29 @@ public class Board {
         return result;
     }
 
-    // Killian
 
+    /**
+     * Method to reset the Board
+     */
     public void resetBoard(){
 
         //Set boardSquare
-        boardSquares = new Square[15][15];
+        boardSquares = new Square[BOARD_SIZE][BOARD_SIZE];
 
         //Fill the boardSquares
         newBoard();
-
     }
 
     /**
      * Method checks if coordinates are valid
+     *
      * @param i row coordinate
      * @param j column coordinate
      * @return True if inside Board, false if outside the Board
      */
     private boolean CoordinateValidationCheck(int i, int j)
     {
-        return i < 15 && i >= 0 && j < 15 && j >= 0;
+        return i < BOARD_SIZE && i >= 0 && j < BOARD_SIZE && j >= 0;
     }
 
     /**
@@ -161,43 +166,43 @@ public class Board {
     @Override
     public String toString(){
                         //The board's title
-        String result = "\t\t\t\t\t\t\t\tScrabble Board\n  |";
+        StringBuilder result = new StringBuilder("\t\t\t\t\t\t\t\tScrabble Board\n  |");
 
 
         //for loop creates the number columns
-        for(int n=0; n<15; n++)
+        for(int n=0; n < BOARD_SIZE; n++)
         {
             if(n<9)
             {
-                result = result + " " + (n+1) + "  |";
+                result.append(" ").append(n + 1).append("  |");
             }
             else
             {
-                result = result + " " + (n+1) + " |";
+                result.append(" ").append(n + 1).append(" |");
             }
         }
 
         //For loop for the row index
-        for(int i=0;i<15;i++)
+        for(int i=0; i < BOARD_SIZE;i++)
         {
-            result = result + "\n______________________________________________________________________________\n";
+            result.append("\n______________________________________________________________________________\n");
 
             //If statement checks if row number is not a double digit
             if(i<9)
             {
                 //Gives single digit numbers the same spacing as double digits
-                result = result + " ";
+                result.append(" ");
             }
-            result = result + (i+1) + "|";
+            result.append(i + 1).append("|");
 
             //Loop for the column index
-            for(int j=0; j<15; j++)
+            for(int j=0; j < BOARD_SIZE; j++)
             {
-                result = result + boardSquares[i][j] + "|";
+                result.append(boardSquares[i][j]).append("|");
             }
         }
 
-        return result;
+        return result.toString();
     }
 
 
@@ -207,7 +212,7 @@ public class Board {
      * @param word: List of tiles requested to make the move
      * @param positions: Positions entered to place each Tile
      */
-    public void checkValidMove(Player player, char[] word, int[][] positions){
+    protected void checkValidMove(Player player, char[] word, int[][] positions){
 
         // Checks that the word length is greater than 0
         checkWordLength(word);
@@ -256,8 +261,9 @@ public class Board {
         checkValidMove(player, word, positions);
 
         // Loops through each move and places the Tile on the Board
-        for(int i = 0; i < positions.length; i++){
+        for(int i = 0; i < word.length; i++){
             placeTile(player.getPlayerFrame().getTile(word[i]), positions[i][0], positions[i][1]);
+            player.getPlayerFrame().removeTile(word[i]);
         }
     }
 
@@ -501,8 +507,5 @@ public class Board {
         player.getPlayerFrame().addTile(new Tile('B'));
         player.getPlayerFrame().addTile(new Tile('C'));
 
-        char[] emptyChar = {};
-        char[] charPlayerDoesNotHave = {'E','F','G'};
-        char[] charPlayerHasSome = {'A', 'E', 'C'};
     }
 }
