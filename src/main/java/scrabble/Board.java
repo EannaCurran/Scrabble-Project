@@ -406,8 +406,8 @@ public class Board {
         if(boardSquares[7][7].isEmpty() ){
 
             // If the first tile of the game hasn't been placed and the position [7][7] is not passed in, exception is thrown
-            for (int[] ints : position) {
-                if (ints[0] == 7 && ints[1] == 7) {
+            for (int i = 0; i < position.length; i++) {
+                if (position[i][0] == 7 && position[i][1] == 7) {
                     return;
                 }
             }
@@ -416,67 +416,67 @@ public class Board {
 
         // Loops through each co-ordinate in position, checks if any of the surrounding positions contain tiles, if it does
         // connectCheck is set to true and loop is broken, edge guarding included for any positions on the edge of the board;
-        for (int[] ints : position) {
+        for (int i = 0; i < position.length; i++) {
 
             // Edge guard for position [0][0]
-            if (ints[0] == 0 && ints[1] == 0) {
-                if (!(boardSquares[ints[0] + 1][ints[1]].isEmpty() && boardSquares[ints[0]][ints[1] + 1].isEmpty())) {
+            if (position[i][0] == 0 && position[i][1] == 0) {
+                if (!(boardSquares[position[i][0] + 1][position[i][1]].isEmpty() && boardSquares[position[i][0]][position[i][1] + 1].isEmpty())) {
                     connectCheck = true;
                     break;
                 }
             }
 
             // Edge guard for position [14][0]
-            else if (ints[0] == 14 && ints[1] == 0) {
-                if (!(boardSquares[ints[0] - 1][ints[1]].isEmpty() && boardSquares[ints[0]][ints[1] + 1].isEmpty())) {
+            else if (position[i][0] == 14 && position[i][1] == 0) {
+                if (!(boardSquares[position[i][0] - 1][position[i][1]].isEmpty() && boardSquares[position[i][0]][position[i][1] + 1].isEmpty())) {
                     connectCheck = true;
                     break;
                 }
             }
 
             // Edge guard for position [14][14]
-            else if (ints[0] == 14 && ints[1] == 14) {
-                if (!(boardSquares[ints[0] - 1][ints[1]].isEmpty() && boardSquares[ints[0]][ints[1] - 1].isEmpty())) {
+            else if (position[i][0] == 14 && position[i][1] == 14) {
+                if (!(boardSquares[position[i][0] - 1][position[i][1]].isEmpty() && boardSquares[position[i][0]][position[i][1] - 1].isEmpty())) {
                     connectCheck = true;
                     break;
                 }
             }
 
             // Edge guard for position [0][14]
-            else if (ints[0] == 0 && ints[1] == 14) {
-                if (!(boardSquares[ints[0] + 1][ints[1]].isEmpty() && boardSquares[ints[0]][ints[1] - 1].isEmpty())) {
+            else if (position[i][0] == 0 && position[i][1] == 14) {
+                if (!(boardSquares[position[i][0] + 1][position[i][1]].isEmpty() && boardSquares[position[i][0]][position[i][1] - 1].isEmpty())) {
                     connectCheck = true;
                     break;
                 }
             }
 
             // Edge guard for left side of the board
-            else if (ints[0] == 0) {
-                if (!(boardSquares[ints[0] + 1][ints[1]].isEmpty() && boardSquares[ints[0]][ints[1] - 1].isEmpty() && boardSquares[ints[0]][ints[1] + 1].isEmpty())) {
+            else if (position[i][0] == 0) {
+                if (!(boardSquares[position[i][0] - 1][position[i][1]].isEmpty() && boardSquares[position[i][0]][position[i][1] + 1].isEmpty() && boardSquares[position[i][0] + 1][position[i][1]].isEmpty())) {
                     connectCheck = true;
                     break;
                 }
             }
 
             // Edge guard for right side of the board
-            else if (ints[1] == 14) {
-                if (!(boardSquares[ints[0] - 1][ints[1]].isEmpty() && boardSquares[ints[0]][ints[1] - 1].isEmpty() && boardSquares[ints[0]][ints[1] + 1].isEmpty())) {
+            else if (position[i][1] == 14) {
+                if (!(boardSquares[position[i][0] - 1][position[i][1]].isEmpty() && boardSquares[position[i][0]][position[i][1] - 1].isEmpty() && boardSquares[position[i][0] + 1][position[i][1]].isEmpty())) {
                     connectCheck = true;
                     break;
                 }
             }
 
             // Edge guard for bottom for board
-            else if (ints[0] == 14) {
-                if (!(boardSquares[ints[0] - 1][ints[1]].isEmpty() && boardSquares[ints[0]][ints[1] - 1].isEmpty() && boardSquares[ints[0] + 1][ints[1]].isEmpty())) {
+            else if (position[i][0] == 14) {
+                if (!(boardSquares[position[i][0] - 1][position[i][1]].isEmpty() && boardSquares[position[i][0]][position[i][1] - 1].isEmpty() && boardSquares[position[i][0]][position[i][1] + 1].isEmpty())) {
                     connectCheck = true;
                     break;
                 }
             }
 
             // Edge guard for top of board
-            else if (ints[1] == 0) {
-                if (!(boardSquares[ints[0] + 1][ints[1]].isEmpty() && boardSquares[ints[0]][ints[1] + 1].isEmpty() && boardSquares[ints[0]][ints[1] - 1].isEmpty())) {
+            else if (position[i][1] == 0) {
+                if (!(boardSquares[position[i][0] - 1][position[i][1]].isEmpty() && boardSquares[position[i][0]][position[i][1] + 1].isEmpty() && boardSquares[position[i][0]][position[i][1] - 1].isEmpty())) {
                     connectCheck = true;
                     break;
                 }
@@ -484,7 +484,7 @@ public class Board {
 
             // Normal check for positions not on the corner of the board
             else {
-                if (!(boardSquares[ints[0] + 1][ints[1]].isEmpty() && boardSquares[ints[0]][ints[1] + 1].isEmpty() && boardSquares[ints[0] - 1][ints[1]].isEmpty() && boardSquares[ints[0]][ints[1] - 1].isEmpty())) {
+                if (!(boardSquares[position[i][0] + 1][position[i][1]].isEmpty() && boardSquares[position[i][0]][position[i][1] + 1].isEmpty() && boardSquares[position[i][0] - 1][position[i][1]].isEmpty() && boardSquares[position[i][0]][position[i][1] - 1].isEmpty())) {
                     connectCheck = true;
                     break;
                 }

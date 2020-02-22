@@ -16,7 +16,7 @@ public class Main {
         //Create the players and print there initial state
         Player player1 = new Player("Killian", pool);
         Player player2 = new Player("Eanna", pool);
-        System.out.println("Initialized Player 1:\n" + player1 + "\n\nInitialized Player 1:\n" + player2);
+        System.out.println("Initialized Player 1:\n" + player1 + "\n\nInitialized Player 2:\n" + player2);
 
         //Print the pools state after the player are made
         System.out.println("Pool after Players are initialized:\n" + pool);
@@ -24,11 +24,8 @@ public class Main {
         Board board = new Board();
         System.out.println("Initalised board:\n"+ board.toString());
 
-        //User inputting the desired letter to place
-        //and the coordinates of where they want to place it on the board
-        //char playerCharInput = 'E';
-        //int playerRowInput = 0;
-        //int playerColumnInput = 0;
+
+
         System.out.println(player1.toString());
 
 
@@ -40,6 +37,11 @@ public class Main {
             player1Tiles[i] = player1.getPlayerFrame().getTile(i).getCharacter();
             player1Moves[i][1] = 7 + i;
             player1Moves[i][0] = 7;
+
+            if (player1Tiles[i] == ' '){
+                player1Tiles[i] = 'A';
+                player2.getPlayerFrame().getTile(i).setCharacter(player1Tiles[i]);
+            }
         }
 
         //player1Tiles = new char[6];
@@ -50,9 +52,9 @@ public class Main {
 
         board.placeTiles(player1, player1Tiles, player1Moves);
 
-        System.out.println("Turn 1: Player 1 placed a word on the board:\n"+ board.toString());
+        System.out.println("Turn 1: Player 1 placed a word on the board:\n"+ board.toString() + "\nThe word placed: " + player1Tiles);
         System.out.println(player1.toString());
-        System.out.println(player1Tiles);
+
 
 
         //PLAYER 2 TURN ONE
@@ -64,10 +66,15 @@ public class Main {
             player2Tiles[i] = player2.getPlayerFrame().getTile(i).getCharacter();
             player2Moves[i][1] = 7;
             player2Moves[i][0] = 8+i;
+
+            if (player2Tiles[i] == ' '){
+                player2Tiles[i] = 'A';
+                player2.getPlayerFrame().getTile(i).setCharacter(player2Tiles[i]);
+            }
         }
 
         board.placeTiles(player2, player2Tiles, player2Moves);
-        System.out.println("Turn 1: Player 1 placed a word on the board:\n"+ board.toString());
+        System.out.println("Turn 1: Player 2 placed a word on the board:\n"+ board.toString());
 
         System.out.println(player2.toString());
         System.out.println(player2Tiles);
@@ -87,24 +94,45 @@ public class Main {
         for(int i=0;i<3;i++)
         {
             player1Tiles[i] = player1.getPlayerFrame().getTile(i).getCharacter();
+
+            if (player1Tiles[i] == ' '){
+                player1Tiles[i] = 'A';
+                player1.getPlayerFrame().getTile(i).setCharacter(player1Tiles[i]);
+            }
         }
         board.placeTiles(player1, player1Tiles, player1Moves);
 
         System.out.println("Turn 2: Player 1 placed a word on the board:\n"+ board.toString());
         System.out.println(player1.toString());
-        System.out.println(player1Tiles);
 
+       System.out.println("Turn 2: Player 1 placed a word on the board:\n"+ board.toString());
 
-        /*
-        if(player1.charUserInputCheck(playerCharInput))
+       //TURN 2 PLAYER 2
+        player2Tiles = new char[3];
+        player2Moves  = new int[3][2];
+
+        player2Moves[0][0] = 14;
+        player2Moves[1][0] = 14;
+        player2Moves[2][0] = 14;
+
+        player2Moves[0][1] = 6;
+        player2Moves[1][1] = 8;
+        player2Moves[2][1] = 9;
+
+        for(int i=0;i<3;i++)
         {
-            Tile tileToBePlaced = player1.getPlayerFrame().getChar(playerCharInput);
-            board.getSquare(playerRowInput,playerColumnInput).setTile(tileToBePlaced);
+            player2Tiles[i] = player2.getPlayerFrame().getTile(i).getCharacter();
+
+            if (player2Tiles[i] == ' '){
+                player2Tiles[i] = 'A';
+                player2.getPlayerFrame().getTile(i).setCharacter(player2Tiles[i]);
+            }
         }
-         */
 
-        //board.getSquare(5,7).setTile(new Tile('Q'));
+        board.placeTiles(player2, player2Tiles, player2Moves);
+        System.out.println("Turn 2: Player 2 placed a word on the board:\n"+ board.toString());
 
+        System.out.println(player2.toString());
 
     }
 
