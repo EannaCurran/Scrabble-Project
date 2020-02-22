@@ -252,8 +252,9 @@ public class Board {
         checkValidMove(player, word, positions);
 
         // Loops through each move and places the Tile on the Board
-        for(int i = 0; i < positions.length; i++){
+        for(int i = 0; i < word.length; i++){
             placeTile(player.getPlayerFrame().getTile(word[i]), positions[i][0], positions[i][1]);
+            player.getPlayerFrame().removeTile(word[i]);
         }
     }
 

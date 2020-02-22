@@ -1,6 +1,5 @@
 package scrabble;
 
-import scrabble.exceptions.InvalidBoardException;
 import scrabble.exceptions.InvalidFrameException;
 import scrabble.exceptions.InvalidTileException;
 
@@ -8,20 +7,27 @@ import java.util.ArrayList;
 
 public class Frame {
 
+
+
     /**
      * ArrayList of Tiles in the Frame
      */
     private ArrayList<Tile> playerFrame = new ArrayList<>();
+
+
 
     /**
      * The reference to the pool to access Tiles from
      */
     private Pool framePool;
 
+
+
     /**
      * Max amount of Tiles in the Frame
      */
     private final static int FRAME_SIZE = 7;
+
 
 
     /**
@@ -36,6 +42,7 @@ public class Frame {
         // Fills the Frame with Tiles from the Pool
         fillFrame();
     }
+
 
 
     /**
@@ -55,6 +62,7 @@ public class Frame {
     }
 
 
+
     /**
      * Accessor method for playerFrame
      *
@@ -63,6 +71,7 @@ public class Frame {
     public ArrayList<Tile> returnFrame(){
         return playerFrame;
     }
+
 
 
     /**
@@ -75,55 +84,83 @@ public class Frame {
     }
 
 
+
     /**
-     * Method to remove a single Tile from the Frame
+     * Method to remove a single Tile from the Frame of a given index
      *
      * @param i: Tile index to be removed
      * @throws InvalidTileException: If index is not in the Frame
      */
-
     public void removeTile(int i){
 
+        // Removes the tile from the frame of index i if it is within the range of the board
         if(i >= 0 && i <= 6) {
             playerFrame.remove(i);
         }
 
-        else{
-
-            // Throws a InvalidTile Exception if the index is not in the range of the Frame size
+        // Throws a InvalidTile Exception if the index is not in the range of the Frame size
+        else {
             throw new InvalidFrameException("Index not in range of Frame");
         }
     }
 
 
+
+    /**
+     * Method to remove a Tile from the Frame with a given character
+     * @param c: Character of tile to be removed
+     */
     public void removeTile(char c){
 
+        // Loops through each Tile in the Players Frame
         for(Tile t: playerFrame){
+
+            // Checks that the character of the Tile is the same as the inputted character, if so it is removed from the Frame
             if(t.getCharacter() == c){
                 playerFrame.remove(t);
                 return;
             }
         }
-        throw new InvalidFrameException("Tile not in frame");
+
+        // If the inputted character is not on a Tile in the Frame an exception is thrown
+        throw new InvalidFrameException("Character not on Tile not in frame");
     }
 
+
+
+    /**
+     * Method to remove a Tile from the Frame with a given Tile
+     * @param t: Tile to be removed
+     */
     public void removeTile(Tile t){
 
-        for(Tile t2: playerFrame){
-            if(t2.getCharacter() == t.getCharacter()){
-                playerFrame.remove(t);
+        // Loops through each Tile in the Frame
+        for(Tile t2: this.returnFrame()){
 
-                break;
+            // Checks if the Tile is the same as the inputted Tile, if so it is removed from the Frame
+            if(t2.equals(t)){
+                playerFrame.remove(t);
+                return;
             }
         }
 
+        // If the inputted Tile is not on a Tile in the Frame an exception is thrown
+        throw new InvalidFrameException("Tile not in frame");
     }
 
+
+    /**
+     * Method to remove multiple Tiles from the Frame with given characters
+     * @param word: List of characters to remove from the Frame
+     */
     public void removeTiles(char[] word){
 
-        if(word.length > 7){
+        // Throws an exception if more than 7 or less than 1 characters are requested be removed from the Frame
+        if(word.length > 7 || word.length < 1){
             throw new IllegalArgumentException("Invalid number of characters to find in remove in Frame");
         }
+
+        // Checks that
         if(checkTiles(word)){
             for(char c: word) {
                 removeTile(c);
@@ -374,6 +411,7 @@ public class Frame {
     public static void main(String[] args) {
         Pool pool = new Pool();
         Frame frame = new Frame(pool);
+        System.out.println(frame.toString());
     }
 
 }

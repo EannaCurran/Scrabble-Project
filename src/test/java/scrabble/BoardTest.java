@@ -293,6 +293,28 @@ public class BoardTest {
 
 
     @Test
+    @DisplayName("Testing that a number of Tiles can be placed at a time")
+    void testPlaceTiles(){
+
+        char[] testWord = new char[7];
+
+        testWord[0] = playerTest.getPlayerFrame().getTile(0).getCharacter();
+        testWord[1] = playerTest.getPlayerFrame().getTile(0).getCharacter();
+        testWord[2] = playerTest.getPlayerFrame().getTile(0).getCharacter();
+
+        Tile tile1 = playerTest.getPlayerFrame().getTile(0);
+
+        int[][] positions = {{7,7},{7,8},{7,9}};
+
+        boardTest.placeTiles(playerTest, testWord, positions);
+
+        assertAll("Testing that each of the Tiles have been placed on the Board\n",
+                () -> assertEquals(boardTest.getSquare(7,7).getTile(), tile1));
+    }
+
+
+
+    @Test
     @DisplayName("Testing validating for when the  Player doesn't has the Tiles in their Frame")
     void testCheckPlayerDoesNotHaveTiles()
     {
@@ -326,13 +348,18 @@ public class BoardTest {
     void testCheckPlayerHasTiles()
     {
         // Clears and places new Tiles into Players Frame
-        playerTest.getPlayerFrame().returnFrame().clear();
+        //playerTest.getPlayerFrame().returnFrame().clear();
         playerTest.getPlayerFrame().addTile(new Tile('A'));
         playerTest.getPlayerFrame().addTile(new Tile('B'));
         playerTest.getPlayerFrame().addTile(new Tile('C'));
+        playerTest.getPlayerFrame().addTile(new Tile('C'));
+        playerTest.getPlayerFrame().addTile(new Tile('C'));
+        playerTest.getPlayerFrame().addTile(new Tile('C'));
+        playerTest.getPlayerFrame().addTile(new Tile('C'));
+
 
         // Creates list of characters that the player has
-        char[] charPlayerHas = {'A', 'B', 'C'};
+        char[] charPlayerHas = {'A', 'B', 'C' ,'C','C' ,'C','C' };
 
         // Asserts that an exception is not thrown for a list of characters in the Frame
         assertDoesNotThrow(() -> boardTest.checkPlayerHasTiles(playerTest, charPlayerHas), "Player has the necessary tiles\n");
@@ -507,12 +534,7 @@ public class BoardTest {
 
     @Test
     @DisplayName("Testing that a list of tiles can only be placed if it connects to a tile on the board, except the first move")
-    void testCheckWordsConnectForEdges(){
-
-
+    void testCheckWordsConnectForEdges()
+    {
     }
-
-
-
-
 }
