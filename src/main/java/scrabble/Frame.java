@@ -210,12 +210,13 @@ public class Frame {
      */
     public boolean checkTiles(ArrayList<Tile> tiles){
 
-        if(tiles.size() == 0){
+        if(tiles.isEmpty()){
             throw new IllegalArgumentException("Cannot check for 0 tiles in Frame");
         }
 
         Frame temp = this;
 
+        //For loop to go through array of Tiles
         for(Tile tile: tiles){
             if(!(temp.checkTile(tile))){
                 return false;
@@ -224,8 +225,8 @@ public class Frame {
                 temp.removeTile(tile);
             }
         }
-        return true;
 
+        return true;
     }
 
 
@@ -278,8 +279,17 @@ public class Frame {
     }
 
 
+    /**
+     * If the Tile is in the Frame
+     *
+     * @param tile
+     * @return
+     */
     private boolean checkTile(Tile tile){
+
+        //For loop to run through the frames tiles
         for(Tile t: playerFrame){
+
             if(t.equals(tile)){
                 return true;
             }
@@ -295,9 +305,7 @@ public class Frame {
      * @param c: Character of Tile wanted
      * @return Tile with given character
      */
-
     public Tile getTile(char c) {
-
 
         // Loops through each Tile in Frame
         for (Tile tile : playerFrame) {
@@ -312,6 +320,12 @@ public class Frame {
         return null;
     }
 
+    /**
+     * Accessor method for Tile from Frame
+     *
+     * @param i index of the Tile in the Frame
+     * @return The Tile at index i in the Frame
+     */
     public Tile getTile(int i){
         if(i < 0 || i > 7){
             throw new IllegalArgumentException("Index not in range of Board");
