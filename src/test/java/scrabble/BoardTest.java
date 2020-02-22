@@ -236,9 +236,51 @@ public class BoardTest {
         assertEquals(boardPrintTest, boardTest.toString(),"The board did not print the way it was expected");
     }
 
+    //Board Reset test
+    @Test
+    @DisplayName("Testing that squares are empty after resetting the board")
+    void resetBoardForEmptySquares()
+    {
+        //Adding tiles to the board
+        boardTest.getSquare(7,7).setTile(new Tile('N'));
+        boardTest.getSquare(7,8).setTile(new Tile('Y'));
+        boardTest.getSquare(8,8).setTile(new Tile('C'));
+        //Resetting the board
+        boardTest.resetBoard();
+
+        assertAll("Testing squares that had tiles are now removed",
+                //Checking square (7,7)
+                () -> assertTrue(boardTest.getSquare(7,7).isEmpty(),"\nThe square isn't empty after a board reset."),
+                //Checking square (7,8)
+                () -> assertTrue(boardTest.getSquare(7,8).isEmpty(),"\nThe square isn't empty after a board reset."),
+                //Checking square (7,9)
+                () -> assertTrue(boardTest.getSquare(7,9).isEmpty(),"\nThe square isn't empty after a board reset.")
+                );
+    }
+
+    @Test
+    @DisplayName("Testing that squares are of correct type after resetting the board")
+    void resettingTheBoardForTypeCheck()
+    {
+        //Adding tiles to the board
+        boardTest.getSquare(7,7).setTile(new Tile('N'));
+        boardTest.getSquare(7,8).setTile(new Tile('Y'));
+        boardTest.getSquare(8,8).setTile(new Tile('C'));
+        //Resetting the board
+        boardTest.resetBoard();
+
+        assertAll("Testing squares are the correct type",
+                //Checking square (7,7) for type START
+                () -> assertEquals(Square.SquareType.START, boardTest.getSquare(7,7).getType(),"\nThe expected Square type isn't correct after being reset."),
+                //Checking square (7,8) for type NORMAL
+                () -> assertEquals(Square.SquareType.NORMAL, boardTest.getSquare(7,8).getType(),"\nThe expected Square type isn't correct after being reset."),
+                //Checking square (8,8) for type DOUBLE_LETTER
+                () -> assertEquals(Square.SquareType.DOUBLE_LETTER, boardTest.getSquare(8,8).getType(),"\nThe expected Square type isn't correct after being reset.")
+        );
+    }
+
 
     //GETSQUARE TESTS
-
     @Test
     @DisplayName("Testing the coordinates i and j for the method getSquare")
     void coordinateInsideCorners()
