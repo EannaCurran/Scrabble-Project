@@ -241,26 +241,23 @@ public class Frame {
             throw new IllegalArgumentException("Cannot check for 0 tiles in Frame");
         }
         // Loops through each Character passed in
-        ArrayList<Tile> temp = new ArrayList<Tile>();
+        ArrayList<Tile> temp = new ArrayList<>();
 
-        for(Tile tile: playerFrame){
-            temp.add(tile);
-        }
+        temp.addAll(playerFrame);
 
 
         // Checks if any of the of the character passed in not Tiles in the Frame, if so false is returned
-        for (int i = 0; i < temp.size(); i++) {
-            for (int j = 0; j < word.length; j++) {
+        for (char c : word) {
+            for (int j = 0; j < temp.size(); j++) {
 
-                if (temp.get(i).getCharacter() == word[j]) {
+                if (temp.get(j).getCharacter() == c) {
 
-                    temp.remove(i);
-                    i--;
+                    temp.remove(j);
                     break;
                 }
             }
         }
-        return temp.size() == 0;
+        return temp.size() == playerFrame.size() - word.length;
 
     }
         // If all the Tiles passed in are in the Frame, true is returned
@@ -289,8 +286,8 @@ public class Frame {
     /**
      * If the Tile is in the Frame
      *
-     * @param tile
-     * @return
+     * @param tile: Tile to be checked if in Frame
+     * @return: If Tile in Frame
      */
     private boolean checkTile(Tile tile){
 
@@ -315,11 +312,11 @@ public class Frame {
     public Tile getTile(char c) {
 
         // Loops through each Tile in Frame
-        for (int i = 0; i < playerFrame.size(); i++) {
+        for (Tile tile : playerFrame) {
 
             // If the Frame contains a Tile with the wanted character, it is removed from the Frame and returned
-            if (playerFrame.get(i).getCharacter() == c) {
-                return playerFrame.get(i);
+            if (tile.getCharacter() == c) {
+                return tile;
 
             }
 

@@ -296,20 +296,23 @@ public class BoardTest {
     @DisplayName("Testing that a number of Tiles can be placed at a time")
     void testPlaceTiles(){
 
-        char[] testWord = new char[7];
-
-        testWord[0] = playerTest.getPlayerFrame().getTile(0).getCharacter();
-        testWord[1] = playerTest.getPlayerFrame().getTile(0).getCharacter();
-        testWord[2] = playerTest.getPlayerFrame().getTile(0).getCharacter();
-
-        Tile tile1 = playerTest.getPlayerFrame().getTile(0);
+        playerTest.getPlayerFrame().returnFrame().clear();
+        playerTest.getPlayerFrame().addTile(new Tile('A'));
+        playerTest.getPlayerFrame().addTile(new Tile('A'));
+        playerTest.getPlayerFrame().addTile(new Tile('A'));
 
         int[][] positions = {{7,7},{7,8},{7,9}};
+        char[] testWord = {'A','A','A'};
 
         boardTest.placeTiles(playerTest, testWord, positions);
 
         assertAll("Testing that each of the Tiles have been placed on the Board\n",
-                () -> assertEquals(boardTest.getSquare(7,7).getTile(), tile1));
+                () -> assertEquals(boardTest.getSquare(7,7).getTile(), new Tile('A'), "Tile has been placed at 7,7\n"),
+                () -> assertEquals(boardTest.getSquare(7,8).getTile(), new Tile('A'), "Tile has been placed at 7,8\n"),
+                () -> assertEquals(boardTest.getSquare(7,9).getTile(), new Tile('A'), "Tile has been placed at 7,7\n")
+
+        );
+
     }
 
 
@@ -348,7 +351,7 @@ public class BoardTest {
     void testCheckPlayerHasTiles()
     {
         // Clears and places new Tiles into Players Frame
-        //playerTest.getPlayerFrame().returnFrame().clear();
+        playerTest.getPlayerFrame().returnFrame().clear();
         playerTest.getPlayerFrame().addTile(new Tile('A'));
         playerTest.getPlayerFrame().addTile(new Tile('B'));
         playerTest.getPlayerFrame().addTile(new Tile('C'));
