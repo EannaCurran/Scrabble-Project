@@ -208,7 +208,7 @@ public class Board {
      * @param word: List of tiles requested to make the move
      * @param positions: Positions entered to place each Tile
      */
-    public void checkValidMove(Player player, char[] word, int[][] positions){
+    protected void checkValidMove(Player player, char[] word, int[][] positions){
 
         // Checks that the word length is greater than 0
         checkWordLength(word);
@@ -502,8 +502,5 @@ public class Board {
         player.getPlayerFrame().addTile(new Tile('B'));
         player.getPlayerFrame().addTile(new Tile('C'));
 
-        char[] emptyChar = {};
-        char[] charPlayerDoesNotHave = {'E','F','G'};
-        char[] charPlayerHasSome = {'A', 'E', 'C'};
     }
 }

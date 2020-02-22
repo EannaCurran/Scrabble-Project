@@ -1,6 +1,5 @@
 package scrabble;
 
-import scrabble.exceptions.InvalidBoardException;
 import scrabble.exceptions.InvalidFrameException;
 import scrabble.exceptions.InvalidTileException;
 
@@ -81,7 +80,6 @@ public class Frame {
      * @param i: Tile index to be removed
      * @throws InvalidTileException: If index is not in the Frame
      */
-
     public void removeTile(int i){
 
         if(i >= 0 && i <= 6) {
@@ -96,9 +94,18 @@ public class Frame {
     }
 
 
+    /**
+     * Method to remove a single Tile from the Frame
+     *
+     * @param c: Character of the Tile to be removed
+     * @throws InvalidTileException: If Character is not in the Frame
+     */
     public void removeTile(char c){
 
+        //For Loop to check each tile in frame
         for(Tile t: playerFrame){
+
+            //If c matches Character of the Tile
             if(t.getCharacter() == c){
                 playerFrame.remove(t);
                 return;
@@ -107,28 +114,43 @@ public class Frame {
         throw new InvalidFrameException("Tile not in frame");
     }
 
+    /**
+     * Method to remove a single Tile from the Frame
+     *
+     * @param t: Tile to be removed
+     */
     public void removeTile(Tile t){
 
+        //For loop to check each tile
         for(Tile t2: playerFrame){
-            if(t2.getCharacter() == t.getCharacter()){
+
+            if(t2 == t){
                 playerFrame.remove(t);
 
-                break;
+                return;
             }
         }
-
     }
 
+    /**
+     * Method to remove a multiple Tile from the Frame
+     *
+     * @param word: Array of Tile Characters to be removed
+     * @throws InvalidTileException: If Tile is not in the Frame
+     */
     public void removeTiles(char[] word){
 
+        //If the word is invalidly long
         if(word.length > 7){
             throw new IllegalArgumentException("Invalid number of characters to find in remove in Frame");
         }
-        if(checkTiles(word)){
+        //If the word is in the frame
+        else if(checkTiles(word)){
+
+            //For Loop to remove each Tile
             for(char c: word) {
                 removeTile(c);
             }
-
         }
         else{
             throw new InvalidFrameException("Tiles not in the frame, therefore tiles cannot be removed");
