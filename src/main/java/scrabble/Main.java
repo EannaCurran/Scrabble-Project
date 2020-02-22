@@ -26,18 +26,45 @@ public class Main {
 
         //User inputting the desired letter to place
         //and the coordinates of where they want to place it on the board
-        char playerCharInput = 'E';
-        int playerRowInput = 7;
-        int playerColumnInput = 7;
+        //char playerCharInput = 'E';
+        //int playerRowInput = 0;
+        //int playerColumnInput = 0;
+        System.out.println(player1.toString());
+
+        char[] player1Tiles = new char[7];
+        int[][] player1Moves  = new int[7][2];
+
+        for(int i=0;i<7;i++)
+        {
+            player1Tiles[i] = player1.getPlayerFrame().getTile(i).getCharacter();
+            player1Moves[i][1] = 7 + i;
+            player1Moves[i][0] = 7;
+
+        }
+
+        //player1Tiles = new char[6];
+        //player1Tiles[1] = player1.getPlayerFrame().getTile(1).getCharacter();
+        //player1Moves = new int[7][2];
+        //player1Moves[0][0] = 7;
+        //player1Moves[0][1] = 8;
+
+        board.placeTiles(player1, player1Tiles, player1Moves);
+
+        System.out.println("Turn 1: Player 1 placed a word on the board:\n"+ board.toString());
+        System.out.println(player1.toString());
+        System.out.println(player1Tiles);
+
+
+
+        /*
         if(player1.charUserInputCheck(playerCharInput))
         {
             Tile tileToBePlaced = player1.getPlayerFrame().getChar(playerCharInput);
             board.getSquare(playerRowInput,playerColumnInput).setTile(tileToBePlaced);
-
         }
+         */
 
         //board.getSquare(5,7).setTile(new Tile('Q'));
-        System.out.println("Placed a tile on the board:\n"+ board.toString());
 
 
     }
