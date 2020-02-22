@@ -52,7 +52,8 @@ public class Main {
         board.placeTiles(player1, player1Tiles, player1Moves);
 
         //Prints the board, placed tiles and player 1's data
-        System.out.println("Turn 1: Player 1 placed a word on the board:\n"+ board.toString() + "\nThe word placed: " + player1Tiles);
+        System.out.println("\nTurn 1: Player 1 placed a word on the board:\n"+ board + "\nThe tiles placed: ");
+        System.out.println(player1Tiles);
         System.out.println(player1.toString());
 
 
@@ -82,7 +83,8 @@ public class Main {
         board.placeTiles(player2, player2Tiles, player2Moves);
 
         //Prints the board, placed tiles and player 2's data
-        System.out.println("Turn 1: Player 2 placed a word on the board:\n"+ board.toString() + "\nThe word placed: " + player2Tiles);
+        System.out.println("\nTurn 1: Player 2 placed a word on the board:\n"+ board.toString() + "\nThe tiles placed: ");
+        System.out.println(player2Tiles);
         System.out.println(player2.toString());
 
 
@@ -117,7 +119,8 @@ public class Main {
         board.placeTiles(player1, player1Tiles, player1Moves);
 
         //Prints the board, placed tiles and player 1's data
-        System.out.println("Turn 2: Player 1 placed a word on the board:\n"+ board.toString() + "\nThe word placed: " + player1Tiles);
+        System.out.println("\nTurn 2: Player 1 placed a word on the board:\n"+ board.toString() + "\nThe tiles placed: ");
+        System.out.println(player1Tiles);
         System.out.println(player1.toString());
 
 
@@ -151,8 +154,10 @@ public class Main {
         board.placeTiles(player2, player2Tiles, player2Moves);
 
         //Prints the board, placed tiles and player 2's data
-        System.out.println("Turn 2: Player 2 placed a word on the board:\n"+ board.toString() + "\nThe word placed: " + player2Tiles);
+        System.out.println("\nTurn 2: Player 2 placed a word on the board:\n"+ board.toString() + "\nThe tiles placed: ");
+        System.out.println(player2Tiles);
         System.out.println(player2.toString());
+
 
     }
 
