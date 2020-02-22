@@ -7,27 +7,20 @@ import java.util.ArrayList;
 
 public class Frame {
 
-
-
     /**
      * ArrayList of Tiles in the Frame
      */
     private ArrayList<Tile> playerFrame = new ArrayList<>();
-
-
 
     /**
      * The reference to the pool to access Tiles from
      */
     private Pool framePool;
 
-
-
     /**
      * Max amount of Tiles in the Frame
      */
     private final static int FRAME_SIZE = 7;
-
 
 
     /**
@@ -42,7 +35,6 @@ public class Frame {
         // Fills the Frame with Tiles from the Pool
         fillFrame();
     }
-
 
 
     /**
@@ -62,7 +54,6 @@ public class Frame {
     }
 
 
-
     /**
      * Accessor method for playerFrame
      *
@@ -71,7 +62,6 @@ public class Frame {
     public ArrayList<Tile> returnFrame(){
         return playerFrame;
     }
-
 
 
     /**
@@ -84,88 +74,83 @@ public class Frame {
     }
 
 
-
     /**
-     * Method to remove a single Tile from the Frame of a given index
+     * Method to remove a single Tile from the Frame
      *
      * @param i: Tile index to be removed
      * @throws InvalidTileException: If index is not in the Frame
      */
     public void removeTile(int i){
 
-        // Removes the tile from the frame of index i if it is within the range of the board
         if(i >= 0 && i <= 6) {
             playerFrame.remove(i);
         }
 
-        // Throws a InvalidTile Exception if the index is not in the range of the Frame size
-        else {
+        else{
+
+            // Throws a InvalidTile Exception if the index is not in the range of the Frame size
             throw new InvalidFrameException("Index not in range of Frame");
         }
     }
 
 
-
     /**
-     * Method to remove a Tile from the Frame with a given character
-     * @param c: Character of tile to be removed
+     * Method to remove a single Tile from the Frame
+     *
+     * @param c: Character of the Tile to be removed
+     * @throws InvalidTileException: If Character is not in the Frame
      */
     public void removeTile(char c){
 
-        // Loops through each Tile in the Players Frame
+        //For Loop to check each tile in frame
         for(Tile t: playerFrame){
 
-            // Checks that the character of the Tile is the same as the inputted character, if so it is removed from the Frame
+            //If c matches Character of the Tile
             if(t.getCharacter() == c){
                 playerFrame.remove(t);
                 return;
             }
         }
-
-        // If the inputted character is not on a Tile in the Frame an exception is thrown
-        throw new InvalidFrameException("Character not on Tile not in frame");
+        throw new InvalidFrameException("Tile not in frame");
     }
 
-
-
     /**
-     * Method to remove a Tile from the Frame with a given Tile
+     * Method to remove a single Tile from the Frame
+     *
      * @param t: Tile to be removed
      */
     public void removeTile(Tile t){
 
-        // Loops through each Tile in the Frame
-        for(Tile t2: this.returnFrame()){
+        //For loop to check each tile
+        for(Tile t2: playerFrame){
 
-            // Checks if the Tile is the same as the inputted Tile, if so it is removed from the Frame
-            if(t2.equals(t)){
+            if(t2 == t){
                 playerFrame.remove(t);
+
                 return;
             }
         }
-
-        // If the inputted Tile is not on a Tile in the Frame an exception is thrown
-        throw new InvalidFrameException("Tile not in frame");
     }
 
-
     /**
-     * Method to remove multiple Tiles from the Frame with given characters
-     * @param word: List of characters to remove from the Frame
+     * Method to remove a multiple Tile from the Frame
+     *
+     * @param word: Array of Tile Characters to be removed
+     * @throws InvalidTileException: If Tile is not in the Frame
      */
     public void removeTiles(char[] word){
 
-        // Throws an exception if more than 7 or less than 1 characters are requested be removed from the Frame
-        if(word.length > 7 || word.length < 1){
+        //If the word is invalidly long
+        if(word.length > 7){
             throw new IllegalArgumentException("Invalid number of characters to find in remove in Frame");
         }
+        //If the word is in the frame
+        else if(checkTiles(word)){
 
-        // Checks that
-        if(checkTiles(word)){
+            //For Loop to remove each Tile
             for(char c: word) {
                 removeTile(c);
             }
-
         }
         else{
             throw new InvalidFrameException("Tiles not in the frame, therefore tiles cannot be removed");
@@ -225,12 +210,13 @@ public class Frame {
      */
     public boolean checkTiles(ArrayList<Tile> tiles){
 
-        if(tiles.size() == 0){
+        if(tiles.isEmpty()){
             throw new IllegalArgumentException("Cannot check for 0 tiles in Frame");
         }
 
         Frame temp = this;
 
+        //For loop to go through array of Tiles
         for(Tile tile: tiles){
             if(!(temp.checkTile(tile))){
                 return false;
@@ -239,8 +225,8 @@ public class Frame {
                 temp.removeTile(tile);
             }
         }
-        return true;
 
+        return true;
     }
 
 
@@ -293,8 +279,17 @@ public class Frame {
     }
 
 
+    /**
+     * If the Tile is in the Frame
+     *
+     * @param tile
+     * @return
+     */
     private boolean checkTile(Tile tile){
+
+        //For loop to run through the frames tiles
         for(Tile t: playerFrame){
+
             if(t.equals(tile)){
                 return true;
             }
@@ -310,9 +305,7 @@ public class Frame {
      * @param c: Character of Tile wanted
      * @return Tile with given character
      */
-
     public Tile getTile(char c) {
-
 
         // Loops through each Tile in Frame
         for (Tile tile : playerFrame) {
@@ -327,6 +320,12 @@ public class Frame {
         return null;
     }
 
+    /**
+     * Accessor method for Tile from Frame
+     *
+     * @param i index of the Tile in the Frame
+     * @return The Tile at index i in the Frame
+     */
     public Tile getTile(int i){
         if(i < 0 || i > 7){
             throw new IllegalArgumentException("Index not in range of Board");
@@ -411,7 +410,6 @@ public class Frame {
     public static void main(String[] args) {
         Pool pool = new Pool();
         Frame frame = new Frame(pool);
-        System.out.println(frame.toString());
     }
 
 }
