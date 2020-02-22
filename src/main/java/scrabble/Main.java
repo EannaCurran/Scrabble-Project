@@ -51,6 +51,7 @@ public class Main {
         //The tiles are placed on the board
         board.placeTiles(player1, player1Tiles, player1Moves);
 
+        //Prints the board, placed tiles and player 1's data
         System.out.println("Turn 1: Player 1 placed a word on the board:\n"+ board.toString() + "\nThe word placed: " + player1Tiles);
         System.out.println(player1.toString());
 
@@ -80,11 +81,13 @@ public class Main {
         //The tiles are placed on the board
         board.placeTiles(player2, player2Tiles, player2Moves);
 
-        System.out.println("Turn 1: Player 2 placed a word on the board:\n"+ board.toString());
+        //Prints the board, placed tiles and player 2's data
+        System.out.println("Turn 1: Player 2 placed a word on the board:\n"+ board.toString() + "\nThe word placed: " + player2Tiles);
         System.out.println(player2.toString());
-        System.out.println(player2Tiles);
+
 
         //PLAYER 1 TURN 2
+
         //Player tiles and moves are set to new arrays
         player1Tiles = new char[3];
         player1Moves  = new int[3][2];
@@ -112,7 +115,9 @@ public class Main {
 
         //Places tiles on board
         board.placeTiles(player1, player1Tiles, player1Moves);
-        System.out.println("Turn 2: Player 1 placed a word on the board:\n"+ board.toString());
+
+        //Prints the board, placed tiles and player 1's data
+        System.out.println("Turn 2: Player 1 placed a word on the board:\n"+ board.toString() + "\nThe word placed: " + player1Tiles);
         System.out.println(player1.toString());
 
 
@@ -144,9 +149,10 @@ public class Main {
 
         //Tiles are placed on the board
         board.placeTiles(player2, player2Tiles, player2Moves);
-        System.out.println("Turn 2: Player 2 placed a word on the board:\n"+ board.toString());
+
+        //Prints the board, placed tiles and player 2's data
+        System.out.println("Turn 2: Player 2 placed a word on the board:\n"+ board.toString() + "\nThe word placed: " + player2Tiles);
         System.out.println(player2.toString());
-        System.out.println(player2Tiles);
 
     }
 
