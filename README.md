@@ -16,7 +16,7 @@
     Tile - Used to create objects that represents the character tiles in Scrabble
     Square - Used to create objects that represents the squares on the board in Scrabble
     Board - Used to create object that reprensents the board in Scrabble
-    Main - Is the class containing the main method ececuted by the jar and creates and prints the pool and players with there frames and tiles
+    Main - Is the class containing the main method ececuted by the jar and run expamle of the first few turns
     
 Custom Exceptions
     
