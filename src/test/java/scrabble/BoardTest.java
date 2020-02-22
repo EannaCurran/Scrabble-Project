@@ -153,7 +153,7 @@ public class BoardTest {
     //Testing that a letter overwrites a blank square correctly with a Tile worth one point
     @Test
     @DisplayName("Letter overwrites a blank square correctly with a tile worth one point")
-    void blankSquareTestSingleDigets()
+    void blankSquareTestSingleDigits()
     {
         boardTest.getSquare(5,7).setTile(new Tile('A'));
 
