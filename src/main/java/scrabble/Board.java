@@ -1,9 +1,7 @@
 package scrabble;
 
 import scrabble.exceptions.InvalidBoardException;
-import scrabble.exceptions.InvalidFrameException;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 
@@ -12,6 +10,8 @@ import java.util.Comparator;
  * The Board Class represents the Board for the Scrabble Game as an object
  */
 public class Board {
+
+    public final static int BOARD_SIZE = 15;
 
     /**
      * The Array of Square that holds the 15x15 Squares of the Board
@@ -24,7 +24,7 @@ public class Board {
     public Board(){
 
         //Set boardSquare
-        boardSquares = new Square[15][15];
+        boardSquares = new Square[BOARD_SIZE][BOARD_SIZE];
 
         //Fill the boardSquares
         newBoard();
@@ -109,12 +109,14 @@ public class Board {
         return result;
     }
 
-    // Killian
 
+    /**
+     * Method to reset the Board
+     */
     public void resetBoard(){
 
         //Set boardSquare
-        boardSquares = new Square[15][15];
+        boardSquares = new Square[BOARD_SIZE][BOARD_SIZE];
 
         //Fill the boardSquares
         newBoard();
@@ -123,13 +125,14 @@ public class Board {
 
     /**
      * Method checks if coordinates are valid
+     *
      * @param i row coordinate
      * @param j column coordinate
      * @return True if inside Board, false if outside the Board
      */
     private boolean CoordinateValidationCheck(int i, int j)
     {
-        return i < 15 && i >= 0 && j < 15 && j >= 0;
+        return i < BOARD_SIZE && i >= 0 && j < BOARD_SIZE && j >= 0;
     }
 
     /**
@@ -161,7 +164,7 @@ public class Board {
 
 
         //for loop creates the number columns
-        for(int n=0; n<15; n++)
+        for(int n=0; n < BOARD_SIZE; n++)
         {
             if(n<9)
             {
@@ -174,7 +177,7 @@ public class Board {
         }
 
         //For loop for the row index
-        for(int i=0;i<15;i++)
+        for(int i=0; i < BOARD_SIZE;i++)
         {
             result = result + "\n______________________________________________________________________________\n";
 
@@ -187,7 +190,7 @@ public class Board {
             result = result + (i+1) + "|";
 
             //Loop for the column index
-            for(int j=0; j<15; j++)
+            for(int j=0; j < BOARD_SIZE; j++)
             {
                 result = result + boardSquares[i][j] + "|";
             }
