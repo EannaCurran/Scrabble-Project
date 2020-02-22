@@ -1,5 +1,6 @@
 package scrabble;
 
+import scrabble.exceptions.InvalidBoardException;
 import scrabble.exceptions.InvalidFrameException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -185,11 +186,11 @@ class FrameTest {
 
 
     @Test
-    @DisplayName("Tests that checkTiles returns true when an empty list of tiles is checked")
+    @DisplayName("Tests that checkTiles throws an exception when an empty list of tiles is checked")
     void checkTilesEmptyTileList(){
 
         // Asserts that checkTiles returns true if an empty array list is passed into the method
-        assertTrue(frame.checkTiles(new ArrayList<>()), "checkTiles returned false if an empty array list is passed into the method\n");
+        assertThrows(IllegalArgumentException.class,() -> frame.checkTiles(new ArrayList<>()), "Cannot check for 0 tiles in Frame");
     }
 
 
@@ -216,6 +217,7 @@ class FrameTest {
     void toStringFilledFrame(){
 
         // Adds tileList to emptyFrame
+        System.out.println(emptyFrame.toString());
         for(Tile tile: tileList) {
             emptyFrame.addTile(tile);
         }
