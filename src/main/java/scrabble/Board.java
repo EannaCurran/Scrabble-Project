@@ -11,6 +11,9 @@ import java.util.Comparator;
  */
 public class Board {
 
+    /**
+     * Constant value for Board size
+     */
     public final static int BOARD_SIZE = 15;
 
     /**
@@ -120,7 +123,6 @@ public class Board {
 
         //Fill the boardSquares
         newBoard();
-
     }
 
     /**
@@ -160,7 +162,7 @@ public class Board {
     @Override
     public String toString(){
                         //The board's title
-        String result = "\t\t\t\t\t\t\t\tScrabble Board\n  |";
+        StringBuilder result = new StringBuilder("\t\t\t\t\t\t\t\tScrabble Board\n  |");
 
 
         //for loop creates the number columns
@@ -168,35 +170,35 @@ public class Board {
         {
             if(n<9)
             {
-                result = result + " " + (n+1) + "  |";
+                result.append(" ").append(n + 1).append("  |");
             }
             else
             {
-                result = result + " " + (n+1) + " |";
+                result.append(" ").append(n + 1).append(" |");
             }
         }
 
         //For loop for the row index
         for(int i=0; i < BOARD_SIZE;i++)
         {
-            result = result + "\n______________________________________________________________________________\n";
+            result.append("\n______________________________________________________________________________\n");
 
             //If statement checks if row number is not a double digit
             if(i<9)
             {
                 //Gives single digit numbers the same spacing as double digits
-                result = result + " ";
+                result.append(" ");
             }
-            result = result + (i+1) + "|";
+            result.append(i + 1).append("|");
 
             //Loop for the column index
             for(int j=0; j < BOARD_SIZE; j++)
             {
-                result = result + boardSquares[i][j] + "|";
+                result.append(boardSquares[i][j]).append("|");
             }
         }
 
-        return result;
+        return result.toString();
     }
 
 
