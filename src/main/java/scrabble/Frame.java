@@ -334,7 +334,7 @@ public class Frame {
      * @return The Tile at index i in the Frame
      */
     public Tile getTile(int i){
-        if(i < 0 || i > 7){
+        if(i < 0 || i > 6){
             throw new IllegalArgumentException("Index not in range of Board");
         }
         return playerFrame.get(i);

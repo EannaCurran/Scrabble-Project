@@ -265,6 +265,7 @@ public class Board {
             placeTile(player.getPlayerFrame().getTile(word[i]), positions[i][0], positions[i][1]);
             player.getPlayerFrame().removeTile(word[i]);
         }
+        player.getPlayerFrame().fillFrame();
     }
 
 

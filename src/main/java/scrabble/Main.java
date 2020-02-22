@@ -31,15 +31,15 @@ public class Main {
         //int playerColumnInput = 0;
         System.out.println(player1.toString());
 
+
+        //PLAYER ONE TURN ONE
         char[] player1Tiles = new char[7];
         int[][] player1Moves  = new int[7][2];
-
         for(int i=0;i<7;i++)
         {
             player1Tiles[i] = player1.getPlayerFrame().getTile(i).getCharacter();
             player1Moves[i][1] = 7 + i;
             player1Moves[i][0] = 7;
-
         }
 
         //player1Tiles = new char[6];
@@ -54,6 +54,45 @@ public class Main {
         System.out.println(player1.toString());
         System.out.println(player1Tiles);
 
+
+        //PLAYER 2 TURN ONE
+        char[] player2Tiles = new char[7];
+        int[][] player2Moves  = new int[7][2];
+
+        for(int i=0;i<7;i++)
+        {
+            player2Tiles[i] = player2.getPlayerFrame().getTile(i).getCharacter();
+            player2Moves[i][1] = 7;
+            player2Moves[i][0] = 8+i;
+        }
+
+        board.placeTiles(player2, player2Tiles, player2Moves);
+        System.out.println("Turn 1: Player 1 placed a word on the board:\n"+ board.toString());
+
+        System.out.println(player2.toString());
+        System.out.println(player2Tiles);
+
+        //PLAYER 1 TURN 2
+        player1Tiles = new char[3];
+        player1Moves  = new int[3][2];
+
+        player1Moves[0][1] = 12;
+        player1Moves[1][1] = 12;
+        player1Moves[2][1] = 12;
+
+        player1Moves[0][0] = 6;
+        player1Moves[1][0] = 8;
+        player1Moves[2][0] = 9;
+
+        for(int i=0;i<3;i++)
+        {
+            player1Tiles[i] = player1.getPlayerFrame().getTile(i).getCharacter();
+        }
+        board.placeTiles(player1, player1Tiles, player1Moves);
+
+        System.out.println("Turn 2: Player 1 placed a word on the board:\n"+ board.toString());
+        System.out.println(player1.toString());
+        System.out.println(player1Tiles);
 
 
         /*
