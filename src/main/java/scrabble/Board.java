@@ -223,7 +223,6 @@ public class Board {
         // Checks that all co-ordinates are on the board
         checkValidPosition(positions);
 
-
         // Checks that none of the entered positions don't already contain Tiles
         checkPositionContainsTile(positions);
 
@@ -262,9 +261,11 @@ public class Board {
 
         // Loops through each move and places the Tile on the Board
         for(int i = 0; i < word.length; i++){
+
             placeTile(player.getPlayerFrame().getTile(word[i]), positions[i][0], positions[i][1]);
             player.getPlayerFrame().removeTile(word[i]);
         }
+
         player.getPlayerFrame().fillFrame();
     }
 
@@ -278,10 +279,14 @@ public class Board {
 
         // Checks if the position is in the range of the board, if not exception is thrown
         if(positions.length == 0 || positions.length > 7){
+
             throw new InvalidBoardException("Invalid number of positions entered\n");
         }
+
         for(int[] position : positions){
+
             if(!CoordinateValidationCheck(position[0], position[1])){
+
                 throw new InvalidBoardException("Position not on Board\n");
             }
         }
@@ -298,6 +303,7 @@ public class Board {
 
         // Checks if the player has every Tile in their Frame, if not exception is thrown
         if (!(player.getPlayerFrame().checkTiles(word))){
+
             throw new InvalidBoardException("Player doesn't have the necessary Tiles\n");
         }
     }
@@ -311,9 +317,12 @@ public class Board {
 
         // Checks that the word contains a Tile, if not exception is thrown
         if(word.length == 0){
+
             throw new InvalidBoardException("Word must be longer than 0 Tiles\n");
         }
+
         if(word.length > 7){
+
             throw new InvalidBoardException("Cannot place more than 7 Tiles\n");
         }
     }
@@ -327,7 +336,9 @@ public class Board {
 
         // Checks that the position has a tile in it, if it does exception is thrown
         for(int[] ints : position){
+
             if(!(boardSquares[ints[0]][ints[1]].isEmpty())){
+
                 throw new InvalidBoardException("Position already contains a Tile\n");
             }
         }
@@ -347,6 +358,7 @@ public class Board {
         for(int j = 0; j < position.length - 1;j++){
 
             if(position[j][0] != position[j+1][0]){
+
                 tempVertical = false;
                 break;
             }
@@ -354,8 +366,11 @@ public class Board {
 
         //Loops to check that the horizontal list of positions are in on the same
         if(!tempVertical){
+
             for(int j = 0; j < position.length - 1;j++){
+
                 if(position[j][1] != position[j+1][1]){
+
                     throw new InvalidBoardException("Tiles are not in a line on the Board\n");
                 }
             }
@@ -397,7 +412,7 @@ public class Board {
      * Method to check if a list of positions connect with a tile already on the board
      * @param position: List of positions to check if any of them would connect with a tile on the board
      */
-    private void checkWordConnects(int[][] position){
+    protected void checkWordConnects(int[][] position){
 
         // Boolean to store if a connecting tile has been found
         boolean connectCheck = false;
@@ -406,85 +421,106 @@ public class Board {
         if(boardSquares[7][7].isEmpty() ){
 
             // If the first tile of the game hasn't been placed and the position [7][7] is not passed in, exception is thrown
-            for (int i = 0; i < position.length; i++) {
-                if (position[i][0] == 7 && position[i][1] == 7) {
+            for (int[] ints : position) {
+
+                if (ints[0] == 7 && ints[1] == 7) {
+
                     return;
                 }
             }
+
             throw new InvalidBoardException("First word in game must be placed within [7][7]\n");
         }
 
         // Loops through each co-ordinate in position, checks if any of the surrounding positions contain tiles, if it does
         // connectCheck is set to true and loop is broken, edge guarding included for any positions on the edge of the board;
-        for (int i = 0; i < position.length; i++) {
+        for (int[] ints : position) {
 
-            // Edge guard for position [0][0]
-            if (position[i][0] == 0 && position[i][1] == 0) {
-                if (!(boardSquares[position[i][0] + 1][position[i][1]].isEmpty() && boardSquares[position[i][0]][position[i][1] + 1].isEmpty())) {
+            // If position is 0,0 checks that there is a tile below or to the right of it
+            if (ints[0] == 0 && ints[1] == 0) {
+
+                if (!(boardSquares[ints[0] + 1][ints[1]].isEmpty() && boardSquares[ints[0]][ints[1] + 1].isEmpty())) {
+
                     connectCheck = true;
                     break;
                 }
             }
 
-            // Edge guard for position [14][0]
-            else if (position[i][0] == 14 && position[i][1] == 0) {
-                if (!(boardSquares[position[i][0] - 1][position[i][1]].isEmpty() && boardSquares[position[i][0]][position[i][1] + 1].isEmpty())) {
+            // If position is 14,0 checks that there is a tile below or to the left of it
+            else if (ints[0] == 14 && ints[1] == 0) {
+
+                if (!(boardSquares[ints[0] - 1][ints[1]].isEmpty() && boardSquares[ints[0]][ints[1] + 1].isEmpty())) {
+
                     connectCheck = true;
                     break;
                 }
             }
 
-            // Edge guard for position [14][14]
-            else if (position[i][0] == 14 && position[i][1] == 14) {
-                if (!(boardSquares[position[i][0] - 1][position[i][1]].isEmpty() && boardSquares[position[i][0]][position[i][1] - 1].isEmpty())) {
+            // If position is 14,14 checks that there is a tile above or to the right of it
+            else if (ints[0] == 14 && ints[1] == 14) {
+
+                if (!(boardSquares[ints[0] - 1][ints[1]].isEmpty() && boardSquares[ints[0]][ints[1] - 1].isEmpty())) {
+
                     connectCheck = true;
                     break;
                 }
             }
 
-            // Edge guard for position [0][14]
-            else if (position[i][0] == 0 && position[i][1] == 14) {
-                if (!(boardSquares[position[i][0] + 1][position[i][1]].isEmpty() && boardSquares[position[i][0]][position[i][1] - 1].isEmpty())) {
+            // If position is 0,14 checks that there is a tile above or to the right of it
+            else if (ints[0] == 0 && ints[1] == 14) {
+
+                if (!(boardSquares[ints[0] + 1][ints[1]].isEmpty() && boardSquares[ints[0]][ints[1] - 1].isEmpty())) {
+
                     connectCheck = true;
                     break;
                 }
             }
 
-            // Edge guard for left side of the board
-            else if (position[i][0] == 0) {
-                if (!(boardSquares[position[i][0] - 1][position[i][1]].isEmpty() && boardSquares[position[i][0]][position[i][1] + 1].isEmpty() && boardSquares[position[i][0] + 1][position[i][1]].isEmpty())) {
+            // If position is on the left side of the board, checks if there is a tile above, below or to the right
+            else if (ints[0] == 0) {
+
+                if (!(boardSquares[ints[0] + 1][ints[1]].isEmpty() && boardSquares[ints[0]][ints[1] - 1].isEmpty() && boardSquares[ints[0]][ints[1] + 1].isEmpty())) {
+
                     connectCheck = true;
                     break;
                 }
             }
 
-            // Edge guard for right side of the board
-            else if (position[i][1] == 14) {
-                if (!(boardSquares[position[i][0] - 1][position[i][1]].isEmpty() && boardSquares[position[i][0]][position[i][1] - 1].isEmpty() && boardSquares[position[i][0] + 1][position[i][1]].isEmpty())) {
+            // If position is on the right side of the board, checks if there is a tile above, below or to the left
+            else if (ints[1] == 14) {
+
+                if (!(boardSquares[ints[0] - 1][ints[1]].isEmpty() && boardSquares[ints[0]][ints[1] - 1].isEmpty() && boardSquares[ints[0] + 1][ints[1]].isEmpty())) {
+
                     connectCheck = true;
                     break;
                 }
             }
 
-            // Edge guard for bottom for board
-            else if (position[i][0] == 14) {
-                if (!(boardSquares[position[i][0] - 1][position[i][1]].isEmpty() && boardSquares[position[i][0]][position[i][1] - 1].isEmpty() && boardSquares[position[i][0]][position[i][1] + 1].isEmpty())) {
+            // If position is on the bottom side of the board, checks if there is a tile above, to the left or to the right of it
+            else if (ints[0] == 14) {
+
+                if (!(boardSquares[ints[0] - 1][ints[1]].isEmpty() && boardSquares[ints[0]][ints[1] - 1].isEmpty() && boardSquares[ints[0]][ints[1] + 1].isEmpty())) {
+
                     connectCheck = true;
                     break;
                 }
             }
 
-            // Edge guard for top of board
-            else if (position[i][1] == 0) {
-                if (!(boardSquares[position[i][0] - 1][position[i][1]].isEmpty() && boardSquares[position[i][0]][position[i][1] + 1].isEmpty() && boardSquares[position[i][0]][position[i][1] - 1].isEmpty())) {
+            // If position is on the top side of the board, checks if there is a tile below, to the left or to the right of it
+            else if (ints[1] == 0) {
+
+                if (!(boardSquares[ints[0] - 1][ints[1]].isEmpty() && boardSquares[ints[0] + 1][ints[1]].isEmpty() && boardSquares[ints[0]][ints[1] + 1].isEmpty())) {
+
                     connectCheck = true;
                     break;
                 }
             }
 
-            // Normal check for positions not on the corner of the board
+            // Checks if the is a tile in any surrounding position
             else {
-                if (!(boardSquares[position[i][0] + 1][position[i][1]].isEmpty() && boardSquares[position[i][0]][position[i][1] + 1].isEmpty() && boardSquares[position[i][0] - 1][position[i][1]].isEmpty() && boardSquares[position[i][0]][position[i][1] - 1].isEmpty())) {
+
+                if (!(boardSquares[ints[0] + 1][ints[1]].isEmpty() && boardSquares[ints[0]][ints[1] + 1].isEmpty() && boardSquares[ints[0] - 1][ints[1]].isEmpty() && boardSquares[ints[0]][ints[1] - 1].isEmpty())) {
+
                     connectCheck = true;
                     break;
                 }
