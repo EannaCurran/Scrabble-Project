@@ -9,18 +9,25 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class BoardTest {
 
+
+
+    // Declaring variables for testing
     private Board boardTest;
     private Pool poolTest;
     private Player playerTest;
+
+
+
     @BeforeEach
     void setup()
     {
+        // Setting up variables used in testing
         poolTest = new Pool();
         boardTest = new Board();
         playerTest = new Player("Test" , poolTest);
     }
 
-    // BOARD TOSTRING TESTS
+
 
     //Tests board is printed correctly
     @Test
@@ -61,6 +68,8 @@ public class BoardTest {
                 "15| 3W |    |    | 2L |    |    |    | 3W |    |    |    | 2L |    |    | 3W |";
         assertEquals(startingBoard, boardTest.toString());
     }
+
+
 
     //Testing that a letter overwrites the centre square correctly for a letter worth one point
     @Test
@@ -193,6 +202,8 @@ public class BoardTest {
         assertEquals(boardPrintTest, boardTest.toString(),"The board did not print the way it was expected");
     }
 
+
+
     //Testing that a letter overwrites a blank square correctly with a Tile worth ten points
     @Test
     @DisplayName("Letter overwrites a blank square correctly with a tile worth ten points")
@@ -235,6 +246,8 @@ public class BoardTest {
 
         assertEquals(boardPrintTest, boardTest.toString(),"The board did not print the way it was expected");
     }
+
+
 
     //Board Reset test
     @Test
@@ -807,10 +820,4 @@ public class BoardTest {
 
         assertThrows(InvalidBoardException.class, () -> boardTest.checkWordConnects(position), "Tile to be placed at 8,8 has no connecting Tile\n");
     }
-
-
-
-
-
-
 }

@@ -11,15 +11,21 @@ import java.util.Comparator;
  */
 public class Board {
 
+
+
     /**
      * Constant value for Board size
      */
     public final static int BOARD_SIZE = 15;
 
+
+
     /**
      * The Array of Square that holds the 15x15 Squares of the Board
      */
     private Square[][] boardSquares;
+
+
 
     /**
      * Board Constructor
@@ -32,6 +38,8 @@ public class Board {
         //Fill the boardSquares
         newBoard();
     }
+
+
 
     /**
      * Method to fill the board full of blank Square
@@ -62,9 +70,15 @@ public class Board {
         }
     }
 
+    /**
+     * Method to return the current Board
+     * @return the current Board
+     */
     public Square[][] getBoardSquares(){
         return this.boardSquares;
     }
+
+
 
     /**
      * Method to find the SquareType of a Square in a quadrant of the Board
@@ -117,6 +131,7 @@ public class Board {
     }
 
 
+
     /**
      * Method to reset the Board
      */
@@ -129,6 +144,8 @@ public class Board {
         newBoard();
     }
 
+
+
     /**
      * Method checks if coordinates are valid
      *
@@ -140,6 +157,8 @@ public class Board {
     {
         return i < BOARD_SIZE && i >= 0 && j < BOARD_SIZE && j >= 0;
     }
+
+
 
     /**
      * Method that returns a specific board square
@@ -157,6 +176,8 @@ public class Board {
             throw new InvalidBoardException("Coordinates are not inside the board.");
         }
     }
+
+
 
     /**
      * toString method that prints the Board
@@ -206,6 +227,7 @@ public class Board {
     }
 
 
+
     /**
      * Method to check that a move from the player is valid
      * @param player: Player making the move
@@ -234,6 +256,7 @@ public class Board {
     }
 
 
+
     /**
      * Method to place a Tile on the board
      *
@@ -246,6 +269,7 @@ public class Board {
         // Places the tile passed in onto the ij position on the board
         boardSquares[position_i][position_j].setTile(tile);
     }
+
 
 
     /**
@@ -270,6 +294,7 @@ public class Board {
     }
 
 
+
     /**
      * Method to validate that a position passed in is on the board
      *
@@ -283,6 +308,7 @@ public class Board {
             throw new InvalidBoardException("Invalid number of positions entered\n");
         }
 
+        // Checks that each position is valid, if one if not an exception is thrown
         for(int[] position : positions){
 
             if(!CoordinateValidationCheck(position[0], position[1])){
@@ -291,6 +317,7 @@ public class Board {
             }
         }
     }
+
 
 
     /**
@@ -307,6 +334,7 @@ public class Board {
             throw new InvalidBoardException("Player doesn't have the necessary Tiles\n");
         }
     }
+
 
 
     /**
@@ -328,6 +356,7 @@ public class Board {
     }
 
 
+
     /**
      * Method to check if a position on the Board already has a Tile in it
      * @param position: Co-ordinates to check if a Tile in already in it
@@ -343,6 +372,7 @@ public class Board {
             }
         }
     }
+
 
 
     /**
@@ -406,6 +436,7 @@ public class Board {
             }
         }
     }
+
 
 
     /**
@@ -531,18 +562,5 @@ public class Board {
         if(!connectCheck){
             throw new InvalidBoardException("Placed Tiles not connected to any Tiles\n");
         }
-    }
-
-
-    public static void main(String[] args){
-        Pool pool = new Pool();
-        Player player = new Player("abba",pool);
-        Board board = new Board();
-        player.getPlayerFrame().returnFrame().clear();
-
-        player.getPlayerFrame().addTile(new Tile('A'));
-        player.getPlayerFrame().addTile(new Tile('B'));
-        player.getPlayerFrame().addTile(new Tile('C'));
-
     }
 }
