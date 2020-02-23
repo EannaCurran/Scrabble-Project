@@ -5,6 +5,9 @@ import scrabble.exceptions.InvalidTileException;
 
 import java.util.ArrayList;
 
+/**
+ * This class represents the Player's Frame in Scrabble
+ */
 public class Frame {
 
     /**
