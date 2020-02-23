@@ -28,7 +28,6 @@ public class Player {
      */
     private Frame playerFrame;
 
-
     /**
      * Player Constructor
      *
@@ -177,6 +176,18 @@ public class Player {
         return this.playerFrame;
     }
 
+    //private Board playerBoard;
+
+
+
+    public boolean charUserInputCheck(char letter)
+    {
+        //Converts lowercase letter to uppercase
+        letter = Character.toUpperCase(letter);
+
+        return (letter >= 'A' && letter <= 'Z');
+    }
+
 
     /**
      * A toString method to print the Player class variables
@@ -187,4 +198,8 @@ public class Player {
 
         return "Name: " + this.getName() + "\nScore: " + this.getScore() + "\nFrame: " + this.getPlayerFrame();
     }
+
+
+
+
 }

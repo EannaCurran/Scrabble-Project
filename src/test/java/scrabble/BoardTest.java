@@ -9,18 +9,25 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class BoardTest {
 
+
+
+    // Declaring variables for testing
     private Board boardTest;
     private Pool poolTest;
     private Player playerTest;
+
+
+
     @BeforeEach
     void setup()
     {
+        // Setting up variables used in testing
         poolTest = new Pool();
         boardTest = new Board();
         playerTest = new Player("Test" , poolTest);
     }
 
-    // BOARD TOSTRING TESTS
+
 
     //Tests board is printed correctly
     @Test
@@ -61,6 +68,8 @@ public class BoardTest {
                 "15| 3W |    |    | 2L |    |    |    | 3W |    |    |    | 2L |    |    | 3W |";
         assertEquals(startingBoard, boardTest.toString());
     }
+
+
 
     //Testing that a letter overwrites the centre square correctly for a letter worth one point
     @Test
@@ -193,6 +202,8 @@ public class BoardTest {
         assertEquals(boardPrintTest, boardTest.toString(),"The board did not print the way it was expected");
     }
 
+
+
     //Testing that a letter overwrites a blank square correctly with a Tile worth ten points
     @Test
     @DisplayName("Letter overwrites a blank square correctly with a tile worth ten points")
@@ -237,7 +248,53 @@ public class BoardTest {
     }
 
 
-    //GETSQUARE TESTS
+
+    //Board Reset test
+    @Test
+    @DisplayName("Testing that squares are empty after resetting the board")
+    void resetBoardForEmptySquares()
+    {
+        //Adding tiles to the board
+        boardTest.getSquare(7,7).setTile(new Tile('N'));
+        boardTest.getSquare(7,8).setTile(new Tile('Y'));
+        boardTest.getSquare(8,8).setTile(new Tile('C'));
+        //Resetting the board
+        boardTest.resetBoard();
+
+        assertAll("Testing squares that had tiles are now removed",
+                //Checking square (7,7)
+                () -> assertTrue(boardTest.getSquare(7,7).isEmpty(),"\nThe square isn't empty after a board reset."),
+                //Checking square (7,8)
+                () -> assertTrue(boardTest.getSquare(7,8).isEmpty(),"\nThe square isn't empty after a board reset."),
+                //Checking square (7,9)
+                () -> assertTrue(boardTest.getSquare(7,9).isEmpty(),"\nThe square isn't empty after a board reset.")
+                );
+    }
+
+
+
+    @Test
+    @DisplayName("Testing that squares are of correct type after resetting the board")
+    void resettingTheBoardForTypeCheck()
+    {
+        //Adding tiles to the board
+        boardTest.getSquare(7,7).setTile(new Tile('N'));
+        boardTest.getSquare(7,8).setTile(new Tile('Y'));
+        boardTest.getSquare(8,8).setTile(new Tile('C'));
+        //Resetting the board
+        boardTest.resetBoard();
+
+        assertAll("Testing squares are the correct type",
+                //Checking square (7,7) for type START
+                () -> assertEquals(Square.SquareType.START, boardTest.getSquare(7,7).getType(),"\nThe expected Square type isn't correct after being reset."),
+                //Checking square (7,8) for type NORMAL
+                () -> assertEquals(Square.SquareType.NORMAL, boardTest.getSquare(7,8).getType(),"\nThe expected Square type isn't correct after being reset."),
+                //Checking square (8,8) for type DOUBLE_LETTER
+                () -> assertEquals(Square.SquareType.DOUBLE_LETTER, boardTest.getSquare(8,8).getType(),"\nThe expected Square type isn't correct after being reset.")
+        );
+    }
+
+
 
     @Test
     @DisplayName("Testing the coordinates i and j for the method getSquare")
@@ -281,13 +338,46 @@ public class BoardTest {
     @DisplayName("Testing that Tiles can be placed on the board")
     void testPlaceTile()
     {
-
         // Creates and places new Tile on the board
         Tile tile = new Tile('A');
         boardTest.placeTile(tile, 7, 7);
 
         // Asserts that the new Tile has been placed on the Board at 7,7
         assertEquals(tile, boardTest.getSquare(7,7).getTile());
+    }
+
+
+
+    @Test
+    @DisplayName("Testing that a number of Tiles can be placed at a time")
+    void testPlaceTiles()
+    {
+        // Clearing Frame of tiles and adding 3 new set Tiles to it
+        playerTest.getPlayerFrame().returnFrame().clear();
+        playerTest.getPlayerFrame().addTile(new Tile('A'));
+        playerTest.getPlayerFrame().addTile(new Tile('A'));
+        playerTest.getPlayerFrame().addTile(new Tile('A'));
+
+        // Creating list of positions and characters
+        int[][] positions = {{7,7},{7,8},{7,9}};
+        char[] testWord = {'A','A','A'};
+
+        // Places the Tiles with characters from testWord on the given positions
+        boardTest.placeTiles(playerTest, testWord, positions);
+
+        assertAll("Testing that each of the Tiles have been placed on the Board\n",
+
+                // Asserts that there is a Tile with character 'A' at 7,7
+                () -> assertEquals(boardTest.getSquare(7,7).getTile(), new Tile('A'), "Tile has been placed at 7,7\n"),
+
+                // Asserts that there is a Tile with character 'A' at 7,8
+                () -> assertEquals(boardTest.getSquare(7,8).getTile(), new Tile('A'), "Tile has been placed at 7,8\n"),
+
+                // Asserts that there is a Tile with character 'A' at 7,9
+                () -> assertEquals(boardTest.getSquare(7,9).getTile(), new Tile('A'), "Tile has been placed at 7,7\n")
+
+        );
+
     }
 
 
@@ -312,10 +402,14 @@ public class BoardTest {
 
                 // Asserts that an exception is thrown for checking an empty list
                 () -> assertThrows(IllegalArgumentException.class,() -> boardTest.checkPlayerHasTiles(playerTest, emptyChar), "Cannot check for no characters in Frame\n"),
+
                 // Asserts that an exception is thrown for checking a list of characters not in the Frame
                 () -> assertThrows(InvalidBoardException.class,() -> boardTest.checkPlayerHasTiles(playerTest, charPlayerDoesNotHave),"Player doesn't have the necessary tiles\n"),
+
                 // Asserts that an exception is thrown for checking a list of characters with some not in the Frame
-                () -> assertThrows(InvalidBoardException.class,() -> boardTest.checkPlayerHasTiles(playerTest, charPlayerHasSome),"Player doesn't have the necessary tiles\n")
+                () -> assertThrows(InvalidBoardException.class,() -> boardTest.checkPlayerHasTiles(playerTest, charPlayerHasSome),"Player doesn't have the necessary tiles\n"),
+
+                () ->  assertThrows(InvalidBoardException.class, () -> boardTest.checkPlayerHasTiles(playerTest, charPlayerHasRepeat), "Player doesn't have the necessary tiles\n")
         );
     }
 
@@ -330,9 +424,14 @@ public class BoardTest {
         playerTest.getPlayerFrame().addTile(new Tile('A'));
         playerTest.getPlayerFrame().addTile(new Tile('B'));
         playerTest.getPlayerFrame().addTile(new Tile('C'));
+        playerTest.getPlayerFrame().addTile(new Tile('C'));
+        playerTest.getPlayerFrame().addTile(new Tile('C'));
+        playerTest.getPlayerFrame().addTile(new Tile('C'));
+        playerTest.getPlayerFrame().addTile(new Tile('C'));
+
 
         // Creates list of characters that the player has
-        char[] charPlayerHas = {'A', 'B', 'C'};
+        char[] charPlayerHas = {'A', 'B', 'C' ,'C','C' ,'C','C' };
 
         // Asserts that an exception is not thrown for a list of characters in the Frame
         assertDoesNotThrow(() -> boardTest.checkPlayerHasTiles(playerTest, charPlayerHas), "Player has the necessary tiles\n");
@@ -456,8 +555,8 @@ public class BoardTest {
 
     @Test
     @DisplayName("Testing validation that Tiles can be placed in a line")
-    void testCheckPositionsNotInLine(){
-
+    void testCheckPositionsNotInLine()
+    {
         // Places a tile on the Board at 7,7
         boardTest.placeTile(new Tile('A'), 7,7);
 
@@ -506,13 +605,219 @@ public class BoardTest {
 
 
     @Test
-    @DisplayName("Testing that a list of tiles can only be placed if it connects to a tile on the board, except the first move")
-    void testCheckWordsConnectForEdges(){
+    @DisplayName("Testing that Tile placed at a corner can connect to Tile below it")
+    void testCheckWordsConnectUnderCorner()
+    {
+        // Sets tile at 7,7 and 1,0
+        boardTest.getSquare(7,7).setTile(new Tile('A'));
+        boardTest.getSquare(1,0).setTile(new Tile('A'));
 
+        // Position to check connection
+        int[][] topLeftPosition = {{0,0}};
+
+        // Asserts that no exception is thrown for connection of word at position
+        assertDoesNotThrow(() -> boardTest.checkWordConnects(topLeftPosition), "Tile to be placed at 0,0 connects to 1,0\n");
 
     }
 
 
 
+    @Test
+    @DisplayName("Testing that Tile placed at a corner  can connect to Tile to the right it")
+    void testCheckWordsConnectRightOfCorner()
+    {
+        // Sets tile at 7,7 and 0,1
+        boardTest.getSquare(7,7).setTile(new Tile('A'));
+        boardTest.getSquare(0,1).setTile(new Tile('A'));
 
+        // Position to check connection
+        int[][] topLeftPosition = {{0,0}};
+
+        // Asserts that no exception is thrown for connection of word at position
+        assertDoesNotThrow(() -> boardTest.checkWordConnects(topLeftPosition), "Tile to be placed at 0,0 connects to 0,1\n");
+
+    }
+
+
+
+    @Test
+    @DisplayName("Testing that Tile placed at a corner  can connect to Tile to the left it")
+    void testCheckWordsConnectLeftOfCorner()
+    {
+        // Sets tile at 7,7 and 14,13
+        boardTest.getSquare(7,7).setTile(new Tile('A'));
+        boardTest.getSquare(14,13).setTile(new Tile('A'));
+
+        // Position to check connection
+        int[][] bottomRightPosition = {{14,14}};
+
+        // Asserts that no exception is thrown for connection of word at position
+        assertDoesNotThrow(() -> boardTest.checkWordConnects(bottomRightPosition), "Tile to be placed at 14,14 connects to 14,13\n");
+
+    }
+
+
+
+    @Test
+    @DisplayName("Testing that Tile placed at a corner can connect to Tile above it")
+    void testCheckWordsConnectAboveCorner()
+    {
+        // Sets tile at 7,7 and 13,14
+        boardTest.getSquare(7,7).setTile(new Tile('A'));
+        boardTest.getSquare(13,14).setTile(new Tile('A'));
+
+        // Position to check connection
+        int[][] bottomRightPosition = {{14,14}};
+
+        // Asserts that no exception is thrown for connection of word at position
+        assertDoesNotThrow(() -> boardTest.checkWordConnects(bottomRightPosition), "Tile to be placed at 14,14 connects to 13,14\n");
+
+    }
+
+
+
+    @Test
+    @DisplayName("Testing that a Tile placed on the side of the Board can connect to a Tile below it")
+    void testCheckWordConnectsBelowSide()
+    {
+
+        // Sets tile at 7,7 and 8,0
+        boardTest.getSquare(7,7).setTile(new Tile('A'));
+        boardTest.getSquare(8,0).setTile(new Tile('A'));
+
+        // Position to check connection
+        int[][] sidePosition= {{7,0}};
+
+        // Asserts that no exception is thrown for connection of word at position
+        assertDoesNotThrow(() -> boardTest.checkWordConnects(sidePosition), "Tile to be placed at 7,0 connects to 8,0\n");
+    }
+
+
+
+    @Test
+    @DisplayName("Testing that a Tile placed on the side of the board can connect to a Tile below it")
+    void testCheckWordConnectsAboveSide()
+    {
+
+        // Sets tile at 7,7 and 6,0
+        boardTest.getSquare(7,7).setTile(new Tile('A'));
+        boardTest.getSquare(6,0).setTile(new Tile('A'));
+
+        // Position to check connection
+        int[][] sidePosition= {{7,0}};
+
+        // Asserts that no exception is thrown for connection of word at position
+        assertDoesNotThrow(() -> boardTest.checkWordConnects(sidePosition), "Tile to be placed at 7,0 connects to 6,0\n");
+    }
+
+
+
+    @Test
+    @DisplayName("Testing that a Tile placed on the side of the Board can connect to a Tile to the right of it")
+    void testCheckWordConnectsRightOfSide()
+    {
+
+        // Sets tile at 7,7 and 7,1
+        boardTest.getSquare(7,7).setTile(new Tile('A'));
+        boardTest.getSquare(7,1).setTile(new Tile('A'));
+
+        // Position to check connection
+        int[][] sidePosition= {{7,0}};
+
+        // Asserts that no exception is thrown for connection of word at position
+        assertDoesNotThrow(() -> boardTest.checkWordConnects(sidePosition), "Tile to be placed at 7,0 connects to 7,1\n");
+    }
+
+
+
+    @Test
+    @DisplayName("Testing that a Tile placed on the side of the Board can connect to a Tile to the left of it")
+    void testCheckWordConnectsLeftOfSide()
+    {
+
+        // Sets tile at 7,7 and 7,14
+        boardTest.getSquare(7,7).setTile(new Tile('A'));
+        boardTest.getSquare(7,13).setTile(new Tile('A'));
+
+        // Position to check connection
+        int[][] sidePosition= {{7,14}};
+
+        // Asserts that no exception is thrown for connection of word at position
+        assertDoesNotThrow(() -> boardTest.checkWordConnects(sidePosition), "Tile to be placed at 7,14 connects to 7,13\n");
+    }
+
+
+
+    @Test
+    @DisplayName("Testing that a Tile placed on the Board can connect to a Tile above it")
+    void testCheckWordConnectAbove()
+    {
+        // Sets tile at 7,7
+        boardTest.getSquare(7,7).setTile(new Tile('A'));
+
+        // Position to check connection
+        int[][] position = {{8,7}};
+
+        assertDoesNotThrow(() -> boardTest.checkWordConnects(position), "Tile to be placed at 8,7 connects to 7,7\n");
+    }
+
+
+
+    @Test
+    @DisplayName("Testing that a Tile placed on the Board can connect to a Tile left of it")
+    void testCheckWordConnectLeft()
+    {
+        // Sets tile at 7,7
+        boardTest.getSquare(7,7).setTile(new Tile('A'));
+
+        // Position to check connection
+        int[][] position = {{7,6}};
+
+        assertDoesNotThrow(() -> boardTest.checkWordConnects(position), "Tile to be placed at 7,6 connects to 7,7\n");
+    }
+
+
+
+    @Test
+    @DisplayName("Testing that a Tile placed on the Board can connect to a Tile above it")
+    void testCheckWordConnectRight()
+    {
+        // Sets tile at 7,7
+        boardTest.getSquare(7,7).setTile(new Tile('A'));
+
+        // Position to check connection
+        int[][] position = {{7,8}};
+
+        assertDoesNotThrow(() -> boardTest.checkWordConnects(position), "Tile to be placed at 7,8 connects to 7,7\n");
+    }
+
+
+
+    @Test
+    @DisplayName("Testing that a Tile placed on the Board can connect to a Tile above it")
+    void testCheckWordConnectBelow()
+    {
+        // Sets tile at 7,7
+        boardTest.getSquare(7,7).setTile(new Tile('A'));
+
+        // Position to check connection
+        int[][] position = {{6,7}};
+
+        assertDoesNotThrow(() -> boardTest.checkWordConnects(position), "Tile to be placed at 6,7 connects to 7,7\n");
+    }
+
+
+
+    @Test
+    @DisplayName("Testing that a Tile placed on the Board can only connect to Tiles beside it")
+    void testCheckWordNoConnection()
+    {
+        // Sets tile at 7,7
+        boardTest.getSquare(7,7).setTile(new Tile('A'));
+
+        // Position to check connection
+        int[][] position = {{8,8}};
+
+        assertThrows(InvalidBoardException.class, () -> boardTest.checkWordConnects(position), "Tile to be placed at 8,8 has no connecting Tile\n");
+    }
 }

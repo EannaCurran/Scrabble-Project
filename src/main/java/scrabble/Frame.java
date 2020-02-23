@@ -241,23 +241,27 @@ public class Frame {
             throw new IllegalArgumentException("Cannot check for 0 tiles in Frame");
         }
         // Loops through each Character passed in
-        Frame temp = this;
+        ArrayList<Tile> temp = new ArrayList<>();
 
+        temp.addAll(playerFrame);
+
+
+        // Checks if any of the of the character passed in not Tiles in the Frame, if so false is returned
         for (char c : word) {
-            // Checks if any of the of the character passed in not Tiles in the Frame, if so false is returned
-            if ((temp.checkTile(c))) {
+            for (int j = 0; j < temp.size(); j++) {
 
-                temp.removeTile(c);
-            }
-            else{
+                if (temp.get(j).getCharacter() == c) {
 
-                return false;
+                    temp.remove(j);
+                    break;
+                }
             }
         }
+        return temp.size() == playerFrame.size() - word.length;
 
-        // If all the Tiles passed in are in the Frame, true is returned
-        return true;
     }
+        // If all the Tiles passed in are in the Frame, true is returned
+
 
 
     /**
@@ -282,8 +286,8 @@ public class Frame {
     /**
      * If the Tile is in the Frame
      *
-     * @param tile
-     * @return
+     * @param tile: Tile to be checked if in Frame
+     * @return: If Tile in Frame
      */
     private boolean checkTile(Tile tile){
 
@@ -315,9 +319,9 @@ public class Frame {
                 return tile;
 
             }
-            throw new IllegalArgumentException("Tile not in board");
+
         }
-        return null;
+        throw new IllegalArgumentException("Tile not in board");
     }
 
     /**
@@ -327,7 +331,7 @@ public class Frame {
      * @return The Tile at index i in the Frame
      */
     public Tile getTile(int i){
-        if(i < 0 || i > 7){
+        if(i < 0 || i > 6){
             throw new IllegalArgumentException("Index not in range of Board");
         }
         return playerFrame.get(i);
