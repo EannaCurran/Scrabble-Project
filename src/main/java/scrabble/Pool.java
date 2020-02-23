@@ -30,7 +30,6 @@ public class Pool {
     /**
      * Function to fill the array with the set amount of each Tile in the standard English rules
      *
-     * @throws InvalidTileException
      */
     public void poolFill() throws InvalidTileException {
 
