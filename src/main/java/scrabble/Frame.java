@@ -241,9 +241,8 @@ public class Frame {
             throw new IllegalArgumentException("Cannot check for 0 tiles in Frame");
         }
         // Loops through each Character passed in
-        ArrayList<Tile> temp = new ArrayList<>();
 
-        temp.addAll(playerFrame);
+        ArrayList<Tile> temp = new ArrayList<>(playerFrame);
 
 
         // Checks if any of the of the character passed in not Tiles in the Frame, if so false is returned
@@ -287,7 +286,7 @@ public class Frame {
      * If the Tile is in the Frame
      *
      * @param tile: Tile to be checked if in Frame
-     * @return: If Tile in Frame
+     * @return If Tile is in the Frame
      */
     private boolean checkTile(Tile tile){
 
@@ -409,11 +408,6 @@ public class Frame {
 
         // Returns the formatted text
         return text;
-    }
-
-    public static void main(String[] args) {
-        Pool pool = new Pool();
-        Frame frame = new Frame(pool);
     }
 
 }
