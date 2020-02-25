@@ -30,7 +30,6 @@ public class Pool {
     /**
      * Function to fill the array with the set amount of each Tile in the standard English rules
      *
-     * @throws InvalidTileException: Throws exception
      */
     public void poolFill() throws InvalidTileException {
 
@@ -59,15 +58,15 @@ public class Pool {
     public String toString() {
 
         // Sets the start of the result string
-        StringBuilder result = new StringBuilder("Pool: Size: " + poolTiles.size() + "\n");
+        String result = "Pool: Size: " + poolTiles.size() + "\n";
 
         // For loop to run through each Tile in the poolTiles array and toString them
-        for (Tile poolTile : poolTiles) {
-            result.append(poolTile.toString()).append("\n");
+        for (int i = 0; i < poolTiles.size(); i++){
+            result = result + poolTiles.get(i).toString() + "\n";
         }
 
         // Return the result string
-        return result.toString();
+        return result;
     }
 
 
@@ -144,5 +143,12 @@ public class Pool {
 
         // Fills the Pool with Tiles
         this.poolFill();
+    }
+
+
+    public static void main(String[] args) {
+        Pool pool = new Pool();
+        System.out.println(pool);
+
     }
 }

@@ -1,7 +1,7 @@
 plugins {
     id 'java'
 
-    //id 'application' Removed until FX is add to Scrabble
+    id 'application'
     id 'org.openjfx.javafxplugin' version '0.0.8'
 }
 
@@ -10,14 +10,18 @@ javafx {
    modules = [ 'javafx.controls' ]
 }
 
+application {
+    mainClassName = 'scrabble.userInterface.UserInterface'
+}
+
 group 'SoftwareEngineeringProject2'
-version = 2.0
+version = 3.0
 
 jar {
     manifest {
         attributes(
                 'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
-                'Main-Class': 'scrabble.Main'
+                'Main-Class': 'scrabble.userInterface.UserInterface'
         )
     }
 }
@@ -41,4 +45,5 @@ dependencies {
     implementation 'org.junit.platform:junit-platform-runner:1.1.1'
     implementation'junit:junit:4.13'
     implementation 'org.junit.jupiter:junit-jupiter:5.6.0'
+
 }

@@ -49,5 +49,7 @@ The executable jar file run the Main Class that creates sample objects from Scra
 
 The documentation is in the Doxygen folder as a pdf.
 
+HTML JavaDoc is in build\docs\javadoc\index
+
 Note: This project was made made on Windows 10 and was tested on Windows 10, other operating systems have not been test. 
 Therefore there may be compatibility issues with other operating systems. 

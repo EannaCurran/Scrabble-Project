@@ -5,6 +5,9 @@ import scrabble.exceptions.InvalidTileException;
 
 import java.util.ArrayList;
 
+/**
+ * This class represents the Player's Frame in Scrabble
+ */
 public class Frame {
 
     /**
@@ -78,7 +81,7 @@ public class Frame {
      * Method to remove a single Tile from the Frame
      *
      * @param i: Tile index to be removed
-     * @throws InvalidTileException: If index is not in the Frame
+     * @throws InvalidTileException If index is not in the Frame
      */
     public void removeTile(int i){
 
@@ -98,7 +101,7 @@ public class Frame {
      * Method to remove a single Tile from the Frame
      *
      * @param c: Character of the Tile to be removed
-     * @throws InvalidTileException: If Character is not in the Frame
+     * @throws InvalidTileException If Character is not in the Frame
      */
     public void removeTile(char c){
 
@@ -136,7 +139,7 @@ public class Frame {
      * Method to remove a multiple Tile from the Frame
      *
      * @param word: Array of Tile Characters to be removed
-     * @throws InvalidTileException: If Tile is not in the Frame
+     * @throws InvalidTileException If Tile is not in the Frame
      */
     public void removeTiles(char[] word){
 
@@ -162,7 +165,7 @@ public class Frame {
      * Method to remove a list of Tiles from the Frame
      *
      * @param tiles: List of Tiles to be removed
-     * @throws InvalidFrameException: If the Tiles to be removed are in the Frame
+     * @throws InvalidFrameException If the Tiles to be removed are in the Frame
      */
     public void removeTiles(ArrayList<Tile> tiles){
 

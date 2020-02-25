@@ -1,135 +1,227 @@
 \begin{theindex}
 
   \item {addTile}
-    \subitem {scrabble.Frame}, \hyperpage{5}
+    \subitem {scrabble.Frame}, \hyperpage{13}
 
   \indexspace
 
+  \item {Board}
+    \subitem {scrabble.Board}, \hyperpage{7}
+  \item {BOARD\_SIZE}
+    \subitem {scrabble.Board}, \hyperpage{12}
+
+  \indexspace
+
+  \item {checkPlayerHasTiles}
+    \subitem {scrabble.Board}, \hyperpage{8}
+  \item {checkPositionContainsTile}
+    \subitem {scrabble.Board}, \hyperpage{8}
+  \item {checkPositionLine}
+    \subitem {scrabble.Board}, \hyperpage{8}
   \item {checkTiles}
-    \subitem {scrabble.Frame}, \hyperpage{6}
+    \subitem {scrabble.Frame}, \hyperpage{13}, \hyperpage{15}
+  \item {checkValidMove}
+    \subitem {scrabble.Board}, \hyperpage{9}
+  \item {checkValidPosition}
+    \subitem {scrabble.Board}, \hyperpage{9}
+  \item {checkWordConnects}
+    \subitem {scrabble.Board}, \hyperpage{9}
+  \item {checkWordLength}
+    \subitem {scrabble.Board}, \hyperpage{10}
+  \item {compareTo}
+    \subitem {scrabble.Tile}, \hyperpage{32}
 
   \indexspace
 
   \item {decreaseScore}
-    \subitem {scrabble.Player}, \hyperpage{11}
+    \subitem {scrabble.Player}, \hyperpage{24}
+
+  \indexspace
+
+  \item {equals}
+    \subitem {scrabble.Tile}, \hyperpage{33}
 
   \indexspace
 
   \item {fillFrame}
-    \subitem {scrabble.Frame}, \hyperpage{6}
+    \subitem {scrabble.Frame}, \hyperpage{15}
   \item {Frame}
-    \subitem {scrabble.Frame}, \hyperpage{5}
+    \subitem {scrabble.Frame}, \hyperpage{13}
 
   \indexspace
 
+  \item {getBoardSquares}
+    \subitem {scrabble.Board}, \hyperpage{10}
   \item {getCharacter}
-    \subitem {scrabble.Tile}, \hyperpage{17}
+    \subitem {scrabble.Tile}, \hyperpage{33}
   \item {getName}
-    \subitem {scrabble.Player}, \hyperpage{11}
+    \subitem {scrabble.Player}, \hyperpage{24}
   \item {getPlayerFrame}
-    \subitem {scrabble.Player}, \hyperpage{11}
+    \subitem {scrabble.Player}, \hyperpage{24}
   \item {getScore}
-    \subitem {scrabble.Player}, \hyperpage{12}
+    \subitem {scrabble.Player}, \hyperpage{25}
+  \item {getSquare}
+    \subitem {scrabble.Board}, \hyperpage{10}
+  \item {getTile}
+    \subitem {scrabble.Frame}, \hyperpage{15, 16}
+    \subitem {scrabble.Square}, \hyperpage{30}
+  \item {getTiles}
+    \subitem {scrabble.Frame}, \hyperpage{16}
+  \item {getType}
+    \subitem {scrabble.Square}, \hyperpage{30}
   \item {getValue}
-    \subitem {scrabble.Tile}, \hyperpage{17}
+    \subitem {scrabble.Tile}, \hyperpage{33}
 
   \indexspace
 
   \item {increaseScore}
-    \subitem {scrabble.Player}, \hyperpage{12}
+    \subitem {scrabble.Player}, \hyperpage{25}
   \item {isEmpty}
-    \subitem {scrabble.Frame}, \hyperpage{6}
-    \subitem {scrabble.Pool}, \hyperpage{14}
+    \subitem {scrabble.Frame}, \hyperpage{16}
+    \subitem {scrabble.Pool}, \hyperpage{27}
+    \subitem {scrabble.Square}, \hyperpage{30}
 
   \indexspace
 
   \item {main}
-    \subitem {scrabble.Tile}, \hyperpage{17}
+    \subitem {scrabble.Tile}, \hyperpage{33}
 
   \indexspace
 
+  \item {placeTile}
+    \subitem {scrabble.Board}, \hyperpage{11}
+  \item {placeTiles}
+    \subitem {scrabble.Board}, \hyperpage{11}
   \item {Player}
-    \subitem {scrabble.Player}, \hyperpage{10}
+    \subitem {scrabble.Player}, \hyperpage{23}
   \item {playerReset}
-    \subitem {scrabble.Player}, \hyperpage{12}
+    \subitem {scrabble.Player}, \hyperpage{25}
   \item {Pool}
-    \subitem {scrabble.Pool}, \hyperpage{14}
+    \subitem {scrabble.Pool}, \hyperpage{27}
   \item {poolFill}
-    \subitem {scrabble.Pool}, \hyperpage{14}
+    \subitem {scrabble.Pool}, \hyperpage{27}
 
   \indexspace
 
   \item {receiveTile}
-    \subitem {scrabble.Pool}, \hyperpage{15}
+    \subitem {scrabble.Pool}, \hyperpage{27}
   \item {removeTile}
-    \subitem {scrabble.Pool}, \hyperpage{15}
+    \subitem {scrabble.Frame}, \hyperpage{16}, \hyperpage{18}
+    \subitem {scrabble.Pool}, \hyperpage{28}
   \item {removeTiles}
-    \subitem {scrabble.Frame}, \hyperpage{6}
+    \subitem {scrabble.Frame}, \hyperpage{18, 19}
+  \item {resetBoard}
+    \subitem {scrabble.Board}, \hyperpage{11}
   \item {returnFrame}
-    \subitem {scrabble.Frame}, \hyperpage{7}
+    \subitem {scrabble.Frame}, \hyperpage{19}
 
   \indexspace
 
-  \item {scrabble.exceptions.InvalidFrameException}, \hyperpage{8}
-  \item {scrabble.exceptions.InvalidPlayerNameException}, \hyperpage{8}
+  \item {scrabble.Board}, \hyperpage{7}
+    \subitem {Board}, \hyperpage{7}
+    \subitem {BOARD\_SIZE}, \hyperpage{12}
+    \subitem {checkPlayerHasTiles}, \hyperpage{8}
+    \subitem {checkPositionContainsTile}, \hyperpage{8}
+    \subitem {checkPositionLine}, \hyperpage{8}
+    \subitem {checkValidMove}, \hyperpage{9}
+    \subitem {checkValidPosition}, \hyperpage{9}
+    \subitem {checkWordConnects}, \hyperpage{9}
+    \subitem {checkWordLength}, \hyperpage{10}
+    \subitem {getBoardSquares}, \hyperpage{10}
+    \subitem {getSquare}, \hyperpage{10}
+    \subitem {placeTile}, \hyperpage{11}
+    \subitem {placeTiles}, \hyperpage{11}
+    \subitem {resetBoard}, \hyperpage{11}
+    \subitem {toString}, \hyperpage{11}
+  \item {scrabble.BoardTest}, \hyperpage{12}
+  \item {scrabble.exceptions.InvalidBoardException}, \hyperpage{20}
+  \item {scrabble.exceptions.InvalidFrameException}, \hyperpage{20}
+  \item {scrabble.exceptions.InvalidPlayerNameException}, 
+		\hyperpage{21}
   \item {scrabble.exceptions.InvalidPlayerScoreException}, 
-		\hyperpage{9}
-  \item {scrabble.exceptions.InvalidPoolException}, \hyperpage{9}
-  \item {scrabble.exceptions.InvalidTileException}, \hyperpage{9}
-  \item {scrabble.Frame}, \hyperpage{5}
-    \subitem {addTile}, \hyperpage{5}
-    \subitem {checkTiles}, \hyperpage{6}
-    \subitem {fillFrame}, \hyperpage{6}
-    \subitem {Frame}, \hyperpage{5}
-    \subitem {isEmpty}, \hyperpage{6}
-    \subitem {removeTiles}, \hyperpage{6}
-    \subitem {returnFrame}, \hyperpage{7}
-    \subitem {swapTiles}, \hyperpage{7}
-    \subitem {toString}, \hyperpage{7}
-  \item {scrabble.Main}, \hyperpage{10}
-  \item {scrabble.Player}, \hyperpage{10}
-    \subitem {decreaseScore}, \hyperpage{11}
-    \subitem {getName}, \hyperpage{11}
-    \subitem {getPlayerFrame}, \hyperpage{11}
-    \subitem {getScore}, \hyperpage{12}
-    \subitem {increaseScore}, \hyperpage{12}
-    \subitem {Player}, \hyperpage{10}
-    \subitem {playerReset}, \hyperpage{12}
-    \subitem {setName}, \hyperpage{13}
-    \subitem {toString}, \hyperpage{13}
-  \item {scrabble.Pool}, \hyperpage{13}
-    \subitem {isEmpty}, \hyperpage{14}
-    \subitem {Pool}, \hyperpage{14}
-    \subitem {poolFill}, \hyperpage{14}
-    \subitem {receiveTile}, \hyperpage{15}
-    \subitem {removeTile}, \hyperpage{15}
-    \subitem {tilesInPool}, \hyperpage{15}
-    \subitem {toString}, \hyperpage{15}
-  \item {scrabble.PoolTest}, \hyperpage{16}
-  \item {scrabble.Tile}, \hyperpage{16}
-    \subitem {getCharacter}, \hyperpage{17}
-    \subitem {getValue}, \hyperpage{17}
-    \subitem {main}, \hyperpage{17}
-    \subitem {setCharacter}, \hyperpage{18}
-    \subitem {Tile}, \hyperpage{16}
-    \subitem {toString}, \hyperpage{18}
+		\hyperpage{21}
+  \item {scrabble.exceptions.InvalidPoolException}, \hyperpage{22}
+  \item {scrabble.exceptions.InvalidSquareException}, \hyperpage{22}
+  \item {scrabble.exceptions.InvalidTileException}, \hyperpage{22}
+  \item {scrabble.Frame}, \hyperpage{12}
+    \subitem {addTile}, \hyperpage{13}
+    \subitem {checkTiles}, \hyperpage{13}, \hyperpage{15}
+    \subitem {fillFrame}, \hyperpage{15}
+    \subitem {Frame}, \hyperpage{13}
+    \subitem {getTile}, \hyperpage{15, 16}
+    \subitem {getTiles}, \hyperpage{16}
+    \subitem {isEmpty}, \hyperpage{16}
+    \subitem {removeTile}, \hyperpage{16}, \hyperpage{18}
+    \subitem {removeTiles}, \hyperpage{18, 19}
+    \subitem {returnFrame}, \hyperpage{19}
+    \subitem {swapTiles}, \hyperpage{19}
+    \subitem {toString}, \hyperpage{20}
+  \item {scrabble.Main}, \hyperpage{23}
+  \item {scrabble.Player}, \hyperpage{23}
+    \subitem {decreaseScore}, \hyperpage{24}
+    \subitem {getName}, \hyperpage{24}
+    \subitem {getPlayerFrame}, \hyperpage{24}
+    \subitem {getScore}, \hyperpage{25}
+    \subitem {increaseScore}, \hyperpage{25}
+    \subitem {Player}, \hyperpage{23}
+    \subitem {playerReset}, \hyperpage{25}
+    \subitem {setName}, \hyperpage{26}
+    \subitem {toString}, \hyperpage{26}
+  \item {scrabble.Pool}, \hyperpage{26}
+    \subitem {isEmpty}, \hyperpage{27}
+    \subitem {Pool}, \hyperpage{27}
+    \subitem {poolFill}, \hyperpage{27}
+    \subitem {receiveTile}, \hyperpage{27}
+    \subitem {removeTile}, \hyperpage{28}
+    \subitem {tilesInPool}, \hyperpage{28}
+    \subitem {toString}, \hyperpage{28}
+  \item {scrabble.PoolTest}, \hyperpage{29}
+  \item {scrabble.Square}, \hyperpage{29}
+    \subitem {getTile}, \hyperpage{30}
+    \subitem {getType}, \hyperpage{30}
+    \subitem {isEmpty}, \hyperpage{30}
+    \subitem {setNormal}, \hyperpage{30}
+    \subitem {setTile}, \hyperpage{30}
+    \subitem {Square}, \hyperpage{29}
+    \subitem {toString}, \hyperpage{31}
+  \item {scrabble.SquareTest}, \hyperpage{31}
+  \item {scrabble.Tile}, \hyperpage{31}
+    \subitem {compareTo}, \hyperpage{32}
+    \subitem {equals}, \hyperpage{33}
+    \subitem {getCharacter}, \hyperpage{33}
+    \subitem {getValue}, \hyperpage{33}
+    \subitem {main}, \hyperpage{33}
+    \subitem {setCharacter}, \hyperpage{34}
+    \subitem {setNull}, \hyperpage{34}
+    \subitem {Tile}, \hyperpage{32}
+    \subitem {toString}, \hyperpage{34}
   \item {setCharacter}
-    \subitem {scrabble.Tile}, \hyperpage{18}
+    \subitem {scrabble.Tile}, \hyperpage{34}
   \item {setName}
-    \subitem {scrabble.Player}, \hyperpage{13}
+    \subitem {scrabble.Player}, \hyperpage{26}
+  \item {setNormal}
+    \subitem {scrabble.Square}, \hyperpage{30}
+  \item {setNull}
+    \subitem {scrabble.Tile}, \hyperpage{34}
+  \item {setTile}
+    \subitem {scrabble.Square}, \hyperpage{30}
+  \item {Square}
+    \subitem {scrabble.Square}, \hyperpage{29}
   \item {swapTiles}
-    \subitem {scrabble.Frame}, \hyperpage{7}
+    \subitem {scrabble.Frame}, \hyperpage{19}
 
   \indexspace
 
   \item {Tile}
-    \subitem {scrabble.Tile}, \hyperpage{16}
+    \subitem {scrabble.Tile}, \hyperpage{32}
   \item {tilesInPool}
-    \subitem {scrabble.Pool}, \hyperpage{15}
+    \subitem {scrabble.Pool}, \hyperpage{28}
   \item {toString}
-    \subitem {scrabble.Frame}, \hyperpage{7}
-    \subitem {scrabble.Player}, \hyperpage{13}
-    \subitem {scrabble.Pool}, \hyperpage{15}
-    \subitem {scrabble.Tile}, \hyperpage{18}
+    \subitem {scrabble.Board}, \hyperpage{11}
+    \subitem {scrabble.Frame}, \hyperpage{20}
+    \subitem {scrabble.Player}, \hyperpage{26}
+    \subitem {scrabble.Pool}, \hyperpage{28}
+    \subitem {scrabble.Square}, \hyperpage{31}
+    \subitem {scrabble.Tile}, \hyperpage{34}
 
 \end{theindex}
