@@ -25,13 +25,7 @@ public class Board {
      */
     private Square[][] boardSquares;
 
-    /**
-     * direction is an enum type for the types directions a word can be placed on a Board
-     */
-    enum direction{
-        VERTICAL,
-        HORIZONTAL
-    }
+
 
 
 
@@ -572,60 +566,6 @@ public class Board {
         }
     }
 
-    public boolean userInput(String input)
-    {
-        if(input == "QUIT" || input == "quit" || input == "Quit")
-        {
-            //Endgame method
-        }
 
-        if(input == "HELP" || input == "help" || input == "Help")
-        {
-            System.out.println("<grid ref> <across/down> <word> (where <grid ref> is\n" +
-                    "the position for the first letter in terms of rows and columns (i and j),\n " +
-                    "<across/down> is the direction of word placement and <word>\n" +
-                    "is the word to be placed), e.g. “1 1 A HELLO”; “EXCHANGE <letters>");
-            return false;
-        }
-
-        String[] tokens = input.split(" ");
-
-        //Checks row coordinate is a number
-        try {
-            int rowCoordinate = Integer.parseInt(tokens[0]);
-        } catch (NumberFormatException e) {
-                System.out.println(tokens[0] + " is not a valid row coordinate, please try again.");
-                return false;
-        }
-        int rowCoordinate = Integer.parseInt(tokens[0]);
-
-        //Checks column coordinate is a number
-        try {
-            int columnCoordinate = Integer.parseInt((tokens[1]));
-        } catch (NumberFormatException e) {
-            System.out.println(tokens[0] + " is not a valid column coordinate, please try again.");
-            return false;
-        }
-        int columnCoordinate = Integer.parseInt((tokens[1]));
-
-
-        if(CoordinateValidationCheck(rowCoordinate, columnCoordinate))
-        {
-
-        }
-        else
-        {
-            System.out.println("Invalid coordinates were given, please give numbers between 1-15 and try again.");
-            return false;
-        }
-
-
-        if(tokens[3] == "A" || tokens[3] == "a")
-        {
-            direction directionInput = direction.HORIZONTAL;
-        }
-
-        return true;
-    }
 
 }
