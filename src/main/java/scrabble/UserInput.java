@@ -2,9 +2,13 @@ package scrabble;
 
 public class UserInput {
 
+
     public final static int BOARD_SIZE = 15;
 
+    //Stores user input information after user input is broken down and parsed
     private int userWordLength;
+    private direction directionInput;
+    private userInputType InputType;
 
 
     /**
@@ -14,7 +18,6 @@ public class UserInput {
         VERTICAL,
         HORIZONTAL
     }
-    private direction directionInput;
 
     /**
      * userInputType is an enum type for the types of possible expected user inputs
@@ -27,7 +30,6 @@ public class UserInput {
         PLACE_TILE,
         ERROR
     }
-    private userInputType InputType;
 
 
     public boolean parseInput(String input)
