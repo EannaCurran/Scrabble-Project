@@ -236,16 +236,42 @@ public class Board {
      * @param word: List of tiles requested to make the move
      * @param positions: Positions entered to place each Tile
      */
-    protected void checkValidMove(Player player, char[] word, int[][] positions){
+    protected void checkValidMove(Player player, char[] word, int[] startPosition, UserInput.Direction direction){
 
-        // Checks that the word length is greater than 0
-        checkWordLength(word);
+        Boolean validMove = true;
 
-        // Checks that the player has each of the Tiles in their Frame
-        checkPlayerHasTiles(player, word);
+        char[] requiredTiles;
 
-        // Checks that all co-ordinates are on the board
-        //TODO checkValidPosition(positions[);
+        //
+        if (checkValidPosition(startPosition) && checkValidPosition(direction == UserInput.Direction.VERTICAL ? new int[]{startPosition[0] + word.length, startPosition[1]} : new int[]{startPosition[0], startPosition[1] + word.length})){
+
+            requiredTiles = getRequiredTiles(word, startPosition, direction); //TODO
+
+            if (requiredTiles.length > 0){
+
+                // Checks that the player has each of the Tiles in their Frame
+                checkPlayerHasTiles(player, word);
+
+            }
+            else{
+                //TODO Log
+                validMove = false;
+            }
+
+        }
+        else{
+            //TODO Log
+            validMove = false;
+        }
+
+
+
+
+        // Checks that start co-ordinates are on the board
+        checkValidPosition(startPosition);
+
+
+
 
         // Checks that none of the entered positions don't already contain Tiles
         checkPositionContainsTile(positions);
@@ -255,6 +281,8 @@ public class Board {
 
         // Checks that the inputted positions connect to a Tile already on the board
         checkWordConnects(positions);
+
+        return validMove;
     }
 
 

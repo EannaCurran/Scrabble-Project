@@ -58,8 +58,15 @@ public class Scrabble {
         }
     }
 
-    public void playerMove(){
+    public void playerMove(int[] startPosition, UserInput.Direction direction, char[] word, Player player){
+        if (startPosition.length == 2 && board.checkValidPosition(startPosition)){
+            if (board.checkValidMove(player, word, startPosition, direction)){
 
+            }
+        }
+        else {
+            throw new InvalidScrabbleException("Invalid Start Position Inputted\n");
+        }
     }
 
 }
