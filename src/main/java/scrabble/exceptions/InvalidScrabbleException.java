@@ -1,6 +1,8 @@
 package scrabble.exceptions;
 
-//Custom Exception for Frame Class
+/**
+ * Custom Exception for Scrabble Class
+ */
 public class InvalidScrabbleException extends IllegalArgumentException{
     public  InvalidScrabbleException(String s){
         super(s);
