@@ -247,7 +247,7 @@ public class Board {
 
             requiredTiles = getRequiredTiles(word, startPosition, direction); //TODO
 
-            if (requiredTiles.length > 0){
+            if (requiredTiles.length > 0 && checkPlayerHasTiles(player, requiredTiles)){
 
                 // Checks that the player has each of the Tiles in their Frame
                 checkPlayerHasTiles(player, word);
@@ -341,17 +341,14 @@ public class Board {
 
     /**
      * Method to validate if the Player placing a list of Tiles has each Tile in his Frame
-     *
-     * @param player: Player to check if they have the necessary Tiles
-     * @param word: List of Tiles to check
+     *  @param player : Player to check if they have the necessary Tiles
+     * @param word : List of Tiles to check
+     * @return True if the player has the tiles
      */
-    protected void checkPlayerHasTiles(Player player, char[] word){
+    protected boolean checkPlayerHasTiles(Player player, char[] word){
 
-        // Checks if the player has every Tile in their Frame, if not exception is thrown
-        if (!(player.getPlayerFrame().checkTiles(word))){
-
-            throw new InvalidBoardException("Player doesn't have the necessary Tiles\n");
-        }
+        // Checks if the player has every Tile in their Frame
+        return (player.getPlayerFrame().checkTiles(word));
     }
 
 
