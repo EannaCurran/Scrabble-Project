@@ -243,7 +243,7 @@ public class Board {
         checkPlayerHasTiles(player, word);
 
         // Checks that all co-ordinates are on the board
-        checkValidPosition(positions);
+        //TODO checkValidPosition(positions[);
 
         // Checks that none of the entered positions don't already contain Tiles
         checkPositionContainsTile(positions);

@@ -58,4 +58,8 @@ public class Scrabble {
         }
     }
 
+    public void playerMove(){
+
+    }
+
 }
