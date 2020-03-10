@@ -7,14 +7,14 @@ public class UserInput {
 
     //Stores user input information after user input is broken down and parsed
     private int userWordLength;
-    private direction directionInput;
+    private Direction directionInput;
     private userInputType InputType;
 
 
     /**
      * direction is an enum type for the types directions a word can be placed on a Board
      */
-    enum direction{
+    enum Direction{
         VERTICAL,
         HORIZONTAL
     }
@@ -93,11 +93,11 @@ public class UserInput {
 
         if(tokens[3] == "A" || tokens[3] == "a")
         {
-            directionInput = direction.HORIZONTAL;
+            directionInput = Direction.HORIZONTAL;
         }
         else if(tokens[3] == "D" || tokens[3] == "d")
         {
-            directionInput = direction.VERTICAL;
+            directionInput = Direction.VERTICAL;
         }
         else{
             //Invalid input
