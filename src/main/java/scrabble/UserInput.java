@@ -7,6 +7,7 @@ public class UserInput {
 
     //Stores user input information after user input is broken down and parsed
     private int userWordLength;
+    private String userWord;
     private direction directionInput;
     private userInputType InputType;
 
@@ -105,6 +106,7 @@ public class UserInput {
         }
 
         userWordLength = tokens[4].length();
+        userWord = tokens[4];
 
         InputType = userInputType.PLACE_TILE;
         //TODO place word method/return parsed stuff
