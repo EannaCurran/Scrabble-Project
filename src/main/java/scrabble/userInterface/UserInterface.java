@@ -46,8 +46,10 @@ public class UserInterface extends Application{
         gameFrame.add(gameTextLog,1,0);
         gameFrame.add(gameTextInput,1,1);
 
-        Scene gameScene = new Scene(gameFrame, 1250, 1000);
+        Scene gameScene = new Scene(gameFrame);
+
         gameStage.setScene(gameScene);
+        gameStage.sizeToScene();
         gameStage.show();
 
     }
@@ -64,14 +66,14 @@ public class UserInterface extends Application{
             label.setPrefSize(40, 40);
             label.setAlignment(Pos.CENTER);
             gameBoard.add(label, i + 1, 0);
+
         }
 
         for(int i = 0; i < 15; i++) {
-
-            Label label = new Label(String.valueOf(i));
+            Label label = new Label(String.valueOf((char)(i+65)));
             label.setPrefSize(40, 40);
             label.setAlignment(Pos.CENTER);
-                gameBoard.add(label, 16, i+1);
+            gameBoard.add(label, 16, i+1);
         }
 
         for(int i = 1; i < 16; i++) {
@@ -117,16 +119,17 @@ public class UserInterface extends Application{
 
     private TextArea setUpTextLog() {
         TextArea text_flow = new TextArea();
-        text_flow.appendText("Welcome to scrabble, please enter player 1 name");
+        text_flow.setEditable(false);
+        text_flow.setWrapText(true);
+        text_flow.appendText("Welcome to scrabble, please enter player 1 name\n");
 
         return text_flow;
     }
 
     private TextField setUpTextInput() {
         TextField gameText = new TextField();
-
         gameText.setOnKeyReleased(event -> {
-            if (event.getCode() == KeyCode.ENTER){
+            if (event.getCode() == KeyCode.ENTER && !(gameText.getText().equals(""))){
                 gameEvent(gameText);
             }
         });
@@ -140,10 +143,5 @@ public class UserInterface extends Application{
         String text = gameText.getText();
         gameTextLog.appendText("- " + text + "\n");
         gameText.setText("");
-
     }
-
-
-
-
 }
