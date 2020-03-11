@@ -1,29 +1,14 @@
 package scrabble;
 
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
+public class Main {
 
-public class Main extends Application {
 
-    Stage currentWindow;
 
-    @Override
-    public void start(Stage primaryStage){
-        currentWindow = primaryStage;
-        currentWindow.setTitle("Scrabble");
-        StackPane layout = new StackPane();
-
-        Scene scene = new Scene(layout, 600,600);
-        currentWindow.setScene(scene);
-        currentWindow.show();
-    }
 
 
     //Main Function to execute the test suite in executable Jar
     public static void main(String[] args) {
-        launch(args);
+
         //Print the Tile message
         System.out.println("Scrabble Game:\nGroup 9 - The Good, The Bad and The Ugly\n");
 
