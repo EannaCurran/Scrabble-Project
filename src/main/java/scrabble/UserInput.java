@@ -13,6 +13,10 @@ public class UserInput {
 
     private direction wordDirection = null;
 
+
+    //Constructors
+
+    //For one token for instances such as 'HELP' or 'PASS'
     public UserInput(UserInputType type){
         inputType = type;
     }
@@ -38,6 +42,23 @@ public class UserInput {
 
     }
 
+    //Accessors
+    public UserInputType getInputType() {
+        return inputType;
+    }
+
+    public char[] getWord() {
+        return word;
+    }
+
+    public int[] getStartPosition() {
+        return startPosition;
+    }
+
+    public direction getWordDirection() {
+        return wordDirection;
+    }
+
     /**
      * direction is an enum type for the types directions a word can be placed on a Board
      */
@@ -61,7 +82,7 @@ public class UserInput {
     /**
      *
      * @param input The string that the User inputted into the FX console which will be broken down and parsed
-     * @return returns false if a user did an invalid input or inputted "HELP". Returns true for a valid input
+     * @return returns an oject
      */
     public static UserInput parseInput(String input) {
 
