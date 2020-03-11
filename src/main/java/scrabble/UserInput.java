@@ -53,7 +53,7 @@ public class UserInput {
             System.out.println("<grid ref> <across/down> <word> (where <grid ref> is\n" +
                     "the position for the first letter in terms of rows and columns (i and j),\n " +
                     "<across/down> is the direction of word placement and <word>\n" +
-                    "is the word to be placed), e.g. “1 1 A HELLO”; “EXCHANGE <letters>");
+                    "is the word to be placed), e.g. “1 1 A HELLO; EXCHANGE <letters>");
             return false;
         }
 
