@@ -16,11 +16,19 @@ public class UserInput {
 
     //Constructors
 
-    //For one token for instances such as 'HELP' or 'PASS'
+    /**
+     * Constructor for cases with one token such as 'HELP' or 'PASS'
+     * @param type The UserInputType
+     */
     public UserInput(UserInputType type){
         inputType = type;
     }
 
+    /**
+     * Constructor for when user is swapping a Tile(s)
+     * @param type The UserInputType
+     * @param tileExchange An array of characters that are to be swapped
+     */
     public UserInput(UserInputType type, char[] tileExchange){
         inputType = type;
         if(new String(tileExchange).matches("^[A-Z]{1,7}+$")) {
@@ -31,6 +39,13 @@ public class UserInput {
         }
     }
 
+    /**
+     * Constructor for when the user wants to place a word on the Board
+     * @param type The UserInputType
+     * @param w  The word that the user wants to place on the Board
+     * @param position The position of the coordinate of the first Tile of the word
+     * @param d The direction of the word
+     */
     public UserInput(UserInputType type, char[] w, int[] position, direction d){
         inputType = type;
 
@@ -43,18 +58,36 @@ public class UserInput {
     }
 
     //Accessors
+
+    /**
+     * Accessor method for getting the type of input
+     * @return Returns the input type
+     */
     public UserInputType getInputType() {
         return inputType;
     }
 
+    /**
+     * Accessor method for getting the word when placing a Tile.
+     * Also used for accessing the Tiles a user wants to swap.
+     * @return Returns an array of characters which contains either the word the user wants to place or the Tiles the user wants to swap
+     */
     public char[] getWord() {
         return word;
     }
 
+    /**
+     * Accessor method for getting the coordinates of the first Tile of the word the user wants to place on the board
+     * @return Returns the coordinates of the first Tile of the word the user wants to place on the board
+     */
     public int[] getStartPosition() {
         return startPosition;
     }
 
+    /**
+     * Accessor method for getting the direction of the word that is to be placed on the Board
+     * @return Returns the direction of the word that is to be placed on the Board
+     */
     public direction getWordDirection() {
         return wordDirection;
     }
@@ -80,9 +113,8 @@ public class UserInput {
     }
 
     /**
-     *
      * @param input The string that the User inputted into the FX console which will be broken down and parsed
-     * @return returns an oject
+     * @return Returns an object UserInput which contains the user's input which has been broken down and parsed
      */
     public static UserInput parseInput(String input) {
 
