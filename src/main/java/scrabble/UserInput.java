@@ -101,7 +101,7 @@ public class UserInput {
     }
 
     /**
-     * userInputType is an enum type for the types of possible expected user inputs
+     * UserInputType is an enum type for the types of possible expected user inputs
      */
     enum UserInputType {
         QUIT,
