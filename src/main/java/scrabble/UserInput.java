@@ -32,7 +32,11 @@ public class UserInput {
         ERROR
     }
 
-
+    /**
+     *
+     * @param input The string that the User inputted into the FX console which will be broken down and parsed
+     * @return returns false if a user did an invalid input or inputted "HELP". Returns true for a valid input
+     */
     public boolean parseInput(String input)
     {
 
@@ -115,7 +119,7 @@ public class UserInput {
 
 
     private boolean CoordinateValidationCheck(int rowCoordinate, int columnCoordinate) {
-        return rowCoordinate < BOARD_SIZE && rowCoordinate >= 0 && columnCoordinate < BOARD_SIZE && columnCoordinate >= 0;
+        return rowCoordinate < Board.BOARD_SIZE && rowCoordinate >= 0 && columnCoordinate < BOARD_SIZE && columnCoordinate >= 0;
     }
 
 
