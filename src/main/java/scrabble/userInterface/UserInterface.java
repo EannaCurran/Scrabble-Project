@@ -9,7 +9,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import scrabble.*;
+import scrabble.Board;
+import scrabble.Player;
+import scrabble.Pool;
+import scrabble.UserInput;
+
+
 
 public class UserInterface extends Application{
 
@@ -41,6 +46,7 @@ public class UserInterface extends Application{
         gameTextInput = setUpTextInput();
         gameTextLog = setUpTextLog();
         gameBoard = setUpBoard(board);
+        setUpPlayers();
 
         gameFrame.getChildren().add(gameBoard);
         gameFrame.add(gameTextLog,1,0);
@@ -52,6 +58,9 @@ public class UserInterface extends Application{
         gameStage.sizeToScene();
         gameStage.show();
 
+    }
+
+    private void setUpPlayers() {
     }
 
 
@@ -140,8 +149,25 @@ public class UserInterface extends Application{
 
 
     private void gameEvent(TextField gameText) {
-        String text = gameText.getText();
-        gameTextLog.appendText("- " + text + "\n");
+        UserInput text = UserInput.parseInput(gameText.getCharacters().toString());
+
+        switch(text.getInputType()) {
+            case HELP:
+                gameTextLog.appendText("- Get Gud\n");
+                break;
+            case PASS:
+                gameTextLog.appendText("- Passed Turn\n");
+                break;
+            case QUIT:
+                gameTextLog.appendText("- I would quit but I can't\n");
+                break;
+            case EXCHANGE:
+                gameTextLog.appendText("- I have passed the ties your welcome make a better word\n");
+            case PLACE_TILE:
+                gameTextLog.appendText("- Tile have been placed\n");
+            default:
+                gameTextLog.appendText("- Error please try again\n");
+        }
         gameText.setText("");
     }
 }

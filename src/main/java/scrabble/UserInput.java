@@ -103,7 +103,7 @@ public class UserInput {
     /**
      * UserInputType is an enum type for the types of possible expected user inputs
      */
-    enum UserInputType {
+    public enum UserInputType {
         QUIT,
         HELP,
         PASS,
@@ -118,14 +118,15 @@ public class UserInput {
      */
     public static UserInput parseInput(String input) {
 
-        direction directionInput = null;
+        direction directionInput;
 
 
         int[] position = new int[2];
 
         UserInput inputData = null;
 
-        String[] tokens = input.split("\\s");
+        String[] tokens = input.split(" ");
+
 
         if(input.isEmpty())
         {
@@ -191,7 +192,7 @@ public class UserInput {
 
 
                                     if (directionInput != null) {
-                                        inputData = new UserInput(UserInputType.PLACE_TILE, tokens[3].toCharArray(), position, directionInput);
+                                        inputData = new UserInput(UserInputType.PLACE_TILE, tokens[2].toCharArray(), position, directionInput);
                                     } else {
                                         inputData = new UserInput(UserInputType.ERROR);
                                     }
