@@ -132,7 +132,6 @@ public class Main extends Application {
                 player1.getPlayerFrame().getTile(i).setCharacter(player1Tiles[i]);
             }
         }
-
         //Places tiles on board
         board.placeTiles(player1, player1Tiles, player1Moves);
 
