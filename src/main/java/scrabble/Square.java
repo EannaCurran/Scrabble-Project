@@ -10,7 +10,7 @@ public class Square {
     /**
      * SquareType is an Enum of possible Types of Square on the Scrabble Board
      */
-    enum SquareType{
+    public enum SquareType{
         NORMAL,
         START,
         DOUBLE_WORD,

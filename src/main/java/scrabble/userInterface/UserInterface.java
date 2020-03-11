@@ -1,24 +1,149 @@
 package scrabble.userInterface;
 
 import javafx.application.Application;
+import javafx.geometry.Pos;
+import javafx.scene.control.TextArea;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import scrabble.*;
 
-public class UserInterface extends Application {
+public class UserInterface extends Application{
+
+    private Board board;
+    private Pool pool;
+    private Player player1;
+    private Player player2;
+
+    private GridPane gameFrame;
+    private TextField gameTextInput;
+    private TextArea gameTextLog;
+    private GridPane gameBoard;
 
     public static void main(String[] args) {
+
         launch(args);
+
     }
 
     @Override
-    public void start(Stage primaryStage) {
-        String javaVersion = System.getProperty("java.version");
-        String javafxVersion = System.getProperty("javafx.version");
-        Label l = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
-        Scene scene = new Scene(new StackPane(l), 640, 480);
-        primaryStage.setScene(scene);
-        primaryStage.show();
+    public void start(Stage gameStage) {
+
+        board = new Board();
+        pool = new Pool();
+
+        gameStage.setTitle("Scrabble");
+
+        gameFrame = new GridPane();
+        gameTextInput = setUpTextInput();
+        gameTextLog = setUpTextLog();
+        gameBoard = setUpBoard(board);
+
+        gameFrame.getChildren().add(gameBoard);
+        gameFrame.add(gameTextLog,1,0);
+        gameFrame.add(gameTextInput,1,1);
+
+        Scene gameScene = new Scene(gameFrame, 1250, 1000);
+        gameStage.setScene(gameScene);
+        gameStage.show();
+
     }
+
+
+    private GridPane setUpBoard(Board board){
+
+        GridPane gameBoard = new GridPane();
+        gameBoard.setStyle("-fx-background-color: lightgray; -fx-vgap: 1; -fx-hgap: 1; -fx-padding: 1;-fx-border-color:black;");
+
+        for(int i = 0; i < 15; i++) {
+
+            Label label = new Label(String.valueOf(i));
+            label.setPrefSize(40, 40);
+            label.setAlignment(Pos.CENTER);
+            gameBoard.add(label, i + 1, 0);
+        }
+
+        for(int i = 0; i < 15; i++) {
+
+            Label label = new Label(String.valueOf(i));
+            label.setPrefSize(40, 40);
+            label.setAlignment(Pos.CENTER);
+                gameBoard.add(label, 16, i+1);
+        }
+
+        for(int i = 1; i < 16; i++) {
+
+            for(int j = 1; j < 16; j++) {
+
+                Label label = new Label(" ");
+
+                switch(board.getSquare(i-1,j-1).getType()){
+                    case NORMAL:
+                        label.setStyle("-fx-background-color: #e6e7e8; -fx-border-color:black; -fx-alignment: center");
+                        break;
+                    case START:
+                    case TRIPLE_WORD:
+                        label.setStyle("-fx-background-color: #ed2207; -fx-border-color:black; -fx-alignment: center");
+                        label.setText("3W");
+                        break;
+                    case DOUBLE_WORD:
+                        label.setStyle("-fx-background-color: #0241ed; -fx-border-color:black; -fx-alignment: center");
+                        label.setText("2W");
+                        break;
+                    case DOUBLE_LETTER:
+                        label.setStyle("-fx-background-color: #64a4e8; -fx-border-color:black; -fx-alignment: center");
+                        label.setText("2L");
+                        break;
+                    case TRIPLE_LETTER:
+                        label.setStyle("-fx-background-color: #e3625d; -fx-border-color: black; -fx-alignment: center");
+                        label.setText("3L");
+                        break;
+
+                }
+
+                label.setPrefSize(40,40);
+                gameBoard.add(label, i, j);
+
+            }
+        }
+
+        return gameBoard;
+    }
+
+
+
+    private TextArea setUpTextLog() {
+        TextArea text_flow = new TextArea();
+        text_flow.appendText("Welcome to scrabble, please enter player 1 name");
+
+        return text_flow;
+    }
+
+    private TextField setUpTextInput() {
+        TextField gameText = new TextField();
+
+        gameText.setOnKeyReleased(event -> {
+            if (event.getCode() == KeyCode.ENTER){
+                gameEvent(gameText);
+            }
+        });
+
+        return gameText;
+    }
+
+
+
+    private void gameEvent(TextField gameText) {
+        String text = gameText.getText();
+        gameTextLog.appendText("- " + text + "\n");
+        gameText.setText("");
+
+    }
+
+
+
+
 }

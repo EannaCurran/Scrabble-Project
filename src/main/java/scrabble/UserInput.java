@@ -2,7 +2,6 @@ package scrabble;
 
 public class UserInput {
 
-
     public final static int BOARD_SIZE = 15;
 
     //Stores user input information after user input is broken down and parsed
@@ -10,7 +9,6 @@ public class UserInput {
     private String userWord;
     private direction directionInput;
     private userInputType InputType;
-
 
     /**
      * direction is an enum type for the types directions a word can be placed on a Board
