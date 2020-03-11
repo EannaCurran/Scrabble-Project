@@ -1,14 +1,42 @@
 package scrabble;
 
+
+import scrabble.exceptions.InvalidInputException;
+
 public class UserInput {
 
-    public final static int BOARD_SIZE = 15;
+    private UserInputType inputType;
 
-    //Stores user input information after user input is broken down and parsed
-    private int userWordLength;
-    private String userWord;
-    private direction directionInput;
-    private userInputType InputType;
+    private char[] word = null;
+
+    private int[] startPosition = null;
+
+    private direction wordDirection = null;
+
+    public UserInput(UserInputType type){
+        inputType = type;
+    }
+
+    public UserInput(UserInputType type, char[] tileExchange){
+        inputType = type;
+        if(new String(tileExchange).matches("^[A-Z]{1,7}+$")) {
+            word = tileExchange;
+        }
+        else{
+           throw new InvalidInputException("Invalid characters for tile exchange");
+        }
+    }
+
+    public UserInput(UserInputType type, char[] w, int[] position, direction d){
+        inputType = type;
+
+        word = w;
+
+        startPosition = position;
+
+        wordDirection = d;
+
+    }
 
     /**
      * direction is an enum type for the types directions a word can be placed on a Board
@@ -21,7 +49,7 @@ public class UserInput {
     /**
      * userInputType is an enum type for the types of possible expected user inputs
      */
-    enum userInputType{
+    enum UserInputType {
         QUIT,
         HELP,
         PASS,
@@ -35,18 +63,113 @@ public class UserInput {
      * @param input The string that the User inputted into the FX console which will be broken down and parsed
      * @return returns false if a user did an invalid input or inputted "HELP". Returns true for a valid input
      */
-    public boolean parseInput(String input)
-    {
+    public static UserInput parseInput(String input) {
 
+        direction directionInput = null;
+
+
+        int[] position = new int[2];
+
+        UserInput inputData = null;
+
+        String[] tokens = input.split("\\s");
+
+        if(input.isEmpty())
+        {
+            inputData = new UserInput(UserInputType.ERROR);
+
+        }
+        else {
+                switch (tokens[0])
+                {
+                    case "QUIT":
+                    case "Quit":
+                    case "quit":
+                        inputData = new UserInput(UserInputType.QUIT);
+                        break;
+                    case "HELP":
+                    case "Help":
+                    case "help":
+                        inputData = new UserInput(UserInputType.HELP);
+                        break;
+                    case "PASS":
+                    case "Pass":
+                    case "pass":
+                        inputData = new UserInput(UserInputType.PASS);
+                        break;
+                    case "Exchange":
+                    case "EXCHANGE":
+                    case "exchange":
+                        try {
+                            inputData = new UserInput(UserInputType.EXCHANGE, tokens[1].toCharArray());
+                        } catch (Exception e) {
+                            inputData = new UserInput(UserInputType.ERROR);
+                        }
+                        break;
+                    default:
+                        if (tokens[0].matches("^[A-O][\\d]$"))
+                        {
+                            try {
+
+                                char[] temp = tokens[0].toCharArray();
+                                position[0] = temp[0] - 'A';
+                                position[1] = Integer.parseInt(tokens[0].substring(1));
+
+
+                                directionInput = null;
+
+                                if (tokens.length == 3) {
+
+                                    switch (tokens[1]) {
+                                        case "A":
+                                        case "a":
+                                            directionInput = direction.HORIZONTAL;
+                                            break;
+
+                                        case "D":
+                                        case "d":
+                                            directionInput = direction.VERTICAL;
+                                            break;
+
+                                        default:
+
+
+                                    }
+
+
+                                    if (directionInput != null) {
+                                        inputData = new UserInput(UserInputType.PLACE_TILE, tokens[3].toCharArray(), position, directionInput);
+                                    } else {
+                                        inputData = new UserInput(UserInputType.ERROR);
+                                    }
+                                }
+
+                                } catch(Exception e){
+                                    inputData = new UserInput(UserInputType.ERROR);
+                                }
+
+
+                        }
+                            else{
+                                    inputData = new UserInput(UserInputType.ERROR);
+                                }
+
+                }
+        }
+        return inputData;
+
+        }
+
+        /*
         if(input == "QUIT" || input == "quit" || input == "Quit")
         {
-            InputType = userInputType.QUIT;
+            InputType = UserInputType.QUIT;
             //Endgame method
         }
 
         if(input == "HELP" || input == "help" || input == "Help")
         {
-            InputType = userInputType.HELP;
+            InputType = UserInputType.HELP;
 
             System.out.println("<grid ref> <across/down> <word> (where <grid ref> is\n" +
                     "the position for the first letter in terms of rows and columns (i and j),\n " +
@@ -58,18 +181,17 @@ public class UserInput {
         if(input == "PASS" || input == "pass" || input == "Pass")
         {
             //Passes turn
-            InputType = userInputType.PASS;
+            InputType = UserInputType.PASS;
             return true;
         }
 
-        String[] tokens = input.split(" ");
 
         //Checks row coordinate is a number
         try {
             int rowCoordinate = Integer.parseInt(tokens[0]);
         } catch (NumberFormatException e) {
             System.out.println(tokens[0] + " is not a valid row coordinate, please try again.");
-            InputType = userInputType.ERROR;
+            InputType = UserInputType.ERROR;
             return false;
         }
         int rowCoordinate = Integer.parseInt(tokens[0]);
@@ -79,7 +201,7 @@ public class UserInput {
             int columnCoordinate = Integer.parseInt((tokens[1]));
         } catch (NumberFormatException e) {
             System.out.println(tokens[0] + " is not a valid column coordinate, please try again.");
-            InputType = userInputType.ERROR;
+            InputType = UserInputType.ERROR;
             return false;
         }
         int columnCoordinate = Integer.parseInt((tokens[1]));
@@ -89,7 +211,7 @@ public class UserInput {
         }
         else {
             System.out.println("Invalid coordinates were given, please give numbers between 1-15 and try again.");
-            InputType = userInputType.ERROR;
+            InputType = UserInputType.ERROR;
             return false;
         }
 
@@ -110,15 +232,10 @@ public class UserInput {
         userWordLength = tokens[4].length();
         userWord = tokens[4];
 
-        InputType = userInputType.PLACE_TILE;
-        //TODO place word method/return parsed stuff
+        InputType = UserInputType.PLACE_TILE;
         return true;
-    }
 
 
-    private boolean CoordinateValidationCheck(int rowCoordinate, int columnCoordinate) {
-        return rowCoordinate < Board.BOARD_SIZE && rowCoordinate >= 0 && columnCoordinate < BOARD_SIZE && columnCoordinate >= 0;
-    }
-
+    } */
 
 }
