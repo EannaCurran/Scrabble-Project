@@ -67,7 +67,13 @@ public class MoveInfo {
     }
 
     public void addAuxiliaryWord(Word auxWord){
+        auxiliaryWords.add(auxWord);
+    }
 
+    public void setRequiredTiles(char[] requiredTiles, int[][] requiredTilesPositions) {
+        if (requiredTiles.length > 0 && requiredTiles.length <= 7 && requiredTiles.length == requiredTilesPositions.length){
+
+        }
     }
 
 
