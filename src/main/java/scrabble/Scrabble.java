@@ -2,6 +2,8 @@ package scrabble;
 
 import scrabble.exceptions.InvalidScrabbleException;
 
+import java.util.ArrayList;
+
 public class Scrabble {
 
     /**
@@ -28,6 +30,11 @@ public class Scrabble {
     private Boolean playerOrder;
 
     /**
+     * ArrayList to store a history of all previous moves
+     */
+    private ArrayList<MoveInfo> moveHistory;
+
+    /**
      * Scrabble Game Constructor
      *
      * Creates a new game of Scrabble
@@ -40,6 +47,8 @@ public class Scrabble {
         players = new Player[2];
 
         playerOrder = false;
+
+        moveHistory = new ArrayList<>();
     }
 
     /**
@@ -60,7 +69,10 @@ public class Scrabble {
 
     public void playerMove(int[] startPosition, UserInput.Direction direction, char[] word, Player player){
         if (startPosition.length == 2 && board.checkValidPosition(startPosition)){
-            if (board.checkValidMove(player, word, startPosition, direction)){
+
+            moveHistory.add(0, new MoveInfo(player,startPosition, direction, word));
+
+            if (board.checkValidMove(moveHistory.get(0))){
 
             }
         }

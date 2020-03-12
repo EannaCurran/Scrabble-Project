@@ -236,21 +236,21 @@ public class Board {
      * @param word: List of tiles requested to make the move
      * @param positions: Positions entered to place each Tile
      */
-    protected void checkValidMove(Player player, char[] word, int[] startPosition, UserInput.Direction direction){
+    protected boolean checkValidMove(MoveInfo moveInfo){
 
         Boolean validMove = true;
 
         char[] requiredTiles;
 
         //
-        if (checkValidPosition(startPosition) && checkValidPosition(direction == UserInput.Direction.VERTICAL ? new int[]{startPosition[0] + word.length, startPosition[1]} : new int[]{startPosition[0], startPosition[1] + word.length})){
+        if (checkValidPosition(moveInfo.getPrimaryWord().getStartPosition()) && checkValidPosition(moveInfo.getPrimaryWord().getDirection() == UserInput.Direction.VERTICAL ? new int[]{moveInfo.getPrimaryWord().getStartPosition()[0] + moveInfo.getPrimaryWord().getWord().length, moveInfo.getPrimaryWord().getStartPosition()[1]} : new int[]{moveInfo.getPrimaryWord().getStartPosition()[0], moveInfo.getPrimaryWord().getStartPosition()[1] + moveInfo.getPrimaryWord().getWord().length})){
 
-            requiredTiles = getRequiredTiles(word, startPosition, direction); //TODO
+            getRequiredTiles(moveInfo); //TODO
 
-            if (requiredTiles.length > 0 && checkPlayerHasTiles(player, requiredTiles)){
+            // Checks that the player has each of the Tiles in their Frame and the should require at least 1 tile and less than or equal to 7
+            if (requiredTiles.length > 0 && requiredTiles.length <= 7 && checkPlayerHasTiles(player, requiredTiles)){
 
-                // Checks that the player has each of the Tiles in their Frame
-                checkPlayerHasTiles(player, word);
+
 
             }
             else{
@@ -271,13 +271,6 @@ public class Board {
         checkValidPosition(startPosition);
 
 
-
-
-        // Checks that none of the entered positions don't already contain Tiles
-        checkPositionContainsTile(positions);
-
-        // Checks that all the positions are in a line
-        checkPositionLine(positions);
 
         // Checks that the inputted positions connect to a Tile already on the board
         checkWordConnects(positions);
@@ -331,9 +324,9 @@ public class Board {
      * @param position Position to check if its on the board
      * @return True if the position is valid
      */
-    protected Boolean checkValidPosition(int[] position){
+    protected static Boolean checkValidPosition(int[] position){
 
-       return position[0] >= 0 && position[0] < 15 && position[1] >= 0 && position[1] < 15;
+       return position[0] >= 0 && position[0] < BOARD_SIZE && position[1] >= 0 && position[1] < BOARD_SIZE;
 
     }
 
@@ -373,85 +366,6 @@ public class Board {
 
 
 
-    /**
-     * Method to check if a position on the Board already has a Tile in it
-     * @param position: Co-ordinates to check if a Tile in already in it
-     */
-    protected void checkPositionContainsTile(int[][] position){
-
-        // Checks that the position has a tile in it, if it does exception is thrown
-        for(int[] ints : position){
-
-            if(!(boardSquares[ints[0]][ints[1]].isEmpty())){
-
-                throw new InvalidBoardException("Position already contains a Tile\n");
-            }
-        }
-    }
-
-
-
-    /**
-     * Method to check that a list of positions to place a word is in a line
-     * @param position: List of co-ordinates to check they are part of a line of Tiles
-     */
-    protected void checkPositionLine(int[][] position){
-
-        // Storing which orientation the list of positions are in
-        boolean tempVertical = true;
-
-        // Loops to check which direct the list of positions are not in the vertical direction
-        for(int j = 0; j < position.length - 1;j++){
-
-            if(position[j][0] != position[j+1][0]){
-
-                tempVertical = false;
-                break;
-            }
-        }
-
-        //Loops to check that the horizontal list of positions are in on the same
-        if(!tempVertical){
-
-            for(int j = 0; j < position.length - 1;j++){
-
-                if(position[j][1] != position[j+1][1]){
-
-                    throw new InvalidBoardException("Tiles are not in a line on the Board\n");
-                }
-            }
-        }
-
-        // Check that tile tiles in the vertical direction
-        if(tempVertical){
-
-            // Sorts the values in position based on the j direction
-            Arrays.sort(position, Comparator.comparingInt(a -> a[1]));
-
-            // Checks that all there is no gap from the co-ordinates in position and co-ordinates are not diagonal, if there is exception is thrown
-            for(int j = 0; j < position.length - 1;j++){
-
-                if((!((position[j][1]+1 == position[j+1][1] && position[j][0] == position[j+1][0]) || !boardSquares[position[j][0]][position[j][1]+1].isEmpty()))){
-
-                    throw new InvalidBoardException("Tiles are not in a line on the Board\n");
-                }
-            }
-
-            return;
-        }
-
-        // Sorts the values in position based on the i direction
-        Arrays.sort(position, Comparator.comparingInt(a -> a[0]));
-
-        // Checks that all there is no gap from the co-ordinates in position and co-ordinates are not diagonal, if there is exception is thrown
-        for(int j = 0; j < position.length - 1;j++){
-
-            if((!((position[j][0]+1 == position[j+1][0] && position[j][1] == position[j + 1][1] || !boardSquares[position[j][0]+1][position[j][1]].isEmpty())))){
-
-                throw new InvalidBoardException("Tiles are not in a line on the Board\n");
-            }
-        }
-    }
 
 
 
@@ -459,38 +373,36 @@ public class Board {
      * Method to check if a list of positions connect with a tile already on the board
      * @param position: List of positions to check if any of them would connect with a tile on the board
      */
-    protected void checkWordConnects(int[][] position){
-
+    protected Boolean checkWordConnects(int[] startPosition, UserInput.Direction direction, int wordLength) {
+//TODO
         // Boolean to store if a connecting tile has been found
         boolean connectCheck = false;
 
         // Check if a the first tile of the game has been placed, since it doesn't need to have a connecting tile
-        if(boardSquares[7][7].isEmpty() ){
+        if (boardSquares[7][7].isEmpty()) {
 
             // If the first tile of the game hasn't been placed and the position [7][7] is not passed in, exception is thrown
-            for (int[] ints : position) {
+            if (direction == UserInput.Direction.VERTICAL ? (startPosition[1] == 7 && startPosition[0] <= 7 && startPosition[0] + wordLength >= 7) : (startPosition[0] == 7 && startPosition[1] <= 7 && startPosition[1] + wordLength >= 7)) {
 
-                if (ints[0] == 7 && ints[1] == 7) {
-
-                    return;
-                }
             }
+
 
             throw new InvalidBoardException("First word in game must be placed within [7][7]\n");
-        }
+        } else {
 
-        // Loops through each co-ordinate in position, checks if any of the surrounding positions contain tiles, if it does
-        // connectCheck is set to true and loop is broken, edge guarding included for any positions on the edge of the board;
-        for (int[] ints : position) {
+            // Loops through each co-ordinate in position, checks if any of the surrounding positions contain tiles, if it does
+            // connectCheck is set to true and loop is broken, edge guarding included for any positions on the edge of the board;
+            for (int[] ints : position) {
 
-            if (checkValidPosition(new int[]{ints[0] + 1, ints[1]})){
+                if (checkValidPosition(new int[]{ints[0] + 1, ints[1]})) {
+
+                }
 
             }
-
-        }
-        // If none of the positions connect to a tile on the board, InvalidException is thrown
-        if(!connectCheck){
-            throw new InvalidBoardException("Placed Tiles not connected to any Tiles\n");
+            // If none of the positions connect to a tile on the board, InvalidException is thrown
+            if (!connectCheck) {
+                throw new InvalidBoardException("Placed Tiles not connected to any Tiles\n");
+            }
         }
     }
 
