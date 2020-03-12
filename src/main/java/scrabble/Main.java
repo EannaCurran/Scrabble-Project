@@ -3,6 +3,9 @@ package scrabble;
 public class Main {
 
 
+
+
+
     //Main Function to execute the test suite in executable Jar
     public static void main(String[] args) {
 
