@@ -23,7 +23,7 @@ public class Frame {
     /**
      * Max amount of Tiles in the Frame
      */
-    private final static int FRAME_SIZE = 7;
+    public final static int FRAME_SIZE = 7;
 
 
     /**

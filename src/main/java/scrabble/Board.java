@@ -2,8 +2,10 @@ package scrabble;
 
 import scrabble.exceptions.InvalidBoardException;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Stack;
 
 
 /**
@@ -240,24 +242,25 @@ public class Board {
 
         Boolean validMove = true;
 
-        char[] requiredTiles;
 
         //
         if (checkValidPosition(moveInfo.getPrimaryWord().getStartPosition()) && checkValidPosition(moveInfo.getPrimaryWord().getDirection() == UserInput.Direction.VERTICAL ? new int[]{moveInfo.getPrimaryWord().getStartPosition()[0] + moveInfo.getPrimaryWord().getWord().length, moveInfo.getPrimaryWord().getStartPosition()[1]} : new int[]{moveInfo.getPrimaryWord().getStartPosition()[0], moveInfo.getPrimaryWord().getStartPosition()[1] + moveInfo.getPrimaryWord().getWord().length})){
 
-            getRequiredTiles(moveInfo); //TODO
+            if (wholeWord(moveInfo.getPrimaryWord())) {
+                getRequiredTiles(moveInfo); //TODO
 
-            // Checks that the player has each of the Tiles in their Frame and the should require at least 1 tile and less than or equal to 7
-            if (requiredTiles.length > 0 && requiredTiles.length <= 7 && checkPlayerHasTiles(player, requiredTiles)){
+                // Checks that the player has each of the Tiles in their Frame
+                if (checkPlayerHasTiles(moveInfo.getPlayer(), moveInfo.getRequiredTiles())) {
 
 
-
+                } else {
+                    //TODO Log
+                    validMove = false;
+                }
             }
-            else{
-                //TODO Log
-                validMove = false;
+            else {
+                //TODO Error log
             }
-
         }
         else{
             //TODO Log
@@ -347,33 +350,10 @@ public class Board {
 
 
     /**
-     * Method to check that words to be placed on the board are valid lengths
-     * @param word: List of Tiles to check
-     */
-    protected void checkWordLength(char[] word){
-
-        // Checks that the word contains a Tile, if not exception is thrown
-        if(word.length == 0){
-
-            throw new InvalidBoardException("Word must be longer than 0 Tiles\n");
-        }
-
-        if(word.length > 7){
-
-            throw new InvalidBoardException("Cannot place more than 7 Tiles\n");
-        }
-    }
-
-
-
-
-
-
-    /**
      * Method to check if a list of positions connect with a tile already on the board
      * @param position: List of positions to check if any of them would connect with a tile on the board
      */
-    protected Boolean checkWordConnects(int[] startPosition, UserInput.Direction direction, int wordLength) {
+    protected Boolean checkWordConnects(MoveInfo moveInfo) {
 //TODO
         // Boolean to store if a connecting tile has been found
         boolean connectCheck = false;
@@ -382,30 +362,87 @@ public class Board {
         if (boardSquares[7][7].isEmpty()) {
 
             // If the first tile of the game hasn't been placed and the position [7][7] is not passed in, exception is thrown
-            if (direction == UserInput.Direction.VERTICAL ? (startPosition[1] == 7 && startPosition[0] <= 7 && startPosition[0] + wordLength >= 7) : (startPosition[0] == 7 && startPosition[1] <= 7 && startPosition[1] + wordLength >= 7)) {
-
+            if (moveInfo.getPrimaryWord().getDirection() == UserInput.Direction.VERTICAL ? (moveInfo.getPrimaryWord().getStartPosition()[1] == 7 && moveInfo.getPrimaryWord().getStartPosition()[0] <= 7 && moveInfo.getPrimaryWord().getStartPosition()[0] + moveInfo.getPrimaryWord().getWord().length >= 7) : (moveInfo.getPrimaryWord().getStartPosition()[0] == 7 && moveInfo.getPrimaryWord().getStartPosition()[1] <= 7 && moveInfo.getPrimaryWord().getStartPosition()[1] + moveInfo.getPrimaryWord().getWord().length  >= 7)) {
+                connectCheck = true;
+            }
+            else{
+                //TODO
             }
 
-
-            throw new InvalidBoardException("First word in game must be placed within [7][7]\n");
         } else {
 
-            // Loops through each co-ordinate in position, checks if any of the surrounding positions contain tiles, if it does
-            // connectCheck is set to true and loop is broken, edge guarding included for any positions on the edge of the board;
-            for (int[] ints : position) {
+            if(moveInfo.getPrimaryWord().getDirection() == UserInput.Direction.VERTICAL){
 
-                if (checkValidPosition(new int[]{ints[0] + 1, ints[1]})) {
+                for (int i = 0; i < moveInfo.getRequiredTiles().length; i++){
+
+                    if (moveInfo.getRequiredTilesPositions()[i][1] != 0 && !getSquare(moveInfo.getRequiredTilesPositions()[i][0], moveInfo.getRequiredTilesPositions()[i][1] - 1).isEmpty()){
+                        moveInfo.addAuxiliaryWord(findWord(new int[]{moveInfo.getRequiredTilesPositions()[i][0], moveInfo.getRequiredTilesPositions()[i][1] - 1}) , UserInput.Direction.HORIZONTAL);
+                    }
+                    else if (moveInfo.getRequiredTilesPositions()[i][1] != BOARD_SIZE - 1 && !getSquare(moveInfo.getRequiredTilesPositions()[i][0], moveInfo.getRequiredTilesPositions()[i][1] + 1).isEmpty()){
+                        moveInfo.addAuxiliaryWord(findWord(new int[]{moveInfo.getRequiredTilesPositions()[i][0], moveInfo.getRequiredTilesPositions()[i][1] + 1}) , UserInput.Direction.HORIZONTAL);
+                    }
 
                 }
 
             }
-            // If none of the positions connect to a tile on the board, InvalidException is thrown
-            if (!connectCheck) {
-                throw new InvalidBoardException("Placed Tiles not connected to any Tiles\n");
-            }
+
+
         }
     }
 
+    public void getRequiredTiles(MoveInfo moveInfo){
 
+        int[][] tilePositions = new  int[moveInfo.getPrimaryWord().getWord().length][2];
+        char[] tiles = new char[moveInfo.getPrimaryWord().getWord().length];
+
+        int numTiles = 0;
+
+
+
+        for (int i = 0; i < moveInfo.getPrimaryWord().getWord().length; i++){
+
+            int currentPosition[] = moveInfo.getPrimaryWord().getDirection() == UserInput.Direction.VERTICAL? new int[]{moveInfo.getPrimaryWord().getStartPosition()[0] + i, moveInfo.getPrimaryWord().getStartPosition()[1]}: new int[]{moveInfo.getPrimaryWord().getStartPosition()[0], moveInfo.getPrimaryWord().getStartPosition()[1] + i};
+
+
+            Square currentSquare = this.getSquare(currentPosition[0], currentPosition[1]);
+
+            if (currentSquare.isEmpty()){
+                tilePositions[numTiles] = currentPosition;
+                tiles[numTiles] = moveInfo.getPrimaryWord().getWord()[i];
+                numTiles++;
+            }
+            else if (moveInfo.getPrimaryWord().getWord()[i] != currentSquare.getTile().getCharacter()){
+                //TODO Error Log
+            }
+
+        }
+
+        moveInfo.setRequiredTiles(Arrays.copyOfRange(tiles, 0, numTiles), Arrays.copyOfRange(tilePositions, 0, numTiles));
+
+    }
+
+    /**
+     * Method to check the word is the whole word
+     *
+     * @param word Word to check
+     * @return True if whole word
+     */
+    public boolean wholeWord(Word word){
+
+        boolean result;
+
+        //If Word is vertical
+        if (word.getDirection() == UserInput.Direction.VERTICAL){
+            //The start tile is the top edge of the board or the previous square is empty and the last tile is the bottom edge or the next square is empty
+            result = (word.getStartPosition()[0] == 0 || this.getSquare(word.getStartPosition()[0] - 1, word.getStartPosition()[1]).isEmpty()) && (word.getStartPosition()[0] + word.getWord().length== BOARD_SIZE - 1 || this.getSquare(word.getStartPosition()[0] + word.getWord().length + 1, word.getStartPosition()[1]).isEmpty());
+        }
+        //Else horizontal
+        else {
+            //The start tile is the left edge of the board or the previous square is empty and the last tile is the right edge or the next square is empty
+            result = (word.getStartPosition()[1] == 0 || this.getSquare(word.getStartPosition()[0], word.getStartPosition()[1] - 1).isEmpty()) && (word.getStartPosition()[1] + word.getWord().length == BOARD_SIZE - 1 || this.getSquare(word.getStartPosition()[0], word.getStartPosition()[1] + word.getWord().length + 1).isEmpty());
+        }
+
+        return  result;
+    }
 
 }
