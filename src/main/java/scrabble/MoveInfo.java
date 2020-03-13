@@ -71,8 +71,9 @@ public class MoveInfo {
     }
 
     public void setRequiredTiles(char[] requiredTiles, int[][] requiredTilesPositions) {
-        if (requiredTiles.length > 0 && requiredTiles.length <= 7 && requiredTiles.length == requiredTilesPositions.length){
-
+        if (requiredTiles.length > 0 && requiredTiles.length <= Frame.FRAME_SIZE && requiredTiles.length == requiredTilesPositions.length){
+            this.requiredTiles = requiredTiles;
+            this.requiredTilesPositions = requiredTilesPositions;
         }
     }
 

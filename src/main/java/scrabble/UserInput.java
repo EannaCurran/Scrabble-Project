@@ -11,7 +11,7 @@ public class UserInput {
 
     private int[] startPosition = null;
 
-    private direction wordDirection = null;
+    private Direction wordDirection = null;
 
 
     //Constructors
@@ -46,7 +46,7 @@ public class UserInput {
      * @param position The position of the coordinate of the first Tile of the word
      * @param d The direction of the word
      */
-    public UserInput(UserInputType type, char[] w, int[] position, direction d){
+    public UserInput(UserInputType type, char[] w, int[] position, Direction d){
         inputType = type;
 
         word = w;
@@ -88,14 +88,14 @@ public class UserInput {
      * Accessor method for getting the direction of the word that is to be placed on the Board
      * @return Returns the direction of the word that is to be placed on the Board
      */
-    public direction getWordDirection() {
+    public Direction getWordDirection() {
         return wordDirection;
     }
 
     /**
      * direction is an enum type for the types directions a word can be placed on a Board
      */
-    enum direction{
+    enum Direction{
         VERTICAL,
         HORIZONTAL
     }
@@ -118,7 +118,7 @@ public class UserInput {
      */
     public static UserInput parseInput(String input) {
 
-        direction directionInput;
+        Direction directionInput;
 
 
         int[] position = new int[2];
@@ -177,12 +177,12 @@ public class UserInput {
                                     switch (tokens[1]) {
                                         case "A":
                                         case "a":
-                                            directionInput = direction.HORIZONTAL;
+                                            directionInput = Direction.HORIZONTAL;
                                             break;
 
                                         case "D":
                                         case "d":
-                                            directionInput = direction.VERTICAL;
+                                            directionInput = Direction.VERTICAL;
                                             break;
 
                                         default:
