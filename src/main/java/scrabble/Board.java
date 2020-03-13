@@ -445,4 +445,24 @@ public class Board {
         return  result;
     }
 
+
+    public void findAuxiliaryWords(MoveInfo moveInfo){
+
+        if(moveInfo.getPrimaryWord().getDirection() == UserInput.Direction.VERTICAL){
+
+            for (int i = 0; i < moveInfo.getRequiredTiles().length; i++){
+
+                int [] currentPosition = moveInfo.getRequiredTilesPositions()[i];
+
+                if (checkValidPosition(new int[]{currentPosition[0], currentPosition[1] - 1}) && !getSquare(currentPosition[0], currentPosition[1] - 1).isEmpty()){
+                    moveInfo.addAuxiliaryWord(findWord(new int[]{moveInfo.getRequiredTilesPositions()[i][0], moveInfo.getRequiredTilesPositions()[i][1] - 1}) , UserInput.Direction.HORIZONTAL);
+                }
+                else if (checkValidPosition(new int[]{currentPosition[0], currentPosition[1] + 1}) && !getSquare(currentPosition[0], currentPosition[1] + 1).isEmpty()){
+                    moveInfo.addAuxiliaryWord(findWord(new int[]{moveInfo.getRequiredTilesPositions()[i][0], moveInfo.getRequiredTilesPositions()[i][1] + 1}) , UserInput.Direction.HORIZONTAL);
+                }
+
+            }
+
+    }
+
 }
