@@ -1,12 +1,10 @@
 package scrabble;
 
 import scrabble.exceptions.InvalidBoardException;
+import scrabble.exceptions.InvalidMoveInfoException;
 
-import java.awt.*;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Stack;
+
 
 
 /**
@@ -21,14 +19,17 @@ public class Board {
      */
     public final static int BOARD_SIZE = 15;
 
+    /**
+     * Bingo Score Bonus
+     */
+    public final static int BINGO = 50;
+
 
 
     /**
      * The Array of Square that holds the 15x15 Squares of the Board
      */
     private Square[][] boardSquares;
-
-
 
 
 
@@ -68,9 +69,9 @@ public class Board {
 
                 //Create the Square in each of the quadrants
                 boardSquares[i][j] = new Square(type);
-                boardSquares[j][14 - i] = new Square(type);
-                boardSquares[14 - i][14 - j] = new Square(type);
-                boardSquares[14 - j][i] = new Square(type);
+                boardSquares[j][BOARD_SIZE - 1 - i] = new Square(type);
+                boardSquares[BOARD_SIZE - 1 - i][BOARD_SIZE - 1 - j] = new Square(type);
+                boardSquares[BOARD_SIZE - 1 - j][i] = new Square(type);
             }
         }
     }
@@ -235,24 +236,28 @@ public class Board {
 
     /**
      * Method to check that a move from the player is valid
-     * @param player: Player making the move
-     * @param word: List of tiles requested to make the move
-     * @param positions: Positions entered to place each Tile
+     *
+     * @param moveInfo The move to validate
+     * @return true if valid move
      */
     protected boolean checkValidMove(MoveInfo moveInfo){
 
-        Boolean validMove = true;
+        Boolean validMove = false;
 
 
         //
-        if (checkValidPosition(moveInfo.getPrimaryWord().getStartPosition()) && checkValidPosition(moveInfo.getPrimaryWord().getDirection() == UserInput.Direction.VERTICAL ? new int[]{moveInfo.getPrimaryWord().getStartPosition()[0] + moveInfo.getPrimaryWord().getWord().length, moveInfo.getPrimaryWord().getStartPosition()[1]} : new int[]{moveInfo.getPrimaryWord().getStartPosition()[0], moveInfo.getPrimaryWord().getStartPosition()[1] + moveInfo.getPrimaryWord().getWord().length})){
+        if (moveInfo.getPrimaryWord().getWord().length >= 2 && checkValidPosition(moveInfo.getPrimaryWord().getStartPosition()) && checkValidPosition(moveInfo.getPrimaryWord().getDirection() == UserInput.Direction.VERTICAL ? new int[]{moveInfo.getPrimaryWord().getStartPosition()[0] + moveInfo.getPrimaryWord().getWord().length, moveInfo.getPrimaryWord().getStartPosition()[1]} : new int[]{moveInfo.getPrimaryWord().getStartPosition()[0], moveInfo.getPrimaryWord().getStartPosition()[1] + moveInfo.getPrimaryWord().getWord().length})){
 
             if (wholeWord(moveInfo.getPrimaryWord())) {
                 getRequiredTiles(moveInfo); //TODO
+                findAuxiliaryWords(moveInfo);
 
                 // Checks that the player has each of the Tiles in their Frame
                 if (checkPlayerHasTiles(moveInfo.getPlayer(), moveInfo.getRequiredTiles())) {
 
+                    if (checkWordConnects(moveInfo)){
+                        validMove = true;
+                    }
 
                 } else {
                     //TODO Log
@@ -269,15 +274,6 @@ public class Board {
         }
 
 
-
-
-        // Checks that start co-ordinates are on the board
-        checkValidPosition(startPosition);
-
-
-
-        // Checks that the inputted positions connect to a Tile already on the board
-        checkWordConnects(positions);
 
         return validMove;
     }
@@ -306,9 +302,9 @@ public class Board {
      * @param positions: List of positions to place Tiles on the Board
      */
     public void placeTiles(Player player, char[] word, int[][] positions){
-
+//TODO
         // Validates the players move
-        checkValidMove(player, word, positions);
+//        checkValidMove(player, word, positions);
 
         // Loops through each move and places the Tile on the Board
         for(int i = 0; i < word.length; i++){
@@ -329,9 +325,7 @@ public class Board {
      * @return True if the position is valid
      */
     protected static Boolean checkValidPosition(int[] position){
-
        return position[0] >= 0 && position[0] < BOARD_SIZE && position[1] >= 0 && position[1] < BOARD_SIZE;
-
     }
 
 
@@ -343,7 +337,6 @@ public class Board {
      * @return True if the player has the tiles
      */
     protected boolean checkPlayerHasTiles(Player player, char[] word){
-
         // Checks if the player has every Tile in their Frame
         return (player.getPlayerFrame().checkTiles(word));
     }
@@ -351,11 +344,13 @@ public class Board {
 
 
     /**
-     * Method to check if a list of positions connect with a tile already on the board
-     * @param position: List of positions to check if any of them would connect with a tile on the board
+     * Method to check the Word connects on the Board
+     * @param moveInfo Move to check
+     *
+     * @return True if valid
      */
     protected Boolean checkWordConnects(MoveInfo moveInfo) {
-//TODO
+
         // Boolean to store if a connecting tile has been found
         boolean connectCheck = false;
 
@@ -366,31 +361,22 @@ public class Board {
             if (moveInfo.getPrimaryWord().getDirection() == UserInput.Direction.VERTICAL ? (moveInfo.getPrimaryWord().getStartPosition()[1] == 7 && moveInfo.getPrimaryWord().getStartPosition()[0] <= 7 && moveInfo.getPrimaryWord().getStartPosition()[0] + moveInfo.getPrimaryWord().getWord().length >= 7) : (moveInfo.getPrimaryWord().getStartPosition()[0] == 7 && moveInfo.getPrimaryWord().getStartPosition()[1] <= 7 && moveInfo.getPrimaryWord().getStartPosition()[1] + moveInfo.getPrimaryWord().getWord().length  >= 7)) {
                 connectCheck = true;
             }
-            else{
-                //TODO
-            }
-
-        } else {
-
-            if(moveInfo.getPrimaryWord().getDirection() == UserInput.Direction.VERTICAL){
-
-                for (int i = 0; i < moveInfo.getRequiredTiles().length; i++){
-
-                    if (moveInfo.getRequiredTilesPositions()[i][1] != 0 && !getSquare(moveInfo.getRequiredTilesPositions()[i][0], moveInfo.getRequiredTilesPositions()[i][1] - 1).isEmpty()){
-                        moveInfo.addAuxiliaryWord(findWord(new int[]{moveInfo.getRequiredTilesPositions()[i][0], moveInfo.getRequiredTilesPositions()[i][1] - 1}) , UserInput.Direction.HORIZONTAL);
-                    }
-                    else if (moveInfo.getRequiredTilesPositions()[i][1] != BOARD_SIZE - 1 && !getSquare(moveInfo.getRequiredTilesPositions()[i][0], moveInfo.getRequiredTilesPositions()[i][1] + 1).isEmpty()){
-                        moveInfo.addAuxiliaryWord(findWord(new int[]{moveInfo.getRequiredTilesPositions()[i][0], moveInfo.getRequiredTilesPositions()[i][1] + 1}) , UserInput.Direction.HORIZONTAL);
-                    }
-
-                }
-
-            }
-
-
         }
+        //Else if the word made auxiliary Words or the required Tiles is less than the total chars in the Word
+        else if(moveInfo.getAuxiliaryWords().size() > 0 || moveInfo.getRequiredTiles().length < moveInfo.getPrimaryWord().getWord().length){
+
+                connectCheck = true;
+        }
+
+        return connectCheck;
     }
 
+
+    /**
+     * Method to find the required Tiles that the Player needs to place
+     *
+     * @param moveInfo
+     */
     public void getRequiredTiles(MoveInfo moveInfo){
 
         int[][] tilePositions = new  int[moveInfo.getPrimaryWord().getWord().length][2];
@@ -398,28 +384,28 @@ public class Board {
 
         int numTiles = 0;
 
-
-
+        //For loop to run through each char in the word and find if a tile needs to be placed
         for (int i = 0; i < moveInfo.getPrimaryWord().getWord().length; i++){
 
+            //Current position changes which axis is increased
             int currentPosition[] = moveInfo.getPrimaryWord().getDirection() == UserInput.Direction.VERTICAL? new int[]{moveInfo.getPrimaryWord().getStartPosition()[0] + i, moveInfo.getPrimaryWord().getStartPosition()[1]}: new int[]{moveInfo.getPrimaryWord().getStartPosition()[0], moveInfo.getPrimaryWord().getStartPosition()[1] + i};
-
 
             Square currentSquare = this.getSquare(currentPosition[0], currentPosition[1]);
 
+            //If the Square is empty then a  tile is required
             if (currentSquare.isEmpty()){
                 tilePositions[numTiles] = currentPosition;
                 tiles[numTiles] = moveInfo.getPrimaryWord().getWord()[i];
                 numTiles++;
             }
+            //Else check the tiles on the board match the word
             else if (moveInfo.getPrimaryWord().getWord()[i] != currentSquare.getTile().getCharacter()){
-                //TODO Error Log
+                throw new InvalidMoveInfoException("Word does not match tiles on the board.\n")
             }
-
         }
 
+        //Set the required Tiles. Trim the array size to match numTiles
         moveInfo.setRequiredTiles(Arrays.copyOfRange(tiles, 0, numTiles), Arrays.copyOfRange(tilePositions, 0, numTiles));
-
     }
 
     /**
@@ -465,16 +451,18 @@ public class Board {
                 //If the previous tile Horizontal is valid
                 if (checkValidPosition(new int[]{currentPosition[0], currentPosition[1] - 1}) && !getSquare(currentPosition[0], currentPosition[1] - 1).isEmpty()) {
                     //Find and add the newly modified Word to the auxiliaryWords
-                    moveInfo.addAuxiliaryWord(findWord(new int[]{moveInfo.getRequiredTilesPositions()[i][0], moveInfo.getRequiredTilesPositions()[i][1] - 1}), UserInput.Direction.HORIZONTAL);
+                    moveInfo.addAuxiliaryWord(findWord(new int[]{moveInfo.getRequiredTilesPositions()[i][0], moveInfo.getRequiredTilesPositions()[i][1] - 1}, UserInput.Direction.HORIZONTAL));
                 }
                 //Else if the next tile Horizontal is valid
                 else if (checkValidPosition(new int[]{currentPosition[0], currentPosition[1] + 1}) && !getSquare(currentPosition[0], currentPosition[1] + 1).isEmpty()) {
                     //Find and add the newly modified Word to the auxiliaryWords
-                    moveInfo.addAuxiliaryWord(findWord(new int[]{moveInfo.getRequiredTilesPositions()[i][0], moveInfo.getRequiredTilesPositions()[i][1] + 1}), UserInput.Direction.HORIZONTAL);
+                    moveInfo.addAuxiliaryWord(findWord(new int[]{moveInfo.getRequiredTilesPositions()[i][0], moveInfo.getRequiredTilesPositions()[i][1] + 1}, UserInput.Direction.HORIZONTAL));
                 }
 
             }
-        } else {
+        }
+        //Horizontal
+        else {
             for (int i = 0; i < moveInfo.getRequiredTiles().length; i++) {
 
                 int[] currentPosition = moveInfo.getRequiredTilesPositions()[i];
@@ -482,14 +470,13 @@ public class Board {
                 //If the previous tile Vertical is valid
                 if (checkValidPosition(new int[]{currentPosition[0] - 1 , currentPosition[1]}) && !getSquare(currentPosition[0] - 1, currentPosition[1]).isEmpty()) {
                     //Find and add the newly modified Word to the auxiliaryWords
-                    moveInfo.addAuxiliaryWord(findWord(new int[]{moveInfo.getRequiredTilesPositions()[i][0] - 1, moveInfo.getRequiredTilesPositions()[i][1]}), UserInput.Direction.VERTICAL);
+                    moveInfo.addAuxiliaryWord(findWord(new int[]{moveInfo.getRequiredTilesPositions()[i][0] - 1, moveInfo.getRequiredTilesPositions()[i][1]}, UserInput.Direction.VERTICAL));
                 }
                 //Else if the next tile Vertical is valid
                 else if (checkValidPosition(new int[]{currentPosition[0] + 1 , currentPosition[1]}) && !getSquare(currentPosition[0] + 1, currentPosition[1]).isEmpty()) {
                     //Find and add the newly modified Word to the auxiliaryWords
-                    moveInfo.addAuxiliaryWord(findWord(new int[]{moveInfo.getRequiredTilesPositions()[i][0] + 1, moveInfo.getRequiredTilesPositions()[i][1]}), UserInput.Direction.VERTICAL);
+                    moveInfo.addAuxiliaryWord(findWord(new int[]{moveInfo.getRequiredTilesPositions()[i][0] + 1, moveInfo.getRequiredTilesPositions()[i][1]}, UserInput.Direction.VERTICAL));
                 }
-
             }
         }
     }
@@ -539,4 +526,68 @@ public class Board {
 
     }
 
+    /**
+     * Method to calculate the score of a move
+     *
+     * @param moveInfo Move to calculate the score
+     */
+    protected void calculateScore(MoveInfo moveInfo){
+
+        //Calculate the score of the primary Word
+        int result = calculateScoreWord(moveInfo.getPrimaryWord());
+
+        //For loop to calculate the score of all the auxiliary Words
+        for (int i = 0; i < moveInfo.getAuxiliaryWords().size(); i++) {
+            result += calculateScoreWord(moveInfo.getAuxiliaryWords().get(i));
+        }
+
+        //If the move is a Bingo
+        if (moveInfo.getRequiredTiles().length == Frame.FRAME_SIZE){
+            result += BINGO;
+        }
+
+        moveInfo.setScore(result);
+    }
+
+    /**
+     *
+     *
+     * @param word
+     * @return
+     */
+    private int calculateScoreWord(Word word){
+
+        int wordFactor = 1, result = 0;
+        Square currentSquare;
+
+        for (int i = 0; i < word.getWord().length; i++) {
+
+            currentSquare = word.getDirection() == UserInput.Direction.VERTICAL? getSquare(word.getStartPosition()[0] + i,word.getStartPosition()[1] ): getSquare(word.getStartPosition()[0] ,word.getStartPosition()[1] + i);
+
+            switch (currentSquare.getType()){
+
+                case TRIPLE_WORD:
+                    wordFactor *= 3;
+                    result += currentSquare.getTile().getValue();
+                    break;
+                case DOUBLE_WORD:
+                case START:
+                    wordFactor *= 2;
+                    result += currentSquare.getTile().getValue();
+                    break;
+                case TRIPLE_LETTER:
+                    result += 3 * currentSquare.getTile().getValue();
+                    break;
+                case DOUBLE_LETTER:
+                    result += 2 * currentSquare.getTile().getValue();
+                    break;
+                default:
+                    result += currentSquare.getTile().getValue();
+            }
+
+        }
+
+        return result * wordFactor;
+
+    }
 }
