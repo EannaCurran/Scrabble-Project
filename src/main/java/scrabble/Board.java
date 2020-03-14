@@ -6,13 +6,10 @@ import scrabble.exceptions.InvalidMoveInfoException;
 import java.util.Arrays;
 
 
-
 /**
  * The Board Class represents the Board for the Scrabble Game as an object
  */
 public class Board {
-
-
 
     /**
      * Constant value for Board size
@@ -24,13 +21,10 @@ public class Board {
      */
     public final static int BINGO = 50;
 
-
-
     /**
      * The Array of Square that holds the 15x15 Squares of the Board
      */
     private Square[][] boardSquares;
-
 
 
     /**
@@ -44,7 +38,6 @@ public class Board {
         //Fill the boardSquares
         newBoard();
     }
-
 
 
     /**
@@ -245,35 +238,36 @@ public class Board {
         Boolean validMove = false;
 
 
-        //
+        //If the word is at least length 2 and the start and end positions are valid
         if (moveInfo.getPrimaryWord().getWord().length >= 2 && checkValidPosition(moveInfo.getPrimaryWord().getStartPosition()) && checkValidPosition(moveInfo.getPrimaryWord().getDirection() == UserInput.Direction.VERTICAL ? new int[]{moveInfo.getPrimaryWord().getStartPosition()[0] + moveInfo.getPrimaryWord().getWord().length, moveInfo.getPrimaryWord().getStartPosition()[1]} : new int[]{moveInfo.getPrimaryWord().getStartPosition()[0], moveInfo.getPrimaryWord().getStartPosition()[1] + moveInfo.getPrimaryWord().getWord().length})){
 
+            //The word os the whole Word on the Board
             if (wholeWord(moveInfo.getPrimaryWord())) {
-                getRequiredTiles(moveInfo); //TODO
+                getRequiredTiles(moveInfo);
                 findAuxiliaryWords(moveInfo);
 
                 // Checks that the player has each of the Tiles in their Frame
                 if (checkPlayerHasTiles(moveInfo.getPlayer(), moveInfo.getRequiredTiles())) {
 
+                    //If the the Word connects to another Word or Start Square
                     if (checkWordConnects(moveInfo)){
                         validMove = true;
                     }
+                    else {
+                        throw new InvalidMoveInfoException("The Word did not connect to a Word or Start Square.\n");
+                    }
 
                 } else {
-                    //TODO Log
-                    validMove = false;
+                    throw new InvalidMoveInfoException("The Player does not have the required Tiles for this move.\n");
                 }
             }
             else {
-                //TODO Error log
+                throw new InvalidMoveInfoException("The Word is not the whole Word on the Board.\n");
             }
         }
         else{
-            //TODO Log
-            validMove = false;
+            throw new InvalidMoveInfoException("The Word does not fit on the Board or is less than 2 letters long.\n");
         }
-
-
 
         return validMove;
     }
@@ -332,8 +326,9 @@ public class Board {
 
     /**
      * Method to validate if the Player placing a list of Tiles has each Tile in his Frame
-     *  @param player : Player to check if they have the necessary Tiles
-     * @param word : List of Tiles to check
+     *
+     *  @param player Player to check if they have the necessary Tiles
+     * @param word List of Tiles to check
      * @return True if the player has the tiles
      */
     protected boolean checkPlayerHasTiles(Player player, char[] word){
@@ -364,7 +359,6 @@ public class Board {
         }
         //Else if the word made auxiliary Words or the required Tiles is less than the total chars in the Word
         else if(moveInfo.getAuxiliaryWords().size() > 0 || moveInfo.getRequiredTiles().length < moveInfo.getPrimaryWord().getWord().length){
-
                 connectCheck = true;
         }
 
@@ -521,9 +515,8 @@ public class Board {
             return new Word(position, direction, Arrays.copyOfRange(word, 0, i));
         }
         else{
-            throw new InvalidBoardException("Position invalid position inputted\n");
+            throw new InvalidBoardException("Position invalid position inputted.\n");
         }
-
     }
 
     /**
@@ -592,20 +585,20 @@ public class Board {
     }
 
     /**
+     * Method to set all Squares under a word to Normal
      *
-     * @param word
+     * @param word The Word
      */
     protected void setWordSquaresNormal(Word word){
-
         Square currentSquare;
 
+        //For loop to set all tile under the word to Normal
         for (int i = 0; i < word.getWord().length; i++) {
             //Get the current Square based on Word Direction
             currentSquare = word.getDirection() == UserInput.Direction.VERTICAL? getSquare(word.getStartPosition()[0] + i,word.getStartPosition()[1] ): getSquare(word.getStartPosition()[0] ,word.getStartPosition()[1] + i);
 
             currentSquare.setNormal();
         }
-
     }
 
 }
