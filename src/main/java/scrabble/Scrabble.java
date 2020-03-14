@@ -129,6 +129,26 @@ public class Scrabble {
         return challenge;
     }
 
+    /**
+     * Method to check if the game is over
+     *
+     * @return True if the game is over
+     */
+    public boolean isGameOver(){
+        return pool.isEmpty() && (players[0].getPlayerFrame().isEmpty() || players[1].getPlayerFrame().isEmpty());
+    }
+
+    /**
+     * Method to subtract Frame Tile values from Players' scores at the end of the game
+     */
+    public void gameOver(){
+
+        for (int i = 0; i < players.length; i++) {
+            players[i].decreaseScore(players[i].getPlayerFrame().tileValues());
+        }
+
+    }
+
 
 
 }
