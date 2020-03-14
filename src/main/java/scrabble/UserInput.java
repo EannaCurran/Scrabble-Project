@@ -125,7 +125,7 @@ public class UserInput {
 
         UserInput inputData = null;
 
-        String[] tokens = input.split(" ");
+        String[] tokens = input.split("[\\w]+");
 
 
         if(input.isEmpty())
