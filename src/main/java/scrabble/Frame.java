@@ -434,6 +434,20 @@ public class Frame {
         }
     }
 
+    /**
+     * Method to find the total value of the Tiles in a Frame
+     *
+     * @return The total value of the Tiles
+     */
+    public int tileValues(){
+        int result = 0;
+
+        for (int i = 0; i < playerFrame.size(); i++) {
+            result += playerFrame.get(i).getValue();
+        }
+
+        return result;
+    }
 
     /**
      * Method overriding the toString method
@@ -456,5 +470,6 @@ public class Frame {
         // Returns the formatted text
         return text;
     }
+
 
 }
