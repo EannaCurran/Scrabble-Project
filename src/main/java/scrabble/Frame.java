@@ -395,6 +395,47 @@ public class Frame {
 
 
     /**
+     * Method to set the Blank Tiles in Frame
+     *
+     * @param tileValues The chars to change the Blank Tiles to
+     * @throws InvalidFrameException If too many chars are passed
+     */
+    public void setBlanks(char[] tileValues){
+        //There is only 2 Blank Tiles in Scrabble
+        if (tileValues.length <= 2){
+
+            setToBlank();
+
+            int j = 0;
+
+            //For loop to run through each Tile to check if Blank
+            for (int i = 0; i < playerFrame.size() && j < tileValues.length; i++) {
+                //If Blank set to next char
+                if (playerFrame.get(i).getCharacter() == ' '){
+                    playerFrame.get(i).setCharacter(tileValues[j]);
+                    j++;
+                }
+            }
+        }
+        else{
+            throw new InvalidFrameException("There can only be a max of 2 Blank Tiles.\n");
+        }
+
+    }
+
+    /**
+     * Method to set all Blank Tiles to Null
+     */
+    public void setToBlank(){
+        for (int i = 0; i < playerFrame.size(); i++) {
+            if (playerFrame.get(i).getValue() == 0){
+                playerFrame.get(i).setNull();
+            }
+        }
+    }
+
+
+    /**
      * Method overriding the toString method
      *
      * @return String: Formatted string of the Tiles in Frame
