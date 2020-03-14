@@ -92,7 +92,7 @@ public class Frame {
         else{
 
             // Throws a InvalidTile Exception if the index is not in the range of the Frame size
-            throw new InvalidFrameException("Index not in range of Frame");
+            throw new InvalidFrameException("Index not in range of Frame.\n");
         }
     }
 
@@ -114,7 +114,7 @@ public class Frame {
                 return;
             }
         }
-        throw new InvalidFrameException("Tile not in frame");
+        throw new InvalidFrameException("Tile not in frame.\n");
     }
 
     /**
@@ -129,7 +129,6 @@ public class Frame {
 
             if(t2 == t){
                 playerFrame.remove(t);
-
                 return;
             }
         }
@@ -144,8 +143,8 @@ public class Frame {
     public void removeTiles(char[] word){
 
         //If the word is invalidly long
-        if(word.length > 7){
-            throw new IllegalArgumentException("Invalid number of characters to find in remove in Frame");
+        if(word.length > FRAME_SIZE){
+            throw new IllegalArgumentException("Invalid number of characters to find in remove in Frame.\n");
         }
         //If the word is in the frame
         else if(checkTiles(word)){
@@ -156,7 +155,7 @@ public class Frame {
             }
         }
         else{
-            throw new InvalidFrameException("Tiles not in the frame, therefore tiles cannot be removed");
+            throw new InvalidFrameException("Tiles not in the frame, therefore tiles cannot be removed.\n");
         }
 
     }
@@ -180,10 +179,9 @@ public class Frame {
 
         // If a Tiles passed in are not in the playerFrame, then a InvalidFrameException is thrown
         else{
-            throw new InvalidFrameException("Tiles not in the frame, therefore tiles cannot be removed");
+            throw new InvalidFrameException("Tiles not in the frame, therefore tiles cannot be removed,\n");
         }
 
-        // Returns the removed Tiles
     }
 
 
@@ -191,12 +189,13 @@ public class Frame {
      * Method to add a single Tile to the frame
      *
      * @param tile: To be added to the playerFrame
+     * @throws InvalidFrameException The Frame is full
      */
     public void addTile(Tile tile){
 
         // Checks if the playerFrame is full, if so InvalidFrameException is thrown
-        if (playerFrame.size() == 7) {
-            throw new InvalidFrameException("Frame can't contain more than 7 tiles");
+        if (playerFrame.size() == FRAME_SIZE) {
+            throw new InvalidFrameException("Frame can't contain more than 7 tiles.\n");
         }
 
         // Adds the Tile to the playerFrame
@@ -210,11 +209,12 @@ public class Frame {
      *
      * @param tiles: List of tiles to be checked
      * @return boolean: Result for if the Frame contains all the Tiles
+     * @throws InvalidFrameException The Frame is empty
      */
     public boolean checkTiles(ArrayList<Tile> tiles){
 
         if(tiles.isEmpty()){
-            throw new IllegalArgumentException("Cannot check for 0 tiles in Frame");
+            throw new InvalidFrameException("Cannot check for 0 tiles in Frame.\n");
         }
 
         Frame temp = this;
@@ -237,11 +237,12 @@ public class Frame {
      * Method to check if a list of characters are in the Frame
      * @param word: List of characters to check
      * @return Boolean answer
+     * @throws InvalidFrameException The Frame is empty
      */
     public boolean checkTiles(char[] word){
 
         if(word.length == 0){
-            throw new IllegalArgumentException("Cannot check for 0 tiles in Frame");
+            throw new InvalidFrameException("Cannot check for 0 tiles in Frame.\n");
         }
         // Loops through each Character passed in
 
@@ -262,7 +263,7 @@ public class Frame {
         return temp.size() == playerFrame.size() - word.length;
 
     }
-        // If all the Tiles passed in are in the Frame, true is returned
+
 
 
 
@@ -310,6 +311,7 @@ public class Frame {
      * Method that retrieves a Tile with a given character from the Frame
      * @param c: Character of Tile wanted
      * @return Tile with given character
+     * @throws InvalidFrameException The Tile is not in the Frame
      */
     public Tile getTile(char c) {
 
@@ -321,9 +323,8 @@ public class Frame {
                 return tile;
 
             }
-
         }
-        throw new IllegalArgumentException("Tile not in board");
+        throw new InvalidFrameException("Tile not in board.\n");
     }
 
     /**
@@ -331,10 +332,11 @@ public class Frame {
      *
      * @param i index of the Tile in the Frame
      * @return The Tile at index i in the Frame
+     * @throws InvalidFrameException The
      */
     public Tile getTile(int i){
         if(i < 0 || i > 6){
-            throw new IllegalArgumentException("Index not in range of Board");
+            throw new InvalidFrameException("Index not in range of Board.\n");
         }
         return playerFrame.get(i);
     }
@@ -344,6 +346,7 @@ public class Frame {
      * Method to retrieve a list of Tile with given characters from Frame
      * @param word list of wanted character Tiles
      * @return List of Tiles
+     * @throws InvalidFrameException The Frame does not contain the Tiles
      */
     public ArrayList<Tile> getTiles(char[] word){
 
@@ -360,7 +363,7 @@ public class Frame {
         }
 
         else{
-            throw new InvalidFrameException("Frame doesn't have the requested tiles");
+            throw new InvalidFrameException("Frame doesn't have the requested tiles.\n");
         }
 
         // Returns the ArrayList
@@ -392,6 +395,61 @@ public class Frame {
 
 
     /**
+     * Method to set the Blank Tiles in Frame
+     *
+     * @param tileValues The chars to change the Blank Tiles to
+     * @throws InvalidFrameException If too many chars are passed
+     */
+    public void setBlanks(char[] tileValues){
+        //There is only 2 Blank Tiles in Scrabble
+        if (tileValues.length <= 2){
+
+            setToBlank();
+
+            int j = 0;
+
+            //For loop to run through each Tile to check if Blank
+            for (int i = 0; i < playerFrame.size() && j < tileValues.length; i++) {
+                //If Blank set to next char
+                if (playerFrame.get(i).getCharacter() == ' '){
+                    playerFrame.get(i).setCharacter(tileValues[j]);
+                    j++;
+                }
+            }
+        }
+        else{
+            throw new InvalidFrameException("There can only be a max of 2 Blank Tiles.\n");
+        }
+
+    }
+
+    /**
+     * Method to set all Blank Tiles to Null
+     */
+    public void setToBlank(){
+        for (int i = 0; i < playerFrame.size(); i++) {
+            if (playerFrame.get(i).getValue() == 0){
+                playerFrame.get(i).setNull();
+            }
+        }
+    }
+
+    /**
+     * Method to find the total value of the Tiles in a Frame
+     *
+     * @return The total value of the Tiles
+     */
+    public int tileValues(){
+        int result = 0;
+
+        for (int i = 0; i < playerFrame.size(); i++) {
+            result += playerFrame.get(i).getValue();
+        }
+
+        return result;
+    }
+
+    /**
      * Method overriding the toString method
      *
      * @return String: Formatted string of the Tiles in Frame
@@ -412,5 +470,6 @@ public class Frame {
         // Returns the formatted text
         return text;
     }
+
 
 }

@@ -1,5 +1,7 @@
 package scrabble;
 
+
+import scrabble.exceptions.InvalidScrabbleException;
 import scrabble.exceptions.InvalidSquareException;
 
 /**
@@ -90,7 +92,7 @@ public class Square {
         if (isEmpty()){
             //If the tile is a Blank tile set to null
             if (tile.getCharacter() == ' '){
-                throw new InvalidSquareException("The Square can not contain a Null Tile");
+                throw new InvalidSquareException("The Square can not contain a Null Tile.\n");
             }
             else{
                 squareTile = tile;
@@ -98,7 +100,7 @@ public class Square {
         }
         //Else throw an Exception
         else{
-            throw new InvalidSquareException("The Square has a Tile on it!");
+            throw new InvalidSquareException("The Square has a Tile on it!\n");
         }
     }
 
@@ -155,7 +157,23 @@ public class Square {
                 result = result + getTile().getValue();
             }
         }
-
         return result;
+    }
+
+    /**
+     * Method to setSquare to empty
+     *
+     * @return The Tile on the Square
+     * @throws InvalidSquareException The Square was empty
+     */
+    public Tile setEmpty(){
+        if (isEmpty()){
+            throw new InvalidScrabbleException("Square is already empty.\n");
+        }
+        else{
+            Tile temp = squareTile;
+            squareTile = null;
+            return temp;
+        }
     }
 }
