@@ -116,6 +116,7 @@ public class Scrabble {
                     //TODO Skip other player turn
                 }
 
+            player.getPlayerFrame().setToBlank();
         }
         else {
             throw new InvalidScrabbleException("Invalid Start Position Inputted.\n");
@@ -125,6 +126,7 @@ public class Scrabble {
     public boolean challenge(){
         boolean challenge = false;
 
+        //TODO
 
         return challenge;
     }
@@ -146,7 +148,6 @@ public class Scrabble {
         for (int i = 0; i < players.length; i++) {
             players[i].decreaseScore(players[i].getPlayerFrame().tileValues());
         }
-
     }
 
 
