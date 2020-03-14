@@ -51,6 +51,20 @@ public class Scrabble {
         moveHistory = new ArrayList<>();
     }
 
+    public Board getBoard(){
+        return this.board;
+    }
+
+    public Pool getPool(){
+        return this.pool;
+    }
+
+    public Player[] getPlayers(){
+        return this.players;
+    }
+
+
+
     /**
      * Method to create a player with an inputted name
      *

@@ -125,7 +125,7 @@ public class UserInterface extends Application{
         TextField gameText = new TextField();
         gameText.setOnKeyReleased(event -> {
             if (event.getCode() == KeyCode.ENTER && !(gameText.getText().equals("")) ){
-                if(numOfPlayers != 2){
+                if(numOfPlayers < 2){
                     setUpEvent(gameText);
 
                 }
@@ -156,26 +156,34 @@ public class UserInterface extends Application{
 
 
     private void gameEvent(TextField gameText) {
-        UserInput text = UserInput.parseInput(gameText.getCharacters().toString());
+        UserInput text;
 
-        switch(text.getInputType()) {
-            case HELP:
-                gameTextLog.appendText("- Get Gud\n");
-                break;
-            case PASS:
-                gameTextLog.appendText("- Passed Turn\n");
-                break;
-            case QUIT:
-                gameTextLog.appendText("- I would quit but I can't\n");
-                break;
-            case EXCHANGE:
-                gameTextLog.appendText("- I have passed the ties your welcome make a better word\n");
-            case PLACE_TILE:
-                gameTextLog.appendText("- Tile have been placed\n");
-            default:
-                gameTextLog.appendText("- Error please try again\n");
-        }
+        text = UserInput.parseInput(gameText.getCharacters().toString());
 
+            switch(text.getInputType()) {
+                case HELP:
+                    gameTextLog.appendText("- Get Gud\n");
+                    break;
+                case PASS:
+                    gameTextLog.appendText("- Passed Turn for player " + ((numOfPlayers%2) + 1) + "\n");
+                    numOfPlayers++;
+                    break;
+                case QUIT:
+                    gameTextLog.appendText("- I would quit but I can't\n");
+                    break;
+                case EXCHANGE:
+                    gameTextLog.appendText("- I have passed the ties your welcome make a better word\n");
+                    break;
+                case PLACE_TILE:
+                    gameTextLog.appendText("- Tile have been placed\n");
+                    break;
+                case BLANK:
+                    gameTextLog.appendText("- Move for blank cool\n");
+                    break;
+                default:
+                    gameTextLog.appendText("- Error please try again\n");
+            }
+        gameTextLog.appendText("- Player "+ scrabble.getPlayers()[numOfPlayers % 2].getName() +" move \n- " + scrabble.getPlayers()[numOfPlayers % 2].getPlayerFrame().toString() + "\n");
         gameText.setText("");
     }
 }
