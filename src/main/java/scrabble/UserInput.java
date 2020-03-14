@@ -28,6 +28,7 @@ public class UserInput {
      * Constructor for when user is swapping a Tile(s)
      * @param type The UserInputType
      * @param tileExchange An array of characters that are to be swapped
+     * @throws InvalidInputException If user input are not valid tiles
      */
     public UserInput(UserInputType type, char[] tileExchange){
         inputType = type;
