@@ -601,4 +601,18 @@ public class Board {
         }
     }
 
+    /**
+     * Method to remove the Tiles place in a move
+     *
+     * @param moveInfo The move to remove
+     */
+    public void removeMove(MoveInfo moveInfo){
+
+        //For loop to set the squares back to empty
+        for (int i = 0; i < moveInfo.getRequiredTiles().length; i++) {
+
+            getSquare(moveInfo.getRequiredTilesPositions()[i][0], moveInfo.getRequiredTilesPositions()[i][1]).setEmpty();
+        }
+    }
+
 }

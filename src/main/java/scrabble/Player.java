@@ -199,7 +199,4 @@ public class Player {
         return "Name: " + this.getName() + "\nScore: " + this.getScore() + "\nFrame: " + this.getPlayerFrame();
     }
 
-
-
-
 }
