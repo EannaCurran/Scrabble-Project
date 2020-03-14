@@ -189,32 +189,38 @@ public class UserInput {
                             //A try catch to catch any invalid inputs in user input for placing a word on the Board
                             try {
 
-
+                                //character array temp holds the coordinates the use inputs
                                 char[] temp = tokens[0].toCharArray();
+                                //The first coordinate (a letter) is subtracted by 'A' and the differences gives the row coordinate (e.g. B - A gives 1)
+                                //Position[0] holds the row coordinate
                                 position[0] = temp[0] - 'A';
+                                //The column coordinates (represented by numbers) is parsed to an integer.
                                 position[1] = Integer.parseInt(tokens[0].substring(1));
 
+                                //Declaring the direction enum type
                                 directionInput = null;
 
+                                //Checks if the length of the tokenised input is 3 to check its a valid input
+                                //[coordinates], [direction], [word] = 3
                                 if (tokens.length == 3) {
-
+                                    //Swtich statement checking which direction the user wants to place the word on the board
                                     switch (tokens[1]) {
+                                        //Case 'A' for placing word across
                                         case "A":
                                         case "a":
                                             directionInput = Direction.HORIZONTAL;
                                             break;
-
+                                        //Case 'D' for placing word down
                                         case "D":
                                         case "d":
                                             directionInput = Direction.VERTICAL;
                                             break;
-
+                                        //If default an invalid input has been entered and direction type is left null
                                         default:
-
 
                                     }
 
-
+                                    //Checks if directionInput is not null.
                                     if (directionInput != null) {
                                         inputData = new UserInput(UserInputType.PLACE_TILE, tokens[2].toCharArray(), position, directionInput);
                                     } else {
@@ -223,17 +229,21 @@ public class UserInput {
                                 }
 
                                 } catch(Exception e){
+                                    //sets input type to ERROR if an invalid input occurs
                                     inputData = new UserInput(UserInputType.ERROR);
                                 }
 
 
                         }
                             else{
+                                    //Sets User input type to ERROR if the first token isn't a valid a row coordinate (A to O)
+                                    // or isn't a valid a column coordinate (a number)
                                     inputData = new UserInput(UserInputType.ERROR);
                                 }
 
                 }
         }
+        // inputData object is returned containing the result of the user's input
         return inputData;
 
         }
