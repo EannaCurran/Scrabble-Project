@@ -232,6 +232,7 @@ public class Board {
      *
      * @param moveInfo The move to validate
      * @return true if valid move
+     * @throws InvalidMoveInfoException If the Move is Invalid
      */
     protected boolean checkValidMove(MoveInfo moveInfo){
 
@@ -291,23 +292,29 @@ public class Board {
 
     /**
      * Method for a Player to place a list of Tiles on the Board
-     * @param player: Person to place Tiles
-     * @param word: Characters to place on the Board
-     * @param positions: List of positions to place Tiles on the Board
+     *
+     * @param moveInfo
      */
-    public void placeTiles(Player player, char[] word, int[][] positions){
+    public void placeTiles(MoveInfo moveInfo){
 //TODO
-        // Validates the players move
-//        checkValidMove(player, word, positions);
+        if (checkValidMove(moveInfo)){
 
-        // Loops through each move and places the Tile on the Board
-        for(int i = 0; i < word.length; i++){
+            calculateScore(moveInfo);
 
-            placeTile(player.getPlayerFrame().getTile(word[i]), positions[i][0], positions[i][1]);
-            player.getPlayerFrame().removeTile(word[i]);
+            moveInfo.getPlayer().increaseScore(moveInfo.getMoveScore());
+
+            // Loops through each move and places the Tile on the Board
+            for(int i = 0; i < moveInfo.getRequiredTiles().length; i++){
+
+                placeTile(moveInfo.getPlayer().getPlayerFrame().getTile(moveInfo.getRequiredTiles()[i]), moveInfo.getRequiredTilesPositions()[i][0], moveInfo.getRequiredTilesPositions()[i][1]);
+
+            }
+
+        }
+        else {
+            throw new InvalidMoveInfoException("The move is invalid.\n");
         }
 
-        player.getPlayerFrame().fillFrame();
     }
 
 
@@ -352,7 +359,7 @@ public class Board {
         // Check if a the first tile of the game has been placed, since it doesn't need to have a connecting tile
         if (boardSquares[7][7].isEmpty()) {
 
-            // If the first tile of the game hasn't been placed and the position [7][7] is not passed in, exception is thrown
+            // If the first tile of the game hasn't been placed and the position [7][7] is not passed in
             if (moveInfo.getPrimaryWord().getDirection() == UserInput.Direction.VERTICAL ? (moveInfo.getPrimaryWord().getStartPosition()[1] == 7 && moveInfo.getPrimaryWord().getStartPosition()[0] <= 7 && moveInfo.getPrimaryWord().getStartPosition()[0] + moveInfo.getPrimaryWord().getWord().length >= 7) : (moveInfo.getPrimaryWord().getStartPosition()[0] == 7 && moveInfo.getPrimaryWord().getStartPosition()[1] <= 7 && moveInfo.getPrimaryWord().getStartPosition()[1] + moveInfo.getPrimaryWord().getWord().length  >= 7)) {
                 connectCheck = true;
             }
@@ -370,6 +377,7 @@ public class Board {
      * Method to find the required Tiles that the Player needs to place
      *
      * @param moveInfo
+     * @throws InvalidMoveInfoException The Word does not match current Tiles on the Board
      */
     public void getRequiredTiles(MoveInfo moveInfo){
 
@@ -481,10 +489,11 @@ public class Board {
      * @param position Position in the Word
      * @param direction Direction of the Word
      * @return The Word
+     * @throws InvalidBoardException The position is invalid
      */
     public Word findWord(int[] position, UserInput.Direction direction){
 
-        if (position.length == 2){
+        if (position.length == 2 && checkValidPosition(position)){
 
             char[] word = new char[BOARD_SIZE];
 
