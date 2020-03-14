@@ -9,24 +9,17 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import scrabble.Board;
-import scrabble.Player;
-import scrabble.Pool;
-import scrabble.UserInput;
-
+import scrabble.*;
 
 
 public class UserInterface extends Application{
-
-    private Board board;
-    private Pool pool;
-    private Player player1;
-    private Player player2;
 
     private GridPane gameFrame;
     private TextField gameTextInput;
     private TextArea gameTextLog;
     private GridPane gameBoard;
+    private Scrabble scrabble;
+    private int numOfPlayers = 0;
 
     public static void main(String[] args) {
 
@@ -36,17 +29,14 @@ public class UserInterface extends Application{
 
     @Override
     public void start(Stage gameStage) {
-
-        board = new Board();
-        pool = new Pool();
+        scrabble = new Scrabble();
 
         gameStage.setTitle("Scrabble");
 
         gameFrame = new GridPane();
         gameTextInput = setUpTextInput();
         gameTextLog = setUpTextLog();
-        gameBoard = setUpBoard(board);
-        setUpPlayers();
+        gameBoard = setUpBoard(scrabble.getBoard());
 
         gameFrame.getChildren().add(gameBoard);
         gameFrame.add(gameTextLog,1,0);
@@ -57,10 +47,6 @@ public class UserInterface extends Application{
         gameStage.setScene(gameScene);
         gameStage.sizeToScene();
         gameStage.show();
-
-    }
-
-    private void setUpPlayers() {
     }
 
 
@@ -130,7 +116,7 @@ public class UserInterface extends Application{
         TextArea text_flow = new TextArea();
         text_flow.setEditable(false);
         text_flow.setWrapText(true);
-        text_flow.appendText("Welcome to scrabble, please enter player 1 name\n");
+        text_flow.appendText("- Welcome to scrabble, please enter name for player 1 and 2\n");
 
         return text_flow;
     }
@@ -138,14 +124,35 @@ public class UserInterface extends Application{
     private TextField setUpTextInput() {
         TextField gameText = new TextField();
         gameText.setOnKeyReleased(event -> {
-            if (event.getCode() == KeyCode.ENTER && !(gameText.getText().equals(""))){
-                gameEvent(gameText);
+            if (event.getCode() == KeyCode.ENTER && !(gameText.getText().equals("")) ){
+                if(numOfPlayers != 2){
+                    setUpEvent(gameText);
+
+                }
+                else {
+                    gameEvent(gameText);
+                }
             }
         });
 
         return gameText;
     }
 
+    private void setUpEvent(TextField gameText) {
+        try{
+            scrabble.createPlayer(gameText.getCharacters().toString(), numOfPlayers);
+            gameTextLog.appendText("- Player " + (numOfPlayers+1) + " name set to " + scrabble.getPlayers()[numOfPlayers].getName() + "\n");
+            numOfPlayers++;
+        }catch (Exception e){
+            gameTextLog.appendText(e.getMessage() + "\n");
+        }
+        if(numOfPlayers == 2){
+
+            gameTextLog.appendText("- Player "+ scrabble.getPlayers()[numOfPlayers % 2].getName() +" move \n- " + scrabble.getPlayers()[numOfPlayers % 2].getPlayerFrame().toString() + "\n");
+        }
+
+        gameText.setText("");
+    }
 
 
     private void gameEvent(TextField gameText) {
@@ -168,6 +175,7 @@ public class UserInterface extends Application{
             default:
                 gameTextLog.appendText("- Error please try again\n");
         }
+
         gameText.setText("");
     }
 }
