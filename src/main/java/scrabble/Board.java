@@ -400,7 +400,7 @@ public class Board {
             }
             //Else check the tiles on the board match the word
             else if (moveInfo.getPrimaryWord().getWord()[i] != currentSquare.getTile().getCharacter()){
-                throw new InvalidMoveInfoException("Word does not match tiles on the board.\n")
+                throw new InvalidMoveInfoException("Word does not match tiles on the board.\n");
             }
         }
 
@@ -550,20 +550,23 @@ public class Board {
     }
 
     /**
+     *Method to calculate the score of a Word
      *
-     *
-     * @param word
-     * @return
+     * @param word The word to calculate the score
+     * @return THe score of the Word
      */
     private int calculateScoreWord(Word word){
 
         int wordFactor = 1, result = 0;
         Square currentSquare;
 
+        //For loop to run through each Square in the Word
         for (int i = 0; i < word.getWord().length; i++) {
 
+            //Get the current Square based on Word Direction
             currentSquare = word.getDirection() == UserInput.Direction.VERTICAL? getSquare(word.getStartPosition()[0] + i,word.getStartPosition()[1] ): getSquare(word.getStartPosition()[0] ,word.getStartPosition()[1] + i);
 
+            //Switch statement to calculate based on SquareType
             switch (currentSquare.getType()){
 
                 case TRIPLE_WORD:
@@ -584,10 +587,25 @@ public class Board {
                 default:
                     result += currentSquare.getTile().getValue();
             }
+        }
+        return result * wordFactor;
+    }
 
+    /**
+     *
+     * @param word
+     */
+    protected void setWordSquaresNormal(Word word){
+
+        Square currentSquare;
+
+        for (int i = 0; i < word.getWord().length; i++) {
+            //Get the current Square based on Word Direction
+            currentSquare = word.getDirection() == UserInput.Direction.VERTICAL? getSquare(word.getStartPosition()[0] + i,word.getStartPosition()[1] ): getSquare(word.getStartPosition()[0] ,word.getStartPosition()[1] + i);
+
+            currentSquare.setNormal();
         }
 
-        return result * wordFactor;
-
     }
+
 }
