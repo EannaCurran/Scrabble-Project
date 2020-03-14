@@ -18,8 +18,9 @@ public class UserInterface extends Application{
     private TextField gameTextInput;
     private TextArea gameTextLog;
     private GridPane gameBoard;
-    private Scrabble scrabble;
-    private int numOfPlayers = 0;
+    public Scrabble scrabble;
+    private int playerTurn = 0;
+    private boolean setup = false;
 
     public static void main(String[] args) {
 
@@ -125,7 +126,7 @@ public class UserInterface extends Application{
         TextField gameText = new TextField();
         gameText.setOnKeyReleased(event -> {
             if (event.getCode() == KeyCode.ENTER && !(gameText.getText().equals("")) ){
-                if(numOfPlayers < 2){
+                if(!setup){
                     setUpEvent(gameText);
 
                 }
@@ -140,15 +141,19 @@ public class UserInterface extends Application{
 
     private void setUpEvent(TextField gameText) {
         try{
-            scrabble.createPlayer(gameText.getCharacters().toString(), numOfPlayers);
-            gameTextLog.appendText("- Player " + (numOfPlayers+1) + " name set to " + scrabble.getPlayers()[numOfPlayers].getName() + "\n");
-            numOfPlayers++;
+            scrabble.createPlayer(gameText.getCharacters().toString(), playerTurn);
+            gameTextLog.appendText("- Player " + (playerTurn+1) + " name set to " + scrabble.getPlayers()[playerTurn].getName() + "\n");
+            playerTurn++;
         }catch (Exception e){
             gameTextLog.appendText(e.getMessage() + "\n");
         }
-        if(numOfPlayers == 2){
 
-            gameTextLog.appendText("- Player "+ scrabble.getPlayers()[numOfPlayers % 2].getName() +" move \n- " + scrabble.getPlayers()[numOfPlayers % 2].getPlayerFrame().toString() + "\n");
+        if(playerTurn == 2) {
+
+            playerTurn = 0;
+            gameTextLog.appendText("- Player "+ scrabble.getPlayers()[playerTurn].getName() +" move \n- " + scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().toString() + "\n");
+
+            setup = true;
         }
 
         gameText.setText("");
@@ -162,28 +167,46 @@ public class UserInterface extends Application{
 
             switch(text.getInputType()) {
                 case HELP:
-                    gameTextLog.appendText("- Get Gud\n");
+                    gameTextLog.appendText("- Commands:\n");
                     break;
                 case PASS:
-                    gameTextLog.appendText("- Passed Turn for player " + ((numOfPlayers%2) + 1) + "\n");
-                    numOfPlayers++;
+                    gameTextLog.appendText("- Passed Turn for player " + (playerTurn + 1) + "\n");
+                    playerTurn = (playerTurn + 1) % 2;
                     break;
                 case QUIT:
                     gameTextLog.appendText("- I would quit but I can't\n");
                     break;
                 case EXCHANGE:
-                    gameTextLog.appendText("- I have passed the ties your welcome make a better word\n");
+                    try {
+                        scrabble.getPlayers()[playerTurn].getPlayerFrame().swapTiles(text.getWord());
+                        gameTextLog.appendText("- Selected tiles have been swapped\n");
+                        playerTurn = (playerTurn + 1) % 2;
+                    } catch(Exception e) {
+
+                        gameTextLog.appendText("- Error please try again\n");
+                    }
                     break;
                 case PLACE_TILE:
-                    gameTextLog.appendText("- Tile have been placed\n");
+                    try{
+
+                    }
+                    catch(Exception e){
+
+                    }
                     break;
                 case BLANK:
-                    gameTextLog.appendText("- Move for blank cool\n");
+                    try{
+                        scrabble.getPlayers()[playerTurn].getPlayerFrame().getTile(' ').setCharacter(text.getWord()[0]);
+                        gameTextLog.appendText("- Blank tile has been set\n");
+                    } catch(Exception e){
+                        gameTextLog.appendText("- Error please try again\n");
+                    }
                     break;
                 default:
                     gameTextLog.appendText("- Error please try again\n");
             }
-        gameTextLog.appendText("- Player "+ scrabble.getPlayers()[numOfPlayers % 2].getName() +" move \n- " + scrabble.getPlayers()[numOfPlayers % 2].getPlayerFrame().toString() + "\n");
+
+        gameTextLog.appendText("- Player "+ scrabble.getPlayers()[playerTurn % 2].getName() +" move \n- " + scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().toString() + "\n");
         gameText.setText("");
     }
 }

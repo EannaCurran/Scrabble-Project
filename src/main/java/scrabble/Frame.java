@@ -376,7 +376,7 @@ public class Frame {
      * @param tiles: List of Tiles to be removed
      *
      */
-    public void swapTiles(ArrayList<Tile> tiles){
+    public void swapTiles(char[] tiles){
 
         // Removes the Tiles passed in from the Frame
         removeTiles(tiles);
@@ -385,8 +385,8 @@ public class Frame {
         fillFrame();
 
         // Returns the Tiles removed from the Frame back to the Pool
-        for(Tile tile: tiles){
-            this.framePool.receiveTile(tile);
+        for(char tile: tiles){
+            this.framePool.receiveTile(new Tile(tile));
         }
     }
 
