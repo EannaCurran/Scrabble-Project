@@ -48,7 +48,6 @@ public class Tile implements Comparable<Tile> {
         }
 
         return result;
-
     }
 
     /**
@@ -174,11 +173,11 @@ public class Tile implements Comparable<Tile> {
                 this.character = character;
             }
             else{
-                throw new InvalidTileException("Invalid char inputted");
+                throw new InvalidTileException("Invalid char inputted.\n");
             }
         }
         else{
-            throw new InvalidTileException("Only a blank tile can have its character changed");
+            throw new InvalidTileException("Only a blank tile can have its character changed.\n");
         }
     }
 
@@ -215,7 +214,7 @@ public class Tile implements Comparable<Tile> {
             value = charValue(c);
         }
         else{
-            throw new InvalidTileException("Invalid character was inputted");
+            throw new InvalidTileException("Invalid character was inputted.\n");
         }
     }
 

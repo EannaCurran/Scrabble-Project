@@ -28,6 +28,7 @@ public class Word {
      * @param coOrdinates The starting position on the board (row, col)
      * @param d The direction of the Word
      * @param w The word in char array form
+     * @throws InvalidWordException The Word must be between 1 - 15 letters
      */
     public Word(int[] coOrdinates, UserInput.Direction d, char[] w){
         if (Board.checkValidPosition(coOrdinates) && validWord(w)){
@@ -35,7 +36,7 @@ public class Word {
             direction = d;
             word = w;
         }else {
-            throw new InvalidWordException("The word co-ordinates must be on the Board\nThe word must between 1 - 15 capital letters long\n");
+            throw new InvalidWordException("The word co-ordinates must be on the Board.\nThe word must between 1 - 15 capital letters long.\n");
         }
     }
 

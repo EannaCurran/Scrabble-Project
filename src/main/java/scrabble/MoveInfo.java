@@ -100,12 +100,14 @@ public class MoveInfo {
      * @param coOrdinates Position of the first letter of the Word
      * @param d Direction of the Word
      * @param w Word in char array form
+     * @throws InvalidMoveInfoException Player can not be Null
      */
     public MoveInfo(Player p, int[] coOrdinates, UserInput.Direction d, char[] w){
 
         //Create the Word for the move
         primaryWord = new Word(coOrdinates, d, w);
 
+        auxiliaryWords = new ArrayList<>();
 
         if (p != null){
             player = p;
@@ -116,11 +118,12 @@ public class MoveInfo {
 
     }
 
-    //TODO change
+
     /**
      * Mutator Method for Score
      *
      * @param score The Score of the move
+     * @throws InvalidMoveInfoException The move must have a positive score
      */
     protected void setScore(int score){
         if (score < 0){

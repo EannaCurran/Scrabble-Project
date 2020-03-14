@@ -121,11 +121,11 @@ public class UserInput {
         Direction directionInput;
         //An array to store the coordinates of the first letter of the word to be placed on the board
         int[] position = new int[2];
-        // A UserInput object to store all the data
+
         UserInput inputData = null;
 
         //Splits up the user's input into tokens in a String array
-        String[] tokens = input.split("[\\w]+");
+        String[] tokens = input.split(" ");
 
         //Checks if the input is empty
         if(input.isEmpty())
