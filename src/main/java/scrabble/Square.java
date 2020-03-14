@@ -172,9 +172,7 @@ public class Square {
         }
         else{
             Tile temp = squareTile;
-
             squareTile = null;
-
             return temp;
         }
     }
