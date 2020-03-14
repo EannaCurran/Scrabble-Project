@@ -17,7 +17,7 @@ public class UserInput {
 
     //Constructors
     /**
-     * Constructor for cases with one token such as 'HELP' or 'PASS'
+     * Constructor for cases with one token such as 'HELP', 'PASS' and 'QUIT'
      * @param type The UserInputType
      */
     public UserInput(UserInputType type){
