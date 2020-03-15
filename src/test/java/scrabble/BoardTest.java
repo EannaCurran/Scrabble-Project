@@ -548,18 +548,39 @@ public class BoardTest {
 
         // assertAll so that all assertions are run and reported together
         assertAll("Testing checkValidMove for invalid Tiles\n",
-                //Assert throws for invalid position
-                () -> assertThrows(InvalidWordException.class, ()-> boardTest.checkValidMove(new MoveInfo(playerTest, new int[]{7,7}, UserInput.Direction.VERTICAL, new char[]{'C', 'A', 'T', 'T'})), "checkValidMove did not throw InvalidWordException for {-1,-1}\n"),
-                //Assert throws for invalid position
-                () -> assertThrows(InvalidWordException.class, ()-> boardTest.checkValidMove(new MoveInfo(playerTest, new int[]{7,7}, UserInput.Direction.VERTICAL, new char[]{'C', 'A', 'T', 'T', 'A', 'C', 'A', 'A'})), "checkValidMove did not throw InvalidWordException for {-1,-1}\n"),
-                //Assert throws for invalid position
-                () -> assertThrows(InvalidWordException.class, ()-> boardTest.checkValidMove(new MoveInfo(playerTest, new int[]{7,7}, UserInput.Direction.VERTICAL, new char[]{'C', 'A', 'P'})), "checkValidMove did not throw InvalidWordException for {15,15}\n"),
-                //Assert throws for invalid position
-                () -> assertThrows(InvalidBoardException.class, ()-> boardTest.checkValidMove(new MoveInfo(playerTest, new int[]{7,7}, UserInput.Direction.VERTICAL, new char[]{})), "checkValidMove did not throw InvalidBoardException for invalid length\n"),
-                //Assert throws for invalid position
-                () -> assertThrows(InvalidBoardException.class, ()-> boardTest.checkValidMove(new MoveInfo(playerTest, new int[]{7,7}, UserInput.Direction.VERTICAL, new char[]{'5', 'A', 'T'})), "checkValidMove did not throw InvalidBoardException for invalid length\n")
+                //Assert throws for invalid Tile
+                () -> assertThrows(InvalidMoveInfoException.class, ()-> boardTest.checkValidMove(new MoveInfo(playerTest, new int[]{7,7}, UserInput.Direction.VERTICAL, new char[]{'C', 'A', 'T', 'T'})), "checkValidMove did not throw InvalidMoveInfoException for double of a letter player has one of\n"),
+                //Assert throws for invalid Tile
+                () -> assertThrows(InvalidWordException.class, ()-> boardTest.checkValidMove(new MoveInfo(playerTest, new int[]{7,7}, UserInput.Direction.VERTICAL, new char[]{'C', 'A', 'T', 'T', 'A', 'C', 'C', 'A', 'T', 'C', 'A', 'T', 'C', 'A', 'T', 'A'})), "checkValidMove did not throw InvalidWordException for word of length 16\n"),
+                //Assert throws for invalid Tile
+                () -> assertThrows(InvalidMoveInfoException.class, ()-> boardTest.checkValidMove(new MoveInfo(playerTest, new int[]{7,7}, UserInput.Direction.VERTICAL, new char[]{'C', 'A', 'P'})), "checkValidMove did not throw InvalidMoveInfoException for Tile the player does not have\n"),
+                //Assert throws for invalid Tile
+                () -> assertThrows(InvalidWordException.class, ()-> boardTest.checkValidMove(new MoveInfo(playerTest, new int[]{7,7}, UserInput.Direction.VERTICAL, new char[]{})), "checkValidMove did not throw InvalidBoardException for empty word\n"),
+                //Assert throws for invalid Tile
+                () -> assertThrows(InvalidWordException.class, ()-> boardTest.checkValidMove(new MoveInfo(playerTest, new int[]{7,7}, UserInput.Direction.VERTICAL, new char[]{'5', 'A', 'T'})), "checkValidMove did not throw InvalidBoardException for number Tile\n")
         );
+    }
 
+    @Test
+    @DisplayName("Board Test checkValidMove Invalid First Position")
+    void boardTestCheckValidMoveFirstPos() {
+
+        playerTest.getPlayerFrame().returnFrame().clear();
+        playerTest.getPlayerFrame().addTile(new Tile('C'));
+        playerTest.getPlayerFrame().addTile(new Tile('A'));
+        playerTest.getPlayerFrame().addTile(new Tile('T'));
+
+        // assertAll so that all assertions are run and reported together
+        assertAll("Testing checkValidMove for First Position\n",
+                //Assert throws for invalid position
+                () -> assertThrows(InvalidMoveInfoException.class, ()-> boardTest.checkValidMove(new MoveInfo(playerTest, new int[]{0,0}, UserInput.Direction.VERTICAL, new char[]{'C', 'A', 'T'})), "checkValidMove did not throw InvalidMoveInfoException for a first move not on the start square\n"),
+                //Assert return true for valid start position
+                () -> assertTrue(boardTest.checkValidMove(new MoveInfo(playerTest, new int[]{7,7}, UserInput.Direction.VERTICAL, new char[]{'C', 'A', 'T'})), "checkValidMove did not return true for starting on the start square\n"),
+                //Assert return true for valid start position
+                () -> assertTrue(boardTest.checkValidMove(new MoveInfo(playerTest, new int[]{6,7}, UserInput.Direction.VERTICAL, new char[]{'C', 'A', 'T'})), "checkValidMove did not return true for starting before Vertically the start square\n"),
+                //Assert return true for valid start position
+                () -> assertTrue(boardTest.checkValidMove(new MoveInfo(playerTest, new int[]{7,6}, UserInput.Direction.HORIZONTAL, new char[]{'C', 'A', 'T'})), "checkValidMove did not return true for starting before Horizontally the start square\n")
+        );
     }
 
 
