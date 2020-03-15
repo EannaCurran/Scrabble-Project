@@ -302,7 +302,7 @@ public class Board {
 
             moveInfo.getPlayer().increaseScore(moveInfo.getMoveScore());
 
-            // Loops through each move and places the Tile on the Board playerTurn = (playerTurn + 1) % 2;
+            // Loops through each move and places the Tile on the Board
             for(int i = 0; i < moveInfo.getRequiredTiles().length; i++){
 
                 placeTile(moveInfo.getPlayer().getPlayerFrame().getTile(moveInfo.getRequiredTiles()[i]), moveInfo.getRequiredTilesPositions()[i][0], moveInfo.getRequiredTilesPositions()[i][1]);

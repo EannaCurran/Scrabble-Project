@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
+import scrabble.exceptions.InvalidMoveInfoException;
 import scrabble.exceptions.InvalidWordException;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,14 +14,16 @@ public class MoveInfoTest {
 
     private Player player;
     private Pool pool;
-    private Board board;
+    private MoveInfo moveInfo;
 
     @BeforeEach
     void setUp(){
 
-        board = new Board();
+
         pool = new Pool();
         player = new Player("Bot", pool);
+
+        moveInfo = new MoveInfo(player, new int[]{7,7}, UserInput.Direction.VERTICAL, new char[]{'C', 'A', 'T'});
     }
 
     @Test
@@ -85,7 +88,32 @@ public class MoveInfoTest {
     void moveInfoTestConstructorNullPlayer(){
 
         //Assert that invalid Player throws an InvalidWordException
-        assertThrows(InvalidWordException.class, ()-> new MoveInfo(null, new int[]{7,7}, null, new char[]{'C', 'A', 'T'}), "The Constructor did not throw InvalidMoveInfoException for a invalid Player\n");
+        assertThrows(InvalidMoveInfoException.class, ()-> new MoveInfo(null, new int[]{7,7}, UserInput.Direction.VERTICAL, new char[]{'C', 'A', 'T'}), "The Constructor did not throw InvalidMoveInfoException for a invalid Player\n");
+    }
+
+    @Test
+    @DisplayName("MoveInfo Test setScore")
+    void moveInfoTestSetScore(){
+        // assertAll so that all assertions are run and reported together
+        assertAll("Test valid input for MoveInfo setScore",
+                //Assert that valid input dose not throw an exception
+                ()-> assertDoesNotThrow(()-> moveInfo.setScore(100),  "setScore throw exception for a valid input\n"),
+                //Assert that the move score is 100
+                ()-> assertEquals(100, moveInfo.getMoveScore(), "The setScore set the incorrect score value\n")
+        );
+    }
+
+    @Test
+    @DisplayName("MoveInfo Test setScore Invalid")
+    void moveInfoTestSetScoreInvalid(){
+
+        // assertAll so that all assertions are run and reported together
+        assertAll("Test invalid input for MoveInfo setScore",
+                //Assert that invalid Word throws an InvalidMoveInfoException
+                ()-> assertThrows(InvalidMoveInfoException.class,()-> moveInfo.setScore(-100), "The setScore did not throw InvalidWordException for -100\n"),
+                //Assert that invalid Word throws an InvalidMoveInfoException
+                ()-> assertThrows(InvalidMoveInfoException.class,()-> moveInfo.setScore(-1), "The setScore did not throw InvalidWordException for -1\n")
+        );
     }
 
 }
