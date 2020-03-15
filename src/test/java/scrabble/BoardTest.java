@@ -9,24 +9,18 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class BoardTest {
 
-
-
     // Declaring variables for testing
     private Board boardTest;
     private Pool poolTest;
     private Player playerTest;
 
-
-
     @BeforeEach
-    void setup()
-    {
+    void setup() {
         // Setting up variables used in testing
         poolTest = new Pool();
         boardTest = new Board();
         playerTest = new Player("Test" , poolTest);
     }
-
 
 
     //Tests board is printed correctly
@@ -358,12 +352,12 @@ public class BoardTest {
         playerTest.getPlayerFrame().addTile(new Tile('A'));
         playerTest.getPlayerFrame().addTile(new Tile('A'));
 
-        // Creating list of positions and characters
-        int[][] positions = {{7,7},{7,8},{7,9}};
+        // Creating position and word
+        int[] position = {7,7};
         char[] testWord = {'A','A','A'};
 
         // Places the Tiles with characters from testWord on the given positions
-        boardTest.placeTiles(playerTest, testWord, positions);
+        boardTest.placeTiles(new MoveInfo( playerTest, position, UserInput.Direction.HORIZONTAL, testWord));
 
         assertAll("Testing that each of the Tiles have been placed on the Board\n",
 
@@ -375,7 +369,6 @@ public class BoardTest {
 
                 // Asserts that there is a Tile with character 'A' at 7,9
                 () -> assertEquals(boardTest.getSquare(7,9).getTile(), new Tile('A'), "Tile has been placed at 7,7\n")
-
         );
 
     }
@@ -400,16 +393,17 @@ public class BoardTest {
 
         assertAll("Testing that the Player doesn't have Tiles with certain characters in their Frame\n",
 
-                // Asserts that an exception is thrown for checking an empty list
-                () -> assertThrows(IllegalArgumentException.class,() -> boardTest.checkPlayerHasTiles(playerTest, emptyChar), "Cannot check for no characters in Frame\n"),
+                // Asserts that false is returned for checking an empty list
+                () -> assertFalse(boardTest.checkPlayerHasTiles(playerTest, emptyChar), "Cannot check for no characters in Frame\n"),
 
-                // Asserts that an exception is thrown for checking a list of characters not in the Frame
-                () -> assertThrows(InvalidBoardException.class,() -> boardTest.checkPlayerHasTiles(playerTest, charPlayerDoesNotHave),"Player doesn't have the necessary tiles\n"),
+                // Asserts that false is returned for checking a list of characters not in the Frame
+                () -> assertFalse(boardTest.checkPlayerHasTiles(playerTest, charPlayerDoesNotHave),"Player doesn't have the necessary tiles\n"),
 
-                // Asserts that an exception is thrown for checking a list of characters with some not in the Frame
-                () -> assertThrows(InvalidBoardException.class,() -> boardTest.checkPlayerHasTiles(playerTest, charPlayerHasSome),"Player doesn't have the necessary tiles\n"),
+                // Asserts that false is returned for checking a list of characters with some not in the Frame
+                () -> assertFalse(boardTest.checkPlayerHasTiles(playerTest, charPlayerHasSome),"Player doesn't have the necessary tiles\n"),
 
-                () ->  assertThrows(InvalidBoardException.class, () -> boardTest.checkPlayerHasTiles(playerTest, charPlayerHasRepeat), "Player doesn't have the necessary tiles\n")
+                // Asserts that false is returned for checking a list of characters with two of a character that there is only one of
+                () ->  assertFalse(boardTest.checkPlayerHasTiles(playerTest, charPlayerHasRepeat), "Player doesn't have the necessary tiles\n")
         );
     }
 
@@ -434,7 +428,7 @@ public class BoardTest {
         char[] charPlayerHas = {'A', 'B', 'C' ,'C','C' ,'C','C' };
 
         // Asserts that an exception is not thrown for a list of characters in the Frame
-        assertDoesNotThrow(() -> boardTest.checkPlayerHasTiles(playerTest, charPlayerHas), "Player has the necessary tiles\n");
+        assertTrue(boardTest.checkPlayerHasTiles(playerTest, charPlayerHas), "Player has the necessary tiles\n");
     }
 
 
@@ -443,29 +437,25 @@ public class BoardTest {
     @DisplayName("Testing validation for lists of invalid co-ordinates to place Tiles on the Board")
     void testCheckInvalidValidPosition()
     {
-        // Creates a 2d array of invalid positions
-        int[][] invalidLargePositions = {{15,15}};
-        int[][] invalidNegativePositions = {{-1,-1}};
-        int[][] invalidMixedPositions = {{3,2}, {15,15}};
-        int[][] invalidNoPositions = {};
-        int[][] invalidMoreThanSevenPositions = {{1,1}, {1,2} , {1,3}, {1,4}, {1,5}, {1,6}, {1,7}, {1,8}};
+        // Create invalid positions
+        int[] invalidLargePosition = {15,15};
+        int[] invalidNegativePosition = {-1,-1};
+        int[] invalidNoPositions = {};
+        int[] invalidMoreThanTwoPosition = {1,1,2};
 
         assertAll("Testing that the player cannot input invalid co-ordinates for their move\n",
 
-                //  Asserts that an exception is thrown for singular invalid position at 15,15
-                () -> assertThrows(InvalidBoardException.class, () -> boardTest.checkValidPosition(invalidLargePositions), "Position not on board\n"),
+                //  Asserts that returns false for invalid position at 15,15
+                () -> assertFalse(Board.checkValidPosition(invalidLargePosition), "Position not on board\n"),
 
-                //  Asserts that an exception is thrown for singular invalid position at -1,-1
-                () -> assertThrows(InvalidBoardException.class, () -> boardTest.checkValidPosition(invalidNegativePositions), "Position not on board\n"),
+                //  Asserts that returns false for invalid position at -1,-1
+                () -> assertFalse(Board.checkValidPosition(invalidNegativePosition), "Position not on board\n"),
 
-                //  Asserts that an exception is thrown for a mix of valid and invalid positions
-                () -> assertThrows(InvalidBoardException.class, () -> boardTest.checkValidPosition(invalidMixedPositions), "Position not on board\n"),
+                //  Asserts that an exception is thrown for an empty position
+                () -> assertThrows(InvalidBoardException.class, () -> Board.checkValidPosition(invalidNoPositions), "Invalid number of positions entered\n"),
 
-                //  Asserts that an exception is thrown for an empty list positions
-                () -> assertThrows(InvalidBoardException.class, () -> boardTest.checkValidPosition(invalidNoPositions), "Invalid number of positions entered\n"),
-
-                //  Asserts that an exception is thrown for a list of more than 7 positions
-                () -> assertThrows(InvalidBoardException.class, () -> boardTest.checkValidPosition(invalidMoreThanSevenPositions), "Invalid number of positions entered\n")
+                //  Asserts that an exception is thrown for a position with more than 2 ints
+                () -> assertThrows(InvalidBoardException.class, () -> Board.checkValidPosition(invalidMoreThanTwoPosition), "Invalid number of positions entered\n")
         );
     }
 
@@ -476,10 +466,16 @@ public class BoardTest {
     void testCheckValidValidPosition()
     {
         // Creates a 2d array of valid positions
-        int[][] validPositions = {{14,14}, {13,14}, {0,0}};
+        int[][] validPositions = {{14,14}, {0,14}, {0,0}};
 
-        // Asserts that an exception is not thrown for a list of valid positions
-        assertDoesNotThrow(() -> boardTest.checkValidPosition(validPositions), "checkValidPosition does not throw exception for tiles within range of board\n");
+        assertAll("Testing that the player input valid co-ordinates for their move\n",
+            // Asserts that true is returned for a valid position
+            () -> assertTrue(Board.checkValidPosition(validPositions[0]), "checkValidPosition did not return true for tiles within range of board\n"),
+            // Asserts that true is returned for a valid position
+            () -> assertTrue(Board.checkValidPosition(validPositions[1]), "checkValidPosition did not return true for tiles within range of board\n"),
+            // Asserts that true is returned for a valid position
+            () -> assertTrue(Board.checkValidPosition(validPositions[2]), "checkValidPosition did not return true for tiles within range of board\n")
+        );
     }
 
 

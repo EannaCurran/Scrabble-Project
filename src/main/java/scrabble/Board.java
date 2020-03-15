@@ -326,7 +326,12 @@ public class Board {
      * @return True if the position is valid
      */
     protected static Boolean checkValidPosition(int[] position){
-       return position[0] >= 0 && position[0] < BOARD_SIZE && position[1] >= 0 && position[1] < BOARD_SIZE;
+        if (position.length == 2) {
+            return position[0] >= 0 && position[0] < BOARD_SIZE && position[1] >= 0 && position[1] < BOARD_SIZE;
+        }
+        else{
+            throw new InvalidBoardException("Positions have a i and j component.\n");
+        }
     }
 
 
