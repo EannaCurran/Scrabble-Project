@@ -236,8 +236,7 @@ public class Board {
      */
     protected boolean checkValidMove(MoveInfo moveInfo){
 
-        Boolean validMove = false;
-
+        boolean validMove = false;
 
         //If the word is at least length 2 and the start and end positions are valid
         if (moveInfo.getPrimaryWord().getWord().length >= 2 && checkValidPosition(moveInfo.getPrimaryWord().getStartPosition()) && checkValidPosition(moveInfo.getPrimaryWord().getDirection() == UserInput.Direction.VERTICAL ? new int[]{moveInfo.getPrimaryWord().getStartPosition()[0] + moveInfo.getPrimaryWord().getWord().length, moveInfo.getPrimaryWord().getStartPosition()[1]} : new int[]{moveInfo.getPrimaryWord().getStartPosition()[0], moveInfo.getPrimaryWord().getStartPosition()[1] + moveInfo.getPrimaryWord().getWord().length})){
@@ -293,10 +292,10 @@ public class Board {
     /**
      * Method for a Player to place a list of Tiles on the Board
      *
-     * @param moveInfo
+     * @param moveInfo The move to place on the Board
      */
     public void placeTiles(MoveInfo moveInfo){
-//TODO
+
         if (checkValidMove(moveInfo)){
 
             calculateScore(moveInfo);
@@ -307,14 +306,11 @@ public class Board {
             for(int i = 0; i < moveInfo.getRequiredTiles().length; i++){
 
                 placeTile(moveInfo.getPlayer().getPlayerFrame().getTile(moveInfo.getRequiredTiles()[i]), moveInfo.getRequiredTilesPositions()[i][0], moveInfo.getRequiredTilesPositions()[i][1]);
-
             }
-
         }
         else {
             throw new InvalidMoveInfoException("The move is invalid.\n");
         }
-
     }
 
 
@@ -356,7 +352,7 @@ public class Board {
      *
      * @return True if valid
      */
-    protected Boolean checkWordConnects(MoveInfo moveInfo) {
+    private Boolean checkWordConnects(MoveInfo moveInfo) {
 
         // Boolean to store if a connecting tile has been found
         boolean connectCheck = false;
@@ -381,7 +377,7 @@ public class Board {
     /**
      * Method to find the required Tiles that the Player needs to place
      *
-     * @param moveInfo
+     * @param moveInfo The move to get required Tiles
      * @throws InvalidMoveInfoException The Word does not match current Tiles on the Board
      */
     public void getRequiredTiles(MoveInfo moveInfo){
@@ -395,7 +391,7 @@ public class Board {
         for (int i = 0; i < moveInfo.getPrimaryWord().getWord().length; i++){
 
             //Current position changes which axis is increased
-            int currentPosition[] = moveInfo.getPrimaryWord().getDirection() == UserInput.Direction.VERTICAL? new int[]{moveInfo.getPrimaryWord().getStartPosition()[0] + i, moveInfo.getPrimaryWord().getStartPosition()[1]}: new int[]{moveInfo.getPrimaryWord().getStartPosition()[0], moveInfo.getPrimaryWord().getStartPosition()[1] + i};
+            int[] currentPosition = moveInfo.getPrimaryWord().getDirection() == UserInput.Direction.VERTICAL? new int[]{moveInfo.getPrimaryWord().getStartPosition()[0] + i, moveInfo.getPrimaryWord().getStartPosition()[1]}: new int[]{moveInfo.getPrimaryWord().getStartPosition()[0], moveInfo.getPrimaryWord().getStartPosition()[1] + i};
 
             Square currentSquare = this.getSquare(currentPosition[0], currentPosition[1]);
 
@@ -421,7 +417,7 @@ public class Board {
      * @param word Word to check
      * @return True if whole word
      */
-    public boolean wholeWord(Word word){
+    private boolean wholeWord(Word word){
 
         boolean result;
 
@@ -445,7 +441,7 @@ public class Board {
      *
      * @param moveInfo The move
      */
-    public void findAuxiliaryWords(MoveInfo moveInfo){
+    private void findAuxiliaryWords(MoveInfo moveInfo){
 
         //If the primaryWord is Vertical
         if(moveInfo.getPrimaryWord().getDirection() == UserInput.Direction.VERTICAL) {
@@ -496,7 +492,7 @@ public class Board {
      * @return The Word
      * @throws InvalidBoardException The position is invalid
      */
-    public Word findWord(int[] position, UserInput.Direction direction){
+    private Word findWord(int[] position, UserInput.Direction direction){
 
         if (position.length == 2 && checkValidPosition(position)){
 
