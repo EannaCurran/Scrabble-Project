@@ -210,10 +210,9 @@ public class UserInterface extends Application{
 
     private void gameEvent(TextField gameText) {
         UserInput text;
-
-        text = UserInput.parseInput(gameText.getCharacters().toString());
-
-            switch(text.getInputType()) {
+        try {
+            text = UserInput.parseInput(gameText.getCharacters().toString());
+            switch (text.getInputType()) {
                 case HELP:
                     gameTextLog.appendText(gameHelp());
                     break;
@@ -222,7 +221,7 @@ public class UserInterface extends Application{
                     playerTurn = (playerTurn + 1) % 2;
                     break;
                 case QUIT:
-                    gameTextLog.appendText("- I would quit but I can't\n");
+                    System.exit(0);
                     break;
                 case EXCHANGE:
                     try {
@@ -231,33 +230,35 @@ public class UserInterface extends Application{
 
                         gameTextLog.appendText("- Selected tiles have been swapped\n");
                         playerTurn = (playerTurn + 1) % 2;
-                    } catch(Exception e) {
+                    } catch (Exception e) {
 
-                        gameTextLog.appendText("- Error: " +e.getMessage() + "\n");
+                        gameTextLog.appendText("- Error: " + e.getMessage() + "\n");
                     }
                     break;
                 case PLACE_TILE:
-                    try{
+                    try {
                         scrabble.playerMove(text.getStartPosition(), text.getWordDirection(), text.getWord(), scrabble.getPlayers()[playerTurn]);
                         updateBoard();
                         gameTextLog.appendText("- Move made for " + (playerTurn + 1) + "\n");
                         playerTurn = (playerTurn + 1) % 2;
-                    }
-                    catch(Exception e){
-                        gameTextLog.appendText("- Error: " +e.getMessage() + "\n");
+                    } catch (Exception e) {
+                        gameTextLog.appendText("- Error: " + e.getMessage() + "\n");
                     }
                     break;
                 case BLANK:
-                    try{
+                    try {
                         scrabble.getPlayers()[playerTurn].getPlayerFrame().getTile(' ').setCharacter(text.getWord()[0]);
                         gameTextLog.appendText("- Blank tile has been set\n");
-                    } catch(Exception e){
-                        gameTextLog.appendText("- Error: " +e.getMessage() + "\n");
+                    } catch (Exception e) {
+                        gameTextLog.appendText("- Error: " + e.getMessage() + "\n");
                     }
                     break;
                 default:
                     gameTextLog.appendText("- Error: Unknown command\n");
             }
+        }catch(Exception e) {
+            gameTextLog.appendText("- Error: " + e.getMessage() + "\n");
+        }
 
         gameTextLog.appendText("- " + scrabble.getPlayers()[playerTurn % 2].getName() +"s move \n- " + scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().toString() + "\n");
         gameText.setText("");
@@ -272,6 +273,5 @@ public class UserInterface extends Application{
                 "- EXCHANGE <Letters> : Exchanges the letters in the frame with random letters in the pool\n" +
                 "- BLANK <Letter>: Sets the blank tile in a players frame to a letter\n" +
                 "- <Grid Reference> <Direction> <Letters>: Places the letters starting at the grid reference and going in the given direction (Eg H7 A HELLO)\n";
-
     }
 }
