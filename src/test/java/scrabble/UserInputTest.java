@@ -82,7 +82,7 @@ public class UserInputTest {
         inputTest.parseInput("EXCHANGE A B C");
         char[] expectedResult = {'A', 'B', 'C'};
         assertEquals(UserInput.UserInputType.EXCHANGE, inputTest.getInputType());
-        assertEquals(expectedResult, inputTest.getWord() );
+        assertEquals(expectedResult, inputTest.getWord(), "The parsed input did not give the expected result." );
     }
 
     //Test to check when user inputs EXCHANGE and the programme returns the EXCHANGE type enum.
@@ -103,5 +103,72 @@ public class UserInputTest {
         );
     }
 
+
+    //Test to check when user inputs BLANK and the programme returns the BLANK type enum.
+    @Test
+    @DisplayName("Testing the input 'BLANK' returns the input type 'BLANK'")
+    void inputBLANK()
+    {
+        inputTest.parseInput("BLANK");
+        UserInput BlankTest = null;
+        BlankTest.parseInput("Blank");
+        UserInput blankTest = null;
+        blankTest.parseInput("blank");
+
+        assertAll("Testing the different ways to input BLANK\n",
+                () -> assertEquals(UserInput.UserInputType.BLANK, inputTest.getInputType(), "\nThe user input 'BLANK' did not give the input type 'BLANK'"),
+                () -> assertEquals(UserInput.UserInputType.BLANK, BlankTest.getInputType(), "\nThe user input 'Blank' did not give the input type 'BLANK'"),
+                () -> assertEquals(UserInput.UserInputType.BLANK, blankTest.getInputType(), "\nThe user input 'blank' did not give the input type 'BLANK'")
+        );
+    }
+
+
+    //Test to check input parses correctly when user is exchanging Tiles
+    @Test
+    @DisplayName("Testing when assigning letters to blank tiles, that the output is parsed correctly")
+    void blankTest()
+    {
+        inputTest.parseInput("BLANK A B C");
+        char[] expectedResult = {'A', 'B', 'C'};
+        assertEquals(UserInput.UserInputType.BLANK, inputTest.getInputType(), "\nThe user input 'BLANK' did not give the input type 'BLANK'");
+        assertEquals(expectedResult, inputTest.getWord(), "The parsed input did not give the expected result." );
+    }
+
+
+    //Test to check that a user input for placing a word on the Board is parsed and stored correctly
+    @Test
+    @DisplayName("Test to check that a user input for placing a word on the Board is parsed and stored correctly")
+    void inputPlaceWordTest()
+    {
+        inputTest.parseInput("H8 A TEST");
+        int[] coordinateTest = {8, 8};
+        char[] wordTest = {'T', 'E', 'S', 'T'};
+
+        assertAll("Testing the input for placing a word is stored correctly.",
+                () -> assertEquals(coordinateTest, inputTest.getStartPosition(), "\nThe coordinates inputted and parsed are not the expected coordinates."),
+                () -> assertEquals(UserInput.Direction.HORIZONTAL, inputTest.getWordDirection(), "\nThe expected direction does not match the actual direction"),
+                () -> assertEquals(UserInput.UserInputType.PLACE_TILE, inputTest.getInputType(), "\nThe expected type PLACE_TILE does not match the actual type."),
+                () -> assertEquals(wordTest, inputTest.getWord(), "\nThe inputted word does not match the expected word")
+        );
+    }
+
+    //Test to check that an invalid input gives an 'ERROR' UserInputType enum
+    @Test
+    @DisplayName("Testing that an invalid input gives an 'ERROR' UserInputType enum")
+    void invalidInputErrorTest()
+    {
+        //Invalid Coordinate
+        inputTest.parseInput("P12 A TEST");
+
+        //Invalid Command
+        UserInput commandTest = null;
+        commandTest.parseInput("HELPME");
+
+        assertAll("Testing the different invalid inputs\n",
+                () -> assertEquals(UserInput.UserInputType.ERROR, inputTest.getInputType(), "\nThe invalid user input did not give the input type 'ERROR'."),
+                () -> assertEquals(UserInput.UserInputType.ERROR, commandTest.getInputType(), "\nThe invalid user input did not give the input type 'ERROR'.")
+                );
+
+    }
 
 }
