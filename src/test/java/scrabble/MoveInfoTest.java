@@ -7,6 +7,8 @@ import org.junit.jupiter.api.function.Executable;
 import scrabble.exceptions.InvalidMoveInfoException;
 import scrabble.exceptions.InvalidWordException;
 
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -110,10 +112,57 @@ public class MoveInfoTest {
         // assertAll so that all assertions are run and reported together
         assertAll("Test invalid input for MoveInfo setScore",
                 //Assert that invalid Word throws an InvalidMoveInfoException
-                ()-> assertThrows(InvalidMoveInfoException.class,()-> moveInfo.setScore(-100), "The setScore did not throw InvalidWordException for -100\n"),
+                ()-> assertThrows(InvalidMoveInfoException.class,()-> moveInfo.setScore(-100), "The setScore did not throw InvalidMoveInfoException for -100\n"),
                 //Assert that invalid Word throws an InvalidMoveInfoException
-                ()-> assertThrows(InvalidMoveInfoException.class,()-> moveInfo.setScore(-1), "The setScore did not throw InvalidWordException for -1\n")
+                ()-> assertThrows(InvalidMoveInfoException.class,()-> moveInfo.setScore(-1), "The setScore did not throw InvalidMoveInfoException for -1\n")
         );
     }
 
+    @Test
+    @DisplayName("MoveInfo Test addAuxiliaryWord")
+    void moveInfoTestAddAuxiliaryWord(){
+        Word word = new Word(new int[]{0,0}, UserInput.Direction.HORIZONTAL, new char[]{'D', 'O', 'G'});
+
+        // assertAll so that all assertions are run and reported together
+        assertAll("Test valid input for MoveInfo addAuxiliaryWord",
+                //Assert that valid input dose not throw an exception
+                ()-> assertDoesNotThrow(()-> moveInfo.addAuxiliaryWord(word),  "addAuxiliaryWord throw exception for a valid input\n"),
+                //Assert that the move auxiliary word is word
+                ()-> assertEquals(word, moveInfo.getAuxiliaryWords().get(0), "The addAuxiliaryWord set the incorrect Word\n")
+        );
+    }
+
+    @Test
+    @DisplayName("MoveInfo Test setRequiredTiles")
+    void moveInfoTestSetRequiredTiles(){
+        char[] wordReq = new char[]{'D', 'O', 'G'};
+        int[][] wordReqPos = new int[][]{{7,7}, {7,8}, {7,9}};
+
+        // assertAll so that all assertions are run and reported together
+        assertAll("Test valid input for MoveInfo setRequiredTiles",
+                //Assert that valid input dose not throw an exception
+                ()-> assertDoesNotThrow(()-> moveInfo.setRequiredTiles(wordReq, wordReqPos),  "setRequiredTiles throw exception for a valid input\n"),
+                //Assert that the move auxiliary word is word
+                ()-> assertTrue(Arrays.equals(wordReq, moveInfo.getRequiredTiles()), "The setRequiredTiles set the incorrect required Tiles\n"),
+                //Assert that the move auxiliary word is word
+                ()-> assertTrue(Arrays.equals(wordReqPos, moveInfo.getRequiredTilesPositions()), "The setRequiredTiles set the incorrect required Tiles positions\n")
+        );
+    }
+
+    @Test
+    @DisplayName("MoveInfo Test setRequiredTiles Invalid")
+    void moveInfoTestSetRequiredTilesInvalid(){
+
+        // assertAll so that all assertions are run and reported together
+        assertAll("Test invalid input for MoveInfo setRequiredTiles",
+                //Assert that invalid Word throws an InvalidMoveInfoException
+                ()-> assertThrows(InvalidMoveInfoException.class,()-> moveInfo.setRequiredTiles(new char[]{'D', 'O', 'G'}, new int[][]{{7,7}, {7,8}}), "The setRequiredTiles did not throw InvalidMoveInfoException for positions less than Tiles\n"),
+                //Assert that invalid Word throws an InvalidMoveInfoException
+                ()-> assertThrows(InvalidMoveInfoException.class,()-> moveInfo.setRequiredTiles(new char[]{'D', 'O'}, new int[][]{{7,7}, {7,8}, {7,9}}), "The setRequiredTiles did not throw InvalidMoveInfoException for Tiles less than positions\n"),
+                //Assert that invalid Word throws an InvalidMoveInfoException
+                ()-> assertThrows(InvalidMoveInfoException.class,()-> moveInfo.setRequiredTiles(new char[]{'D', 'O', 'G', 'S', 'C', 'A', 'T', 'S'}, new int[][]{{7,3},{7,4}, {7,5}, {7,6},{7,7}, {7,8}, {7,9}, {7,10}}), "The setRequiredTiles did not throw InvalidMoveInfoException for longer than Frame Size\n"),
+                //Assert that invalid Word throws an InvalidMoveInfoException
+                ()-> assertThrows(InvalidMoveInfoException.class,()-> moveInfo.setRequiredTiles(new char[]{}, new int[][]{}), "The setRequiredTiles did not throw InvalidMoveInfoException for empty\n")
+        );
+    }
 }

@@ -156,6 +156,9 @@ public class MoveInfo {
             this.requiredTiles = requiredTiles;
             this.requiredTilesPositions = requiredTilesPositions;
         }
+        else{
+            throw new InvalidMoveInfoException("There must be between 1-7 required Tiles and must be positions for each Tile\n");
+        }
     }
 
 

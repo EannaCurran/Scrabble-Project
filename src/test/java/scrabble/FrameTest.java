@@ -259,8 +259,7 @@ class FrameTest {
     @DisplayName("Test Frame setBlanks two char")
     void testFrameSetBlank2(){
 
-        frame.removeTile(0);
-        frame.removeTile(0);
+        frame.returnFrame().clear();
         frame.addTile(new Tile(' '));
         frame.addTile(new Tile(' '));
         frame.setBlanks(new char[]{'C', 'D'});
@@ -268,13 +267,13 @@ class FrameTest {
         // assertAll so that all assertions are run and reported together
         assertAll("Testing setBlanks set the Blank Tiles to correct value\n",
                 //Assert that the second last Tile is Blank
-                ()-> assertEquals(0, frame.getTile(Frame.FRAME_SIZE - 2).getValue(),"The last Tile is not a Blank Tile\n"),
+                ()-> assertEquals(0, frame.getTile(0).getValue(),"The last Tile is not a Blank Tile\n"),
                 //Assert that the Blank Tile is C
-                ()-> assertEquals('C', frame.getTile(Frame.FRAME_SIZE - 2).getCharacter(),"The Blank Tile is not 'C'\n"),
+                ()-> assertEquals('C', frame.getTile(0).getCharacter(),"The Blank Tile is not 'C'\n"),
                 //Assert that the last Tile is Blank
-                ()-> assertEquals(0, frame.getTile(Frame.FRAME_SIZE - 1).getValue(),"The last Tile is not a Blank Tile\n"),
+                ()-> assertEquals(0, frame.getTile(1).getValue(),"The last Tile is not a Blank Tile\n"),
                 //Assert that the Blank Tile is C
-                ()-> assertEquals('D', frame.getTile(Frame.FRAME_SIZE - 1).getCharacter(),"The Blank Tile is not 'D'\n")
+                ()-> assertEquals('D', frame.getTile(1).getCharacter(),"The Blank Tile is not 'D'\n")
         );
     }
 
