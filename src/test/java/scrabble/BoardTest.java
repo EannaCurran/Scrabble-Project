@@ -255,6 +255,7 @@ public class BoardTest {
         //Resetting the board
         boardTest.resetBoard();
 
+        // assertAll so that all assertions are run and reported together
         assertAll("Testing squares that had tiles are now removed",
                 //Checking square (7,7)
                 () -> assertTrue(boardTest.getSquare(7,7).isEmpty(),"\nThe square isn't empty after a board reset."),
@@ -278,6 +279,7 @@ public class BoardTest {
         //Resetting the board
         boardTest.resetBoard();
 
+        // assertAll so that all assertions are run and reported together
         assertAll("Testing squares are the correct type",
                 //Checking square (7,7) for type START
                 () -> assertEquals(Square.SquareType.START, boardTest.getSquare(7,7).getType(),"\nThe expected Square type isn't correct after being reset."),
@@ -294,6 +296,7 @@ public class BoardTest {
     @DisplayName("Testing the coordinates i and j for the method getSquare")
     void coordinateInsideCorners()
     {
+        // assertAll so that all assertions are run and reported together
         assertAll("Testing the coordinates i and j are inside the Board",
 
                 // Asserts that exception not thrown for 0,0
@@ -313,6 +316,7 @@ public class BoardTest {
     @DisplayName("Testing the coordinates i and j are outside the Board")
     void coordinateOutsideCorners()
     {
+        // assertAll so that all assertions are run and reported together
         assertAll("Testing the coordinates i and j are inside the Board",
 
                 // Asserts that exception is thrown for -1,-1
@@ -359,6 +363,7 @@ public class BoardTest {
         // Places the Tiles with characters from testWord on the given positions
         boardTest.placeTiles(new MoveInfo( playerTest, position, UserInput.Direction.HORIZONTAL, testWord));
 
+        // assertAll so that all assertions are run and reported together
         assertAll("Testing that each of the Tiles have been placed on the Board\n",
 
                 // Asserts that there is a Tile with character 'A' at 7,7
@@ -391,6 +396,7 @@ public class BoardTest {
         char[] charPlayerHasSome = {'A', 'E', 'C'};
         char[] charPlayerHasRepeat = {'A', 'A', 'C'};
 
+        // assertAll so that all assertions are run and reported together
         assertAll("Testing that the Player doesn't have Tiles with certain characters in their Frame\n",
 
                 // Asserts that false is returned for checking an empty list
@@ -443,6 +449,7 @@ public class BoardTest {
         int[] invalidNoPositions = {};
         int[] invalidMoreThanTwoPosition = {1,1,2};
 
+        // assertAll so that all assertions are run and reported together
         assertAll("Testing that the player cannot input invalid co-ordinates for their move\n",
 
                 //  Asserts that returns false for invalid position at 15,15
@@ -468,6 +475,7 @@ public class BoardTest {
         // Creates a 2d array of valid positions
         int[][] validPositions = {{14,14}, {0,14}, {0,0}};
 
+        // assertAll so that all assertions are run and reported together
         assertAll("Testing that the player input valid co-ordinates for their move\n",
             // Asserts that true is returned for a valid position
             () -> assertTrue(Board.checkValidPosition(validPositions[0]), "checkValidPosition did not return true for tiles within range of board\n"),
