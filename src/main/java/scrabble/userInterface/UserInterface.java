@@ -239,7 +239,8 @@ public class UserInterface extends Application{
                     try {
                         scrabble.playerMove(text.getStartPosition(), text.getWordDirection(), text.getWord(), scrabble.getPlayers()[playerTurn]);
                         updateBoard();
-                        gameTextLog.appendText("- Move made for " + (playerTurn + 1) + "\n");
+                        gameTextLog.appendText("- Move made for " + (playerTurn + 1) + " scored "+ scrabble.getMoveHistory().get(scrabble.getMoveHistory().size()-1).getMoveScore() + "\n");
+
                         playerTurn = (playerTurn + 1) % 2;
                     } catch (Exception e) {
                         gameTextLog.appendText("- Error: " + e.getMessage() + "\n");

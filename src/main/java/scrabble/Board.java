@@ -298,7 +298,6 @@ public class Board {
 
         if (checkValidMove(moveInfo)){
 
-            //calculateScore(moveInfo);
 
             moveInfo.getPlayer().increaseScore(moveInfo.getMoveScore());
 
@@ -307,6 +306,9 @@ public class Board {
 
                 placeTile(moveInfo.getPlayer().getPlayerFrame().getTile(moveInfo.getRequiredTiles()[i]), moveInfo.getRequiredTilesPositions()[i][0], moveInfo.getRequiredTilesPositions()[i][1]);
             }
+
+
+            moveInfo.setScore(calculateScore(moveInfo));
         }
         else {
             throw new InvalidMoveInfoException("The move is invalid.\n");
@@ -534,9 +536,10 @@ public class Board {
      *
      * @param moveInfo Move to calculate the score
      */
-    protected void calculateScore(MoveInfo moveInfo){
+    protected int calculateScore(MoveInfo moveInfo){
 
         //Calculate the score of the primary Word
+        System.out.println();
         int result = calculateScoreWord(moveInfo.getPrimaryWord());
 
         //For loop to calculate the score of all the auxiliary Words
@@ -549,7 +552,7 @@ public class Board {
             result += BINGO;
         }
 
-        moveInfo.setScore(result);
+        return result;
     }
 
     /**
@@ -560,15 +563,18 @@ public class Board {
      */
     private int calculateScoreWord(Word word){
 
-        int wordFactor = 1, result = 0;
+
+        int wordFactor = 1;
+        int result = 0;
         Square currentSquare;
 
         //For loop to run through each Square in the Word
         for (int i = 0; i < word.getWord().length; i++) {
 
             //Get the current Square based on Word Direction
-            currentSquare = word.getDirection() == UserInput.Direction.VERTICAL? getSquare(word.getStartPosition()[0] + i,word.getStartPosition()[1] ): getSquare(word.getStartPosition()[0] ,word.getStartPosition()[1] + i);
 
+            currentSquare = word.getDirection() == UserInput.Direction.VERTICAL? getSquare(word.getStartPosition()[0] + i,word.getStartPosition()[1] ): getSquare(word.getStartPosition()[0] ,word.getStartPosition()[1] + i);
+            System.out.println(currentSquare.getTile().toString());
             //Switch statement to calculate based on SquareType
             switch (currentSquare.getType()){
 

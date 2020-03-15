@@ -64,6 +64,8 @@ public class Scrabble {
         return this.players;
     }
 
+    public ArrayList<MoveInfo> getMoveHistory() { return this.moveHistory; }
+
 
 
     /**
@@ -96,8 +98,8 @@ public class Scrabble {
             MoveInfo move = new MoveInfo(player, startPosition, direction, word);
             board.placeTiles(move);
             player.getPlayerFrame().removeTiles(move.getRequiredTiles());
-            player.getPlayerFrame().fillFrame();
-            /**
+
+            /*
 
              if(challenge()){
 
@@ -108,17 +110,17 @@ public class Scrabble {
              }
              else{
 
-             board.setWordSquaresNormal(moveHistory.get(0).getPrimaryWord());
+
+        */
+             //board.setWordSquaresNormal(moveHistory.get(0).getPrimaryWord());
 
              player.getPlayerFrame().fillFrame();
 
              moveHistory.add(move);
-
-             //TODO Skip other player turn
-             }
+             player.increaseScore(move.getMoveScore());
 
              player.getPlayerFrame().setToBlank();
-             **/
+
         }
         else {
             throw new InvalidScrabbleException("Invalid Start Position Inputted.\n");
