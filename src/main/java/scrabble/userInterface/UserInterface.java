@@ -18,7 +18,7 @@ public class UserInterface extends Application{
     private TextField gameTextInput;
     private TextArea gameTextLog;
     private GridPane gameBoard;
-    public Scrabble scrabble;
+    private Scrabble scrabble;
     private int playerTurn = 0;
     private boolean setup = false;
 
@@ -30,6 +30,7 @@ public class UserInterface extends Application{
 
     @Override
     public void start(Stage gameStage) {
+
         scrabble = new Scrabble();
 
         gameStage.setTitle("Scrabble");
@@ -198,7 +199,7 @@ public class UserInterface extends Application{
         if(playerTurn == 2) {
 
             playerTurn = 0;
-            gameTextLog.appendText("- Player "+ scrabble.getPlayers()[playerTurn].getName() +" move \n- " + scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().toString() + "\n");
+            gameTextLog.appendText("- "+scrabble.getPlayers()[playerTurn].getName() +"s move \n- " + scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().toString() + "\n");
 
             setup = true;
         }
@@ -214,10 +215,10 @@ public class UserInterface extends Application{
 
             switch(text.getInputType()) {
                 case HELP:
-                    gameTextLog.appendText("- Commands:\n");
+                    gameTextLog.appendText(gameHelp());
                     break;
                 case PASS:
-                    gameTextLog.appendText("- Passed Turn for player " + (playerTurn + 1) + "\n");
+                    gameTextLog.appendText("- Passed turn for " + (playerTurn + 1) + "\n");
                     playerTurn = (playerTurn + 1) % 2;
                     break;
                 case QUIT:
@@ -239,7 +240,7 @@ public class UserInterface extends Application{
                     try{
                         scrabble.playerMove(text.getStartPosition(), text.getWordDirection(), text.getWord(), scrabble.getPlayers()[playerTurn]);
                         updateBoard();
-                        gameTextLog.appendText("- Move made for player " + (playerTurn + 1) + "\n");
+                        gameTextLog.appendText("- Move made for " + (playerTurn + 1) + "\n");
                         playerTurn = (playerTurn + 1) % 2;
                     }
                     catch(Exception e){
@@ -258,8 +259,19 @@ public class UserInterface extends Application{
                     gameTextLog.appendText("- Error: Unknown command\n");
             }
 
-        gameTextLog.appendText("- Player "+ scrabble.getPlayers()[playerTurn % 2].getName() +" move \n- " + scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().toString() + "\n");
+        gameTextLog.appendText("- " + scrabble.getPlayers()[playerTurn % 2].getName() +"s move \n- " + scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().toString() + "\n");
         gameText.setText("");
+
+    }
+
+    private String gameHelp(){
+        return "- Commands:\n" +
+                "- HELP: Prints out the list of available commands\n" +
+                "- PASS: Passes the current players turn\n" +
+                "- QUIT: Exists the current game of scrabble\n" +
+                "- EXCHANGE <Letters> : Exchanges the letters in the frame with random letters in the pool\n" +
+                "- BLANK <Letter>: Sets the blank tile in a players frame to a letter\n" +
+                "- <Grid Reference> <Direction> <Letters>: Places the letters starting at the grid reference and going in the given direction (Eg H7 A HELLO)\n";
 
     }
 }
