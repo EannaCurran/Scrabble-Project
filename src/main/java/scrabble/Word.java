@@ -15,12 +15,12 @@ public class Word {
     /**
      * The array of the characters in the word
      */
-    private  char[] word;
+    private char[] word;
 
     /**
      * The direction of the word
      */
-    private  UserInput.Direction direction;
+    private UserInput.Direction direction;
 
     /**
      * Word Constructor
@@ -31,7 +31,7 @@ public class Word {
      * @throws InvalidWordException The Word must be between 1 - 15 letters
      */
     public Word(int[] coOrdinates, UserInput.Direction d, char[] w){
-        if (Board.checkValidPosition(coOrdinates) && validWord(w)){
+        if (Board.checkValidPosition(coOrdinates) && validWord(w) && d != null){
             startPosition = coOrdinates;
             direction = d;
             word = w;
