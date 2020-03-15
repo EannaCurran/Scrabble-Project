@@ -93,7 +93,7 @@ public class UserInput {
     /**
      * direction is an enum type for the types directions a word can be placed on a Board
      */
-    enum Direction{
+    public enum Direction{
         VERTICAL,
         HORIZONTAL
     }
@@ -126,7 +126,6 @@ public class UserInput {
 
         //Splits up the user's input into tokens in a String array
         String[] tokens = input.split(" ");
-        System.out.println(tokens[0]);
 
         //Checks if the input is empty
         if(input.isEmpty())
@@ -202,7 +201,7 @@ public class UserInput {
                                 //Declaring the direction enum type
                                 directionInput = null;
 
-                                //Checks if the length of the tokenised input is 3 to check its a valid input
+                                //Checks if the length of the tokenized input is 3 to check its a valid input
                                 //[coordinates], [direction], [word] = 3
                                 if (tokens.length == 3) {
                                     //Swtich statement checking which direction the user wants to place the word on the board

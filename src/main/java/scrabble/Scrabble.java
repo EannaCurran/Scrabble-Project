@@ -91,32 +91,34 @@ public class Scrabble {
      * @param player Player making the move
      */
     public void playerMove(int[] startPosition, UserInput.Direction direction, char[] word, Player player){
-        if (startPosition.length == 2 && board.checkValidPosition(startPosition)){
+        if (startPosition.length == 2 && board.checkValidPosition(startPosition)) {
 
-            MoveInfo move = new MoveInfo(player,startPosition, direction, word);
-
+            MoveInfo move = new MoveInfo(player, startPosition, direction, word);
             board.placeTiles(move);
+            player.getPlayerFrame().removeTiles(move.getRequiredTiles());
+            player.getPlayerFrame().fillFrame();
+            /**
 
+             if(challenge()){
 
-                if(challenge()){
+             board.removeMove(move);
 
-                    board.removeMove(move);
+             player.decreaseScore(moveHistory.get(0).getMoveScore());
 
-                    player.decreaseScore(moveHistory.get(0).getMoveScore());
+             }
+             else{
 
-                }
-                else{
+             board.setWordSquaresNormal(moveHistory.get(0).getPrimaryWord());
 
-                    board.setWordSquaresNormal(moveHistory.get(0).getPrimaryWord());
+             player.getPlayerFrame().fillFrame();
 
-                    player.getPlayerFrame().fillFrame();
+             moveHistory.add(move);
 
-                    moveHistory.add(move);
+             //TODO Skip other player turn
+             }
 
-                    //TODO Skip other player turn
-                }
-
-            player.getPlayerFrame().setToBlank();
+             player.getPlayerFrame().setToBlank();
+             **/
         }
         else {
             throw new InvalidScrabbleException("Invalid Start Position Inputted.\n");

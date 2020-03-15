@@ -111,6 +111,30 @@ public class UserInterface extends Application{
         return gameBoard;
     }
 
+    private void displayMove(int[] startPosition, UserInput.Direction direction, char[] word, Player player){
+
+        startPosition[0]++;
+        startPosition[1]++;
+
+        for(char c: word){
+            if(direction.equals(UserInput.Direction.VERTICAL)){
+                Label label = new Label(String.valueOf(c));
+                label.setStyle("-fx-background-color: #f2c66d; -fx-border-color:black; -fx-alignment: center");
+                label.setPrefSize(40,40);
+                gameBoard.add(label, startPosition[0], startPosition[1]);
+                startPosition[1]++;
+            }
+            else{
+                Label label = new Label(String.valueOf(c));
+                label.setStyle("-fx-background-color: #f2c66d; -fx-border-color:black; -fx-alignment: center");
+                label.setPrefSize(40,40);
+                gameBoard.add(label, startPosition[0], startPosition[1]);
+                startPosition[0]++;
+            }
+        }
+
+    }
+
 
 
     private TextArea setUpTextLog() {
@@ -164,7 +188,6 @@ public class UserInterface extends Application{
         UserInput text;
 
         text = UserInput.parseInput(gameText.getCharacters().toString());
-
             switch(text.getInputType()) {
                 case HELP:
                     gameTextLog.appendText("- Commands:\n");
@@ -178,20 +201,25 @@ public class UserInterface extends Application{
                     break;
                 case EXCHANGE:
                     try {
+
                         scrabble.getPlayers()[playerTurn].getPlayerFrame().swapTiles(text.getWord());
+
                         gameTextLog.appendText("- Selected tiles have been swapped\n");
                         playerTurn = (playerTurn + 1) % 2;
                     } catch(Exception e) {
 
-                        gameTextLog.appendText("- Error please try again\n");
+                        gameTextLog.appendText("- Error please try again " + e + "\n");
                     }
                     break;
                 case PLACE_TILE:
                     try{
-
+                        scrabble.playerMove(text.getStartPosition(), text.getWordDirection(), text.getWord(), scrabble.getPlayers()[playerTurn]);
+                        displayMove(text.getStartPosition(), text.getWordDirection(), text.getWord(), scrabble.getPlayers()[playerTurn]);
+                        gameTextLog.appendText("- Move made for player " + (playerTurn + 1) + "\n");
+                        playerTurn = (playerTurn + 1) % 2;
                     }
                     catch(Exception e){
-
+                        gameTextLog.appendText("- Error please try again " + e.getMessage() + "\n");
                     }
                     break;
                 case BLANK:
@@ -199,7 +227,7 @@ public class UserInterface extends Application{
                         scrabble.getPlayers()[playerTurn].getPlayerFrame().getTile(' ').setCharacter(text.getWord()[0]);
                         gameTextLog.appendText("- Blank tile has been set\n");
                     } catch(Exception e){
-                        gameTextLog.appendText("- Error please try again\n");
+                        gameTextLog.appendText("- Error please try again " + e + "\n");
                     }
                     break;
                 default:
@@ -208,5 +236,6 @@ public class UserInterface extends Application{
 
         gameTextLog.appendText("- Player "+ scrabble.getPlayers()[playerTurn % 2].getName() +" move \n- " + scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().toString() + "\n");
         gameText.setText("");
+
     }
 }

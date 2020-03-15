@@ -298,11 +298,11 @@ public class Board {
 
         if (checkValidMove(moveInfo)){
 
-            calculateScore(moveInfo);
+            //calculateScore(moveInfo);
 
             moveInfo.getPlayer().increaseScore(moveInfo.getMoveScore());
 
-            // Loops through each move and places the Tile on the Board
+            // Loops through each move and places the Tile on the Board playerTurn = (playerTurn + 1) % 2;
             for(int i = 0; i < moveInfo.getRequiredTiles().length; i++){
 
                 placeTile(moveInfo.getPlayer().getPlayerFrame().getTile(moveInfo.getRequiredTiles()[i]), moveInfo.getRequiredTilesPositions()[i][0], moveInfo.getRequiredTilesPositions()[i][1]);
@@ -432,7 +432,7 @@ public class Board {
             result = (word.getStartPosition()[1] == 0 || this.getSquare(word.getStartPosition()[0], word.getStartPosition()[1] - 1).isEmpty()) && (word.getStartPosition()[1] + word.getWord().length -1 == BOARD_SIZE - 1 || this.getSquare(word.getStartPosition()[0], word.getStartPosition()[1] + word.getWord().length).isEmpty());
         }
 
-        return  result;
+        return result;
     }
 
 

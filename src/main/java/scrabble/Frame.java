@@ -362,7 +362,16 @@ public class Frame {
     public void swapTiles(char[] tiles){
 
         // Removes the Tiles passed in from the Frame
-        removeTiles(tiles);
+        Tile temp;
+        for(char c: tiles){
+            temp = getTile(c);
+            if(temp.getCharacter() != ' ' && temp.getValue() == 0){
+                throw new InvalidFrameException("Cannot swap blank tile with value set to it");
+            }
+            else{
+                removeTile(c);
+            }
+        }
 
         // Fills the Frame with Tiles from the Pool
         fillFrame();
