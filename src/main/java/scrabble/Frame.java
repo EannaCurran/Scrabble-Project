@@ -266,26 +266,6 @@ public class Frame {
 
 
 
-
-    /**
-     * Method to check if the Frame has a Tile with a given character
-     * @param letter: Character to check if it is within Frame
-     * @return Boolean answer
-     */
-     private boolean checkTile(char letter){
-
-        // Loops through each Tile in Frame
-        for(Tile t: playerFrame){
-
-            // If any Tile in the Frame has the same character as letter, true is returned, if not false is returned
-            if(t.getCharacter() == letter){
-                return true;
-            }
-        }
-        return false;
-    }
-
-
     /**
      * If the Tile is in the Frame
      *
@@ -379,17 +359,26 @@ public class Frame {
      * @param tiles: List of Tiles to be removed
      *
      */
-    public void swapTiles(ArrayList<Tile> tiles){
+    public void swapTiles(char[] tiles){
 
         // Removes the Tiles passed in from the Frame
-        removeTiles(tiles);
+        Tile temp;
+        for(char c: tiles){
+            temp = getTile(c);
+            if(temp.getCharacter() != ' ' && temp.getValue() == 0){
+                throw new InvalidFrameException("Cannot swap blank tile with value set to it");
+            }
+            else{
+                removeTile(c);
+            }
+        }
 
         // Fills the Frame with Tiles from the Pool
         fillFrame();
 
         // Returns the Tiles removed from the Frame back to the Pool
-        for(Tile tile: tiles){
-            this.framePool.receiveTile(tile);
+        for(char tile: tiles){
+            this.framePool.receiveTile(new Tile(tile));
         }
     }
 

@@ -52,6 +52,20 @@ public class Scrabble {
         moveHistory = new ArrayList<>();
     }
 
+    public Board getBoard(){
+        return this.board;
+    }
+
+    public Pool getPool(){
+        return this.pool;
+    }
+
+    public Player[] getPlayers(){
+        return this.players;
+    }
+
+
+
     /**
      * Method to create a player with an inputted name
      *
@@ -77,31 +91,34 @@ public class Scrabble {
      * @param player Player making the move
      */
     public void playerMove(int[] startPosition, UserInput.Direction direction, char[] word, Player player){
-        if (startPosition.length == 2 && board.checkValidPosition(startPosition)){
+        if (startPosition.length == 2 && board.checkValidPosition(startPosition)) {
 
-            MoveInfo move = new MoveInfo(player,startPosition, direction, word);
-
+            MoveInfo move = new MoveInfo(player, startPosition, direction, word);
             board.placeTiles(move);
+            player.getPlayerFrame().removeTiles(move.getRequiredTiles());
+            player.getPlayerFrame().fillFrame();
+            /**
 
+             if(challenge()){
 
-                if(challenge()){
+             board.removeMove(move);
 
-                    board.removeMove(move);
+             player.decreaseScore(moveHistory.get(0).getMoveScore());
 
-                    player.decreaseScore(moveHistory.get(0).getMoveScore());
+             }
+             else{
 
-                }
-                else{
+             board.setWordSquaresNormal(moveHistory.get(0).getPrimaryWord());
 
-                    board.setWordSquaresNormal(moveHistory.get(0).getPrimaryWord());
+             player.getPlayerFrame().fillFrame();
 
-                    player.getPlayerFrame().fillFrame();
+             moveHistory.add(move);
 
-                    moveHistory.add(move);
+             //TODO Skip other player turn
+             }
 
-                    //TODO Skip other player turn
-                }
-
+             player.getPlayerFrame().setToBlank();
+             **/
         }
         else {
             throw new InvalidScrabbleException("Invalid Start Position Inputted.\n");
@@ -111,8 +128,28 @@ public class Scrabble {
     public boolean challenge(){
         boolean challenge = false;
 
+        //TODO
 
         return challenge;
+    }
+
+    /**
+     * Method to check if the game is over
+     *
+     * @return True if the game is over
+     */
+    public boolean isGameOver(){
+        return pool.isEmpty() && (players[0].getPlayerFrame().isEmpty() || players[1].getPlayerFrame().isEmpty());
+    }
+
+    /**
+     * Method to subtract Frame Tile values from Players' scores at the end of the game
+     */
+    public void gameOver(){
+
+        for (int i = 0; i < players.length; i++) {
+            players[i].decreaseScore(players[i].getPlayerFrame().tileValues());
+        }
     }
 
 

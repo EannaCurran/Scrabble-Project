@@ -30,14 +30,14 @@ public class MoveInfo {
     private ArrayList<Word> auxiliaryWords;
 
     /**
-     * Scorce value of the move
+     * Score value of the move
      */
-    int moveScore;
+    private int moveScore;
 
     /**
      * Player making the move
      */
-    Player player;
+    private Player player;
 
     /**
      * Accessor Method for auxiliaryWords

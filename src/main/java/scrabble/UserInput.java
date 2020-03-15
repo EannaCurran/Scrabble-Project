@@ -17,7 +17,7 @@ public class UserInput {
 
     //Constructors
     /**
-     * Constructor for cases with one token such as 'HELP', 'PASS' and 'QUIT'
+     * Constructor for cases with one token such as 'HELP' or 'PASS'
      * @param type The UserInputType
      */
     public UserInput(UserInputType type){
@@ -93,7 +93,7 @@ public class UserInput {
     /**
      * direction is an enum type for the types directions a word can be placed on a Board
      */
-    enum Direction{
+    public enum Direction{
         VERTICAL,
         HORIZONTAL
     }
@@ -121,7 +121,7 @@ public class UserInput {
         Direction directionInput;
         //An array to store the coordinates of the first letter of the word to be placed on the board
         int[] position = new int[2];
-
+        // A UserInput object to store all the data
         UserInput inputData = null;
 
         //Splits up the user's input into tokens in a String array
@@ -201,7 +201,7 @@ public class UserInput {
                                 //Declaring the direction enum type
                                 directionInput = null;
 
-                                //Checks if the length of the tokenised input is 3 to check its a valid input
+                                //Checks if the length of the tokenized input is 3 to check its a valid input
                                 //[coordinates], [direction], [word] = 3
                                 if (tokens.length == 3) {
                                     //Swtich statement checking which direction the user wants to place the word on the board

@@ -52,7 +52,7 @@ public class Main {
         }
 
         //The tiles are placed on the board
-        board.placeTiles(player1, player1Tiles, player1Moves);
+        //board.placeTiles(player1, player1Tiles, player1Moves);
 
         //Prints the board, placed tiles and player 1's data
         System.out.println("\nTurn 1: Player 1 placed a word on the board:\n"+ board + "\nThe tiles placed: ");
@@ -83,7 +83,7 @@ public class Main {
         }
 
         //The tiles are placed on the board
-        board.placeTiles(player2, player2Tiles, player2Moves);
+        //board.placeTiles(player2, player2Tiles, player2Moves);
 
         //Prints the board, placed tiles and player 2's data
         System.out.println("\nTurn 1: Player 2 placed a word on the board:\n"+ board.toString() + "\nThe tiles placed: ");
@@ -118,7 +118,7 @@ public class Main {
             }
         }
         //Places tiles on board
-        board.placeTiles(player1, player1Tiles, player1Moves);
+        //board.placeTiles(player1, player1Tiles, player1Moves);
 
         //Prints the board, placed tiles and player 1's data
         System.out.println("\nTurn 2: Player 1 placed a word on the board:\n"+ board.toString() + "\nThe tiles placed: ");
@@ -153,7 +153,7 @@ public class Main {
         }
 
         //Tiles are placed on the board
-        board.placeTiles(player2, player2Tiles, player2Moves);
+        //board.placeTiles(player2, player2Tiles, player2Moves);
 
         //Prints the board, placed tiles and player 2's data
         System.out.println("\nTurn 2: Player 2 placed a word on the board:\n"+ board.toString() + "\nThe tiles placed: ");

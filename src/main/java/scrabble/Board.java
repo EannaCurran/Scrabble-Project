@@ -236,8 +236,7 @@ public class Board {
      */
     protected boolean checkValidMove(MoveInfo moveInfo){
 
-        Boolean validMove = false;
-
+        boolean validMove = false;
 
         //If the word is at least length 2 and the start and end positions are valid
         if (moveInfo.getPrimaryWord().getWord().length >= 2 && checkValidPosition(moveInfo.getPrimaryWord().getStartPosition()) && checkValidPosition(moveInfo.getPrimaryWord().getDirection() == UserInput.Direction.VERTICAL ? new int[]{moveInfo.getPrimaryWord().getStartPosition()[0] + moveInfo.getPrimaryWord().getWord().length, moveInfo.getPrimaryWord().getStartPosition()[1]} : new int[]{moveInfo.getPrimaryWord().getStartPosition()[0], moveInfo.getPrimaryWord().getStartPosition()[1] + moveInfo.getPrimaryWord().getWord().length})){
@@ -293,28 +292,25 @@ public class Board {
     /**
      * Method for a Player to place a list of Tiles on the Board
      *
-     * @param moveInfo
+     * @param moveInfo The move to place on the Board
      */
     public void placeTiles(MoveInfo moveInfo){
-//TODO
+
         if (checkValidMove(moveInfo)){
 
-            calculateScore(moveInfo);
+            //calculateScore(moveInfo);
 
             moveInfo.getPlayer().increaseScore(moveInfo.getMoveScore());
 
-            // Loops through each move and places the Tile on the Board
+            // Loops through each move and places the Tile on the Board playerTurn = (playerTurn + 1) % 2;
             for(int i = 0; i < moveInfo.getRequiredTiles().length; i++){
 
                 placeTile(moveInfo.getPlayer().getPlayerFrame().getTile(moveInfo.getRequiredTiles()[i]), moveInfo.getRequiredTilesPositions()[i][0], moveInfo.getRequiredTilesPositions()[i][1]);
-
             }
-
         }
         else {
             throw new InvalidMoveInfoException("The move is invalid.\n");
         }
-
     }
 
 
@@ -326,7 +322,12 @@ public class Board {
      * @return True if the position is valid
      */
     protected static Boolean checkValidPosition(int[] position){
-       return position[0] >= 0 && position[0] < BOARD_SIZE && position[1] >= 0 && position[1] < BOARD_SIZE;
+        if (position.length == 2) {
+            return position[0] >= 0 && position[0] < BOARD_SIZE && position[1] >= 0 && position[1] < BOARD_SIZE;
+        }
+        else{
+            throw new InvalidBoardException("Positions have a i and j component.\n");
+        }
     }
 
 
@@ -351,7 +352,7 @@ public class Board {
      *
      * @return True if valid
      */
-    protected Boolean checkWordConnects(MoveInfo moveInfo) {
+    private Boolean checkWordConnects(MoveInfo moveInfo) {
 
         // Boolean to store if a connecting tile has been found
         boolean connectCheck = false;
@@ -376,7 +377,7 @@ public class Board {
     /**
      * Method to find the required Tiles that the Player needs to place
      *
-     * @param moveInfo
+     * @param moveInfo The move to get required Tiles
      * @throws InvalidMoveInfoException The Word does not match current Tiles on the Board
      */
     public void getRequiredTiles(MoveInfo moveInfo){
@@ -390,7 +391,7 @@ public class Board {
         for (int i = 0; i < moveInfo.getPrimaryWord().getWord().length; i++){
 
             //Current position changes which axis is increased
-            int currentPosition[] = moveInfo.getPrimaryWord().getDirection() == UserInput.Direction.VERTICAL? new int[]{moveInfo.getPrimaryWord().getStartPosition()[0] + i, moveInfo.getPrimaryWord().getStartPosition()[1]}: new int[]{moveInfo.getPrimaryWord().getStartPosition()[0], moveInfo.getPrimaryWord().getStartPosition()[1] + i};
+            int[] currentPosition = moveInfo.getPrimaryWord().getDirection() == UserInput.Direction.VERTICAL? new int[]{moveInfo.getPrimaryWord().getStartPosition()[0] + i, moveInfo.getPrimaryWord().getStartPosition()[1]}: new int[]{moveInfo.getPrimaryWord().getStartPosition()[0], moveInfo.getPrimaryWord().getStartPosition()[1] + i};
 
             Square currentSquare = this.getSquare(currentPosition[0], currentPosition[1]);
 
@@ -416,22 +417,22 @@ public class Board {
      * @param word Word to check
      * @return True if whole word
      */
-    public boolean wholeWord(Word word){
+    private boolean wholeWord(Word word){
 
         boolean result;
 
         //If Word is vertical
         if (word.getDirection() == UserInput.Direction.VERTICAL){
             //The start tile is the top edge of the board or the previous square is empty and the last tile is the bottom edge or the next square is empty
-            result = (word.getStartPosition()[0] == 0 || this.getSquare(word.getStartPosition()[0] - 1, word.getStartPosition()[1]).isEmpty()) && (word.getStartPosition()[0] + word.getWord().length== BOARD_SIZE - 1 || this.getSquare(word.getStartPosition()[0] + word.getWord().length + 1, word.getStartPosition()[1]).isEmpty());
+            result = (word.getStartPosition()[0] == 0 || this.getSquare(word.getStartPosition()[0] - 1, word.getStartPosition()[1]).isEmpty()) && (word.getStartPosition()[0] + word.getWord().length - 1 == BOARD_SIZE - 1 || this.getSquare(word.getStartPosition()[0] + word.getWord().length , word.getStartPosition()[1]).isEmpty());
         }
         //Else horizontal
         else {
             //The start tile is the left edge of the board or the previous square is empty and the last tile is the right edge or the next square is empty
-            result = (word.getStartPosition()[1] == 0 || this.getSquare(word.getStartPosition()[0], word.getStartPosition()[1] - 1).isEmpty()) && (word.getStartPosition()[1] + word.getWord().length == BOARD_SIZE - 1 || this.getSquare(word.getStartPosition()[0], word.getStartPosition()[1] + word.getWord().length + 1).isEmpty());
+            result = (word.getStartPosition()[1] == 0 || this.getSquare(word.getStartPosition()[0], word.getStartPosition()[1] - 1).isEmpty()) && (word.getStartPosition()[1] + word.getWord().length -1 == BOARD_SIZE - 1 || this.getSquare(word.getStartPosition()[0], word.getStartPosition()[1] + word.getWord().length).isEmpty());
         }
 
-        return  result;
+        return result;
     }
 
 
@@ -440,7 +441,7 @@ public class Board {
      *
      * @param moveInfo The move
      */
-    public void findAuxiliaryWords(MoveInfo moveInfo){
+    private void findAuxiliaryWords(MoveInfo moveInfo){
 
         //If the primaryWord is Vertical
         if(moveInfo.getPrimaryWord().getDirection() == UserInput.Direction.VERTICAL) {
@@ -491,7 +492,7 @@ public class Board {
      * @return The Word
      * @throws InvalidBoardException The position is invalid
      */
-    public Word findWord(int[] position, UserInput.Direction direction){
+    private Word findWord(int[] position, UserInput.Direction direction){
 
         if (position.length == 2 && checkValidPosition(position)){
 
