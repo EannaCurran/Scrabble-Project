@@ -44,7 +44,6 @@ public class UserInterface extends Application{
         gameFrame.add(gameTextInput,1,1);
 
         Scene gameScene = new Scene(gameFrame);
-
         gameStage.setScene(gameScene);
         gameStage.sizeToScene();
         gameStage.show();
@@ -103,7 +102,7 @@ public class UserInterface extends Application{
                 }
 
                 label.setPrefSize(40,40);
-                gameBoard.add(label, i, j);
+                gameBoard.add(label, j, i);
 
             }
         }
@@ -111,29 +110,51 @@ public class UserInterface extends Application{
         return gameBoard;
     }
 
-    private void displayMove(int[] startPosition, UserInput.Direction direction, char[] word, Player player){
+    private void updateBoard(){
+        for(int i = 0; i < 15; i++) {
 
-        startPosition[0]++;
-        startPosition[1]++;
+            for(int j = 0; j < 15; j++) {
 
-        for(char c: word){
-            if(direction.equals(UserInput.Direction.VERTICAL)){
-                Label label = new Label(String.valueOf(c));
-                label.setStyle("-fx-background-color: #f2c66d; -fx-border-color:black; -fx-alignment: center");
+                Label label = new Label(" ");
+                if(scrabble.getBoard().getSquare(i,j).isEmpty()) {
+
+                    switch (scrabble.getBoard().getSquare(i, j).getType()) {
+                        case NORMAL:
+                            label.setStyle("-fx-background-color: #e6e7e8; -fx-border-color:black; -fx-alignment: center");
+                            break;
+                        case START:
+                        case TRIPLE_WORD:
+                            label.setStyle("-fx-background-color: #ed2207; -fx-border-color:black; -fx-alignment: center");
+                            label.setText("3W");
+                            break;
+                        case DOUBLE_WORD:
+                            label.setStyle("-fx-background-color: #0241ed; -fx-border-color:black; -fx-alignment: center");
+                            label.setText("2W");
+                            break;
+                        case DOUBLE_LETTER:
+                            label.setStyle("-fx-background-color: #64a4e8; -fx-border-color:black; -fx-alignment: center");
+                            label.setText("2L");
+                            break;
+                        case TRIPLE_LETTER:
+                            label.setStyle("-fx-background-color: #e3625d; -fx-border-color: black; -fx-alignment: center");
+                            label.setText("3L");
+                            break;
+
+                    }
+                }
+                else{
+                    label.setStyle("-fx-background-color: #f2c66d; -fx-border-color:black; -fx-alignment: center");
+                    label.setText(scrabble.getBoard().getSquare(i,j).toString());
+                }
+
                 label.setPrefSize(40,40);
-                gameBoard.add(label, startPosition[0], startPosition[1]);
-                startPosition[1]++;
-            }
-            else{
-                Label label = new Label(String.valueOf(c));
-                label.setStyle("-fx-background-color: #f2c66d; -fx-border-color:black; -fx-alignment: center");
-                label.setPrefSize(40,40);
-                gameBoard.add(label, startPosition[0], startPosition[1]);
-                startPosition[0]++;
+                gameBoard.add(label, j+1, i+1);
+
             }
         }
 
     }
+
 
 
 
@@ -150,6 +171,8 @@ public class UserInterface extends Application{
         TextField gameText = new TextField();
         gameText.setOnKeyReleased(event -> {
             if (event.getCode() == KeyCode.ENTER && !(gameText.getText().equals("")) ){
+
+                gameTextLog.appendText(gameText.getText() + "\n");
                 if(!setup){
                     setUpEvent(gameText);
 
@@ -188,6 +211,7 @@ public class UserInterface extends Application{
         UserInput text;
 
         text = UserInput.parseInput(gameText.getCharacters().toString());
+
             switch(text.getInputType()) {
                 case HELP:
                     gameTextLog.appendText("- Commands:\n");
@@ -208,18 +232,18 @@ public class UserInterface extends Application{
                         playerTurn = (playerTurn + 1) % 2;
                     } catch(Exception e) {
 
-                        gameTextLog.appendText("- Error please try again " + e + "\n");
+                        gameTextLog.appendText("- Error: " +e.getMessage() + "\n");
                     }
                     break;
                 case PLACE_TILE:
                     try{
                         scrabble.playerMove(text.getStartPosition(), text.getWordDirection(), text.getWord(), scrabble.getPlayers()[playerTurn]);
-                        displayMove(text.getStartPosition(), text.getWordDirection(), text.getWord(), scrabble.getPlayers()[playerTurn]);
+                        updateBoard();
                         gameTextLog.appendText("- Move made for player " + (playerTurn + 1) + "\n");
                         playerTurn = (playerTurn + 1) % 2;
                     }
                     catch(Exception e){
-                        gameTextLog.appendText("- Error please try again " + e.getMessage() + "\n");
+                        gameTextLog.appendText("- Error: " +e.getMessage() + "\n");
                     }
                     break;
                 case BLANK:
@@ -227,11 +251,11 @@ public class UserInterface extends Application{
                         scrabble.getPlayers()[playerTurn].getPlayerFrame().getTile(' ').setCharacter(text.getWord()[0]);
                         gameTextLog.appendText("- Blank tile has been set\n");
                     } catch(Exception e){
-                        gameTextLog.appendText("- Error please try again " + e + "\n");
+                        gameTextLog.appendText("- Error: " +e.getMessage() + "\n");
                     }
                     break;
                 default:
-                    gameTextLog.appendText("- Error please try again\n");
+                    gameTextLog.appendText("- Error: Unknown command\n");
             }
 
         gameTextLog.appendText("- Player "+ scrabble.getPlayers()[playerTurn % 2].getName() +" move \n- " + scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().toString() + "\n");
