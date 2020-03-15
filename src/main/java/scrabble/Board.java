@@ -424,12 +424,12 @@ public class Board {
         //If Word is vertical
         if (word.getDirection() == UserInput.Direction.VERTICAL){
             //The start tile is the top edge of the board or the previous square is empty and the last tile is the bottom edge or the next square is empty
-            result = (word.getStartPosition()[0] == 0 || this.getSquare(word.getStartPosition()[0] - 1, word.getStartPosition()[1]).isEmpty()) && (word.getStartPosition()[0] + word.getWord().length== BOARD_SIZE - 1 || this.getSquare(word.getStartPosition()[0] + word.getWord().length + 1, word.getStartPosition()[1]).isEmpty());
+            result = (word.getStartPosition()[0] == 0 || this.getSquare(word.getStartPosition()[0] - 1, word.getStartPosition()[1]).isEmpty()) && (word.getStartPosition()[0] + word.getWord().length - 1 == BOARD_SIZE - 1 || this.getSquare(word.getStartPosition()[0] + word.getWord().length , word.getStartPosition()[1]).isEmpty());
         }
         //Else horizontal
         else {
             //The start tile is the left edge of the board or the previous square is empty and the last tile is the right edge or the next square is empty
-            result = (word.getStartPosition()[1] == 0 || this.getSquare(word.getStartPosition()[0], word.getStartPosition()[1] - 1).isEmpty()) && (word.getStartPosition()[1] + word.getWord().length == BOARD_SIZE - 1 || this.getSquare(word.getStartPosition()[0], word.getStartPosition()[1] + word.getWord().length + 1).isEmpty());
+            result = (word.getStartPosition()[1] == 0 || this.getSquare(word.getStartPosition()[0], word.getStartPosition()[1] - 1).isEmpty()) && (word.getStartPosition()[1] + word.getWord().length -1 == BOARD_SIZE - 1 || this.getSquare(word.getStartPosition()[0], word.getStartPosition()[1] + word.getWord().length).isEmpty());
         }
 
         return  result;

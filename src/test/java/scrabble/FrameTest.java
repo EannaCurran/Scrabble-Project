@@ -286,10 +286,9 @@ class FrameTest {
 
         for (int i = 0; i < 2; i++) {
             frameArray.add(new Frame(pool));
-
+            frameArray.get(i).returnFrame().clear();
             for (int j = 0; j <= i; j++) {
-                frameArray.get(i).removeTile(0);
-                frame.addTile(new Tile(' '));
+                frameArray.get(i).addTile(new Tile(' '));
             }
             frameArray.get(i).setBlanks(new char[]{'C', 'D'});
             frameArray.get(i).setToBlank();
@@ -300,13 +299,17 @@ class FrameTest {
         // assertAll so that all assertions are run and reported together
         assertAll("Testing setToBlank set the Blank Tiles to correct value\n",
                 //Assert that the second last Tile is Blank
-                ()-> assertEquals(0, frame.getTile(Frame.FRAME_SIZE - 2).getValue(),"The last Tile is not a Blank Tile\n"),
+                ()-> assertEquals(0, frameArray.get(0).getTile(0).getValue(),"The last Tile is not a Blank Tile\n"),
                 //Assert that the Blank Tile is C
-                ()-> assertEquals(' ', frame.getTile(Frame.FRAME_SIZE - 2).getCharacter(),"The Blank Tile is not 'C'\n"),
+                ()-> assertEquals(' ', frameArray.get(0).getTile(0).getCharacter(),"The Blank Tile is not 'C'\n"),
+                //Assert that the second last Tile is Blank
+                ()-> assertEquals(0, frameArray.get(1).getTile(0).getValue(),"The last Tile is not a Blank Tile\n"),
+                //Assert that the Blank Tile is C
+                ()-> assertEquals(' ', frameArray.get(1).getTile(0).getCharacter(),"The Blank Tile is not 'C'\n"),
                 //Assert that the last Tile is Blank
-                ()-> assertEquals(0, frame.getTile(Frame.FRAME_SIZE - 1).getValue(),"The last Tile is not a Blank Tile\n"),
+                ()-> assertEquals(0, frameArray.get(1).getTile(1).getValue(),"The last Tile is not a Blank Tile\n"),
                 //Assert that the Blank Tile is C
-                ()-> assertEquals(' ', frame.getTile(Frame.FRAME_SIZE - 1).getCharacter(),"The Blank Tile is not 'D'\n")
+                ()-> assertEquals(' ', frameArray.get(1).getTile(1).getCharacter(),"The Blank Tile is not 'D'\n")
         );
     }
 
