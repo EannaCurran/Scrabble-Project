@@ -3,6 +3,7 @@ package scrabble;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import scrabble.exceptions.InvalidWordException;
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -73,7 +74,7 @@ public class WordTest {
         Word tempWord = new Word(new int[]{7,7}, UserInput.Direction.VERTICAL, new char[]{'C', 'A', 'T'});
 
         //Assert that getStartPosition returns the correct value
-        assertEquals(new int[]{7, 7}, tempWord.getStartPosition(), "getStartPosition did not return the correct start position\n");
+        assertTrue(Arrays.equals(new int[]{7, 7}, tempWord.getStartPosition()), "getStartPosition did not return the correct start position\n");
     }
 
     @Test
@@ -83,7 +84,7 @@ public class WordTest {
         Word tempWord = new Word(new int[]{7,7}, UserInput.Direction.VERTICAL, new char[]{'C', 'A', 'T'});
 
         //Assert that getWord returns the correct value
-        assertEquals(new char[]{'C', 'A', 'T'}, tempWord.getWord(), "getWord did not return the correct char array\n");
+        assertTrue(Arrays.equals(new char[]{'C', 'A', 'T'}, tempWord.getWord()), "getWord did not return the correct char array\n");
     }
 
     @Test
