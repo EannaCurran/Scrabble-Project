@@ -41,7 +41,6 @@ class TileTest {
                 // Assert that if a symbol is passed as an argument to the tile constructor an InvalidTileException is thrown
                 () -> assertThrows(InvalidTileException.class, () -> new Tile(symbolChar), "The Tile constructor didn't throw an InvalidTileException when a symbol was passed as the char argument.\n")
         );
-
     }
 
 
@@ -228,4 +227,6 @@ class TileTest {
         assertThrows( InvalidTileException.class, ()-> testTiles.get(0).setNull(), "The Tile setNull did not throw InvalidTileException for a non Blank Tile\n");
 
     }
+
+
 }

@@ -266,26 +266,6 @@ public class Frame {
 
 
 
-
-    /**
-     * Method to check if the Frame has a Tile with a given character
-     * @param letter: Character to check if it is within Frame
-     * @return Boolean answer
-     */
-     private boolean checkTile(char letter){
-
-        // Loops through each Tile in Frame
-        for(Tile t: playerFrame){
-
-            // If any Tile in the Frame has the same character as letter, true is returned, if not false is returned
-            if(t.getCharacter() == letter){
-                return true;
-            }
-        }
-        return false;
-    }
-
-
     /**
      * If the Tile is in the Frame
      *
