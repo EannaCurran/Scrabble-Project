@@ -26,7 +26,7 @@ public class Main {
 
         //Creating a board
         Board board = new Board();
-        System.out.println("Initialised board:\n"+ board.toString());
+        System.out.println("Initalised board:\n"+ board.toString());
         System.out.println(player1.toString());
 
 
@@ -53,8 +53,6 @@ public class Main {
 
         //The tiles are placed on the board
         //board.placeTiles(player1, player1Tiles, player1Moves);
-
-        //board.placeTiles(new MoveInfo(player1, player1Moves[0], UserInput.Direction.VERTICAL, player1Tiles));
 
         //Prints the board, placed tiles and player 1's data
         System.out.println("\nTurn 1: Player 1 placed a word on the board:\n"+ board + "\nThe tiles placed: ");
