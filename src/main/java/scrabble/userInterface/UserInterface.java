@@ -183,6 +183,9 @@ public class UserInterface extends Application{
                     setUpEvent(gameText);
 
                 }
+                else if(gameOver){
+                    gameOverEvent(gameText);
+                }
                 else {
                     gameEvent(gameText);
                 }
@@ -236,8 +239,7 @@ public class UserInterface extends Application{
 
                         case QUIT:
 
-                            gameStage.close();
-                            Platform.runLater(() -> new UserInterface().start(new Stage()));
+                            System.exit(0);
                             break;
 
                         case EXCHANGE:
@@ -254,8 +256,6 @@ public class UserInterface extends Application{
                             }
                             break;
 
-                        case RESTART:
-
                         case PLACE_TILE:
 
                             try {
@@ -264,7 +264,7 @@ public class UserInterface extends Application{
                                 updateBoard();
                                 currentMove = scrabble.getMoveHistory().get(scrabble.getMoveHistory().size() - 1);
                                 challenge = true;
-                                gameTextLog.appendText("- Does " + scrabble.getPlayers()[(playerTurn + 1) % 2].getName() + " want to challenge this move?\n");
+                                gameTextLog.appendText("- Does " + scrabble.getPlayers()[(playerTurn + 1) % 2].getName() + " want to challenge this move?(CHALLENGE <Y/N>\n");
 
                             } catch (Exception e) {
                                 gameTextLog.appendText("- Error: " + e.getMessage() + "\n");
@@ -317,6 +317,22 @@ public class UserInterface extends Application{
 
         gameText.setText("");
 
+        if(scrabble.isGameOver()){
+            scrabble.gameOver();
+            gameOver = true;
+            gameTextLog.appendText("- GAME OVER!\n");
+            if(scrabble.getPlayers()[0].getScore() > scrabble.getPlayers()[1].getScore()){
+                gameTextLog.appendText("- " + scrabble.getPlayers()[0].getName() + " WINS!\n");
+            }
+            else if (scrabble.getPlayers()[0].getScore() > scrabble.getPlayers()[1].getScore()){
+                gameTextLog.appendText("- THE GAME HAS ENDED IN A DRAW!\n");
+            }
+            else{
+                gameTextLog.appendText("- " + scrabble.getPlayers()[1].getName() + " WINS!\n");
+            }
+            gameTextLog.appendText("- Type QUIT to exit game or RESET to start a new game!\n");
+        }
+
     }
 
     private String gameHelp(){
@@ -326,12 +342,30 @@ public class UserInterface extends Application{
                 "- QUIT: Exists the current game of scrabble\n" +
                 "- EXCHANGE <Letters> : Exchanges the letters in the frame with random letters in the pool\n" +
                 "- BLANK <Letter>: Sets the blank tile in a players frame to a letter\n" +
+                "- CHALLENGE <Y/N>: Command at the end of each turn to challenge the other player move\n" +
                 "- <Grid Reference> <Direction> <Letters>: Places the letters starting at the grid reference and going in the given direction (Eg H7 A HELLO)\n";
     }
 
-    private boolean moveChallenge(){
+    private void gameOverEvent(TextField gameText){
 
+        UserInput text;
+        try {
+            text = UserInput.parseInput(gameText.getCharacters().toString());
+            switch (text.getInputType()){
+                case QUIT:
+                    System.exit(0);
+                    break;
+                case RESTART:
+                    gameStage.close();
+                    Platform.runLater(() -> new UserInterface().start(new Stage()));
+                    break;
+                default:
+                    gameTextLog.appendText("- Error: Unknown command\n");
+            }
+        }catch(Exception e){
 
-        return true;
+            gameTextLog.appendText("- Error: " + e.getMessage() + "\n");
+        }
+
     }
 }
