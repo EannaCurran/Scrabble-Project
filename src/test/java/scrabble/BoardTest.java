@@ -546,6 +546,7 @@ public class BoardTest {
         playerTest.getPlayerFrame().addTile(new Tile('A'));
         playerTest.getPlayerFrame().addTile(new Tile('T'));
 
+
         // assertAll so that all assertions are run and reported together
         assertAll("Testing checkValidMove for invalid Tiles\n",
                 //Assert throws for invalid Tile
@@ -580,6 +581,209 @@ public class BoardTest {
                 () -> assertTrue(boardTest.checkValidMove(new MoveInfo(playerTest, new int[]{6,7}, UserInput.Direction.VERTICAL, new char[]{'C', 'A', 'T'})), "checkValidMove did not return true for starting before Vertically the start square\n"),
                 //Assert return true for valid start position
                 () -> assertTrue(boardTest.checkValidMove(new MoveInfo(playerTest, new int[]{7,6}, UserInput.Direction.HORIZONTAL, new char[]{'C', 'A', 'T'})), "checkValidMove did not return true for starting before Horizontally the start square\n")
+        );
+    }
+
+    @Test
+    @DisplayName("Testing combination of Words with placeTiles")
+    void boardTestPlaceTiles(){
+
+        //Set Up Player
+        playerTest.getPlayerFrame().returnFrame().clear();
+        playerTest.getPlayerFrame().addTile(new Tile('A'));
+        playerTest.getPlayerFrame().addTile(new Tile('T'));
+        playerTest.getPlayerFrame().addTile(new Tile('M'));
+        playerTest.getPlayerFrame().addTile(new Tile('N'));
+        playerTest.getPlayerFrame().addTile(new Tile('Y'));
+        playerTest.getPlayerFrame().addTile(new Tile('S'));
+        playerTest.getPlayerFrame().addTile(new Tile('I'));
+
+        //Board State after the move
+        String boardPrintTest = "\t\t\t\t\t\t\t\tScrabble Board\n" +
+                "  | 1  | 2  | 3  | 4  | 5  | 6  | 7  | 8  | 9  | 10 | 11 | 12 | 13 | 14 | 15 |\n" +
+                "______________________________________________________________________________\n" +
+                " 1| 3W |    |    | 2L |    |    |    | 3W |    |    |    | 2L |    |    | 3W |\n" +
+                "______________________________________________________________________________\n" +
+                " 2|    | 2W |    |    |    | 3L |    |    |    | 3L |    |    |    | 2W |    |\n" +
+                "______________________________________________________________________________\n" +
+                " 3|    |    | 2W |    |    |    | 2L |    | 2L |    |    |    | 2W |    |    |\n" +
+                "______________________________________________________________________________\n" +
+                " 4| 2L |    |    | 2W |    |    |    | 2L |    |    |    | 2W |    |    | 2L |\n" +
+                "______________________________________________________________________________\n" +
+                " 5|    |    |    |    | 2W |    |    |    |    |    | 2W |    |    |    |    |\n" +
+                "______________________________________________________________________________\n" +
+                " 6|    | 3L |    |    |    | 3L |    |    |    | 3L |    |    |    | 3L |    |\n" +
+                "______________________________________________________________________________\n" +
+                " 7|    |    | 2L |    |    |    | 2L |M  3| 2L |    |    |    | 2L |    |    |\n" +
+                "______________________________________________________________________________\n" +
+                " 8| 3W |    |    | 2L |    |    |    |A  1|T  1|    |    | 2L |    |    | 3W |\n" +
+                "______________________________________________________________________________\n" +
+                " 9|    |    | 2L |    |    |    | 2L |N  1| 2L |    |    |    | 2L |    |    |\n" +
+                "______________________________________________________________________________\n" +
+                "10|    | 3L |    |    |    | 3L |    |Y  4|    | 3L |    |    |    | 3L |    |\n" +
+                "______________________________________________________________________________\n" +
+                "11|    |    |    |    | 2W |    |I  1|S  1|    |    | 2W |    |    |    |    |\n" +
+                "______________________________________________________________________________\n" +
+                "12| 2L |    |    | 2W |    |    |    | 2L |    |    |    | 2W |    |    | 2L |\n" +
+                "______________________________________________________________________________\n" +
+                "13|    |    | 2W |    |    |    | 2L |    | 2L |    |    |    | 2W |    |    |\n" +
+                "______________________________________________________________________________\n" +
+                "14|    | 2W |    |    |    | 3L |    |    |    | 3L |    |    |    | 2W |    |\n" +
+                "______________________________________________________________________________\n" +
+                "15| 3W |    |    | 2L |    |    |    | 3W |    |    |    | 2L |    |    | 3W |";
+
+        //Move Set Up
+        MoveInfo move1 = new MoveInfo(playerTest, new int[]{7,7}, UserInput.Direction.HORIZONTAL, new char[]{'A', 'T'});
+        MoveInfo move2 = new MoveInfo(playerTest, new int[]{6,7}, UserInput.Direction.VERTICAL, new char[]{'M', 'A', 'N', 'Y'});
+        MoveInfo move3 = new MoveInfo(playerTest, new int[]{10,6}, UserInput.Direction.HORIZONTAL, new char[]{'I', 'S'});
+
+        // assertAll so that all assertions are run and reported together
+        assertAll("Testing placeTiles for combination of Words\n",
+                //Assert does not throw for move
+                () -> assertDoesNotThrow(()-> boardTest.placeTiles(move1), "placeTiles throw Exception for start move\n"),
+                //Assert does not throw for move
+                () -> assertDoesNotThrow(()-> boardTest.placeTiles(move2), "placeTiles throw Exception for crossing move\n"),
+                //Assert does not throw for move
+                () -> assertDoesNotThrow(()-> boardTest.placeTiles(move3), "placeTiles throw Exception for touching move\n"),
+                //Assert returns correct string
+                () -> assertEquals(boardPrintTest, boardTest.toString(), "The Board has the incorrect Board State after moves\n")
+        );
+    }
+
+    @Test
+    @DisplayName("Testing calculateScore with combination of Words")
+    void boardTestCalculateScore(){
+
+        //Set Up Player
+        playerTest.getPlayerFrame().returnFrame().clear();
+        playerTest.getPlayerFrame().addTile(new Tile('A'));
+        playerTest.getPlayerFrame().addTile(new Tile('T'));
+        playerTest.getPlayerFrame().addTile(new Tile('M'));
+        playerTest.getPlayerFrame().addTile(new Tile('N'));
+        playerTest.getPlayerFrame().addTile(new Tile('Y'));
+        playerTest.getPlayerFrame().addTile(new Tile('S'));
+        playerTest.getPlayerFrame().addTile(new Tile('I'));
+
+        //Move Set Up
+        MoveInfo move1 = new MoveInfo(playerTest, new int[]{7,7}, UserInput.Direction.HORIZONTAL, new char[]{'A', 'T'});
+        MoveInfo move2 = new MoveInfo(playerTest, new int[]{6,7}, UserInput.Direction.VERTICAL, new char[]{'M', 'A', 'N', 'Y'});
+        MoveInfo move3 = new MoveInfo(playerTest, new int[]{10,6}, UserInput.Direction.HORIZONTAL, new char[]{'I', 'S'});
+
+        //Place and calculate score
+        boardTest.placeTiles(move1);
+        boardTest.calculateScore(move1);
+        boardTest.setWordSquaresNormal(move1.getPrimaryWord());
+        boardTest.placeTiles(move2);
+        boardTest.calculateScore(move2);
+        boardTest.setWordSquaresNormal(move2.getPrimaryWord());
+        boardTest.placeTiles(move3);
+        boardTest.calculateScore(move3);
+        boardTest.setWordSquaresNormal(move3.getPrimaryWord());
+
+        // assertAll so that all assertions are run and reported together
+        assertAll("Testing calculateScore with combination of Words\n",
+                //Assert returns correct score
+                () -> assertEquals(4, move1.getMoveScore(), "start move had the incorrect score\n"),
+                //Assert returns correct score
+                () -> assertEquals(9, move2.getMoveScore(), "crossing move had the incorrect score\n"),
+                //Assert returns correct score
+                () -> assertEquals(12, move3.getMoveScore(), "touch move had the incorrect score\n")
+        );
+    }
+
+    @Test
+    @DisplayName("Testing calculateScore with Bingo")
+    void boardTestCalculateScoreBingo(){
+
+        //Set Up Player
+        playerTest.getPlayerFrame().returnFrame().clear();
+        playerTest.getPlayerFrame().addTile(new Tile('A'));
+        playerTest.getPlayerFrame().addTile(new Tile('A'));
+        playerTest.getPlayerFrame().addTile(new Tile('A'));
+        playerTest.getPlayerFrame().addTile(new Tile('A'));
+        playerTest.getPlayerFrame().addTile(new Tile('A'));
+        playerTest.getPlayerFrame().addTile(new Tile('A'));
+        playerTest.getPlayerFrame().addTile(new Tile('A'));
+
+        //Move Set Up
+        MoveInfo move = new MoveInfo(playerTest, new int[]{7,4}, UserInput.Direction.HORIZONTAL, new char[]{'A', 'A','A','A','A','A','A'});
+
+        //Place and calculate score
+        boardTest.placeTiles(move);
+        boardTest.calculateScore(move);
+
+        //Assert the Bingo move score
+        assertEquals(64, move.getMoveScore(), "Bingo move had the incorrect score\n");
+    }
+
+
+    @Test
+    @DisplayName("Board Test setWordSquaresNormal ")
+    void boardTestSetWordSquaresNormal(){
+
+        //Set Up Player
+        playerTest.getPlayerFrame().returnFrame().clear();
+        playerTest.getPlayerFrame().addTile(new Tile('A'));
+        playerTest.getPlayerFrame().addTile(new Tile('A'));
+        playerTest.getPlayerFrame().addTile(new Tile('A'));
+        playerTest.getPlayerFrame().addTile(new Tile('A'));
+        playerTest.getPlayerFrame().addTile(new Tile('A'));
+        playerTest.getPlayerFrame().addTile(new Tile('A'));
+        playerTest.getPlayerFrame().addTile(new Tile('A'));
+
+        //Move Set Up
+        MoveInfo move = new MoveInfo(playerTest, new int[]{7,7}, UserInput.Direction.HORIZONTAL, new char[]{'A', 'A','A','A','A','A','A'});
+
+        //Place and calculate score
+        boardTest.placeTiles(move);
+        boardTest.calculateScore(move);
+        boardTest.setWordSquaresNormal(move.getPrimaryWord());
+
+        // assertAll so that all assertions are run and reported together
+        assertAll("Testing calculateScore with combination of Words\n",
+                //Assert Square is set to Normal
+                () -> assertEquals(Square.SquareType.NORMAL, boardTest.getSquare(7,7).getType(), "Square was not set to Normal\n"),
+                //Assert Square is set to Normal
+                () -> assertEquals(Square.SquareType.NORMAL, boardTest.getSquare(7,8).getType(), "Square was not set to Normal\n"),
+                //Assert Square is set to Normal
+                () -> assertEquals(Square.SquareType.NORMAL, boardTest.getSquare(7,9).getType(), "Square was not set to Normal\n"),
+                //Assert Square is set to Normal
+                () -> assertEquals(Square.SquareType.NORMAL, boardTest.getSquare(7,10).getType(), "Square was not set to Normal\n"),
+                //Assert Square is set to Normal
+                () -> assertEquals(Square.SquareType.NORMAL, boardTest.getSquare(7,11).getType(), "Square was not set to Normal\n"),
+                //Assert Square is set to Normal
+                () -> assertEquals(Square.SquareType.NORMAL, boardTest.getSquare(7,12).getType(), "Square was not set to Normal\n"),
+                //Assert Square is set to Normal
+                () -> assertEquals(Square.SquareType.NORMAL, boardTest.getSquare(7,13).getType(), "Square was not set to Normal\n")
+        );
+    }
+
+    @Test
+    @DisplayName("Board Test removeMove ")
+    void boardTestRemoveMove(){
+
+        //Set Up Player
+        playerTest.getPlayerFrame().returnFrame().clear();
+        playerTest.getPlayerFrame().addTile(new Tile('C'));
+        playerTest.getPlayerFrame().addTile(new Tile('A'));
+        playerTest.getPlayerFrame().addTile(new Tile('T'));
+
+
+        //Move Set Up
+        MoveInfo move = new MoveInfo(playerTest, new int[]{7,7}, UserInput.Direction.HORIZONTAL, new char[]{'C', 'A','T'});
+
+        //Place and remove
+        boardTest.placeTiles(move);
+        boardTest.removeMove(move);
+
+        // assertAll so that all assertions are run and reported together
+        assertAll("Testing calculateScore with combination of Words\n",
+                //Assert Square is set to Empty
+                () -> assertTrue(boardTest.getSquare(7,7).isEmpty(), "Square was not set to Empty\n"),
+                //Assert Square is set to Empty
+                () -> assertTrue(boardTest.getSquare(7,8).isEmpty(), "Square was not set to Empty\n"),
+                //Assert Square is set to Empty
+                () -> assertTrue(boardTest.getSquare(7,9).isEmpty(), "Square was not set to Empty\n")
         );
     }
 
