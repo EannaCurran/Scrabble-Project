@@ -108,7 +108,9 @@ public class UserInput {
         EXCHANGE,
         PLACE_TILE,
         ERROR,
-        BLANK
+        BLANK,
+        CHALLENGE,
+        RESTART
     }
 
     /**
@@ -155,6 +157,24 @@ public class UserInput {
                     case "Pass":
                     case "pass":
                         inputData = new UserInput(UserInputType.PASS);
+                        break;
+                    //CHALLENGE case set the
+                    case "CHALLENGE":
+                    case "Challenge":
+                    case "challenge":
+                        //A try catch for if the constructor fails
+                        try {
+                            //The information of the Tile exchange is stored in the inputData
+                            inputData = new UserInput(UserInputType.CHALLENGE, tokens[1].toCharArray());
+                        } catch (Exception e) {
+                            //Sets input type to ERROR due to the constructor failing
+                            inputData = new UserInput(UserInputType.ERROR);
+                        }
+                    //RESTART case sets the input type to RESTART
+                    case "RESTART":
+                    case "Restart":
+                    case "restart":
+                        inputData = new UserInput(UserInputType.RESTART);
                         break;
                     //BLANK case sets the input type to BLANK to set a blank Tile to a letter
                     case "BLANK":
