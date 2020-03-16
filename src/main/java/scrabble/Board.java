@@ -298,7 +298,6 @@ public class Board {
 
         if (checkValidMove(moveInfo)){
 
-            //calculateScore(moveInfo);
 
             moveInfo.getPlayer().increaseScore(moveInfo.getMoveScore());
 
@@ -307,6 +306,9 @@ public class Board {
 
                 placeTile(moveInfo.getPlayer().getPlayerFrame().getTile(moveInfo.getRequiredTiles()[i]), moveInfo.getRequiredTilesPositions()[i][0], moveInfo.getRequiredTilesPositions()[i][1]);
             }
+
+
+            moveInfo.setScore(calculateScore(moveInfo));
         }
         else {
             throw new InvalidMoveInfoException("The move is invalid.\n");
@@ -380,7 +382,7 @@ public class Board {
      * @param moveInfo The move to get required Tiles
      * @throws InvalidMoveInfoException The Word does not match current Tiles on the Board
      */
-    public void getRequiredTiles(MoveInfo moveInfo){
+    private void getRequiredTiles(MoveInfo moveInfo){
 
         int[][] tilePositions = new  int[moveInfo.getPrimaryWord().getWord().length][2];
         char[] tiles = new char[moveInfo.getPrimaryWord().getWord().length];
@@ -454,12 +456,12 @@ public class Board {
                 //If the previous tile Horizontal is valid
                 if (checkValidPosition(new int[]{currentPosition[0], currentPosition[1] - 1}) && !getSquare(currentPosition[0], currentPosition[1] - 1).isEmpty()) {
                     //Find and add the newly modified Word to the auxiliaryWords
-                    moveInfo.addAuxiliaryWord(findWord(new int[]{moveInfo.getRequiredTilesPositions()[i][0], moveInfo.getRequiredTilesPositions()[i][1] - 1}, UserInput.Direction.HORIZONTAL));
+                    moveInfo.addAuxiliaryWord(findWord(new int[]{moveInfo.getRequiredTilesPositions()[i][0], moveInfo.getRequiredTilesPositions()[i][1] - 1}, UserInput.Direction.HORIZONTAL, moveInfo.getRequiredTilesPositions()[i], moveInfo.getRequiredTiles()[i]));
                 }
                 //Else if the next tile Horizontal is valid
                 else if (checkValidPosition(new int[]{currentPosition[0], currentPosition[1] + 1}) && !getSquare(currentPosition[0], currentPosition[1] + 1).isEmpty()) {
                     //Find and add the newly modified Word to the auxiliaryWords
-                    moveInfo.addAuxiliaryWord(findWord(new int[]{moveInfo.getRequiredTilesPositions()[i][0], moveInfo.getRequiredTilesPositions()[i][1] + 1}, UserInput.Direction.HORIZONTAL));
+                    moveInfo.addAuxiliaryWord(findWord(new int[]{moveInfo.getRequiredTilesPositions()[i][0], moveInfo.getRequiredTilesPositions()[i][1] + 1}, UserInput.Direction.HORIZONTAL, moveInfo.getRequiredTilesPositions()[i], moveInfo.getRequiredTiles()[i]));
                 }
 
             }
@@ -473,12 +475,12 @@ public class Board {
                 //If the previous tile Vertical is valid
                 if (checkValidPosition(new int[]{currentPosition[0] - 1 , currentPosition[1]}) && !getSquare(currentPosition[0] - 1, currentPosition[1]).isEmpty()) {
                     //Find and add the newly modified Word to the auxiliaryWords
-                    moveInfo.addAuxiliaryWord(findWord(new int[]{moveInfo.getRequiredTilesPositions()[i][0] - 1, moveInfo.getRequiredTilesPositions()[i][1]}, UserInput.Direction.VERTICAL));
+                    moveInfo.addAuxiliaryWord(findWord(new int[]{moveInfo.getRequiredTilesPositions()[i][0] - 1, moveInfo.getRequiredTilesPositions()[i][1]}, UserInput.Direction.VERTICAL, moveInfo.getRequiredTilesPositions()[i], moveInfo.getRequiredTiles()[i]));
                 }
                 //Else if the next tile Vertical is valid
                 else if (checkValidPosition(new int[]{currentPosition[0] + 1 , currentPosition[1]}) && !getSquare(currentPosition[0] + 1, currentPosition[1]).isEmpty()) {
                     //Find and add the newly modified Word to the auxiliaryWords
-                    moveInfo.addAuxiliaryWord(findWord(new int[]{moveInfo.getRequiredTilesPositions()[i][0] + 1, moveInfo.getRequiredTilesPositions()[i][1]}, UserInput.Direction.VERTICAL));
+                    moveInfo.addAuxiliaryWord(findWord(new int[]{moveInfo.getRequiredTilesPositions()[i][0] + 1, moveInfo.getRequiredTilesPositions()[i][1]}, UserInput.Direction.VERTICAL, moveInfo.getRequiredTilesPositions()[i], moveInfo.getRequiredTiles()[i] ));
                 }
             }
         }
@@ -492,7 +494,7 @@ public class Board {
      * @return The Word
      * @throws InvalidBoardException The position is invalid
      */
-    private Word findWord(int[] position, UserInput.Direction direction){
+    private Word findWord(int[] position, UserInput.Direction direction, int[] newTilePos, char newTile){
 
         if (position.length == 2 && checkValidPosition(position)){
 
@@ -505,19 +507,26 @@ public class Board {
             int dirIndex = direction == UserInput.Direction.VERTICAL? 0:1;
 
             //While loop till board edge or empty Square
-            while(checkValidPosition(currentPosition) && getSquare(currentPosition[0], currentPosition[1]).isEmpty()){
+            while(checkValidPosition(currentPosition) && (!getSquare(currentPosition[0], currentPosition[1]).isEmpty() || Arrays.equals(currentPosition, newTilePos))){
                 currentPosition[dirIndex]--;
             }
 
             currentPosition[dirIndex]++;
-            position = currentPosition;
+            position = currentPosition.clone();
 
             int i;
 
             //For loop to get the word chars
-            for (i = 0; i < word.length && checkValidPosition(currentPosition) && (currentSquare = getSquare(currentPosition[0], currentPosition[1])).isEmpty(); i++) {
+            for (i = 0; i < word.length && checkValidPosition(currentPosition) && (!(currentSquare = getSquare(currentPosition[0], currentPosition[1])).isEmpty() || Arrays.equals(currentPosition, newTilePos)); i++) {
 
-                word[i] = currentSquare.getTile().getCharacter();
+                //If the current position is new tile position
+                if (Arrays.equals(currentPosition, newTilePos)){
+                    word[i] = newTile;
+                }
+                else {
+                    word[i] = currentSquare.getTile().getCharacter();
+                }
+
                 currentPosition[dirIndex]++;
             }
 
@@ -534,7 +543,7 @@ public class Board {
      *
      * @param moveInfo Move to calculate the score
      */
-    protected void calculateScore(MoveInfo moveInfo){
+    protected int calculateScore(MoveInfo moveInfo){
 
         //Calculate the score of the primary Word
         int result = calculateScoreWord(moveInfo.getPrimaryWord());
@@ -549,7 +558,7 @@ public class Board {
             result += BINGO;
         }
 
-        moveInfo.setScore(result);
+        return result;
     }
 
     /**
@@ -561,7 +570,7 @@ public class Board {
     private int calculateScoreWord(Word word){
 
         int wordFactor = 1, result = 0;
-        Square currentSquare;
+        Square currentSquare = getSquare(word.getStartPosition()[0], word.getStartPosition()[1]);
 
         //For loop to run through each Square in the Word
         for (int i = 0; i < word.getWord().length; i++) {

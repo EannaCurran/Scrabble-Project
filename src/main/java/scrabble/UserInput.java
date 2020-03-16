@@ -224,7 +224,7 @@ public class UserInput {
                                 //Checks if the length of the tokenized input is 3 to check its a valid input
                                 //[coordinates], [direction], [word] = 3
                                 if (tokens.length == 3) {
-                                    //Swtich statement checking which direction the user wants to place the word on the board
+                                    //Switch statement checking which direction the user wants to place the word on the board
                                     switch (tokens[1]) {
                                         //Case 'A' for placing word across
                                         case "A":
