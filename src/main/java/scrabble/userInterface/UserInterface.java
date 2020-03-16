@@ -22,7 +22,10 @@ public class UserInterface extends Application{
     private GridPane gameBoard;
     private Scrabble scrabble;
     private int playerTurn = 0;
-    private boolean setup = false;
+    private boolean setup = true;
+    private boolean challenge = false;
+    private boolean gameOver = false;
+    private MoveInfo currentMove;
 
     public static void main(String[] args) {
         launch(args);
@@ -176,7 +179,7 @@ public class UserInterface extends Application{
             if (event.getCode() == KeyCode.ENTER && !(gameText.getText().equals("")) ){
 
                 gameTextLog.appendText(gameText.getText() + "\n");
-                if(!setup){
+                if(setup){
                     setUpEvent(gameText);
 
                 }
@@ -203,7 +206,7 @@ public class UserInterface extends Application{
             playerTurn = 0;
             gameTextLog.appendText("- "+scrabble.getPlayers()[playerTurn].getName() +"s move \n- " + scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().toString() + "\n");
 
-            setup = true;
+            setup = false;
         }
 
         gameText.setText("");
@@ -213,81 +216,105 @@ public class UserInterface extends Application{
     private void gameEvent(TextField gameText) {
         UserInput text;
         try {
-            text = UserInput.parseInput(gameText.getCharacters().toString());
+                text = UserInput.parseInput(gameText.getCharacters().toString());
 
-            switch (text.getInputType()) {
-                case HELP:
-                    gameTextLog.appendText(gameHelp());
-                    break;
-                case PASS:
-                    gameTextLog.appendText("- Passed turn for " + (playerTurn + 1) + "\n");
-                    playerTurn = (playerTurn + 1) % 2;
-                    break;
-                case QUIT:
-                    gameStage.close();
-                    //Platform.runLater( () -> new UserInterface().start( new Stage() ) );
-                    break;
-                case EXCHANGE:
-                    try {
 
-                        scrabble.getPlayers()[playerTurn].getPlayerFrame().swapTiles(text.getWord());
+                if(!challenge) {
+                    switch (text.getInputType()) {
 
-                        gameTextLog.appendText("- Selected tiles have been swapped\n");
-                        playerTurn = (playerTurn + 1) % 2;
-                    } catch (Exception e) {
+                        case HELP:
 
-                        gameTextLog.appendText("- Error: " + e.getMessage() + "\n");
+                            gameTextLog.appendText(gameHelp());
+                            break;
+
+                        case PASS:
+
+                            gameTextLog.appendText("- Passed turn for " + (playerTurn + 1) + "\n");
+                            scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().setToBlank();
+                            playerTurn = (playerTurn + 1) % 2;
+                            break;
+
+                        case QUIT:
+
+                            gameStage.close();
+                            Platform.runLater(() -> new UserInterface().start(new Stage()));
+                            break;
+
+                        case EXCHANGE:
+
+                            try {
+
+                                scrabble.getPlayers()[playerTurn].getPlayerFrame().swapTiles(text.getWord());
+
+                                gameTextLog.appendText("- Selected tiles have been swapped\n");
+                                playerTurn = (playerTurn + 1) % 2;
+                            } catch (Exception e) {
+
+                                gameTextLog.appendText("- Error: " + e.getMessage() + "\n");
+                            }
+                            break;
+
+                        case RESTART:
+
+                        case PLACE_TILE:
+
+                            try {
+
+                                scrabble.playerMove(text.getStartPosition(), text.getWordDirection(), text.getWord(), scrabble.getPlayers()[playerTurn]);
+                                updateBoard();
+                                currentMove = scrabble.getMoveHistory().get(scrabble.getMoveHistory().size() - 1);
+                                challenge = true;
+                                gameTextLog.appendText("- Does " + scrabble.getPlayers()[(playerTurn + 1) % 2].getName() + " want to challenge this move?\n");
+
+                            } catch (Exception e) {
+                                gameTextLog.appendText("- Error: " + e.getMessage() + "\n");
+                            }
+                            break;
+
+                        case BLANK:
+
+                            try {
+
+                                scrabble.getPlayers()[playerTurn].getPlayerFrame().setBlanks(text.getWord());
+                                gameTextLog.appendText("- Blank tile has been set\n");
+
+                            } catch (Exception e) {
+                                gameTextLog.appendText("- Error: " + e.getMessage() + "\n");
+                            }
+                            break;
+
+                        default:
+
+                            gameTextLog.appendText("- Error: Unknown command\n");
                     }
-                    break;
-                case PLACE_TILE:
-                    try {
-                        scrabble.playerMove(text.getStartPosition(), text.getWordDirection(), text.getWord(), scrabble.getPlayers()[playerTurn]);
-                        updateBoard();
-                        if(moveChallenge()) {
-                            gameTextLog.appendText("- Move made for " + (playerTurn + 1) + " scored " + scrabble.getMoveHistory().get(scrabble.getMoveHistory().size() - 1).getMoveScore() + "\n");
+                }
+                else{
+                    try{
+                        System.out.println();
+                        if(text.getWord()[0] == 'Y'){
+                            //TODO Check Dictionary for Word - Sprint 4
+                            gameTextLog.appendText("- Challenged has been made\n");
                         }
+                        else{
+                            gameTextLog.appendText("- Challenged has been passed\n");
 
-                        playerTurn = (playerTurn + 1) % 2;
-                        scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().setToBlank();
+                            gameTextLog.appendText("- " + scrabble.getPlayers()[playerTurn % 2].getName() + " move scored "+ currentMove.getMoveScore()+". Total score: "+scrabble.getPlayers()[playerTurn % 2].getScore()+ "\n");
+                            playerTurn = (playerTurn + 1) % 2;
+                            gameTextLog.appendText("- " + scrabble.getPlayers()[playerTurn % 2].getName() +"s move \n- " + scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().toString() + "\n");
 
-                    } catch (Exception e) {
+
+                        }
+                        challenge = false;
+
+                    }catch(Exception e){
                         gameTextLog.appendText("- Error: " + e.getMessage() + "\n");
                     }
-                    break;
-                case BLANK:
-                    try {
-                        scrabble.getPlayers()[playerTurn].getPlayerFrame().getTile(' ').setCharacter(text.getWord()[0]);
-                        gameTextLog.appendText("- Blank tile has been set\n");
-                    } catch (Exception e) {
-                        gameTextLog.appendText("- Error: " + e.getMessage() + "\n");
-                    }
-                    break;
-                default:
-                    gameTextLog.appendText("- Error: Unknown command\n");
-            }
-        }catch(Exception e) {
-            gameTextLog.appendText("- Error: " + e.getMessage() + "\n");
-        }
+                }
 
-        if(scrabble.isGameOver()){
-            scrabble.gameOver();
-            gameTextLog.appendText("- GAME OVER\n");
-
-            if(scrabble.getPlayers()[0].getScore() > scrabble.getPlayers()[1].getScore()){
-                gameText.appendText("- "+ scrabble.getPlayers()[0].getName() + " WINS!\n");
+            }catch(Exception e){
+                gameTextLog.appendText("- Error: " + e.getMessage() + "\n");
             }
-            else if(scrabble.getPlayers()[0].getScore() ==scrabble.getPlayers()[1].getScore()){
-                gameText.appendText("- THE GAME IS A DRAW!\n");
-            }
-            else{
-                gameText.appendText("- "+ scrabble.getPlayers()[1].getName() + " WINS!\n");
-                
-                start(new Stage());
-            }
-        }
 
-
-        gameTextLog.appendText("- " + scrabble.getPlayers()[playerTurn % 2].getName() +"s move \n- " + scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().toString() + "\n");
         gameText.setText("");
 
     }

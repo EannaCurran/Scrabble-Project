@@ -608,7 +608,7 @@ public class Board {
      *
      * @param word The Word
      */
-    protected void setWordSquaresNormal(Word word){
+    public void setWordSquaresNormal(Word word){
         Square currentSquare;
 
         //For loop to set all tile under the word to Normal
