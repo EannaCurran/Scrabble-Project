@@ -163,13 +163,20 @@ public class UserInput {
                     case "Challenge":
                     case "challenge":
                         //A try catch for if the constructor fails
-                        try {
-                            //The information of the Tile exchange is stored in the inputData
-                            inputData = new UserInput(UserInputType.CHALLENGE, tokens[1].toCharArray());
-                        } catch (Exception e) {
-                            //Sets input type to ERROR due to the constructor failing
+                        if(tokens[1].equals("Y") || tokens[1].equals("y") || tokens[1].equals("N") || tokens[1].equals("n"))
+                        {
+                            try {
+                                //The information of the Tile exchange is stored in the inputData
+                                inputData = new UserInput(UserInputType.CHALLENGE, (tokens[1].toUpperCase()).toCharArray());
+                            } catch (Exception e) {
+                                //Sets input type to ERROR due to the constructor failing
+                                inputData = new UserInput(UserInputType.ERROR);
+                            }
+                        }
+                        else{
                             inputData = new UserInput(UserInputType.ERROR);
                         }
+                            break;
                     //RESTART case sets the input type to RESTART
                     case "RESTART":
                     case "Restart":

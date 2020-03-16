@@ -164,4 +164,54 @@ public class UserInputTest {
 
     }
 
+    //Test to check when user inputs CHALLENGE and the programme returns the CHALLENGE type enum.
+    //Test to check when user inputs BLANK and the programme returns the BLANK type enum.
+    @Test
+    @DisplayName("Testing the input 'CHALLENGE' returns the input type 'CHALLENGE'")
+    void inputCHALLENGE()
+    {
+        inputTest = UserInput.parseInput("CHALLENGE Y");
+        UserInput ChallengeTestN = UserInput.parseInput("Challenge N");
+        UserInput challengeTesty = UserInput.parseInput("challenge y");
+        UserInput ChallengeTestn = UserInput.parseInput("Challenge n");
+
+        assertAll("Testing the different ways to input BLANK\n",
+                () -> assertEquals(UserInput.UserInputType.CHALLENGE, inputTest.getInputType(), "\nThe user input 'CHALLENGE' did not give the input type 'CHALLENGE'"),
+                () -> assertEquals(UserInput.UserInputType.CHALLENGE, ChallengeTestN.getInputType(), "\nThe user input 'Challenge' did not give the input type 'CHALLENGE'"),
+                () -> assertEquals(UserInput.UserInputType.CHALLENGE, challengeTesty.getInputType(), "\nThe user input 'challenge' did not give the input type 'CHALLENGE'"),
+                () -> assertEquals(UserInput.UserInputType.CHALLENGE, ChallengeTestn.getInputType(), "\nThe user input 'CHALLENGE' did not give the input type 'CHALLENGE'")
+        );
+    }
+
+
+
+    @Test
+    @DisplayName("Testing when assigning letters to blank tiles, that the output is parsed correctly")
+    void challengeTest()
+    {
+        inputTest = UserInput.parseInput("BLANK ABC");
+        char[] expectedResult = {'A', 'B', 'C'};
+        assertEquals(UserInput.UserInputType.BLANK, inputTest.getInputType(), "\nThe user input 'BLANK' did not give the input type 'BLANK'");
+        assertArrayEquals(expectedResult, inputTest.getWord(), "The parsed input did not give the expected result." );
+
+    }
+
+    //Test to check when user inputs RESTART and the programme returns the RESTART type enum.
+    @Test
+    @DisplayName("Testing the input 'RESTART' returns the input type 'RESTART'")
+    void inputRESTART()
+    {
+        inputTest= UserInput.parseInput("RESTART");
+        UserInput RestartTest = UserInput.parseInput("Restart");
+        UserInput restartTest = UserInput.parseInput("restart");
+
+        assertAll("Testing the different ways to input PASS\n",
+                () -> assertEquals(UserInput.UserInputType.RESTART, inputTest.getInputType(), "\nThe user input 'RESTART' did not give the input type 'RESTART'"),
+                () -> assertEquals(UserInput.UserInputType.RESTART, RestartTest.getInputType(), "\nThe user input 'Pass' did not give the input type 'RESTART'"),
+                () -> assertEquals(UserInput.UserInputType.RESTART, restartTest.getInputType(), "\nThe user input 'pass' did not give the input type 'RESTART'")
+        );
+
+    }
+
+
 }
