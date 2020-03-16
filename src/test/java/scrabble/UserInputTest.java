@@ -23,11 +23,9 @@ public class UserInputTest {
     @DisplayName("Testing the input 'QUIT' returns the input type 'QUIT'")
     void inputQuit()
     {
-        inputTest.parseInput("QUIT");
-        UserInput QuitTest = null;
-        QuitTest.parseInput("Quit");
-        UserInput quitTest = null;
-        quitTest.parseInput("quit");
+        inputTest = UserInput.parseInput("QUIT");
+        UserInput QuitTest = UserInput.parseInput("Quit");
+        UserInput quitTest = UserInput.parseInput("quit");
 
         assertAll("Testing the different ways to input quit\n",
                 () -> assertEquals(UserInput.UserInputType.QUIT, inputTest.getInputType(), "\nThe user input 'QUIT' did not give the input type 'QUIT'"),
@@ -42,11 +40,9 @@ public class UserInputTest {
     @DisplayName("Testing the input 'PASS' returns the input type 'PASS'")
     void inputPASS()
     {
-        inputTest.parseInput("PASS");
-        UserInput PassTest = null;
-        PassTest.parseInput("Pass");
-        UserInput passTest = null;
-        passTest.parseInput("pass");
+        inputTest= UserInput.parseInput("PASS");
+        UserInput PassTest = UserInput.parseInput("Pass");
+        UserInput passTest = UserInput.parseInput("pass");
 
         assertAll("Testing the different ways to input PASS\n",
                 () -> assertEquals(UserInput.UserInputType.PASS, inputTest.getInputType(), "\nThe user input 'PASS' did not give the input type 'PASS'"),
@@ -61,11 +57,10 @@ public class UserInputTest {
     @DisplayName("Testing the input 'HELP' returns the input type 'HELP'")
     void inputHELP()
     {
-        inputTest.parseInput("HELP");
-        UserInput HelpTest = null;
-        HelpTest.parseInput("Help");
-        UserInput helpTest = null;
-        helpTest.parseInput("help");
+        inputTest = UserInput.parseInput("HELP");
+        UserInput HelpTest = UserInput.parseInput("Help");
+        UserInput helpTest = UserInput.parseInput("help");
+
 
         assertAll("Testing the different ways to input HELP\n",
                 () -> assertEquals(UserInput.UserInputType.HELP, inputTest.getInputType(), "\nThe user input 'HELP' did not give the input type 'HELP'"),
@@ -79,10 +74,10 @@ public class UserInputTest {
     @DisplayName("Testing when exchanging Tiles that is output is parsed correctly")
     void exchangeTest()
     {
-        inputTest.parseInput("EXCHANGE A B C");
-        char[] expectedResult = {'A', 'B', 'C'};
+        inputTest = UserInput.parseInput("exchange KILLIAN");
+        char[] expectedResult = {'K', 'I', 'L', 'L', 'I', 'A', 'N'};
         assertEquals(UserInput.UserInputType.EXCHANGE, inputTest.getInputType());
-        assertEquals(expectedResult, inputTest.getWord(), "The parsed input did not give the expected result." );
+        assertArrayEquals(expectedResult, inputTest.getWord(), "The parsed input did not give the expected result." );
     }
 
     //Test to check when user inputs EXCHANGE and the programme returns the EXCHANGE type enum.
@@ -90,16 +85,14 @@ public class UserInputTest {
     @DisplayName("Testing the input 'EXCHANGE' returns the input type 'EXCHANGE'")
     void inputEXCHANGE()
     {
-        inputTest.parseInput("EXCHANGE");
-        UserInput ExchangeTest = null;
-        ExchangeTest.parseInput("Exchange");
-        UserInput exchangeTest = null;
-        exchangeTest.parseInput("exchange");
+        inputTest = UserInput.parseInput("EXCHANGE KILLIAN");
+        UserInput ExchangeTest = UserInput.parseInput("Exchange ABC");
+        UserInput exchangeTest = UserInput.parseInput("exchange TEST");
 
         assertAll("Testing the different ways to input EXCHANGE\n",
                 () -> assertEquals(UserInput.UserInputType.EXCHANGE, inputTest.getInputType(), "\nThe user input 'EXCHANGE' did not give the input type 'EXCHANGE'"),
-                () -> assertEquals(UserInput.UserInputType.EXCHANGE, ExchangeTest.getInputType(), "\nThe user input 'Help' did not give the input type 'EXCHANGE'"),
-                () -> assertEquals(UserInput.UserInputType.EXCHANGE, exchangeTest.getInputType(), "\nThe user input 'help' did not give the input type 'EXCHANGE'")
+                () -> assertEquals(UserInput.UserInputType.EXCHANGE, ExchangeTest.getInputType(), "\nThe user input 'Exchange' did not give the input type 'EXCHANGE'"),
+                () -> assertEquals(UserInput.UserInputType.EXCHANGE, exchangeTest.getInputType(), "\nThe user input 'exchange' did not give the input type 'EXCHANGE'")
         );
     }
 
@@ -109,11 +102,9 @@ public class UserInputTest {
     @DisplayName("Testing the input 'BLANK' returns the input type 'BLANK'")
     void inputBLANK()
     {
-        inputTest.parseInput("BLANK");
-        UserInput BlankTest = null;
-        BlankTest.parseInput("Blank");
-        UserInput blankTest = null;
-        blankTest.parseInput("blank");
+        inputTest = UserInput.parseInput("BLANK KILLIAN");
+        UserInput BlankTest = UserInput.parseInput("Blank TEST");
+        UserInput blankTest = UserInput.parseInput("blank ABC");
 
         assertAll("Testing the different ways to input BLANK\n",
                 () -> assertEquals(UserInput.UserInputType.BLANK, inputTest.getInputType(), "\nThe user input 'BLANK' did not give the input type 'BLANK'"),
@@ -128,10 +119,11 @@ public class UserInputTest {
     @DisplayName("Testing when assigning letters to blank tiles, that the output is parsed correctly")
     void blankTest()
     {
-        inputTest.parseInput("BLANK A B C");
+        inputTest = UserInput.parseInput("BLANK ABC");
         char[] expectedResult = {'A', 'B', 'C'};
         assertEquals(UserInput.UserInputType.BLANK, inputTest.getInputType(), "\nThe user input 'BLANK' did not give the input type 'BLANK'");
-        assertEquals(expectedResult, inputTest.getWord(), "The parsed input did not give the expected result." );
+        assertArrayEquals(expectedResult, inputTest.getWord(), "The parsed input did not give the expected result." );
+
     }
 
 
@@ -140,15 +132,17 @@ public class UserInputTest {
     @DisplayName("Test to check that a user input for placing a word on the Board is parsed and stored correctly")
     void inputPlaceWordTest()
     {
-        inputTest.parseInput("H8 A TEST");
+        inputTest = UserInput.parseInput("I8 A TEST");
         int[] coordinateTest = {8, 8};
         char[] wordTest = {'T', 'E', 'S', 'T'};
+        System.out.println("GET WORD" + inputTest.getWord());
+        System.out.println(wordTest);
 
         assertAll("Testing the input for placing a word is stored correctly.",
-                () -> assertEquals(coordinateTest, inputTest.getStartPosition(), "\nThe coordinates inputted and parsed are not the expected coordinates."),
+                () -> assertArrayEquals(coordinateTest, inputTest.getStartPosition(), "\nThe coordinates inputted and parsed are not the expected coordinates."),
                 () -> assertEquals(UserInput.Direction.HORIZONTAL, inputTest.getWordDirection(), "\nThe expected direction does not match the actual direction"),
                 () -> assertEquals(UserInput.UserInputType.PLACE_TILE, inputTest.getInputType(), "\nThe expected type PLACE_TILE does not match the actual type."),
-                () -> assertEquals(wordTest, inputTest.getWord(), "\nThe inputted word does not match the expected word")
+                () -> assertArrayEquals(wordTest, inputTest.getWord(), "\nThe inputted word does not match the expected word")
         );
     }
 
@@ -158,11 +152,10 @@ public class UserInputTest {
     void invalidInputErrorTest()
     {
         //Invalid Coordinate
-        inputTest.parseInput("P12 A TEST");
+        inputTest = UserInput.parseInput("P12 A TEST");
 
         //Invalid Command
-        UserInput commandTest = null;
-        commandTest.parseInput("HELPME");
+        UserInput commandTest = UserInput.parseInput("HELPME");;
 
         assertAll("Testing the different invalid inputs\n",
                 () -> assertEquals(UserInput.UserInputType.ERROR, inputTest.getInputType(), "\nThe invalid user input did not give the input type 'ERROR'."),
