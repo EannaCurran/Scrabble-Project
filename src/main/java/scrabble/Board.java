@@ -239,7 +239,7 @@ public class Board {
         boolean validMove = false;
 
         //If the word is at least length 2 and the start and end positions are valid
-        if (moveInfo.getPrimaryWord().getWord().length >= 2 && checkValidPosition(moveInfo.getPrimaryWord().getStartPosition()) && checkValidPosition(moveInfo.getPrimaryWord().getDirection() == UserInput.Direction.VERTICAL ? new int[]{moveInfo.getPrimaryWord().getStartPosition()[0] + moveInfo.getPrimaryWord().getWord().length, moveInfo.getPrimaryWord().getStartPosition()[1]} : new int[]{moveInfo.getPrimaryWord().getStartPosition()[0], moveInfo.getPrimaryWord().getStartPosition()[1] + moveInfo.getPrimaryWord().getWord().length})){
+        if (moveInfo.getPrimaryWord().getWord().length >= 2 && checkValidPosition(moveInfo.getPrimaryWord().getStartPosition()) && checkValidPosition(moveInfo.getPrimaryWord().getDirection() == UserInput.Direction.VERTICAL ? new int[]{moveInfo.getPrimaryWord().getStartPosition()[0] + moveInfo.getPrimaryWord().getWord().length - 1, moveInfo.getPrimaryWord().getStartPosition()[1]} : new int[]{moveInfo.getPrimaryWord().getStartPosition()[0], moveInfo.getPrimaryWord().getStartPosition()[1] + moveInfo.getPrimaryWord().getWord().length - 1})){
 
             //The word os the whole Word on the Board
             if (wholeWord(moveInfo.getPrimaryWord())) {
@@ -570,7 +570,7 @@ public class Board {
     private int calculateScoreWord(Word word){
 
         int wordFactor = 1, result = 0;
-        Square currentSquare = getSquare(word.getStartPosition()[0], word.getStartPosition()[1]);
+        Square currentSquare;
 
         //For loop to run through each Square in the Word
         for (int i = 0; i < word.getWord().length; i++) {
