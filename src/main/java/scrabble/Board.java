@@ -297,8 +297,7 @@ public class Board {
     public void placeTiles(MoveInfo moveInfo){
 
         if (checkValidMove(moveInfo)){
-            //TODO ??
-            //calculateScore(moveInfo);
+
 
             moveInfo.getPlayer().increaseScore(moveInfo.getMoveScore());
 
@@ -308,7 +307,7 @@ public class Board {
                 placeTile(moveInfo.getPlayer().getPlayerFrame().getTile(moveInfo.getRequiredTiles()[i]), moveInfo.getRequiredTilesPositions()[i][0], moveInfo.getRequiredTilesPositions()[i][1]);
             }
 
-    //TODO ??
+
             moveInfo.setScore(calculateScore(moveInfo));
         }
         else {

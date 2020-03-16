@@ -490,8 +490,6 @@ public class BoardTest {
         );
     }
 
-    //TODO checkWordConnects
-
     @Test
     @DisplayName("Board Test checkValidMove")
     void boardTestCheckValidMove(){
