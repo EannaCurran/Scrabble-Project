@@ -108,7 +108,9 @@ public class UserInput {
         EXCHANGE,
         PLACE_TILE,
         ERROR,
-        BLANK
+        BLANK,
+        CHALLENGE,
+        RESTART
     }
 
     /**
@@ -156,6 +158,24 @@ public class UserInput {
                     case "pass":
                         inputData = new UserInput(UserInputType.PASS);
                         break;
+                    //CHALLENGE case set the
+                    case "CHALLENGE":
+                    case "Challenge":
+                    case "challenge":
+                        //A try catch for if the constructor fails
+                        try {
+                            //The information of the Tile exchange is stored in the inputData
+                            inputData = new UserInput(UserInputType.CHALLENGE, tokens[1].toCharArray());
+                        } catch (Exception e) {
+                            //Sets input type to ERROR due to the constructor failing
+                            inputData = new UserInput(UserInputType.ERROR);
+                        }
+                    //RESTART case sets the input type to RESTART
+                    case "RESTART":
+                    case "Restart":
+                    case "restart":
+                        inputData = new UserInput(UserInputType.RESTART);
+                        break;
                     //BLANK case sets the input type to BLANK to set a blank Tile to a letter
                     case "BLANK":
                     case "Blank":
@@ -185,7 +205,7 @@ public class UserInput {
                     //Default case deals with if the user wants to place a tile
                     default:
                         //Checks if the first token is a row coordinate (A to O) and a column coordinate (a number)
-                        if (tokens[0].matches("^[A-O][\\d]$"))
+                        if (tokens[0].matches("^[A-O][\\d]+$"))
                         {
                             //A try catch to catch any invalid inputs in user input for placing a word on the Board
                             try {
@@ -196,6 +216,7 @@ public class UserInput {
                                 //Position[0] holds the row coordinate
                                 position[0] = temp[0] - 'A';
                                 //The column coordinates (represented by numbers) is parsed to an integer.
+
                                 position[1] = Integer.parseInt(tokens[0].substring(1));
 
                                 //Declaring the direction enum type
