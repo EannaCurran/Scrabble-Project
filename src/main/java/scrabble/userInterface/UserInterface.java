@@ -1,6 +1,7 @@
 package scrabble.userInterface;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.TextArea;
 import javafx.scene.Scene;
@@ -14,6 +15,7 @@ import scrabble.*;
 
 public class UserInterface extends Application{
 
+    private Stage gameStage;
     private GridPane gameFrame;
     private TextField gameTextInput;
     private TextArea gameTextLog;
@@ -23,7 +25,6 @@ public class UserInterface extends Application{
     private boolean setup = false;
 
     public static void main(String[] args) {
-
         launch(args);
 
     }
@@ -32,6 +33,7 @@ public class UserInterface extends Application{
     public void start(Stage gameStage) {
 
         scrabble = new Scrabble();
+        this.gameStage = gameStage;
 
         gameStage.setTitle("Scrabble");
 
@@ -212,6 +214,7 @@ public class UserInterface extends Application{
         UserInput text;
         try {
             text = UserInput.parseInput(gameText.getCharacters().toString());
+
             switch (text.getInputType()) {
                 case HELP:
                     gameTextLog.appendText(gameHelp());
@@ -221,7 +224,8 @@ public class UserInterface extends Application{
                     playerTurn = (playerTurn + 1) % 2;
                     break;
                 case QUIT:
-                    System.exit(0);
+                    gameStage.close();
+                    //Platform.runLater( () -> new UserInterface().start( new Stage() ) );
                     break;
                 case EXCHANGE:
                     try {
@@ -239,9 +243,13 @@ public class UserInterface extends Application{
                     try {
                         scrabble.playerMove(text.getStartPosition(), text.getWordDirection(), text.getWord(), scrabble.getPlayers()[playerTurn]);
                         updateBoard();
-                        gameTextLog.appendText("- Move made for " + (playerTurn + 1) + " scored "+ scrabble.getMoveHistory().get(scrabble.getMoveHistory().size()-1).getMoveScore() + "\n");
+                        if(moveChallenge()) {
+                            gameTextLog.appendText("- Move made for " + (playerTurn + 1) + " scored " + scrabble.getMoveHistory().get(scrabble.getMoveHistory().size() - 1).getMoveScore() + "\n");
+                        }
 
                         playerTurn = (playerTurn + 1) % 2;
+                        scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().setToBlank();
+
                     } catch (Exception e) {
                         gameTextLog.appendText("- Error: " + e.getMessage() + "\n");
                     }
@@ -261,6 +269,24 @@ public class UserInterface extends Application{
             gameTextLog.appendText("- Error: " + e.getMessage() + "\n");
         }
 
+        if(scrabble.isGameOver()){
+            scrabble.gameOver();
+            gameTextLog.appendText("- GAME OVER\n");
+
+            if(scrabble.getPlayers()[0].getScore() > scrabble.getPlayers()[1].getScore()){
+                gameText.appendText("- "+ scrabble.getPlayers()[0].getName() + " WINS!\n");
+            }
+            else if(scrabble.getPlayers()[0].getScore() ==scrabble.getPlayers()[1].getScore()){
+                gameText.appendText("- THE GAME IS A DRAW!\n");
+            }
+            else{
+                gameText.appendText("- "+ scrabble.getPlayers()[1].getName() + " WINS!\n");
+                
+                start(new Stage());
+            }
+        }
+
+
         gameTextLog.appendText("- " + scrabble.getPlayers()[playerTurn % 2].getName() +"s move \n- " + scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().toString() + "\n");
         gameText.setText("");
 
@@ -274,5 +300,11 @@ public class UserInterface extends Application{
                 "- EXCHANGE <Letters> : Exchanges the letters in the frame with random letters in the pool\n" +
                 "- BLANK <Letter>: Sets the blank tile in a players frame to a letter\n" +
                 "- <Grid Reference> <Direction> <Letters>: Places the letters starting at the grid reference and going in the given direction (Eg H7 A HELLO)\n";
+    }
+
+    private boolean moveChallenge(){
+
+
+        return true;
     }
 }

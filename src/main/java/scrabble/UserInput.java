@@ -185,7 +185,7 @@ public class UserInput {
                     //Default case deals with if the user wants to place a tile
                     default:
                         //Checks if the first token is a row coordinate (A to O) and a column coordinate (a number)
-                        if (tokens[0].matches("^[A-O][\\d]$"))
+                        if (tokens[0].matches("^[A-O][\\d]+$"))
                         {
                             //A try catch to catch any invalid inputs in user input for placing a word on the Board
                             try {
@@ -196,6 +196,7 @@ public class UserInput {
                                 //Position[0] holds the row coordinate
                                 position[0] = temp[0] - 'A';
                                 //The column coordinates (represented by numbers) is parsed to an integer.
+
                                 position[1] = Integer.parseInt(tokens[0].substring(1));
 
                                 //Declaring the direction enum type
