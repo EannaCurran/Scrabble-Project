@@ -297,7 +297,7 @@ public class Board {
     public void placeTiles(MoveInfo moveInfo){
 
         if (checkValidMove(moveInfo)){
-
+            //TODO ??
             //calculateScore(moveInfo);
 
             moveInfo.getPlayer().increaseScore(moveInfo.getMoveScore());
@@ -307,6 +307,9 @@ public class Board {
 
                 placeTile(moveInfo.getPlayer().getPlayerFrame().getTile(moveInfo.getRequiredTiles()[i]), moveInfo.getRequiredTilesPositions()[i][0], moveInfo.getRequiredTilesPositions()[i][1]);
             }
+
+    //TODO ??
+            moveInfo.setScore(calculateScore(moveInfo));
         }
         else {
             throw new InvalidMoveInfoException("The move is invalid.\n");
@@ -541,7 +544,7 @@ public class Board {
      *
      * @param moveInfo Move to calculate the score
      */
-    protected void calculateScore(MoveInfo moveInfo){
+    protected int calculateScore(MoveInfo moveInfo){
 
         //Calculate the score of the primary Word
         int result = calculateScoreWord(moveInfo.getPrimaryWord());
@@ -556,7 +559,7 @@ public class Board {
             result += BINGO;
         }
 
-        moveInfo.setScore(result);
+        return result;
     }
 
     /**
