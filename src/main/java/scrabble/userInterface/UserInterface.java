@@ -298,6 +298,7 @@ public class UserInterface extends Application{
                         }
                         else{
                             gameTextLog.appendText("- Challenged has been passed\n");
+                        }
 
                             gameTextLog.appendText("- " + scrabble.getPlayers()[playerTurn % 2].getName() + " move scored "+ currentMove.getMoveScore()+". Total score: "+scrabble.getPlayers()[playerTurn % 2].getScore()+ "\n");
                             scrabble.getBoard().setWordSquaresNormal(currentMove.getPrimaryWord());
@@ -305,7 +306,7 @@ public class UserInterface extends Application{
                             gameTextLog.appendText("- " + scrabble.getPlayers()[playerTurn % 2].getName() +"s move \n- " + scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().toString() + "\n");
 
 
-                        }
+
                         challenge = false;
 
                     }catch(Exception e){
