@@ -51,7 +51,7 @@ public class UserInterface extends Application{
 
         Scene gameScene = new Scene(gameFrame);
         gameStage.setScene(gameScene);
-        gameStage.sizeToScene();
+        gameStage.setResizable(false);
         gameStage.show();
     }
 
@@ -59,6 +59,7 @@ public class UserInterface extends Application{
     private GridPane setUpBoard(Board board){
 
         GridPane gameBoard = new GridPane();
+
         gameBoard.setStyle("-fx-background-color: lightgray; -fx-vgap: 1; -fx-hgap: 1; -fx-padding: 1;-fx-border-color:black;");
 
         for(int i = 0; i < 15; i++) {
@@ -264,7 +265,7 @@ public class UserInterface extends Application{
                                 updateBoard();
                                 currentMove = scrabble.getMoveHistory().get(scrabble.getMoveHistory().size() - 1);
                                 challenge = true;
-                                gameTextLog.appendText("- Does " + scrabble.getPlayers()[(playerTurn + 1) % 2].getName() + " want to challenge this move?(CHALLENGE <Y/N>\n");
+                                gameTextLog.appendText("- Does " + scrabble.getPlayers()[(playerTurn + 1) % 2].getName() + " want to challenge this move? (CHALLENGE <Y/N>)\n");
 
                             } catch (Exception e) {
                                 gameTextLog.appendText("- Error: " + e.getMessage() + "\n");
@@ -299,6 +300,7 @@ public class UserInterface extends Application{
                             gameTextLog.appendText("- Challenged has been passed\n");
 
                             gameTextLog.appendText("- " + scrabble.getPlayers()[playerTurn % 2].getName() + " move scored "+ currentMove.getMoveScore()+". Total score: "+scrabble.getPlayers()[playerTurn % 2].getScore()+ "\n");
+                            scrabble.getBoard().setWordSquaresNormal(currentMove.getPrimaryWord());
                             playerTurn = (playerTurn + 1) % 2;
                             gameTextLog.appendText("- " + scrabble.getPlayers()[playerTurn % 2].getName() +"s move \n- " + scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().toString() + "\n");
 
@@ -340,9 +342,10 @@ public class UserInterface extends Application{
                 "- HELP: Prints out the list of available commands\n" +
                 "- PASS: Passes the current players turn\n" +
                 "- QUIT: Exists the current game of scrabble\n" +
-                "- EXCHANGE <Letters> : Exchanges the letters in the frame with random letters in the pool\n" +
+                "- EXCHANGE <Letters>: Exchanges the letters in the frame with random letters in the pool\n" +
                 "- BLANK <Letter>: Sets the blank tile in a players frame to a letter\n" +
                 "- CHALLENGE <Y/N>: Command at the end of each turn to challenge the other player move\n" +
+                "- RESTART: Launches a new game, can only be called at the end of a game\n" +
                 "- <Grid Reference> <Direction> <Letters>: Places the letters starting at the grid reference and going in the given direction (Eg H7 A HELLO)\n";
     }
 
