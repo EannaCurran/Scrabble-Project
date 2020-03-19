@@ -326,22 +326,14 @@ public class UserInterface extends Application{
                             else {
 
                                 gameTextLog.appendText("- Challenge has failed, players turn has been skipped\n");
-                                scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().removeTiles(currentMove.getRequiredTiles());
-                                scrabble.getPlayers()[playerTurn % 2].increaseScore(currentMove.getMoveScore());
-                                scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().fillFrame();
-                                gameTextLog.appendText("- " + scrabble.getPlayers()[playerTurn % 2].getName() + " move scored "+ currentMove.getMoveScore()+". Total score: "+scrabble.getPlayers()[playerTurn % 2].getScore()+ "\n");
-                                scrabble.getBoard().setWordSquaresNormal(currentMove.getPrimaryWord());
+                                makeMove();
                                 gameTextLog.appendText("- " + scrabble.getPlayers()[playerTurn % 2].getName() +"s move \n- " + scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().toString() + "\n");
                             }
                         }
 
                         else {
                             gameTextLog.appendText("- Challenged has not been made\n");
-                            scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().removeTiles(currentMove.getRequiredTiles());
-                            scrabble.getPlayers()[playerTurn % 2].increaseScore(currentMove.getMoveScore());
-                            scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().fillFrame();
-                            gameTextLog.appendText("- " + scrabble.getPlayers()[playerTurn % 2].getName() + " move scored "+ currentMove.getMoveScore()+". Total score: "+scrabble.getPlayers()[playerTurn % 2].getScore()+ "\n");
-                            scrabble.getBoard().setWordSquaresNormal(currentMove.getPrimaryWord());
+                            makeMove();
                             playerTurn = (playerTurn + 1) % 2;
                             gameTextLog.appendText("- " + scrabble.getPlayers()[playerTurn % 2].getName() +"s move \n- " + scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().toString() + "\n");
                         }
@@ -413,5 +405,13 @@ public class UserInterface extends Application{
             gameTextLog.appendText("- Error: " + e.getMessage() + "\n");
         }
 
+    }
+
+    private void makeMove(){
+        scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().removeTiles(currentMove.getRequiredTiles());
+        scrabble.getPlayers()[playerTurn % 2].increaseScore(currentMove.getMoveScore());
+        scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().fillFrame();
+        gameTextLog.appendText("- " + scrabble.getPlayers()[playerTurn % 2].getName() + " move scored "+ currentMove.getMoveScore()+". Total score: "+scrabble.getPlayers()[playerTurn % 2].getScore()+ "\n");
+        scrabble.getBoard().setWordSquaresNormal(currentMove.getPrimaryWord());
     }
 }
