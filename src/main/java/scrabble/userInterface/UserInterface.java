@@ -412,19 +412,20 @@ public class UserInterface extends Application{
                                 makeMove();
                                 gameTextLog.appendText("- " + scrabble.getPlayers()[playerTurn % 2].getName() +"s move \n- " + scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().toString() + "\n");
                             }
+                            challenge = false;
                         }
 
-                        else {
+                        else if(text.getWord()[0] == 'N'){
                             gameTextLog.appendText("- Challenged has not been made\n");
                             makeMove();
                             playerTurn = (playerTurn + 1) % 2;
                             gameTextLog.appendText("- " + scrabble.getPlayers()[playerTurn % 2].getName() +"s move \n- " + scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().toString() + "\n");
+                            challenge = false;
                         }
 
-
-
-
-                        challenge = false;
+                        else{
+                            gameTextLog.appendText("- Error: Incorrect input for Challenge (CHALLENGE Y/N)"  + "\n");
+                        }
 
                     }catch(Exception e){
                         gameTextLog.appendText("- Error: Incorrect input for Challenge (CHALLENGE Y/N)"  + "\n");
