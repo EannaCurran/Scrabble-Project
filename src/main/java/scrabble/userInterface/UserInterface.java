@@ -427,7 +427,7 @@ public class UserInterface extends Application{
                         challenge = false;
 
                     }catch(Exception e){
-                        gameTextLog.appendText("- Error: " + e.getMessage() + "\n");
+                        gameTextLog.appendText("- Error: Incorrect input for Challenge (CHALLENGE Y/N)"  + "\n");
                     }
                 }
 
@@ -490,6 +490,7 @@ public class UserInterface extends Application{
 
     }
 
+
     private void makeMove(){
         scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().removeTiles(currentMove.getRequiredTiles());
         scrabble.getPlayers()[playerTurn % 2].increaseScore(currentMove.getMoveScore());
@@ -498,4 +499,5 @@ public class UserInterface extends Application{
         scrabble.getBoard().setWordSquaresNormal(currentMove.getPrimaryWord());
         scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().setToBlank();
     }
+
 }
