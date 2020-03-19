@@ -93,33 +93,13 @@ public class Scrabble {
      * @param player Player making the move
      */
     public void playerMove(int[] startPosition, UserInput.Direction direction, char[] word, Player player){
-        if (startPosition.length == 2 && board.checkValidPosition(startPosition)) {
+        if (startPosition.length == 2 && Board.checkValidPosition(startPosition)) {
 
             MoveInfo move = new MoveInfo(player, startPosition, direction, word);
             board.placeTiles(move);
             player.getPlayerFrame().removeTiles(move.getRequiredTiles());
+            moveHistory.add(move);
 
-            /*
-
-             if(challenge()){
-
-             board.removeMove(move);
-
-             player.decreaseScore(moveHistory.get(0).getMoveScore());
-
-             }
-             else{
-
-
-        */
-             //board.setWordSquaresNormal(moveHistory.get(0).getPrimaryWord());
-
-             player.getPlayerFrame().fillFrame();
-
-             moveHistory.add(move);
-             player.increaseScore(move.getMoveScore());
-
-             player.getPlayerFrame().setToBlank();
 
         }
         else {
@@ -149,8 +129,8 @@ public class Scrabble {
      */
     public void gameOver(){
 
-        for (int i = 0; i < players.length; i++) {
-            players[i].decreaseScore(players[i].getPlayerFrame().tileValues());
+        for (Player player : players) {
+            player.decreaseScore(player.getPlayerFrame().tileValues());
         }
     }
 

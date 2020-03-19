@@ -236,7 +236,7 @@ public class Board {
      */
     protected boolean checkValidMove(MoveInfo moveInfo){
 
-        boolean validMove = false;
+        boolean validMove;
 
         //If the word is at least length 2 and the start and end positions are valid
         if (moveInfo.getPrimaryWord().getWord().length >= 2 && checkValidPosition(moveInfo.getPrimaryWord().getStartPosition()) && checkValidPosition(moveInfo.getPrimaryWord().getDirection() == UserInput.Direction.VERTICAL ? new int[]{moveInfo.getPrimaryWord().getStartPosition()[0] + moveInfo.getPrimaryWord().getWord().length - 1, moveInfo.getPrimaryWord().getStartPosition()[1]} : new int[]{moveInfo.getPrimaryWord().getStartPosition()[0], moveInfo.getPrimaryWord().getStartPosition()[1] + moveInfo.getPrimaryWord().getWord().length - 1})){
@@ -323,7 +323,7 @@ public class Board {
      * @param position Position to check if its on the board
      * @return True if the position is valid
      */
-    protected static Boolean checkValidPosition(int[] position){
+    public static Boolean checkValidPosition(int[] position){
         if (position.length == 2) {
             return position[0] >= 0 && position[0] < BOARD_SIZE && position[1] >= 0 && position[1] < BOARD_SIZE;
         }
