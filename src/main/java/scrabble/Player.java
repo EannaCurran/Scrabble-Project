@@ -158,7 +158,7 @@ public class Player {
     public void decreaseScore(int scoreDecrease)
     {
         if (validateScore(scoreDecrease)) {
-            this.score += scoreDecrease;
+            this.score -= scoreDecrease;
         }
         else {
             throw new InvalidPlayerScoreException("Players Score can not be decreased by a negative value\n");

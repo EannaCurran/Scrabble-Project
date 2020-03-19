@@ -34,10 +34,6 @@ public class ScrabbleTest {
         Frame frameTest1 = PlayerTest[0].getPlayerFrame();
         frameTest1.returnFrame().clear();
 
-
-        PlayerTest[0].getPlayerFrame();
-
-
         assertTrue(Test.isGameOver());
     }
 
@@ -65,11 +61,36 @@ public class ScrabbleTest {
         Frame frameTest1 = PlayerTest[0].getPlayerFrame();
         frameTest1.returnFrame().clear();
 
-        PlayerTest[0].getPlayerFrame();
-
         assertFalse(Test.isGameOver());
     }
 
+
+    //Test to check if GameOver method correctly decreases the player's score
+    @Test
+    @DisplayName("Test to check if GameOver method correctly decreases the player's score")
+    void GameOverScoreDecrease()
+    {
+        Player[] PlayerTest = Test.getPlayers();
+
+        PlayerTest[0].increaseScore(100);
+
+        Frame frameTest1 = PlayerTest[0].getPlayerFrame();
+        frameTest1.returnFrame().clear();
+        frameTest1.addTile(new Tile('A'));
+        frameTest1.addTile(new Tile('B'));
+        frameTest1.addTile(new Tile('C'));
+
+        Frame frameTest2 = PlayerTest[0].getPlayerFrame();
+        frameTest2.returnFrame().clear();
+        frameTest2.addTile(new Tile('E'));
+        frameTest2.addTile(new Tile('K'));
+        frameTest2.addTile(new Tile('Z'));
+
+        Test.gameOver();
+
+        assertEquals(93, PlayerTest[0].getScore(), "The final score of player 1 was the not the expected score after points were deduced after the game ended.");
+        assertEquals(84, PlayerTest[1].getScore(), "The final score of player 1 was the not the expected score after points were deduced after the game ended.");
+    }
 
 
 }
