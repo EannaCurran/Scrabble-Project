@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javafx.stage.Screen;
 import scrabble.*;
 import scrabble.exceptions.InvalidScrabbleException;
 
@@ -29,6 +30,7 @@ public class UserInterface extends Application{
     private int playerTurn = 0;
     private boolean setup = true;
     private boolean challenge = false;
+    private boolean challengeMade = false;
     private boolean gameOver = false;
     private MoveInfo currentMove;
 
@@ -62,7 +64,11 @@ public class UserInterface extends Application{
         gameFrame = new GridPane();
         gameTextInput = setUpTextInput();
         gameTextLog = setUpTextLog();
+        gameTextLog.prefHeightProperty().bind(gameFrame.heightProperty());
+        gameTextLog.prefWidthProperty().bind(gameFrame.widthProperty());
         gameBoard = setUpBoard(scrabble.getBoard());
+        gameBoard.prefHeightProperty().bind(gameFrame.heightProperty());
+        gameBoard.prefWidthProperty().bind(gameFrame.widthProperty());
 
         // Adds each of the elements to the Frame
         gameFrame.getChildren().add(gameBoard);
@@ -70,9 +76,12 @@ public class UserInterface extends Application{
         gameFrame.add(gameTextInput,1,1);
 
         // Sets up the javaFx scene
-        Scene gameScene = new Scene(gameFrame);
+        Scene gameScene = new Scene(gameFrame, Screen.getPrimary().getBounds().getMaxX(),Screen.getPrimary().getBounds().getMaxY());
+
+        gameFrame.prefWidthProperty().bind(gameScene.heightProperty());
+        gameFrame.prefWidthProperty().bind(gameScene.widthProperty());
         gameStage.setScene(gameScene);
-        gameStage.setResizable(false);
+        //gameStage.setResizable(false);
 
         // Displays the javaFx scene
         gameStage.show();
@@ -96,8 +105,10 @@ public class UserInterface extends Application{
 
             Label label1 = new Label(String.valueOf(i));
             Label label2 = new Label(String.valueOf((char)(i+65)));
-            label1.setPrefSize(40, 40);
-            label2.setPrefSize(40, 40);
+            label1.prefHeightProperty().bind(gameBoard.heightProperty());
+            label2.prefHeightProperty().bind(gameBoard.heightProperty());
+            label1.prefWidthProperty().bind(gameBoard.widthProperty());
+            label2.prefWidthProperty().bind(gameBoard.widthProperty());
             label1.setAlignment(Pos.CENTER);
             label2.setAlignment(Pos.CENTER);
             gameBoard.add(label1, i + 1, 0);
@@ -119,13 +130,14 @@ public class UserInterface extends Application{
                     case NORMAL:
                         label.setStyle("-fx-background-color: #e6e7e8; -fx-border-color:black; -fx-alignment: center");
                         break;
-                    case START:
                     case TRIPLE_WORD:
                         label.setStyle("-fx-background-color: #ed2207; -fx-border-color:black; -fx-alignment: center");
                         label.setText("3W");
                         break;
+
+                    case START:
                     case DOUBLE_WORD:
-                        label.setStyle("-fx-background-color: #0241ed; -fx-border-color:black; -fx-alignment: center");
+                        label.setStyle("-fx-background-color: #2f6ced; -fx-border-color:black; -fx-alignment: center");
                         label.setText("2W");
                         break;
                     case DOUBLE_LETTER:
@@ -139,7 +151,7 @@ public class UserInterface extends Application{
                 }
 
                 // Adds the label representing the square in the scrabble board the the GripPane
-                label.setPrefSize(40,40);
+                label.setPrefSize(55,55);
                 gameBoard.add(label, j, i);
             }
         }
@@ -169,13 +181,13 @@ public class UserInterface extends Application{
                         case NORMAL:
                             label.setStyle("-fx-background-color: #e6e7e8; -fx-border-color:black; -fx-alignment: center");
                             break;
-                        case START:
                         case TRIPLE_WORD:
                             label.setStyle("-fx-background-color: #ed2207; -fx-border-color:black; -fx-alignment: center");
                             label.setText("3W");
                             break;
+                        case START:
                         case DOUBLE_WORD:
-                            label.setStyle("-fx-background-color: #0241ed; -fx-border-color:black; -fx-alignment: center");
+                            label.setStyle("-fx-background-color: #2f6ced; -fx-border-color:black; -fx-alignment: center");
                             label.setText("2W");
                             break;
                         case DOUBLE_LETTER:
@@ -249,6 +261,11 @@ public class UserInterface extends Application{
                 else if(gameOver) {
 
                     gameOverEvent(gameText);
+                }
+
+                else if(challengeMade){
+
+                    challengeEvent(gameText);
                 }
 
                 // Otherwise the gameEvent method is called to handle the input
@@ -394,28 +411,13 @@ public class UserInterface extends Application{
 
                             //TODO Check Dictionary for Word - Sprint 4
                             gameTextLog.appendText("- Challenge has been made\n");
-                            boolean challengeResult = scrabble.challenge();
-
-                            if(challengeResult) {
-
-                                gameTextLog.appendText("- Challenge has passed\n");
-                                scrabble.getBoard().removeMove(currentMove);
-                                scrabble.getPlayers()[playerTurn % 2].decreaseScore(currentMove.getMoveScore());
-                                scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().setToBlank();
-                                updateBoard();
-
-                            }
-
-                            else {
-
-                                gameTextLog.appendText("- Challenge has failed, players turn has been skipped\n");
-                                makeMove();
-                                gameTextLog.appendText("- " + scrabble.getPlayers()[playerTurn % 2].getName() +"s move \n- " + scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().toString() + "\n");
-                            }
+                            gameTextLog.appendText("- Challenge is currently handled manually, enter Y if challenge was successful or N if not\n");
+                            challengeMade = true;
                             challenge = false;
                         }
 
-                        else if(text.getWord()[0] == 'N'){
+                        else  if(text.getWord()[0] =='N'){
+
                             gameTextLog.appendText("- Challenged has not been made\n");
                             makeMove();
                             playerTurn = (playerTurn + 1) % 2;
@@ -488,6 +490,35 @@ public class UserInterface extends Application{
 
             gameTextLog.appendText("- Error: " + e.getMessage() + "\n");
         }
+
+        gameText.setText("");
+
+    }
+
+    private  void challengeEvent(TextField gameText){
+
+            String input = gameText.getCharacters().toString();
+            System.out.println(input.equals("Y"));
+            if(input.equals("Y")){
+                gameTextLog.appendText("- Challenge has passed\n");
+                scrabble.getBoard().removeMove(currentMove);
+                scrabble.getPlayers()[playerTurn % 2].decreaseScore(currentMove.getMoveScore());
+                scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().setToBlank();
+                updateBoard();
+                playerTurn = (playerTurn%2) + 1;
+                gameTextLog.appendText("- " + scrabble.getPlayers()[playerTurn % 2].getName() +"s move \n- " + scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().toString() + "\n");
+                challengeMade = false;
+            }
+            else if(input.equals("N")){
+                gameTextLog.appendText("- Challenge has failed, players turn has been skipped\n");
+                makeMove();
+                gameTextLog.appendText("- " + scrabble.getPlayers()[playerTurn % 2].getName() +"s move \n- " + scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().toString() + "\n");
+            }
+            else{
+                gameTextLog.appendText("- Error: Unknown command for challenge \n");
+            }
+            gameText.setText("");
+
 
     }
 
