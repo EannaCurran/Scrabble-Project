@@ -416,11 +416,21 @@ public class Frame {
      * Method to set all Blank Tiles to Null
      */
     public void setToBlank(){
-        for (int i = 0; i < playerFrame.size(); i++) {
-            if (playerFrame.get(i).getValue() == 0){
-                playerFrame.get(i).setNull();
+        for (Tile tile : playerFrame) {
+            if (tile.getValue() == 0) {
+                tile.setNull();
             }
         }
+    }
+
+    public boolean hasBlank(){
+
+        for (Tile tile : playerFrame) {
+            if (tile.getValue() == 0) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -431,8 +441,8 @@ public class Frame {
     public int tileValues(){
         int result = 0;
 
-        for (int i = 0; i < playerFrame.size(); i++) {
-            result += playerFrame.get(i).getValue();
+        for (Tile tile : playerFrame) {
+            result += tile.getValue();
         }
 
         return result;
