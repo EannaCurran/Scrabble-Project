@@ -210,7 +210,7 @@ public class UserInterface extends Application{
      */
     private TextArea setUpTextLog() {
 
-        // Creates new TextArea
+        // Creates a new TextArea
         TextArea text_flow = new TextArea();
 
         // Setup for the TextArea
@@ -222,29 +222,55 @@ public class UserInterface extends Application{
         return text_flow;
     }
 
+
+    /**
+     * Method to setup the TextField used to get user input for the game
+     * @return Setup TextField
+     */
     private TextField setUpTextInput() {
+
+        // Creates a new TextField
         TextField gameText = new TextField();
+
+        // Setup for event handler for when the user enters input into the TextField
         gameText.setOnKeyReleased(event -> {
             if (event.getCode() == KeyCode.ENTER && !(gameText.getText().equals("")) ){
 
+                // Displays the users input to the gameTextLog
                 gameTextLog.appendText(gameText.getText() + "\n");
-                if(setup){
-                    setUpEvent(gameText);
 
+                // Checks if the game has been setup, if not the setUpEvent is called to handle the input
+                if(setup) {
+
+                    setUpEvent(gameText);
                 }
-                else if(gameOver){
+
+                // Checks if the game has ended, if so the gameOver is called to handle the input
+                else if(gameOver) {
+
                     gameOverEvent(gameText);
                 }
+
+                // Otherwise the gameEvent method is called to handle the input
                 else {
+
                     gameEvent(gameText);
                 }
             }
         });
 
+        // Returns the TextField
         return gameText;
     }
 
+
+    /**
+     * Method to handle user input when setting up the game of scrabble
+     * @param gameText
+     */
     private void setUpEvent(TextField gameText) {
+
+        // Try catch to handles errors when setting up the each player
         try{
             scrabble.createPlayer(gameText.getCharacters().toString(), playerTurn);
             gameTextLog.appendText("- Player " + (playerTurn+1) + " name set to " + scrabble.getPlayers()[playerTurn].getName() + "\n");
@@ -352,7 +378,7 @@ public class UserInterface extends Application{
                             break;
 
                         case RESTART:
-                            gameText.appendText("- Cannot restart a game that has not ended (QUIT to end game)\n");
+                            gameTextLog.appendText("- Cannot restart a game that has not ended (QUIT to end game)\n");
                             gameTextLog.appendText("- " + scrabble.getPlayers()[playerTurn % 2].getName() +"s move \n- " + scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().toString() + "\n");
                             break;
 
