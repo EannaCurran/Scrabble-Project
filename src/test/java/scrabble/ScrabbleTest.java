@@ -44,13 +44,28 @@ public class ScrabbleTest {
     //Test to check if Game Over method returns false when frame is not empty
     @Test
     @DisplayName("Test to check if Game Over method returns false when frame is not empty")
-    void IsGameOverTestFalse()
+    void IsGameOverTestFalseFrameNotEmpty()
     {
 
         while(!Test.getPool().isEmpty())
         {
             Test.getPool().removeTile();
         }
+
+        assertFalse(Test.isGameOver());
+    }
+
+    //Test to check if Game Over method returns false when pool is not empty
+    @Test
+    @DisplayName("Test to check if Game Over method returns false when pool is not empty")
+    void IsGameOverTestFalsePoolNotEmpty()
+    {
+
+        Player[] PlayerTest = Test.getPlayers();
+        Frame frameTest1 = PlayerTest[0].getPlayerFrame();
+        frameTest1.returnFrame().clear();
+
+        PlayerTest[0].getPlayerFrame();
 
         assertFalse(Test.isGameOver());
     }
