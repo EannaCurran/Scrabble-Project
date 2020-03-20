@@ -542,6 +542,7 @@ public class Board {
      * Method to calculate the score of a move
      *
      * @param moveInfo Move to calculate the score
+     * @return The score of the move
      */
     protected int calculateScore(MoveInfo moveInfo){
 
