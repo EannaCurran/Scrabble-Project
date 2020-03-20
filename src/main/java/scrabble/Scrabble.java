@@ -1,8 +1,6 @@
 package scrabble;
 
 import scrabble.exceptions.InvalidScrabbleException;
-
-import javax.swing.event.ChangeEvent;
 import java.util.ArrayList;
 
 public class Scrabble {
@@ -122,7 +120,7 @@ public class Scrabble {
             player.getPlayerFrame().removeTiles(move.getRequiredTiles());
             moveHistory.add(move);
 
-             player.getPlayerFrame().setToBlank();
+            player.getPlayerFrame().setToBlank();
 
         }
         else {
