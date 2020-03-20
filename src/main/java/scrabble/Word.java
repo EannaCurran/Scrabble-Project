@@ -2,6 +2,8 @@ package scrabble;
 
 import scrabble.exceptions.InvalidWordException;
 
+import java.util.Arrays;
+
 /**
  * Word Class to store information about a word on the board
  */
@@ -85,6 +87,6 @@ public class Word {
      */
     @Override
     public String toString() {
-        return word + " " + startPosition + " " + direction;
+        return word + " " + Arrays.toString(startPosition) + " " + direction;
     }
 }
