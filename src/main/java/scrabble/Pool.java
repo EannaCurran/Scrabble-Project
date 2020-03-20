@@ -147,6 +147,7 @@ public class Pool {
 
 
     public static void main(String[] args) {
+        //Initalising pool
         Pool pool = new Pool();
         System.out.println(pool);
 
