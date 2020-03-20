@@ -31,6 +31,7 @@ public class Word {
      * @throws InvalidWordException The Word must be between 1 - 15 letters
      */
     public Word(int[] coOrdinates, UserInput.Direction d, char[] w){
+        //Checks if the word is valid and is being placed in a valid position
         if (Board.checkValidPosition(coOrdinates) && validWord(w) && d != null){
             startPosition = coOrdinates;
             direction = d;
