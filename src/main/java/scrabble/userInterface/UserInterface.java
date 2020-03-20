@@ -577,14 +577,14 @@ public class UserInterface extends Application{
      */
     private String gameHelp(){
         return "- Commands:\n" +
-                "- HELP: Prints out the list of available commands\n" +
-                "- PASS: Passes the current players turn\n" +
-                "- QUIT: Ends the current game of scrabble\n" +
-                "- EXCHANGE <Characters>: Exchanges the letters in the frame with random letters in the pool\n" +
-                "- BLANK <Letters>: Sets the blank tile in a players frame to a letter\n" +
-                "- CHALLENGE <Y/N>: Command at the end of each turn to challenge the other player move\n" +
-                "- RESTART: Launches a new game, can only be called at the end of a game\n" +
-                "- <Grid Reference> <Direction> <Letters>: Places the letters starting at the grid reference and going in the given direction (Eg H7 A HELLO)\n";
+                "- HELP: Prints out the list of available commands.\n" +
+                "- PASS: Passes the current players turn.\n" +
+                "- QUIT: Ends the current game of Scrabble.\n" +
+                "- EXCHANGE [Characters]: Exchanges the letters in the frame with random letters in the pool (Eg: EXCHANGE AB).\n" +
+                "- BLANK [Characters]: Sets the blank tiles in a players frame to a letter, only functional if a blank tile is in the players frame (Eg: BLANK A).\n" +
+                "- CHALLENGE [Y/N]: Allows the opponent to challenge a move to be made by the other player, only available after a player has inputted a move.\n" +
+                "- RESTART: Launches a new game, can only be called at the end of a game.\n" +
+                "- [Grid Reference] [Direction] [Characters] : Places the characters starting at the grid reference and going in the given direction onto the board (Eg: H7 A HELLO).\n";
     }
 
 
