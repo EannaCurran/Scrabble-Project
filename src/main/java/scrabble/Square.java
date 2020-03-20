@@ -92,7 +92,7 @@ public class Square {
         if (isEmpty()){
             //If the tile is a Blank tile set to null
             if (tile.getCharacter() == ' '){
-                throw new InvalidSquareException("The Square can not contain a Null Tile.\n");
+                throw new InvalidSquareException("The Square can not contain a Null Tile.");
             }
             else{
                 squareTile = tile;
@@ -100,7 +100,7 @@ public class Square {
         }
         //Else throw an Exception
         else{
-            throw new InvalidSquareException("The Square has a Tile on it!\n");
+            throw new InvalidSquareException("The Square has a Tile on it!");
         }
     }
 
@@ -168,7 +168,7 @@ public class Square {
      */
     public Tile setEmpty(){
         if (isEmpty()){
-            throw new InvalidScrabbleException("Square is already empty.\n");
+            throw new InvalidScrabbleException("Square is already empty.");
         }
         else{
             Tile temp = squareTile;

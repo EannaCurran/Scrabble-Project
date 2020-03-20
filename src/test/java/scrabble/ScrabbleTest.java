@@ -105,5 +105,4 @@ public class ScrabbleTest {
         assertEquals(84, PlayerTest[1].getScore(), "The final score of player 1 was the not the expected score after points were deduced after the game ended.");
     }
 
-
 }

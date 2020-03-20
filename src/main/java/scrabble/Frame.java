@@ -51,7 +51,7 @@ public class Frame {
         }
 
         // Adds Tiles to the Frame until the Frame size cap has been reached
-        while(this.playerFrame.size() < FRAME_SIZE){
+        while(this.playerFrame.size() < FRAME_SIZE && !framePool.isEmpty()){
             this.addTile(framePool.removeTile());
         }
     }
@@ -445,8 +445,8 @@ public class Frame {
     public int tileValues(){
         int result = 0;
 
-        for (Tile tile : playerFrame) {
-            result += tile.getValue();
+        for (int i = 0; i < playerFrame.size(); i++) {
+            result += playerFrame.get(i).getValue();
         }
 
         return result;

@@ -37,7 +37,7 @@ public class Word {
             direction = d;
             word = w;
         }else {
-            throw new InvalidWordException("The word co-ordinates must be on the Board.\nThe word must between 1 - 15 capital letters long.\n");
+            throw new InvalidWordException("The word co-ordinates must be on the Board.\nThe word must between 1 - 15 capital letters long.");
         }
     }
 

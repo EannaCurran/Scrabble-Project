@@ -242,16 +242,16 @@ class FrameTest {
     @DisplayName("Test Frame setBlanks one char")
     void testFrameSetBlank1(){
 
-        frame.removeTile(0);
+        frame.returnFrame().clear();
         frame.addTile(new Tile(' '));
         frame.setBlanks(new char[]{'C'});
 
         // assertAll so that all assertions are run and reported together
         assertAll("Testing setBlanks set the Blank Tiles to correct value\n",
                 //Assert that the last Tile is Blank
-                ()-> assertEquals(0, frame.getTile(Frame.FRAME_SIZE - 1).getValue(),"The last Tile is not a Blank Tile\n"),
+                ()-> assertEquals(0, frame.getTile(0).getValue(),"The last Tile is not a Blank Tile\n"),
                 //Assert that the Blank Tile is C
-                ()-> assertEquals('C', frame.getTile(Frame.FRAME_SIZE - 1).getCharacter(),"The Blank Tile is not 'C'\n")
+                ()-> assertEquals('C', frame.getTile(0).getCharacter(),"The Blank Tile is not 'C'\n")
         );
     }
 

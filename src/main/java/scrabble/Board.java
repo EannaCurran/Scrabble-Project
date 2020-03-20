@@ -254,19 +254,19 @@ public class Board {
                         validMove = true;
                     }
                     else {
-                        throw new InvalidMoveInfoException("The Word did not connect to a Word or Start Square.\n");
+                        throw new InvalidMoveInfoException("The Word did not connect to a Word or Start Square.");
                     }
 
                 } else {
-                    throw new InvalidMoveInfoException("The Player does not have the required Tiles for this move.\n");
+                    throw new InvalidMoveInfoException("The Player does not have the required Tiles for this move.");
                 }
             }
             else {
-                throw new InvalidMoveInfoException("The Word is not the whole Word on the Board.\n");
+                throw new InvalidMoveInfoException("The Word is not the whole Word on the Board.");
             }
         }
         else{
-            throw new InvalidMoveInfoException("The Word does not fit on the Board or is less than 2 letters long.\n");
+            throw new InvalidMoveInfoException("The Word does not fit on the Board or is less than 2 letters long.");
         }
 
         return validMove;
@@ -311,7 +311,7 @@ public class Board {
             moveInfo.setScore(calculateScore(moveInfo));
         }
         else {
-            throw new InvalidMoveInfoException("The move is invalid.\n");
+            throw new InvalidMoveInfoException("The move is invalid.");
         }
     }
 
@@ -328,7 +328,7 @@ public class Board {
             return position[0] >= 0 && position[0] < BOARD_SIZE && position[1] >= 0 && position[1] < BOARD_SIZE;
         }
         else{
-            throw new InvalidBoardException("Positions have a i and j component.\n");
+            throw new InvalidBoardException("Positions have a i and j component.");
         }
     }
 
@@ -405,7 +405,7 @@ public class Board {
             }
             //Else check the tiles on the board match the word
             else if (moveInfo.getPrimaryWord().getWord()[i] != currentSquare.getTile().getCharacter()){
-                throw new InvalidMoveInfoException("Word does not match tiles on the board.\n");
+                throw new InvalidMoveInfoException("Word does not match tiles on the board.");
             }
         }
 
@@ -534,7 +534,7 @@ public class Board {
             return new Word(position, direction, Arrays.copyOfRange(word, 0, i));
         }
         else{
-            throw new InvalidBoardException("Position invalid position inputted.\n");
+            throw new InvalidBoardException("Position invalid position inputted.");
         }
     }
 

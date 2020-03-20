@@ -2,8 +2,8 @@ package scrabble;
 
 import scrabble.exceptions.InvalidScrabbleException;
 
-import javax.swing.event.ChangeEvent;
 import java.util.ArrayList;
+
 
 public class Scrabble {
 
@@ -28,7 +28,7 @@ public class Scrabble {
      * False player one goes first
      * True Player two goes First
      */
-    private Boolean playerOrder;
+    private boolean playerOrder;
 
     /**
      * ArrayList to store a history of all previous moves
@@ -52,19 +52,41 @@ public class Scrabble {
         moveHistory = new ArrayList<>();
     }
 
+    /**
+     * Accessor Method for Board
+     *
+     * @return The Board
+     */
     public Board getBoard(){
         return this.board;
     }
 
+    /**
+     * Accessor Method for Pool
+     *
+     * @return The Poll
+     */
     public Pool getPool(){
         return this.pool;
     }
 
+    /**
+     * Accessor Method for Players
+     *
+     * @return The Players array
+     */
     public Player[] getPlayers(){
         return this.players;
     }
 
-    public ArrayList<MoveInfo> getMoveHistory() { return this.moveHistory; }
+    /**
+     * Accessor Method for MoveHistory
+     *
+     * @return The MoveHistory ArrayList
+     */
+    public ArrayList<MoveInfo> getMoveHistory() {
+        return this.moveHistory;
+    }
 
 
 
@@ -80,7 +102,7 @@ public class Scrabble {
             players[playerNumber] = new Player(name, pool);
         }
         else{
-            throw new InvalidScrabbleException("Please select either player 1 or 2.\n");
+            throw new InvalidScrabbleException("Please select either player 1 or 2.");
         }
     }
 
@@ -100,20 +122,14 @@ public class Scrabble {
             player.getPlayerFrame().removeTiles(move.getRequiredTiles());
             moveHistory.add(move);
 
+            player.getPlayerFrame().setToBlank();
 
         }
         else {
-            throw new InvalidScrabbleException("Invalid Start Position Inputted.\n");
+            throw new InvalidScrabbleException("Invalid Start Position Inputted.");
         }
     }
 
-    public boolean challenge(){
-        boolean challenge = false;
-
-        //TODO
-
-        return challenge;
-    }
 
     /**
      * Method to check if the game is over
@@ -129,8 +145,8 @@ public class Scrabble {
      */
     public void gameOver(){
 
-        for (Player player : players) {
-            player.decreaseScore(player.getPlayerFrame().tileValues());
+        for (int i = 0; i < players.length; i++) {
+            players[i].decreaseScore(players[i].getPlayerFrame().tileValues());
         }
     }
 
