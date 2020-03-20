@@ -16,6 +16,7 @@ import scrabble.*;
 import scrabble.exceptions.InvalidFrameException;
 import scrabble.exceptions.InvalidScrabbleException;
 
+import java.util.Random;
 
 
 public class UserInterface extends Application{
