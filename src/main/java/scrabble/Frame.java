@@ -419,6 +419,7 @@ public class Frame {
         for (int i = 0; i < playerFrame.size(); i++) {
             if (playerFrame.get(i).getValue() == 0){
                 playerFrame.get(i).setNull();
+                playerFrame.get(i).setNull();
             }
         }
     }

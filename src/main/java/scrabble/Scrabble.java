@@ -52,19 +52,41 @@ public class Scrabble {
         moveHistory = new ArrayList<>();
     }
 
+    /**
+     * Accessor Method for Board
+     *
+     * @return The Board
+     */
     public Board getBoard(){
         return this.board;
     }
 
+    /**
+     * Accessor Method for Pool
+     *
+     * @return The Poll
+     */
     public Pool getPool(){
         return this.pool;
     }
 
+    /**
+     * Accessor Method for Players
+     *
+     * @return The Players array
+     */
     public Player[] getPlayers(){
         return this.players;
     }
 
-    public ArrayList<MoveInfo> getMoveHistory() { return this.moveHistory; }
+    /**
+     * Accessor Method for MoveHistory
+     *
+     * @return The MoveHistory ArrayList
+     */
+    public ArrayList<MoveInfo> getMoveHistory() {
+        return this.moveHistory;
+    }
 
 
 
@@ -97,30 +119,48 @@ public class Scrabble {
 
             MoveInfo move = new MoveInfo(player, startPosition, direction, word);
             board.placeTiles(move);
-            player.getPlayerFrame().removeTiles(move.getRequiredTiles());
 
+            player.increaseScore(move.getMoveScore());
             /*
+            CHALLENGE c = challenge()
 
-             if(challenge()){
+             if(c == SUCCESS){
 
-             board.removeMove(move);
+                board.removeMove(move);
 
-             player.decreaseScore(moveHistory.get(0).getMoveScore());
+                player.decreaseScore(moveHistory.get(0).getMoveScore());
+
+                player.getPlayerFrame().setToBlank();
+             }
+            //Fail or didnt happen
+             else {
+
+                if (c == FAIL){
+                   skip(opossingPlay)
+                }
+
+               board.setWordSquaresNormal(moveHistory.get(0).getPrimaryWord());
+
+                player.getPlayerFrame().removeTiles(move.getRequiredTiles());
+                player.getPlayerFrame().fillFrame();
+                player.getPlayerFrame().setToBlank();
+
+                moveHistory.add(move);
+
+
+                Frame frame1 = test.getPlayers[0].getFrame;
+                while(!pool.isEmpty){
+                    pool.removeTile();
+                }
+                frame1.returnFame().clear();
+
+                frame2.returnFame().clear();
+                frame2.addTile(new Tile('A');
+                frame2.addTile(new Tile('B');
+                frame2.addTile(new Tile('C');
 
              }
-             else{
-
-
-        */
-             //board.setWordSquaresNormal(moveHistory.get(0).getPrimaryWord());
-
-             player.getPlayerFrame().fillFrame();
-
-             moveHistory.add(move);
-             player.increaseScore(move.getMoveScore());
-
-             player.getPlayerFrame().setToBlank();
-
+            */
         }
         else {
             throw new InvalidScrabbleException("Invalid Start Position Inputted.\n");
