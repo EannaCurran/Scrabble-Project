@@ -33,20 +33,27 @@ boolean \mbox{\hyperlink{classscrabble_1_1_frame_ab1dbb2db8137e0142a4b1349566a12
 \item 
 Array\+List$<$ \mbox{\hyperlink{classscrabble_1_1_tile}{Tile}} $>$ \mbox{\hyperlink{classscrabble_1_1_frame_a0d834cce08c80ecefecadb1f09af9883}{get\+Tiles}} (char\mbox{[}$\,$\mbox{]} word)
 \item 
-void \mbox{\hyperlink{classscrabble_1_1_frame_ae3c57fbc819c174a25c4576e8d58978a}{swap\+Tiles}} (Array\+List$<$ \mbox{\hyperlink{classscrabble_1_1_tile}{Tile}} $>$ tiles)
+void \mbox{\hyperlink{classscrabble_1_1_frame_a4049f4a7f3712be594c1b2c98d2d4eb1}{swap\+Tiles}} (char\mbox{[}$\,$\mbox{]} tiles)
+\item 
+void \mbox{\hyperlink{classscrabble_1_1_frame_a7d86e9215a6db11ec32093e4b2c091ef}{set\+Blanks}} (char\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{classscrabble_1_1_frame_a6c1469c97b1cdf8dbd5d3c556dd5d32a}{tile\+Values}})
+\item 
+void \mbox{\hyperlink{classscrabble_1_1_frame_aee457fee800da4a97012940059eb748e}{set\+To\+Blank}} ()
+\item 
+boolean \mbox{\hyperlink{classscrabble_1_1_frame_a8f66fc5005760d9e31295f45b11b3c05}{has\+Blank}} ()
+\item 
+int \mbox{\hyperlink{classscrabble_1_1_frame_a6c1469c97b1cdf8dbd5d3c556dd5d32a}{tile\+Values}} ()
 \item 
 String \mbox{\hyperlink{classscrabble_1_1_frame_abd7d5f6bac82a739a7b64f46e784248d}{to\+String}} ()
 \end{DoxyCompactItemize}
-\doxysubsection*{Static Public Member Functions}
+\doxysubsection*{Static Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classscrabble_1_1_frame_ac467ceccfc9b17dbaacd2595f1146308}\label{classscrabble_1_1_frame_ac467ceccfc9b17dbaacd2595f1146308}} 
-static void {\bfseries main} (String\mbox{[}$\,$\mbox{]} args)
+static final int \mbox{\hyperlink{classscrabble_1_1_frame_a5c8bc80cebd30bc13ab167aa1f145e4f}{F\+R\+A\+M\+E\+\_\+\+S\+I\+ZE}} = 7
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-This class represents the \mbox{\hyperlink{classscrabble_1_1_player}{Player}}\textquotesingle{}s \mbox{\hyperlink{classscrabble_1_1_frame}{Frame}} in Scrabble 
+This class represents the \mbox{\hyperlink{classscrabble_1_1_player}{Player}}\textquotesingle{}s \mbox{\hyperlink{classscrabble_1_1_frame}{Frame}} in \mbox{\hyperlink{classscrabble_1_1_scrabble}{Scrabble}} 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{classscrabble_1_1_frame_a5aa0bab64740606c3a3d798d1a85e1ee}\label{classscrabble_1_1_frame_a5aa0bab64740606c3a3d798d1a85e1ee}} 
@@ -78,6 +85,11 @@ Method to add a single \mbox{\hyperlink{classscrabble_1_1_tile}{Tile}} to the fr
 {\em tile} & To be added to the player\+Frame \\
 \hline
 \end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Invalid\+Frame\+Exception} & The \mbox{\hyperlink{classscrabble_1_1_frame}{Frame}} is full \\
+\hline
+\end{DoxyExceptions}
 \mbox{\Hypertarget{classscrabble_1_1_frame_a6b8c4bdac856708c2de47f79d4271c6c}\label{classscrabble_1_1_frame_a6b8c4bdac856708c2de47f79d4271c6c}} 
 \index{scrabble.Frame@{scrabble.Frame}!checkTiles@{checkTiles}}
 \index{checkTiles@{checkTiles}!scrabble.Frame@{scrabble.Frame}}
@@ -94,6 +106,11 @@ Method which checks if a series of Tiles are currently in the \mbox{\hyperlink{c
 \begin{DoxyReturn}{Returns}
 boolean\+: Result for if the \mbox{\hyperlink{classscrabble_1_1_frame}{Frame}} contains all the Tiles 
 \end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Invalid\+Frame\+Exception} & The \mbox{\hyperlink{classscrabble_1_1_frame}{Frame}} is empty \\
+\hline
+\end{DoxyExceptions}
 \mbox{\Hypertarget{classscrabble_1_1_frame_ab1dbb2db8137e0142a4b1349566a12cb}\label{classscrabble_1_1_frame_ab1dbb2db8137e0142a4b1349566a12cb}} 
 \index{scrabble.Frame@{scrabble.Frame}!checkTiles@{checkTiles}}
 \index{checkTiles@{checkTiles}!scrabble.Frame@{scrabble.Frame}}
@@ -108,6 +125,11 @@ Method to check if a list of characters are in the \mbox{\hyperlink{classscrabbl
 \begin{DoxyReturn}{Returns}
 Boolean answer 
 \end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Invalid\+Frame\+Exception} & The \mbox{\hyperlink{classscrabble_1_1_frame}{Frame}} is empty \\
+\hline
+\end{DoxyExceptions}
 \mbox{\Hypertarget{classscrabble_1_1_frame_a1913ad50b7f84bc7c5ef6cda501b06ee}\label{classscrabble_1_1_frame_a1913ad50b7f84bc7c5ef6cda501b06ee}} 
 \index{scrabble.Frame@{scrabble.Frame}!fillFrame@{fillFrame}}
 \index{fillFrame@{fillFrame}!scrabble.Frame@{scrabble.Frame}}
@@ -128,6 +150,11 @@ Method that retrieves a \mbox{\hyperlink{classscrabble_1_1_tile}{Tile}} with a g
 \begin{DoxyReturn}{Returns}
 \mbox{\hyperlink{classscrabble_1_1_tile}{Tile}} with given character 
 \end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Invalid\+Frame\+Exception} & The \mbox{\hyperlink{classscrabble_1_1_tile}{Tile}} is not in the \mbox{\hyperlink{classscrabble_1_1_frame}{Frame}} \\
+\hline
+\end{DoxyExceptions}
 \mbox{\Hypertarget{classscrabble_1_1_frame_ae78fc7d925ab853c398b02bebe40f0c6}\label{classscrabble_1_1_frame_ae78fc7d925ab853c398b02bebe40f0c6}} 
 \index{scrabble.Frame@{scrabble.Frame}!getTile@{getTile}}
 \index{getTile@{getTile}!scrabble.Frame@{scrabble.Frame}}
@@ -144,6 +171,11 @@ Accessor method for \mbox{\hyperlink{classscrabble_1_1_tile}{Tile}} from \mbox{\
 \begin{DoxyReturn}{Returns}
 The \mbox{\hyperlink{classscrabble_1_1_tile}{Tile}} at index i in the \mbox{\hyperlink{classscrabble_1_1_frame}{Frame}} 
 \end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Invalid\+Frame\+Exception} & The \\
+\hline
+\end{DoxyExceptions}
 \mbox{\Hypertarget{classscrabble_1_1_frame_a0d834cce08c80ecefecadb1f09af9883}\label{classscrabble_1_1_frame_a0d834cce08c80ecefecadb1f09af9883}} 
 \index{scrabble.Frame@{scrabble.Frame}!getTiles@{getTiles}}
 \index{getTiles@{getTiles}!scrabble.Frame@{scrabble.Frame}}
@@ -157,6 +189,20 @@ Method to retrieve a list of \mbox{\hyperlink{classscrabble_1_1_tile}{Tile}} wit
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 List of Tiles 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Invalid\+Frame\+Exception} & The \mbox{\hyperlink{classscrabble_1_1_frame}{Frame}} does not contain the Tiles \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classscrabble_1_1_frame_a8f66fc5005760d9e31295f45b11b3c05}\label{classscrabble_1_1_frame_a8f66fc5005760d9e31295f45b11b3c05}} 
+\index{scrabble.Frame@{scrabble.Frame}!hasBlank@{hasBlank}}
+\index{hasBlank@{hasBlank}!scrabble.Frame@{scrabble.Frame}}
+\doxysubsubsection{\texorpdfstring{hasBlank()}{hasBlank()}}
+{\footnotesize\ttfamily boolean scrabble.\+Frame.\+has\+Blank (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Method to check if the \mbox{\hyperlink{classscrabble_1_1_frame}{Frame}} has any blank tiles \begin{DoxyReturn}{Returns}
+Boolean result to if the \mbox{\hyperlink{classscrabble_1_1_frame}{Frame}} has any blank tiles 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classscrabble_1_1_frame_aec8ef3605b355fb70e379b1c5069ab9b}\label{classscrabble_1_1_frame_aec8ef3605b355fb70e379b1c5069ab9b}} 
 \index{scrabble.Frame@{scrabble.Frame}!isEmpty@{isEmpty}}
@@ -265,11 +311,35 @@ Accessor method for player\+Frame
 \begin{DoxyReturn}{Returns}
 player\+Frame\+: The Array\+List of Tiles in player\+Frame 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classscrabble_1_1_frame_ae3c57fbc819c174a25c4576e8d58978a}\label{classscrabble_1_1_frame_ae3c57fbc819c174a25c4576e8d58978a}} 
+\mbox{\Hypertarget{classscrabble_1_1_frame_a7d86e9215a6db11ec32093e4b2c091ef}\label{classscrabble_1_1_frame_a7d86e9215a6db11ec32093e4b2c091ef}} 
+\index{scrabble.Frame@{scrabble.Frame}!setBlanks@{setBlanks}}
+\index{setBlanks@{setBlanks}!scrabble.Frame@{scrabble.Frame}}
+\doxysubsubsection{\texorpdfstring{setBlanks()}{setBlanks()}}
+{\footnotesize\ttfamily void scrabble.\+Frame.\+set\+Blanks (\begin{DoxyParamCaption}\item[{char\mbox{[}$\,$\mbox{]}}]{tile\+Values }\end{DoxyParamCaption})}
+
+Method to set the Blank Tiles in \mbox{\hyperlink{classscrabble_1_1_frame}{Frame}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em tile\+Values} & The chars to change the Blank Tiles to \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Invalid\+Frame\+Exception} & If too many chars are passed \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classscrabble_1_1_frame_aee457fee800da4a97012940059eb748e}\label{classscrabble_1_1_frame_aee457fee800da4a97012940059eb748e}} 
+\index{scrabble.Frame@{scrabble.Frame}!setToBlank@{setToBlank}}
+\index{setToBlank@{setToBlank}!scrabble.Frame@{scrabble.Frame}}
+\doxysubsubsection{\texorpdfstring{setToBlank()}{setToBlank()}}
+{\footnotesize\ttfamily void scrabble.\+Frame.\+set\+To\+Blank (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Method to set all Blank Tiles to Null \mbox{\Hypertarget{classscrabble_1_1_frame_a4049f4a7f3712be594c1b2c98d2d4eb1}\label{classscrabble_1_1_frame_a4049f4a7f3712be594c1b2c98d2d4eb1}} 
 \index{scrabble.Frame@{scrabble.Frame}!swapTiles@{swapTiles}}
 \index{swapTiles@{swapTiles}!scrabble.Frame@{scrabble.Frame}}
 \doxysubsubsection{\texorpdfstring{swapTiles()}{swapTiles()}}
-{\footnotesize\ttfamily void scrabble.\+Frame.\+swap\+Tiles (\begin{DoxyParamCaption}\item[{Array\+List$<$ \mbox{\hyperlink{classscrabble_1_1_tile}{Tile}} $>$}]{tiles }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void scrabble.\+Frame.\+swap\+Tiles (\begin{DoxyParamCaption}\item[{char\mbox{[}$\,$\mbox{]}}]{tiles }\end{DoxyParamCaption})}
 
 Method used to swap a number of Tiles from the \mbox{\hyperlink{classscrabble_1_1_frame}{Frame}} for new ones in the \mbox{\hyperlink{classscrabble_1_1_pool}{Pool}}
 
@@ -278,6 +348,17 @@ Method used to swap a number of Tiles from the \mbox{\hyperlink{classscrabble_1_
 {\em tiles} & List of Tiles to be removed \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{classscrabble_1_1_frame_a6c1469c97b1cdf8dbd5d3c556dd5d32a}\label{classscrabble_1_1_frame_a6c1469c97b1cdf8dbd5d3c556dd5d32a}} 
+\index{scrabble.Frame@{scrabble.Frame}!tileValues@{tileValues}}
+\index{tileValues@{tileValues}!scrabble.Frame@{scrabble.Frame}}
+\doxysubsubsection{\texorpdfstring{tileValues()}{tileValues()}}
+{\footnotesize\ttfamily int scrabble.\+Frame.\+tile\+Values (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Method to find the total value of the Tiles in a \mbox{\hyperlink{classscrabble_1_1_frame}{Frame}}
+
+\begin{DoxyReturn}{Returns}
+The total value of the Tiles 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classscrabble_1_1_frame_abd7d5f6bac82a739a7b64f46e784248d}\label{classscrabble_1_1_frame_abd7d5f6bac82a739a7b64f46e784248d}} 
 \index{scrabble.Frame@{scrabble.Frame}!toString@{toString}}
 \index{toString@{toString}!scrabble.Frame@{scrabble.Frame}}
@@ -290,6 +371,15 @@ Method overriding the to\+String method
 String\+: Formatted string of the Tiles in \mbox{\hyperlink{classscrabble_1_1_frame}{Frame}} 
 \end{DoxyReturn}
 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classscrabble_1_1_frame_a5c8bc80cebd30bc13ab167aa1f145e4f}\label{classscrabble_1_1_frame_a5c8bc80cebd30bc13ab167aa1f145e4f}} 
+\index{scrabble.Frame@{scrabble.Frame}!FRAME\_SIZE@{FRAME\_SIZE}}
+\index{FRAME\_SIZE@{FRAME\_SIZE}!scrabble.Frame@{scrabble.Frame}}
+\doxysubsubsection{\texorpdfstring{FRAME\_SIZE}{FRAME\_SIZE}}
+{\footnotesize\ttfamily final int scrabble.\+Frame.\+F\+R\+A\+M\+E\+\_\+\+S\+I\+ZE = 7\hspace{0.3cm}{\ttfamily [static]}}
+
+Max amount of Tiles in the \mbox{\hyperlink{classscrabble_1_1_frame}{Frame}} 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

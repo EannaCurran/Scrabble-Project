@@ -3,42 +3,44 @@
 \doxysubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-enum {\bfseries Square\+Type}
+enum \mbox{\hyperlink{enumscrabble_1_1_square_1_1_square_type}{Square\+Type}}
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classscrabble_1_1_square_a6a68a398a8fdca521e032cc798c7c6d2}{Square}} (Square\+Type type)
+\mbox{\hyperlink{classscrabble_1_1_square_a6a68a398a8fdca521e032cc798c7c6d2}{Square}} (\mbox{\hyperlink{enumscrabble_1_1_square_1_1_square_type}{Square\+Type}} type)
 \item 
-Square\+Type \mbox{\hyperlink{classscrabble_1_1_square_a95a7bbc7ae1144705c22ab5498eded8e}{get\+Type}} ()
+\mbox{\hyperlink{enumscrabble_1_1_square_1_1_square_type}{Square\+Type}} \mbox{\hyperlink{classscrabble_1_1_square_a95a7bbc7ae1144705c22ab5498eded8e}{get\+Type}} ()
 \item 
 \mbox{\hyperlink{classscrabble_1_1_tile}{Tile}} \mbox{\hyperlink{classscrabble_1_1_square_a711e66127ad17ffeb88299358081e8dd}{get\+Tile}} ()
 \item 
 Boolean \mbox{\hyperlink{classscrabble_1_1_square_ac2169d6bca50ed7c4d3ebb218b7cf7aa}{is\+Empty}} ()
 \item 
-Square\+Type \mbox{\hyperlink{classscrabble_1_1_square_a764f54e26b6af0023377bc833f7967e3}{set\+Normal}} ()
+\mbox{\hyperlink{enumscrabble_1_1_square_1_1_square_type}{Square\+Type}} \mbox{\hyperlink{classscrabble_1_1_square_a764f54e26b6af0023377bc833f7967e3}{set\+Normal}} ()
 \item 
 void \mbox{\hyperlink{classscrabble_1_1_square_aee29683e4ef5df85a01caee5818294d1}{set\+Tile}} (\mbox{\hyperlink{classscrabble_1_1_tile}{Tile}} tile)
 \item 
 String \mbox{\hyperlink{classscrabble_1_1_square_ac6d895306a44e5b6470845dc015cf00d}{to\+String}} ()
+\item 
+\mbox{\hyperlink{classscrabble_1_1_tile}{Tile}} \mbox{\hyperlink{classscrabble_1_1_square_a3944ff93e1d612ba15dbea1d9628e5be}{set\+Empty}} ()
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-The \mbox{\hyperlink{classscrabble_1_1_square}{Square}} Class represents the square on the Scrabble \mbox{\hyperlink{classscrabble_1_1_board}{Board}} as objects 
+The \mbox{\hyperlink{classscrabble_1_1_square}{Square}} Class represents the square on the \mbox{\hyperlink{classscrabble_1_1_scrabble}{Scrabble}} \mbox{\hyperlink{classscrabble_1_1_board}{Board}} as objects 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{classscrabble_1_1_square_a6a68a398a8fdca521e032cc798c7c6d2}\label{classscrabble_1_1_square_a6a68a398a8fdca521e032cc798c7c6d2}} 
 \index{scrabble.Square@{scrabble.Square}!Square@{Square}}
 \index{Square@{Square}!scrabble.Square@{scrabble.Square}}
 \doxysubsubsection{\texorpdfstring{Square()}{Square()}}
-{\footnotesize\ttfamily scrabble.\+Square.\+Square (\begin{DoxyParamCaption}\item[{Square\+Type}]{type }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily scrabble.\+Square.\+Square (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{enumscrabble_1_1_square_1_1_square_type}{Square\+Type}}}]{type }\end{DoxyParamCaption})}
 
 \mbox{\hyperlink{classscrabble_1_1_square}{Square}} Constructor
 
 
 \begin{DoxyParams}{Parameters}
-{\em type} & The Square\+Type of the \mbox{\hyperlink{classscrabble_1_1_square}{Square}} \\
+{\em type} & The \mbox{\hyperlink{enumscrabble_1_1_square_1_1_square_type}{Square\+Type}} of the \mbox{\hyperlink{classscrabble_1_1_square}{Square}} \\
 \hline
 \end{DoxyParams}
 
@@ -59,12 +61,12 @@ The \mbox{\hyperlink{classscrabble_1_1_tile}{Tile}} on the \mbox{\hyperlink{clas
 \index{scrabble.Square@{scrabble.Square}!getType@{getType}}
 \index{getType@{getType}!scrabble.Square@{scrabble.Square}}
 \doxysubsubsection{\texorpdfstring{getType()}{getType()}}
-{\footnotesize\ttfamily Square\+Type scrabble.\+Square.\+get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{enumscrabble_1_1_square_1_1_square_type}{Square\+Type}} scrabble.\+Square.\+get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Accessor Method for the Square\+Type of the \mbox{\hyperlink{classscrabble_1_1_square}{Square}}
+Accessor Method for the \mbox{\hyperlink{enumscrabble_1_1_square_1_1_square_type}{Square\+Type}} of the \mbox{\hyperlink{classscrabble_1_1_square}{Square}}
 
 \begin{DoxyReturn}{Returns}
-The Square\+Type of the \mbox{\hyperlink{classscrabble_1_1_square}{Square}} 
+The \mbox{\hyperlink{enumscrabble_1_1_square_1_1_square_type}{Square\+Type}} of the \mbox{\hyperlink{classscrabble_1_1_square}{Square}} 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classscrabble_1_1_square_ac2169d6bca50ed7c4d3ebb218b7cf7aa}\label{classscrabble_1_1_square_ac2169d6bca50ed7c4d3ebb218b7cf7aa}} 
 \index{scrabble.Square@{scrabble.Square}!isEmpty@{isEmpty}}
@@ -77,16 +79,32 @@ Method to find if the \mbox{\hyperlink{classscrabble_1_1_square}{Square}} has a 
 \begin{DoxyReturn}{Returns}
 True if the \mbox{\hyperlink{classscrabble_1_1_square}{Square}} has no \mbox{\hyperlink{classscrabble_1_1_tile}{Tile}} on it 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classscrabble_1_1_square_a3944ff93e1d612ba15dbea1d9628e5be}\label{classscrabble_1_1_square_a3944ff93e1d612ba15dbea1d9628e5be}} 
+\index{scrabble.Square@{scrabble.Square}!setEmpty@{setEmpty}}
+\index{setEmpty@{setEmpty}!scrabble.Square@{scrabble.Square}}
+\doxysubsubsection{\texorpdfstring{setEmpty()}{setEmpty()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classscrabble_1_1_tile}{Tile}} scrabble.\+Square.\+set\+Empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Method to set\+Square to empty
+
+\begin{DoxyReturn}{Returns}
+The \mbox{\hyperlink{classscrabble_1_1_tile}{Tile}} on the \mbox{\hyperlink{classscrabble_1_1_square}{Square}} 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Invalid\+Square\+Exception} & The \mbox{\hyperlink{classscrabble_1_1_square}{Square}} was empty \\
+\hline
+\end{DoxyExceptions}
 \mbox{\Hypertarget{classscrabble_1_1_square_a764f54e26b6af0023377bc833f7967e3}\label{classscrabble_1_1_square_a764f54e26b6af0023377bc833f7967e3}} 
 \index{scrabble.Square@{scrabble.Square}!setNormal@{setNormal}}
 \index{setNormal@{setNormal}!scrabble.Square@{scrabble.Square}}
 \doxysubsubsection{\texorpdfstring{setNormal()}{setNormal()}}
-{\footnotesize\ttfamily Square\+Type scrabble.\+Square.\+set\+Normal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{enumscrabble_1_1_square_1_1_square_type}{Square\+Type}} scrabble.\+Square.\+set\+Normal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Method to set the Square\+Type of a \mbox{\hyperlink{classscrabble_1_1_square}{Square}} to N\+O\+R\+M\+AL
+Method to set the \mbox{\hyperlink{enumscrabble_1_1_square_1_1_square_type}{Square\+Type}} of a \mbox{\hyperlink{classscrabble_1_1_square}{Square}} to N\+O\+R\+M\+AL
 
 \begin{DoxyReturn}{Returns}
-The Square\+Type of the \mbox{\hyperlink{classscrabble_1_1_square}{Square}} before setting to normal 
+The \mbox{\hyperlink{enumscrabble_1_1_square_1_1_square_type}{Square\+Type}} of the \mbox{\hyperlink{classscrabble_1_1_square}{Square}} before setting to normal 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classscrabble_1_1_square_aee29683e4ef5df85a01caee5818294d1}\label{classscrabble_1_1_square_aee29683e4ef5df85a01caee5818294d1}} 
 \index{scrabble.Square@{scrabble.Square}!setTile@{setTile}}

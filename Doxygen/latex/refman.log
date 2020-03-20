@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.6)  23 FEB 2020 21:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.6)  20 MAR 2020 19:40
 entering extended mode
 **./refman.tex
 (refman.tex
@@ -844,8 +844,6 @@ File: uwasy.fd 2020/01/19 v2.4 Wasy-2 symbol font definitions
 
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 8.99994pt on input line 169.
-LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 6.29996pt on input line 169.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 (Font)              scaled to size 7.19995pt on input line 169.
 LaTeX Font Info:    Trying to load font information for T1+pcr on input line 16
@@ -853,7 +851,11 @@ LaTeX Font Info:    Trying to load font information for T1+pcr on input line 16
 
 ("D:\Program Files\MiKTeX 2.9\tex/latex/psnfss\t1pcr.fd"
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
-) [1] [2] [3] [4
+)
+LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+(Font)              scaled to size 6.29996pt on input line 169.
+ [1] [2] [3] [4]
+[5] [6
 
 ]
 Package hyperref Info: Option `pageanchor' set `true' on input line 171.
@@ -871,72 +873,22 @@ LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 22.39185pt on input line 174.
 LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
 (Font)              scaled to size 22.39185pt on input line 174.
-LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
-(Font)              scaled to size 6.29996pt on input line 174.
-(md__r_e_a_d_m_e.tex
-LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 10.79993pt on input line 5.
-
-
-Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 5.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 5.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 5.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 5.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 5.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 5.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 5.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 5.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 5.
-
-
-Overfull \hbox (48.75621pt too wide) in paragraph at lines 12--12
-[]\T1/pcr/m/n/8 Main - Is the class containing the main method ececuted by the 
-jar and run expamle of the first few turns[] 
- []
-
-) [1
-
-] [2]
-Chapter 2.
 (hierarchy.tex
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 12.9599pt on input line 1.
-) [3
+) [1
 
-] [4
+] [2
+
+]
+Chapter 2.
+(annotated.tex) [3] [4
 
 ]
 Chapter 3.
-(annotated.tex) [5] [6
-
-]
-Chapter 4.
 (classscrabble_1_1_board.tex
+LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+(Font)              scaled to size 10.79993pt on input line 3.
 LaTeX Font Info:    Trying to load font information for TS1+phv on input line 6
 .
 
@@ -945,28 +897,41 @@ File: ts1phv.fd 2001/06/04 scalable font definitions for TS1/phv.
 )
 LaTeX Font Info:    Font shape `TS1/phv/m/n' will be
 (Font)              scaled to size 8.99994pt on input line 6.
- [7]
+ [5]
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <8> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 61.
- [8]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [9]
-Underfull \hbox (badness 10000) detected at line 150
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 166
-[][][]
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [10]
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 64.
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <7> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 178.
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 64.
+
+Underfull \hbox (badness 10000) detected at line 73
+[][][]
+ []
+
+[6]
+Underfull \hbox (badness 10000) detected at line 91
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 107
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 128
+[][][]
+ []
+
+[7]
+Underfull \hbox (badness 10000) detected at line 137
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 153
+[][][]
+ []
+
 
 Overfull \hbox (1.97964pt too wide) in paragraph at lines 3--3
 []\T1/phv/m/sl/10 position[] 
@@ -977,52 +942,70 @@ Overfull \hbox (1.97964pt too wide) in paragraph at lines 5--5
 []\T1/phv/m/sl/10 position[] 
  []
 
-[11]
-Underfull \hbox (badness 10000) detected at line 220
+[8] [9]
+Underfull \hbox (badness 10000) detected at line 231
 [][][]
  []
 
-) (classscrabble_1_1_board_test.tex) (classscrabble_1_1_frame.tex [12]
+) (classscrabble_1_1_board_test.tex)
+(enumscrabble_1_1_user_input_1_1_direction.tex) (classscrabble_1_1_frame.tex
+[10]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [11]
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 7.19995pt on input line 84.
- [13]
+(Font)              scaled to size 7.19995pt on input line 96.
+
+Underfull \hbox (badness 10000) detected at line 106
+[][][]
+ []
+
+[12]
+Underfull \hbox (badness 10000) detected at line 125
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 150
+[][][]
+ []
+
+[13]
+Underfull \hbox (badness 10000) detected at line 171
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 190
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 204
+[][][]
+ []
+
 [14]
-Underfull \hbox (badness 10000) detected at line 94
+Underfull \hbox (badness 10000) detected at line 215
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 108
+Underfull \vbox (badness 1142) has occurred while \output is active []
+
+ [15]
+[16]
+Underfull \hbox (badness 10000) detected at line 311
+[][][]
+ []
+
+[17]
+Underfull \hbox (badness 10000) detected at line 359
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 128
-[][][]
- []
-
-[15]
-Underfull \hbox (badness 10000) detected at line 144
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 158
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 169
-[][][]
- []
-
-[16] [17] [18]
-Underfull \hbox (badness 10000) detected at line 265
-[][][]
- []
-
-[19]
-Underfull \hbox (badness 10000) detected at line 289
+Underfull \hbox (badness 10000) detected at line 370
 [][][]
  []
 
@@ -1032,8 +1015,8 @@ pdfTeX warning: pdflatex (file ./classscrabble_1_1exceptions_1_1_invalid_board_
 exception.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.
 5> allowed
  <./classscrabble_1_1exceptions_1_1_invalid_board_exception.pdf>
-<classscrabble_1_1exceptions_1_1_invalid_board_exception.pdf, id=978, 501.875pt
- x 153.57375pt>
+<classscrabble_1_1exceptions_1_1_invalid_board_exception.pdf, id=1479, 501.875p
+t x 153.57375pt>
 File: classscrabble_1_1exceptions_1_1_invalid_board_exception.pdf Graphic file 
 (type pdf)
 <use classscrabble_1_1exceptions_1_1_invalid_board_exception.pdf>
@@ -1047,37 +1030,67 @@ pdfTeX warning: pdflatex (file ./classscrabble_1_1exceptions_1_1_invalid_frame_
 exception.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.
 5> allowed
  <./classscrabble_1_1exceptions_1_1_invalid_frame_exception.pdf>
-<classscrabble_1_1exceptions_1_1_invalid_frame_exception.pdf, id=984, 501.875pt
- x 151.56625pt>
+<classscrabble_1_1exceptions_1_1_invalid_frame_exception.pdf, id=1486, 501.875p
+t x 151.56625pt>
 File: classscrabble_1_1exceptions_1_1_invalid_frame_exception.pdf Graphic file 
 (type pdf)
 <use classscrabble_1_1exceptions_1_1_invalid_frame_exception.pdf>
 Package pdftex.def Info: classscrabble_1_1exceptions_1_1_invalid_frame_exceptio
 n.pdf  used on input line 6.
 (pdftex.def)             Requested size: 188.43239pt x 56.9055pt.
+ [18])
+(classscrabble_1_1exceptions_1_1_invalid_input_exception.tex
+
+pdfTeX warning: pdflatex (file ./classscrabble_1_1exceptions_1_1_invalid_input_
+exception.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.
+5> allowed
+ <./classscrabble_1_1exceptions_1_1_invalid_input_exception.pdf>
+<classscrabble_1_1exceptions_1_1_invalid_input_exception.pdf, id=1498, 501.875p
+t x 157.58875pt>
+File: classscrabble_1_1exceptions_1_1_invalid_input_exception.pdf Graphic file 
+(type pdf)
+<use classscrabble_1_1exceptions_1_1_invalid_input_exception.pdf>
+Package pdftex.def Info: classscrabble_1_1exceptions_1_1_invalid_input_exceptio
+n.pdf  used on input line 6.
+(pdftex.def)             Requested size: 181.22623pt x 56.9055pt.
 )
+(classscrabble_1_1exceptions_1_1_invalid_move_info_exception.tex
+
+pdfTeX warning: pdflatex (file ./classscrabble_1_1exceptions_1_1_invalid_move_i
+nfo_exception.pdf): PDF inclusion: found PDF version <1.7>, but at most version
+ <1.5> allowed
+ <./classscrabble_1_1exceptions_1_1_invalid_move_info_exception.pdf>
+<classscrabble_1_1exceptions_1_1_invalid_move_info_exception.pdf, id=1505, 501.
+875pt x 142.5325pt>
+File: classscrabble_1_1exceptions_1_1_invalid_move_info_exception.pdf Graphic f
+ile (type pdf)
+<use classscrabble_1_1exceptions_1_1_invalid_move_info_exception.pdf>
+Package pdftex.def Info: classscrabble_1_1exceptions_1_1_invalid_move_info_exce
+ption.pdf  used on input line 6.
+(pdftex.def)             Requested size: 200.3712pt x 56.9055pt.
+ [19])
 (classscrabble_1_1exceptions_1_1_invalid_player_name_exception.tex
 
 pdfTeX warning: pdflatex (file ./classscrabble_1_1exceptions_1_1_invalid_player
 _name_exception.pdf): PDF inclusion: found PDF version <1.7>, but at most versi
 on <1.5> allowed
  <./classscrabble_1_1exceptions_1_1_invalid_player_name_exception.pdf>
-<classscrabble_1_1exceptions_1_1_invalid_player_name_exception.pdf, id=990, 501
-.875pt x 135.50626pt>
+<classscrabble_1_1exceptions_1_1_invalid_player_name_exception.pdf, id=1522, 50
+1.875pt x 135.50626pt>
 File: classscrabble_1_1exceptions_1_1_invalid_player_name_exception.pdf Graphic
  file (type pdf)
 <use classscrabble_1_1exceptions_1_1_invalid_player_name_exception.pdf>
 Package pdftex.def Info: classscrabble_1_1exceptions_1_1_invalid_player_name_ex
 ception.pdf  used on input line 6.
 (pdftex.def)             Requested size: 210.76308pt x 56.9055pt.
- [20])
+)
 (classscrabble_1_1exceptions_1_1_invalid_player_score_exception.tex
 
 pdfTeX warning: pdflatex (file ./classscrabble_1_1exceptions_1_1_invalid_player
 _score_exception.pdf): PDF inclusion: found PDF version <1.7>, but at most vers
 ion <1.5> allowed
  <./classscrabble_1_1exceptions_1_1_invalid_player_score_exception.pdf>
-<classscrabble_1_1exceptions_1_1_invalid_player_score_exception.pdf, id=1005, 5
+<classscrabble_1_1exceptions_1_1_invalid_player_score_exception.pdf, id=1529, 5
 01.875pt x 134.5025pt>
 File: classscrabble_1_1exceptions_1_1_invalid_player_score_exception.pdf Graphi
 c file (type pdf)
@@ -1085,14 +1098,14 @@ c file (type pdf)
 Package pdftex.def Info: classscrabble_1_1exceptions_1_1_invalid_player_score_e
 xception.pdf  used on input line 6.
 (pdftex.def)             Requested size: 212.33296pt x 56.9055pt.
-)
-(classscrabble_1_1exceptions_1_1_invalid_pool_exception.tex
+
+[20]) (classscrabble_1_1exceptions_1_1_invalid_pool_exception.tex
 
 pdfTeX warning: pdflatex (file ./classscrabble_1_1exceptions_1_1_invalid_pool_e
 xception.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5
 > allowed
  <./classscrabble_1_1exceptions_1_1_invalid_pool_exception.pdf>
-<classscrabble_1_1exceptions_1_1_invalid_pool_exception.pdf, id=1011, 501.875pt
+<classscrabble_1_1exceptions_1_1_invalid_pool_exception.pdf, id=1546, 501.875pt
  x 158.5925pt>
 File: classscrabble_1_1exceptions_1_1_invalid_pool_exception.pdf Graphic file (
 type pdf)
@@ -1100,6 +1113,21 @@ type pdf)
 Package pdftex.def Info: classscrabble_1_1exceptions_1_1_invalid_pool_exception
 .pdf  used on input line 6.
 (pdftex.def)             Requested size: 180.07753pt x 56.9055pt.
+)
+(classscrabble_1_1exceptions_1_1_invalid_scrabble_exception.tex
+
+pdfTeX warning: pdflatex (file ./classscrabble_1_1exceptions_1_1_invalid_scrabb
+le_exception.pdf): PDF inclusion: found PDF version <1.7>, but at most version 
+<1.5> allowed
+ <./classscrabble_1_1exceptions_1_1_invalid_scrabble_exception.pdf>
+<classscrabble_1_1exceptions_1_1_invalid_scrabble_exception.pdf, id=1553, 501.8
+75pt x 143.53625pt>
+File: classscrabble_1_1exceptions_1_1_invalid_scrabble_exception.pdf Graphic fi
+le (type pdf)
+<use classscrabble_1_1exceptions_1_1_invalid_scrabble_exception.pdf>
+Package pdftex.def Info: classscrabble_1_1exceptions_1_1_invalid_scrabble_excep
+tion.pdf  used on input line 6.
+(pdftex.def)             Requested size: 198.96979pt x 56.9055pt.
  [21])
 (classscrabble_1_1exceptions_1_1_invalid_square_exception.tex
 
@@ -1107,7 +1135,7 @@ pdfTeX warning: pdflatex (file ./classscrabble_1_1exceptions_1_1_invalid_square
 _exception.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1
 .5> allowed
  <./classscrabble_1_1exceptions_1_1_invalid_square_exception.pdf>
-<classscrabble_1_1exceptions_1_1_invalid_square_exception.pdf, id=1029, 501.875
+<classscrabble_1_1exceptions_1_1_invalid_square_exception.pdf, id=1570, 501.875
 pt x 149.55875pt>
 File: classscrabble_1_1exceptions_1_1_invalid_square_exception.pdf Graphic file
  (type pdf)
@@ -1122,7 +1150,7 @@ pdfTeX warning: pdflatex (file ./classscrabble_1_1exceptions_1_1_invalid_tile_e
 xception.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5
 > allowed
  <./classscrabble_1_1exceptions_1_1_invalid_tile_exception.pdf>
-<classscrabble_1_1exceptions_1_1_invalid_tile_exception.pdf, id=1035, 501.875pt
+<classscrabble_1_1exceptions_1_1_invalid_tile_exception.pdf, id=1577, 501.875pt
  x 161.60374pt>
 File: classscrabble_1_1exceptions_1_1_invalid_tile_exception.pdf Graphic file (
 type pdf)
@@ -1130,8 +1158,58 @@ type pdf)
 Package pdftex.def Info: classscrabble_1_1exceptions_1_1_invalid_tile_exception
 .pdf  used on input line 6.
 (pdftex.def)             Requested size: 176.72333pt x 56.9055pt.
+ [22])
+(classscrabble_1_1exceptions_1_1_invalid_word_exception.tex
+
+pdfTeX warning: pdflatex (file ./classscrabble_1_1exceptions_1_1_invalid_word_e
+xception.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5
+> allowed
+ <./classscrabble_1_1exceptions_1_1_invalid_word_exception.pdf>
+<classscrabble_1_1exceptions_1_1_invalid_word_exception.pdf, id=1594, 501.875pt
+ x 155.58125pt>
+File: classscrabble_1_1exceptions_1_1_invalid_word_exception.pdf Graphic file (
+type pdf)
+<use classscrabble_1_1exceptions_1_1_invalid_word_exception.pdf>
+Package pdftex.def Info: classscrabble_1_1exceptions_1_1_invalid_word_exception
+.pdf  used on input line 6.
+(pdftex.def)             Requested size: 183.56192pt x 56.9055pt.
 )
-(classscrabble_1_1_main.tex [22]) (classscrabble_1_1_player.tex [23]
+(classscrabble_1_1_main.tex [23]) (classscrabble_1_1_move_info.tex [24]
+[25]
+Underfull \hbox (badness 10000) detected at line 83
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 94
+[][][]
+ []
+
+[26]
+Underfull \hbox (badness 10000) detected at line 105
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 116
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 127
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 138
+[][][]
+ []
+
+[27]) (classscrabble_1_1_move_info_test.tex) (classscrabble_1_1_player.tex
+[28]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [29]
 Underfull \hbox (badness 10000) detected at line 82
 [][][]
  []
@@ -1141,27 +1219,31 @@ Underfull \hbox (badness 10000) detected at line 93
 [][][]
  []
 
-[24]
+
 Underfull \hbox (badness 10000) detected at line 104
 [][][]
  []
 
-[25]
+
+Overfull \vbox (7.9682pt too high) has occurred while \output is active []
+
+
+[30] [31]
 Underfull \hbox (badness 10000) detected at line 167
 [][][]
  []
 
-) (classscrabble_1_1_pool.tex [26]
+) (classscrabble_1_1_pool.tex
 Underfull \hbox (badness 10000) detected at line 49
 [][][]
  []
 
-[27]
+[32]
 Underfull \hbox (badness 10000) detected at line 79
 [][][]
  []
 
-
+[33]
 Underfull \hbox (badness 10000) detected at line 95
 [][][]
  []
@@ -1171,45 +1253,75 @@ Underfull \hbox (badness 10000) detected at line 106
 [][][]
  []
 
-) (classscrabble_1_1_pool_test.tex) (classscrabble_1_1_square.tex [28]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [29]
-Underfull \hbox (badness 10000) detected at line 55
+) (classscrabble_1_1_pool_test.tex) (classscrabble_1_1_scrabble.tex [34]
+[35]
+Underfull \hbox (badness 10000) detected at line 72
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 66
+Underfull \hbox (badness 10000) detected at line 83
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 77
+Underfull \hbox (badness 10000) detected at line 94
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 88
+Underfull \hbox (badness 10000) detected at line 105
 [][][]
  []
 
-[30]
-Underfull \hbox (badness 10000) detected at line 117
+
+Underfull \hbox (badness 10000) detected at line 116
 [][][]
  []
 
-) (classscrabble_1_1_square_test.tex) (classscrabble_1_1_tile.tex
+[36]) (classscrabble_1_1_scrabble_test.tex) (classscrabble_1_1_square.tex
+[37]
+Underfull \hbox (badness 10000) detected at line 57
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 68
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 79
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 90
+[][][]
+ []
+
+[38]
+Underfull \hbox (badness 10000) detected at line 106
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 135
+[][][]
+ []
+
+) (classscrabble_1_1_square_test.tex [39])
+(enumscrabble_1_1_square_1_1_square_type.tex) (classscrabble_1_1_tile.tex
 
 pdfTeX warning: pdflatex (file ./classscrabble_1_1_tile.pdf): PDF inclusion: fo
 und PDF version <1.7>, but at most version <1.5> allowed
  <./classscrabble_1_1_tile.pdf>
-<classscrabble_1_1_tile.pdf, id=1228, 501.875pt x 305.14pt>
+<classscrabble_1_1_tile.pdf, id=1967, 501.875pt x 305.14pt>
 File: classscrabble_1_1_tile.pdf Graphic file (type pdf)
 <use classscrabble_1_1_tile.pdf>
 Package pdftex.def Info: classscrabble_1_1_tile.pdf  used on input line 6.
 (pdftex.def)             Requested size: 93.58824pt x 56.9055pt.
- [31] [32]
+ [40] [41]
 Underfull \hbox (badness 10000) detected at line 73
 [][][]
  []
@@ -1229,47 +1341,109 @@ Underfull \hbox (badness 10000) detected at line 111
 [][][]
  []
 
-[33] [34]
+[42]
 Underfull \hbox (badness 10000) detected at line 166
 [][][]
  []
 
-) [35] [36
+) (classscrabble_1_1_user_input.tex [43] [44]
+Underfull \hbox (badness 10000) detected at line 90
+[][][]
+ []
 
-] (refman.ind [37
+[45]
+Underfull \hbox (badness 10000) detected at line 99
+[][][]
+ []
 
 
-] [38])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 210.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 210.
- (refman.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 210.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 210.
+Underfull \hbox (badness 10000) detected at line 108
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 117
+[][][]
+ []
+
+[46]
+Underfull \hbox (badness 10000) detected at line 131
+[][][]
+ []
+
+) (classscrabble_1_1_user_input_test.tex)
+(enumscrabble_1_1_user_input_1_1_user_input_type.tex)
+(classscrabble_1_1user_interface_1_1_user_interface.tex
+
+pdfTeX warning: pdflatex (file ./classscrabble_1_1user_interface_1_1_user_inter
+face.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> al
+lowed
+ <./classscrabble_1_1user_interface_1_1_user_interface.pdf>
+<classscrabble_1_1user_interface_1_1_user_interface.pdf, id=2128, 501.875pt x 1
+76.66pt>
+File: classscrabble_1_1user_interface_1_1_user_interface.pdf Graphic file (type
+ pdf)
+<use classscrabble_1_1user_interface_1_1_user_interface.pdf>
+Package pdftex.def Info: classscrabble_1_1user_interface_1_1_user_interface.pdf
+  used on input line 6.
+(pdftex.def)             Requested size: 161.66008pt x 56.9055pt.
+ [47])
+(classscrabble_1_1_word.tex [48]
+Underfull \hbox (badness 10000) detected at line 55
+[][][]
+ []
+
+[49]
+Underfull \hbox (badness 10000) detected at line 66
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 77
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 88
+[][][]
+ []
+
+) (classscrabble_1_1_word_test.tex) [50] (refman.ind [51
+
+
+
+] [52] [53])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 222.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 222.
+
+(refman.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 222.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 222.
 Package rerunfilecheck Info: File `refman.out' has not changed.
-(rerunfilecheck)             Checksum: 7EA4DBB11C23C5837796C33F79FE04C6;23106.
+(rerunfilecheck)             Checksum: FA474441CBC5C1D81A8374264AFAC292;41156.
  ) 
 Here is how much of TeX's memory you used:
- 17111 strings out of 481565
- 260653 string characters out of 2923948
- 542284 words of memory out of 3000000
- 31671 multiletter control sequences out of 15000+200000
- 589930 words of font info for 98 fonts, out of 3000000 for 9000
+ 17572 strings out of 481565
+ 278828 string characters out of 2923948
+ 571293 words of memory out of 3000000
+ 31886 multiletter control sequences out of 15000+200000
+ 586532 words of font info for 90 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,16n,96p,944b,627s stack positions out of 5000i,500n,10000p,200000b,50000s
 {D:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<D:/Program Files/Mi
 KTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><D:/Program Files/MiKTeX 2.9
-/fonts/type1/public/amsfonts/cm/cmmi12.pfb><D:/Program Files/MiKTeX 2.9/fonts/t
-ype1/public/amsfonts/cm/cmmi7.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/publ
-ic/amsfonts/cm/cmmi8.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
-ts/cm/cmsy7.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/urw/courier/ucrb8a.pfb
-><D:/Program Files/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><D:/Program Fi
-les/MiKTeX 2.9/fonts/type1/urw/courier/ucrro8a.pfb><D:/Program Files/MiKTeX 2.9
-/fonts/type1/urw/helvetic/uhvb8a.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/u
-rw/helvetic/uhvb8ac.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/u
-hvr8a.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on refman.pdf (44 pages, 400673 bytes).
+/fonts/type1/public/amsfonts/cm/cmmi7.pfb><D:/Program Files/MiKTeX 2.9/fonts/ty
+pe1/public/amsfonts/cm/cmmi8.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/publi
+c/amsfonts/cm/cmsy7.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/urw/courier/uc
+rb8a.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><D:/Pr
+ogram Files/MiKTeX 2.9/fonts/type1/urw/courier/ucrro8a.pfb><D:/Program Files/Mi
+KTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb><D:/Program Files/MiKTeX 2.9/fonts
+/type1/urw/helvetic/uhvb8ac.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/urw/he
+lvetic/uhvr8a.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvro8a
+.pfb>
+Output written on refman.pdf (61 pages, 583425 bytes).
 PDF statistics:
- 1577 PDF objects out of 1728 (max. 8388607)
- 321 named destinations out of 1000 (max. 500000)
- 905 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2587 PDF objects out of 2984 (max. 8388607)
+ 539 named destinations out of 1000 (max. 500000)
+ 1570 words of extra memory for PDF output out of 10000 (max. 10000000)
 

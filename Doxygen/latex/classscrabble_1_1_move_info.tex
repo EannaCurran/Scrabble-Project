@@ -1,0 +1,178 @@
+\hypertarget{classscrabble_1_1_move_info}{}\doxysection{scrabble.\+Move\+Info Class Reference}
+\label{classscrabble_1_1_move_info}\index{scrabble.MoveInfo@{scrabble.MoveInfo}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Array\+List$<$ \mbox{\hyperlink{classscrabble_1_1_word}{Word}} $>$ \mbox{\hyperlink{classscrabble_1_1_move_info_aec07cf44fdf7789653b52c0ee2884e74}{get\+Auxiliary\+Words}} ()
+\item 
+char\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{classscrabble_1_1_move_info_a83f76b8a7bf95f4543ce23a1e9e771d4}{get\+Required\+Tiles}} ()
+\item 
+int\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{classscrabble_1_1_move_info_aa31e9a96a9e49d128f244ce7f8c7fc27}{get\+Required\+Tiles\+Positions}} ()
+\item 
+int \mbox{\hyperlink{classscrabble_1_1_move_info_a0c39e1d5570bf56e2859aa59918beb65}{get\+Move\+Score}} ()
+\item 
+\mbox{\hyperlink{classscrabble_1_1_word}{Word}} \mbox{\hyperlink{classscrabble_1_1_move_info_a5545df6632bca7a9d3fa2fec15ad6c16}{get\+Primary\+Word}} ()
+\item 
+\mbox{\hyperlink{classscrabble_1_1_player}{Player}} \mbox{\hyperlink{classscrabble_1_1_move_info_a8f71f8472ec5c2d41f30cd9ba66fee9a}{get\+Player}} ()
+\item 
+\mbox{\hyperlink{classscrabble_1_1_move_info_afc122fb94f2b027ef8fdd50aff347bf0}{Move\+Info}} (\mbox{\hyperlink{classscrabble_1_1_player}{Player}} p, int\mbox{[}$\,$\mbox{]} co\+Ordinates, User\+Input.\+Direction d, char\mbox{[}$\,$\mbox{]} w)
+\item 
+void \mbox{\hyperlink{classscrabble_1_1_move_info_a7841ed28d17cb1fdc2d210736c9e235e}{add\+Auxiliary\+Word}} (\mbox{\hyperlink{classscrabble_1_1_word}{Word}} aux\+Word)
+\item 
+void \mbox{\hyperlink{classscrabble_1_1_move_info_ac880743dbe8f6ac2018a4071daa5c2e8}{set\+Required\+Tiles}} (char\mbox{[}$\,$\mbox{]} required\+Tiles, int\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} required\+Tiles\+Positions)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classscrabble_1_1_move_info_a27f0e447da4a3f75e96f6324d0862af5}{set\+Score}} (int score)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Object to store data on a move 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classscrabble_1_1_move_info_afc122fb94f2b027ef8fdd50aff347bf0}\label{classscrabble_1_1_move_info_afc122fb94f2b027ef8fdd50aff347bf0}} 
+\index{scrabble.MoveInfo@{scrabble.MoveInfo}!MoveInfo@{MoveInfo}}
+\index{MoveInfo@{MoveInfo}!scrabble.MoveInfo@{scrabble.MoveInfo}}
+\doxysubsubsection{\texorpdfstring{MoveInfo()}{MoveInfo()}}
+{\footnotesize\ttfamily scrabble.\+Move\+Info.\+Move\+Info (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classscrabble_1_1_player}{Player}}}]{p,  }\item[{int\mbox{[}$\,$\mbox{]}}]{co\+Ordinates,  }\item[{User\+Input.\+Direction}]{d,  }\item[{char\mbox{[}$\,$\mbox{]}}]{w }\end{DoxyParamCaption})}
+
+\mbox{\hyperlink{classscrabble_1_1_move_info}{Move\+Info}} Constructor
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & \mbox{\hyperlink{classscrabble_1_1_player}{Player}} making the move \\
+\hline
+{\em co\+Ordinates} & Position of the first letter of the \mbox{\hyperlink{classscrabble_1_1_word}{Word}} \\
+\hline
+{\em d} & Direction of the \mbox{\hyperlink{classscrabble_1_1_word}{Word}} \\
+\hline
+{\em w} & \mbox{\hyperlink{classscrabble_1_1_word}{Word}} in char array form \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Invalid\+Move\+Info\+Exception} & \mbox{\hyperlink{classscrabble_1_1_player}{Player}} can not be Null \\
+\hline
+\end{DoxyExceptions}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classscrabble_1_1_move_info_a7841ed28d17cb1fdc2d210736c9e235e}\label{classscrabble_1_1_move_info_a7841ed28d17cb1fdc2d210736c9e235e}} 
+\index{scrabble.MoveInfo@{scrabble.MoveInfo}!addAuxiliaryWord@{addAuxiliaryWord}}
+\index{addAuxiliaryWord@{addAuxiliaryWord}!scrabble.MoveInfo@{scrabble.MoveInfo}}
+\doxysubsubsection{\texorpdfstring{addAuxiliaryWord()}{addAuxiliaryWord()}}
+{\footnotesize\ttfamily void scrabble.\+Move\+Info.\+add\+Auxiliary\+Word (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classscrabble_1_1_word}{Word}}}]{aux\+Word }\end{DoxyParamCaption})}
+
+Method to add auxiliary Words to the move
+
+
+\begin{DoxyParams}{Parameters}
+{\em aux\+Word} & \mbox{\hyperlink{classscrabble_1_1_word}{Word}} to be added \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classscrabble_1_1_move_info_aec07cf44fdf7789653b52c0ee2884e74}\label{classscrabble_1_1_move_info_aec07cf44fdf7789653b52c0ee2884e74}} 
+\index{scrabble.MoveInfo@{scrabble.MoveInfo}!getAuxiliaryWords@{getAuxiliaryWords}}
+\index{getAuxiliaryWords@{getAuxiliaryWords}!scrabble.MoveInfo@{scrabble.MoveInfo}}
+\doxysubsubsection{\texorpdfstring{getAuxiliaryWords()}{getAuxiliaryWords()}}
+{\footnotesize\ttfamily Array\+List$<$\mbox{\hyperlink{classscrabble_1_1_word}{Word}}$>$ scrabble.\+Move\+Info.\+get\+Auxiliary\+Words (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accessor Method for auxiliary\+Words
+
+\begin{DoxyReturn}{Returns}
+auxiliary\+Words 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classscrabble_1_1_move_info_a0c39e1d5570bf56e2859aa59918beb65}\label{classscrabble_1_1_move_info_a0c39e1d5570bf56e2859aa59918beb65}} 
+\index{scrabble.MoveInfo@{scrabble.MoveInfo}!getMoveScore@{getMoveScore}}
+\index{getMoveScore@{getMoveScore}!scrabble.MoveInfo@{scrabble.MoveInfo}}
+\doxysubsubsection{\texorpdfstring{getMoveScore()}{getMoveScore()}}
+{\footnotesize\ttfamily int scrabble.\+Move\+Info.\+get\+Move\+Score (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accessor Method for move\+Score
+
+\begin{DoxyReturn}{Returns}
+move\+Score 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classscrabble_1_1_move_info_a8f71f8472ec5c2d41f30cd9ba66fee9a}\label{classscrabble_1_1_move_info_a8f71f8472ec5c2d41f30cd9ba66fee9a}} 
+\index{scrabble.MoveInfo@{scrabble.MoveInfo}!getPlayer@{getPlayer}}
+\index{getPlayer@{getPlayer}!scrabble.MoveInfo@{scrabble.MoveInfo}}
+\doxysubsubsection{\texorpdfstring{getPlayer()}{getPlayer()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classscrabble_1_1_player}{Player}} scrabble.\+Move\+Info.\+get\+Player (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accessor Method for \mbox{\hyperlink{classscrabble_1_1_player}{Player}}
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classscrabble_1_1_player}{Player}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classscrabble_1_1_move_info_a5545df6632bca7a9d3fa2fec15ad6c16}\label{classscrabble_1_1_move_info_a5545df6632bca7a9d3fa2fec15ad6c16}} 
+\index{scrabble.MoveInfo@{scrabble.MoveInfo}!getPrimaryWord@{getPrimaryWord}}
+\index{getPrimaryWord@{getPrimaryWord}!scrabble.MoveInfo@{scrabble.MoveInfo}}
+\doxysubsubsection{\texorpdfstring{getPrimaryWord()}{getPrimaryWord()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classscrabble_1_1_word}{Word}} scrabble.\+Move\+Info.\+get\+Primary\+Word (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accessor Method for move\+Score
+
+\begin{DoxyReturn}{Returns}
+move\+Score 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classscrabble_1_1_move_info_a83f76b8a7bf95f4543ce23a1e9e771d4}\label{classscrabble_1_1_move_info_a83f76b8a7bf95f4543ce23a1e9e771d4}} 
+\index{scrabble.MoveInfo@{scrabble.MoveInfo}!getRequiredTiles@{getRequiredTiles}}
+\index{getRequiredTiles@{getRequiredTiles}!scrabble.MoveInfo@{scrabble.MoveInfo}}
+\doxysubsubsection{\texorpdfstring{getRequiredTiles()}{getRequiredTiles()}}
+{\footnotesize\ttfamily char \mbox{[}$\,$\mbox{]} scrabble.\+Move\+Info.\+get\+Required\+Tiles (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accessor Method for required\+Tiles
+
+\begin{DoxyReturn}{Returns}
+required\+Tiles 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classscrabble_1_1_move_info_aa31e9a96a9e49d128f244ce7f8c7fc27}\label{classscrabble_1_1_move_info_aa31e9a96a9e49d128f244ce7f8c7fc27}} 
+\index{scrabble.MoveInfo@{scrabble.MoveInfo}!getRequiredTilesPositions@{getRequiredTilesPositions}}
+\index{getRequiredTilesPositions@{getRequiredTilesPositions}!scrabble.MoveInfo@{scrabble.MoveInfo}}
+\doxysubsubsection{\texorpdfstring{getRequiredTilesPositions()}{getRequiredTilesPositions()}}
+{\footnotesize\ttfamily int \mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} scrabble.\+Move\+Info.\+get\+Required\+Tiles\+Positions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accessor Method for required\+Tiles\+Positions
+
+\begin{DoxyReturn}{Returns}
+required\+Tiles\+Positions 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classscrabble_1_1_move_info_ac880743dbe8f6ac2018a4071daa5c2e8}\label{classscrabble_1_1_move_info_ac880743dbe8f6ac2018a4071daa5c2e8}} 
+\index{scrabble.MoveInfo@{scrabble.MoveInfo}!setRequiredTiles@{setRequiredTiles}}
+\index{setRequiredTiles@{setRequiredTiles}!scrabble.MoveInfo@{scrabble.MoveInfo}}
+\doxysubsubsection{\texorpdfstring{setRequiredTiles()}{setRequiredTiles()}}
+{\footnotesize\ttfamily void scrabble.\+Move\+Info.\+set\+Required\+Tiles (\begin{DoxyParamCaption}\item[{char\mbox{[}$\,$\mbox{]}}]{required\+Tiles,  }\item[{int}]{required\+Tiles\+Positions\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+Mutator Method for required\+Tiles and required\+Tiles\+Positions
+
+
+\begin{DoxyParams}{Parameters}
+{\em required\+Tiles} & The Tiles required for the move \\
+\hline
+{\em required\+Tiles\+Positions} & The positions for the Tiles on the \mbox{\hyperlink{classscrabble_1_1_board}{Board}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classscrabble_1_1_move_info_a27f0e447da4a3f75e96f6324d0862af5}\label{classscrabble_1_1_move_info_a27f0e447da4a3f75e96f6324d0862af5}} 
+\index{scrabble.MoveInfo@{scrabble.MoveInfo}!setScore@{setScore}}
+\index{setScore@{setScore}!scrabble.MoveInfo@{scrabble.MoveInfo}}
+\doxysubsubsection{\texorpdfstring{setScore()}{setScore()}}
+{\footnotesize\ttfamily void scrabble.\+Move\+Info.\+set\+Score (\begin{DoxyParamCaption}\item[{int}]{score }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Mutator Method for Score
+
+
+\begin{DoxyParams}{Parameters}
+{\em score} & The Score of the move \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Invalid\+Move\+Info\+Exception} & The move must have a positive score \\
+\hline
+\end{DoxyExceptions}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/scrabble/Move\+Info.\+java\end{DoxyCompactItemize}

@@ -13,36 +13,39 @@ void \mbox{\hyperlink{classscrabble_1_1_board_a09debd3969db99ef6c0eeeae566d57b9}
 \item 
 String \mbox{\hyperlink{classscrabble_1_1_board_ae9927ace021b05a3feaec2dd0c3e4bf0}{to\+String}} ()
 \item 
-void \mbox{\hyperlink{classscrabble_1_1_board_a31bd6e75c2671c4803892f499b890661}{place\+Tiles}} (\mbox{\hyperlink{classscrabble_1_1_player}{Player}} player, char\mbox{[}$\,$\mbox{]} word, int\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} positions)
+void \mbox{\hyperlink{classscrabble_1_1_board_a7194c02ab586c016c51a67298aebb660}{place\+Tiles}} (\mbox{\hyperlink{classscrabble_1_1_move_info}{Move\+Info}} move\+Info)
+\item 
+void \mbox{\hyperlink{classscrabble_1_1_board_a1226afce55b2bbd04feda725318e9d85}{set\+Word\+Squares\+Normal}} (\mbox{\hyperlink{classscrabble_1_1_word}{Word}} word)
+\item 
+void \mbox{\hyperlink{classscrabble_1_1_board_acbd4b6a3920964534499aa40461b799a}{remove\+Move}} (\mbox{\hyperlink{classscrabble_1_1_move_info}{Move\+Info}} move\+Info)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static Boolean \mbox{\hyperlink{classscrabble_1_1_board_afd7cbef5f417af5c11ecde9ecd8347ba}{check\+Valid\+Position}} (int\mbox{[}$\,$\mbox{]} position)
 \end{DoxyCompactItemize}
 \doxysubsection*{Static Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 static final int \mbox{\hyperlink{classscrabble_1_1_board_a52066a3a17a9e7f19547853b2c60c2fb}{B\+O\+A\+R\+D\+\_\+\+S\+I\+ZE}} = 15
+\item 
+static final int \mbox{\hyperlink{classscrabble_1_1_board_a5bb2a1060be406c5362f5baf97d53e6d}{B\+I\+N\+GO}} = 50
 \end{DoxyCompactItemize}
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{classscrabble_1_1_board_adbe3d2757db277b90b3bb9d7b27aeae4}{check\+Valid\+Move}} (\mbox{\hyperlink{classscrabble_1_1_player}{Player}} player, char\mbox{[}$\,$\mbox{]} word, int\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} positions)
+boolean \mbox{\hyperlink{classscrabble_1_1_board_a2ca65e5fb30686cbe7de0b7a8c91a4db}{check\+Valid\+Move}} (\mbox{\hyperlink{classscrabble_1_1_move_info}{Move\+Info}} move\+Info)
 \item 
 void \mbox{\hyperlink{classscrabble_1_1_board_a86ae10a51a1c0bdfcfadf401915cfe91}{place\+Tile}} (\mbox{\hyperlink{classscrabble_1_1_tile}{Tile}} tile, int position\+\_\+i, int position\+\_\+j)
 \item 
-void \mbox{\hyperlink{classscrabble_1_1_board_a6ecd5a3905fab870d21b3a58a0e2e843}{check\+Valid\+Position}} (int\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} positions)
+boolean \mbox{\hyperlink{classscrabble_1_1_board_ac81c082c56f64b7f7fc9a02d5fc71bb3}{check\+Player\+Has\+Tiles}} (\mbox{\hyperlink{classscrabble_1_1_player}{Player}} player, char\mbox{[}$\,$\mbox{]} word)
 \item 
-void \mbox{\hyperlink{classscrabble_1_1_board_ae869a45f42adca88357f7128741a7709}{check\+Player\+Has\+Tiles}} (\mbox{\hyperlink{classscrabble_1_1_player}{Player}} player, char\mbox{[}$\,$\mbox{]} word)
-\item 
-void \mbox{\hyperlink{classscrabble_1_1_board_a37f61391a31ece5874ca1164008d6c9b}{check\+Word\+Length}} (char\mbox{[}$\,$\mbox{]} word)
-\item 
-void \mbox{\hyperlink{classscrabble_1_1_board_a8963db0d9bc0d4a5785874baeecfca3f}{check\+Position\+Contains\+Tile}} (int\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} position)
-\item 
-void \mbox{\hyperlink{classscrabble_1_1_board_a5499e4641196bfdba9e56874bd0da12d}{check\+Position\+Line}} (int\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} position)
-\item 
-void \mbox{\hyperlink{classscrabble_1_1_board_a868833c78e86bb161460e2b276ec5686}{check\+Word\+Connects}} (int\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} position)
+int \mbox{\hyperlink{classscrabble_1_1_board_a961fc83aa4e82a3a55f9b339a841c78f}{calculate\+Score}} (\mbox{\hyperlink{classscrabble_1_1_move_info}{Move\+Info}} move\+Info)
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-The \mbox{\hyperlink{classscrabble_1_1_board}{Board}} Class represents the \mbox{\hyperlink{classscrabble_1_1_board}{Board}} for the Scrabble Game as an object 
+The \mbox{\hyperlink{classscrabble_1_1_board}{Board}} Class represents the \mbox{\hyperlink{classscrabble_1_1_board}{Board}} for the \mbox{\hyperlink{classscrabble_1_1_scrabble}{Scrabble}} Game as an object 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{classscrabble_1_1_board_aa396f5a76fb05feb87aeb473c4ca5ac5}\label{classscrabble_1_1_board_aa396f5a76fb05feb87aeb473c4ca5ac5}} 
@@ -54,11 +57,27 @@ The \mbox{\hyperlink{classscrabble_1_1_board}{Board}} Class represents the \mbox
 \mbox{\hyperlink{classscrabble_1_1_board}{Board}} Constructor 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classscrabble_1_1_board_ae869a45f42adca88357f7128741a7709}\label{classscrabble_1_1_board_ae869a45f42adca88357f7128741a7709}} 
+\mbox{\Hypertarget{classscrabble_1_1_board_a961fc83aa4e82a3a55f9b339a841c78f}\label{classscrabble_1_1_board_a961fc83aa4e82a3a55f9b339a841c78f}} 
+\index{scrabble.Board@{scrabble.Board}!calculateScore@{calculateScore}}
+\index{calculateScore@{calculateScore}!scrabble.Board@{scrabble.Board}}
+\doxysubsubsection{\texorpdfstring{calculateScore()}{calculateScore()}}
+{\footnotesize\ttfamily int scrabble.\+Board.\+calculate\+Score (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classscrabble_1_1_move_info}{Move\+Info}}}]{move\+Info }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Method to calculate the score of a move
+
+
+\begin{DoxyParams}{Parameters}
+{\em move\+Info} & Move to calculate the score \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The score of the move 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classscrabble_1_1_board_ac81c082c56f64b7f7fc9a02d5fc71bb3}\label{classscrabble_1_1_board_ac81c082c56f64b7f7fc9a02d5fc71bb3}} 
 \index{scrabble.Board@{scrabble.Board}!checkPlayerHasTiles@{checkPlayerHasTiles}}
 \index{checkPlayerHasTiles@{checkPlayerHasTiles}!scrabble.Board@{scrabble.Board}}
 \doxysubsubsection{\texorpdfstring{checkPlayerHasTiles()}{checkPlayerHasTiles()}}
-{\footnotesize\ttfamily void scrabble.\+Board.\+check\+Player\+Has\+Tiles (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classscrabble_1_1_player}{Player}}}]{player,  }\item[{char\mbox{[}$\,$\mbox{]}}]{word }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+{\footnotesize\ttfamily boolean scrabble.\+Board.\+check\+Player\+Has\+Tiles (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classscrabble_1_1_player}{Player}}}]{player,  }\item[{char\mbox{[}$\,$\mbox{]}}]{word }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
 
 Method to validate if the \mbox{\hyperlink{classscrabble_1_1_player}{Player}} placing a list of Tiles has each \mbox{\hyperlink{classscrabble_1_1_tile}{Tile}} in his \mbox{\hyperlink{classscrabble_1_1_frame}{Frame}}
 
@@ -69,78 +88,46 @@ Method to validate if the \mbox{\hyperlink{classscrabble_1_1_player}{Player}} pl
 {\em word} & List of Tiles to check \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classscrabble_1_1_board_a8963db0d9bc0d4a5785874baeecfca3f}\label{classscrabble_1_1_board_a8963db0d9bc0d4a5785874baeecfca3f}} 
-\index{scrabble.Board@{scrabble.Board}!checkPositionContainsTile@{checkPositionContainsTile}}
-\index{checkPositionContainsTile@{checkPositionContainsTile}!scrabble.Board@{scrabble.Board}}
-\doxysubsubsection{\texorpdfstring{checkPositionContainsTile()}{checkPositionContainsTile()}}
-{\footnotesize\ttfamily void scrabble.\+Board.\+check\+Position\+Contains\+Tile (\begin{DoxyParamCaption}\item[{int}]{position\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
-
-Method to check if a position on the \mbox{\hyperlink{classscrabble_1_1_board}{Board}} already has a \mbox{\hyperlink{classscrabble_1_1_tile}{Tile}} in it 
-\begin{DoxyParams}{Parameters}
-{\em position} & Co-\/ordinates to check if a \mbox{\hyperlink{classscrabble_1_1_tile}{Tile}} in already in it \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{classscrabble_1_1_board_a5499e4641196bfdba9e56874bd0da12d}\label{classscrabble_1_1_board_a5499e4641196bfdba9e56874bd0da12d}} 
-\index{scrabble.Board@{scrabble.Board}!checkPositionLine@{checkPositionLine}}
-\index{checkPositionLine@{checkPositionLine}!scrabble.Board@{scrabble.Board}}
-\doxysubsubsection{\texorpdfstring{checkPositionLine()}{checkPositionLine()}}
-{\footnotesize\ttfamily void scrabble.\+Board.\+check\+Position\+Line (\begin{DoxyParamCaption}\item[{int}]{position\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
-
-Method to check that a list of positions to place a word is in a line 
-\begin{DoxyParams}{Parameters}
-{\em position} & List of co-\/ordinates to check they are part of a line of Tiles \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{classscrabble_1_1_board_adbe3d2757db277b90b3bb9d7b27aeae4}\label{classscrabble_1_1_board_adbe3d2757db277b90b3bb9d7b27aeae4}} 
+\begin{DoxyReturn}{Returns}
+True if the player has the tiles 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classscrabble_1_1_board_a2ca65e5fb30686cbe7de0b7a8c91a4db}\label{classscrabble_1_1_board_a2ca65e5fb30686cbe7de0b7a8c91a4db}} 
 \index{scrabble.Board@{scrabble.Board}!checkValidMove@{checkValidMove}}
 \index{checkValidMove@{checkValidMove}!scrabble.Board@{scrabble.Board}}
 \doxysubsubsection{\texorpdfstring{checkValidMove()}{checkValidMove()}}
-{\footnotesize\ttfamily void scrabble.\+Board.\+check\+Valid\+Move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classscrabble_1_1_player}{Player}}}]{player,  }\item[{char\mbox{[}$\,$\mbox{]}}]{word,  }\item[{int}]{positions\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+{\footnotesize\ttfamily boolean scrabble.\+Board.\+check\+Valid\+Move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classscrabble_1_1_move_info}{Move\+Info}}}]{move\+Info }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
 
-Method to check that a move from the player is valid 
+Method to check that a move from the player is valid
+
+
 \begin{DoxyParams}{Parameters}
-{\em player} & \mbox{\hyperlink{classscrabble_1_1_player}{Player}} making the move \\
-\hline
-{\em word} & List of tiles requested to make the move \\
-\hline
-{\em positions} & Positions entered to place each \mbox{\hyperlink{classscrabble_1_1_tile}{Tile}} \\
+{\em move\+Info} & The move to validate \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classscrabble_1_1_board_a6ecd5a3905fab870d21b3a58a0e2e843}\label{classscrabble_1_1_board_a6ecd5a3905fab870d21b3a58a0e2e843}} 
+\begin{DoxyReturn}{Returns}
+true if valid move 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Invalid\+Move\+Info\+Exception} & If the Move is Invalid \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classscrabble_1_1_board_afd7cbef5f417af5c11ecde9ecd8347ba}\label{classscrabble_1_1_board_afd7cbef5f417af5c11ecde9ecd8347ba}} 
 \index{scrabble.Board@{scrabble.Board}!checkValidPosition@{checkValidPosition}}
 \index{checkValidPosition@{checkValidPosition}!scrabble.Board@{scrabble.Board}}
 \doxysubsubsection{\texorpdfstring{checkValidPosition()}{checkValidPosition()}}
-{\footnotesize\ttfamily void scrabble.\+Board.\+check\+Valid\+Position (\begin{DoxyParamCaption}\item[{int}]{positions\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+{\footnotesize\ttfamily static Boolean scrabble.\+Board.\+check\+Valid\+Position (\begin{DoxyParamCaption}\item[{int\mbox{[}$\,$\mbox{]}}]{position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 Method to validate that a position passed in is on the board
 
 
 \begin{DoxyParams}{Parameters}
-{\em positions} & Position to check if its on the board \\
+{\em position} & Position to check if its on the board \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classscrabble_1_1_board_a868833c78e86bb161460e2b276ec5686}\label{classscrabble_1_1_board_a868833c78e86bb161460e2b276ec5686}} 
-\index{scrabble.Board@{scrabble.Board}!checkWordConnects@{checkWordConnects}}
-\index{checkWordConnects@{checkWordConnects}!scrabble.Board@{scrabble.Board}}
-\doxysubsubsection{\texorpdfstring{checkWordConnects()}{checkWordConnects()}}
-{\footnotesize\ttfamily void scrabble.\+Board.\+check\+Word\+Connects (\begin{DoxyParamCaption}\item[{int}]{position\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
-
-Method to check if a list of positions connect with a tile already on the board 
-\begin{DoxyParams}{Parameters}
-{\em position} & List of positions to check if any of them would connect with a tile on the board \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{classscrabble_1_1_board_a37f61391a31ece5874ca1164008d6c9b}\label{classscrabble_1_1_board_a37f61391a31ece5874ca1164008d6c9b}} 
-\index{scrabble.Board@{scrabble.Board}!checkWordLength@{checkWordLength}}
-\index{checkWordLength@{checkWordLength}!scrabble.Board@{scrabble.Board}}
-\doxysubsubsection{\texorpdfstring{checkWordLength()}{checkWordLength()}}
-{\footnotesize\ttfamily void scrabble.\+Board.\+check\+Word\+Length (\begin{DoxyParamCaption}\item[{char\mbox{[}$\,$\mbox{]}}]{word }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
-
-Method to check that words to be placed on the board are valid lengths 
-\begin{DoxyParams}{Parameters}
-{\em word} & List of Tiles to check \\
-\hline
-\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the position is valid 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classscrabble_1_1_board_a34f44c6a7d1d7ad8675c5f983d880c55}\label{classscrabble_1_1_board_a34f44c6a7d1d7ad8675c5f983d880c55}} 
 \index{scrabble.Board@{scrabble.Board}!getBoardSquares@{getBoardSquares}}
 \index{getBoardSquares@{getBoardSquares}!scrabble.Board@{scrabble.Board}}
@@ -188,19 +175,30 @@ Method to place a \mbox{\hyperlink{classscrabble_1_1_tile}{Tile}} on the board
 {\em position\+\_\+j} & J position on the \mbox{\hyperlink{classscrabble_1_1_board}{Board}} to place the \mbox{\hyperlink{classscrabble_1_1_tile}{Tile}} \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classscrabble_1_1_board_a31bd6e75c2671c4803892f499b890661}\label{classscrabble_1_1_board_a31bd6e75c2671c4803892f499b890661}} 
+\mbox{\Hypertarget{classscrabble_1_1_board_a7194c02ab586c016c51a67298aebb660}\label{classscrabble_1_1_board_a7194c02ab586c016c51a67298aebb660}} 
 \index{scrabble.Board@{scrabble.Board}!placeTiles@{placeTiles}}
 \index{placeTiles@{placeTiles}!scrabble.Board@{scrabble.Board}}
 \doxysubsubsection{\texorpdfstring{placeTiles()}{placeTiles()}}
-{\footnotesize\ttfamily void scrabble.\+Board.\+place\+Tiles (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classscrabble_1_1_player}{Player}}}]{player,  }\item[{char\mbox{[}$\,$\mbox{]}}]{word,  }\item[{int}]{positions\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void scrabble.\+Board.\+place\+Tiles (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classscrabble_1_1_move_info}{Move\+Info}}}]{move\+Info }\end{DoxyParamCaption})}
 
-Method for a \mbox{\hyperlink{classscrabble_1_1_player}{Player}} to place a list of Tiles on the \mbox{\hyperlink{classscrabble_1_1_board}{Board}} 
+Method for a \mbox{\hyperlink{classscrabble_1_1_player}{Player}} to place a list of Tiles on the \mbox{\hyperlink{classscrabble_1_1_board}{Board}}
+
+
 \begin{DoxyParams}{Parameters}
-{\em player} & Person to place Tiles \\
+{\em move\+Info} & The move to place on the \mbox{\hyperlink{classscrabble_1_1_board}{Board}} \\
 \hline
-{\em word} & Characters to place on the \mbox{\hyperlink{classscrabble_1_1_board}{Board}} \\
-\hline
-{\em positions} & List of positions to place Tiles on the \mbox{\hyperlink{classscrabble_1_1_board}{Board}} \\
+\end{DoxyParams}
+\mbox{\Hypertarget{classscrabble_1_1_board_acbd4b6a3920964534499aa40461b799a}\label{classscrabble_1_1_board_acbd4b6a3920964534499aa40461b799a}} 
+\index{scrabble.Board@{scrabble.Board}!removeMove@{removeMove}}
+\index{removeMove@{removeMove}!scrabble.Board@{scrabble.Board}}
+\doxysubsubsection{\texorpdfstring{removeMove()}{removeMove()}}
+{\footnotesize\ttfamily void scrabble.\+Board.\+remove\+Move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classscrabble_1_1_move_info}{Move\+Info}}}]{move\+Info }\end{DoxyParamCaption})}
+
+Method to remove the Tiles place in a move
+
+
+\begin{DoxyParams}{Parameters}
+{\em move\+Info} & The move to remove \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{classscrabble_1_1_board_a09debd3969db99ef6c0eeeae566d57b9}\label{classscrabble_1_1_board_a09debd3969db99ef6c0eeeae566d57b9}} 
@@ -209,7 +207,20 @@ Method for a \mbox{\hyperlink{classscrabble_1_1_player}{Player}} to place a list
 \doxysubsubsection{\texorpdfstring{resetBoard()}{resetBoard()}}
 {\footnotesize\ttfamily void scrabble.\+Board.\+reset\+Board (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Method to reset the \mbox{\hyperlink{classscrabble_1_1_board}{Board}} \mbox{\Hypertarget{classscrabble_1_1_board_ae9927ace021b05a3feaec2dd0c3e4bf0}\label{classscrabble_1_1_board_ae9927ace021b05a3feaec2dd0c3e4bf0}} 
+Method to reset the \mbox{\hyperlink{classscrabble_1_1_board}{Board}} \mbox{\Hypertarget{classscrabble_1_1_board_a1226afce55b2bbd04feda725318e9d85}\label{classscrabble_1_1_board_a1226afce55b2bbd04feda725318e9d85}} 
+\index{scrabble.Board@{scrabble.Board}!setWordSquaresNormal@{setWordSquaresNormal}}
+\index{setWordSquaresNormal@{setWordSquaresNormal}!scrabble.Board@{scrabble.Board}}
+\doxysubsubsection{\texorpdfstring{setWordSquaresNormal()}{setWordSquaresNormal()}}
+{\footnotesize\ttfamily void scrabble.\+Board.\+set\+Word\+Squares\+Normal (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classscrabble_1_1_word}{Word}}}]{word }\end{DoxyParamCaption})}
+
+Method to set all Squares under a word to Normal
+
+
+\begin{DoxyParams}{Parameters}
+{\em word} & The \mbox{\hyperlink{classscrabble_1_1_word}{Word}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classscrabble_1_1_board_ae9927ace021b05a3feaec2dd0c3e4bf0}\label{classscrabble_1_1_board_ae9927ace021b05a3feaec2dd0c3e4bf0}} 
 \index{scrabble.Board@{scrabble.Board}!toString@{toString}}
 \index{toString@{toString}!scrabble.Board@{scrabble.Board}}
 \doxysubsubsection{\texorpdfstring{toString()}{toString()}}
@@ -223,7 +234,13 @@ Returns the board as a string
 
 
 \doxysubsection{Member Data Documentation}
-\mbox{\Hypertarget{classscrabble_1_1_board_a52066a3a17a9e7f19547853b2c60c2fb}\label{classscrabble_1_1_board_a52066a3a17a9e7f19547853b2c60c2fb}} 
+\mbox{\Hypertarget{classscrabble_1_1_board_a5bb2a1060be406c5362f5baf97d53e6d}\label{classscrabble_1_1_board_a5bb2a1060be406c5362f5baf97d53e6d}} 
+\index{scrabble.Board@{scrabble.Board}!BINGO@{BINGO}}
+\index{BINGO@{BINGO}!scrabble.Board@{scrabble.Board}}
+\doxysubsubsection{\texorpdfstring{BINGO}{BINGO}}
+{\footnotesize\ttfamily final int scrabble.\+Board.\+B\+I\+N\+GO = 50\hspace{0.3cm}{\ttfamily [static]}}
+
+Bingo Score Bonus \mbox{\Hypertarget{classscrabble_1_1_board_a52066a3a17a9e7f19547853b2c60c2fb}\label{classscrabble_1_1_board_a52066a3a17a9e7f19547853b2c60c2fb}} 
 \index{scrabble.Board@{scrabble.Board}!BOARD\_SIZE@{BOARD\_SIZE}}
 \index{BOARD\_SIZE@{BOARD\_SIZE}!scrabble.Board@{scrabble.Board}}
 \doxysubsubsection{\texorpdfstring{BOARD\_SIZE}{BOARD\_SIZE}}

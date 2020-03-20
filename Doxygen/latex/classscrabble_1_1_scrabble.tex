@@ -1,0 +1,142 @@
+\hypertarget{classscrabble_1_1_scrabble}{}\doxysection{scrabble.\+Scrabble Class Reference}
+\label{classscrabble_1_1_scrabble}\index{scrabble.Scrabble@{scrabble.Scrabble}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classscrabble_1_1_scrabble_aedf5e6d4828b7a7cda3881a2a2f1ddc0}{Scrabble}} ()
+\item 
+\mbox{\hyperlink{classscrabble_1_1_board}{Board}} \mbox{\hyperlink{classscrabble_1_1_scrabble_a811099c0e9f6f91ebd218e13fa61e307}{get\+Board}} ()
+\item 
+\mbox{\hyperlink{classscrabble_1_1_pool}{Pool}} \mbox{\hyperlink{classscrabble_1_1_scrabble_a135bfdfb5f9432daaee79a5746b303b9}{get\+Pool}} ()
+\item 
+\mbox{\hyperlink{classscrabble_1_1_player}{Player}}\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{classscrabble_1_1_scrabble_a3ae095e4a2eaac35cfc47c54ba4ee3c8}{get\+Players}} ()
+\item 
+Array\+List$<$ \mbox{\hyperlink{classscrabble_1_1_move_info}{Move\+Info}} $>$ \mbox{\hyperlink{classscrabble_1_1_scrabble_a927081b8d3a4bacfdc154164871e4ca8}{get\+Move\+History}} ()
+\item 
+void \mbox{\hyperlink{classscrabble_1_1_scrabble_a5ef55a68522090747af0baf4b594f2a7}{create\+Player}} (String name, int player\+Number)
+\item 
+void \mbox{\hyperlink{classscrabble_1_1_scrabble_a3961dedf966403c79059e7e04b9fff8a}{player\+Move}} (int\mbox{[}$\,$\mbox{]} start\+Position, User\+Input.\+Direction direction, char\mbox{[}$\,$\mbox{]} word, \mbox{\hyperlink{classscrabble_1_1_player}{Player}} player)
+\item 
+boolean \mbox{\hyperlink{classscrabble_1_1_scrabble_a60c262e6962d56651385f691388b75e7}{is\+Game\+Over}} ()
+\item 
+void \mbox{\hyperlink{classscrabble_1_1_scrabble_a184e724b4ec7cf20d70e4063bbdd522b}{game\+Over}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classscrabble_1_1_scrabble_aedf5e6d4828b7a7cda3881a2a2f1ddc0}\label{classscrabble_1_1_scrabble_aedf5e6d4828b7a7cda3881a2a2f1ddc0}} 
+\index{scrabble.Scrabble@{scrabble.Scrabble}!Scrabble@{Scrabble}}
+\index{Scrabble@{Scrabble}!scrabble.Scrabble@{scrabble.Scrabble}}
+\doxysubsubsection{\texorpdfstring{Scrabble()}{Scrabble()}}
+{\footnotesize\ttfamily scrabble.\+Scrabble.\+Scrabble (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\hyperlink{classscrabble_1_1_scrabble}{Scrabble}} Game Constructor
+
+Creates a new game of \mbox{\hyperlink{classscrabble_1_1_scrabble}{Scrabble}} 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classscrabble_1_1_scrabble_a5ef55a68522090747af0baf4b594f2a7}\label{classscrabble_1_1_scrabble_a5ef55a68522090747af0baf4b594f2a7}} 
+\index{scrabble.Scrabble@{scrabble.Scrabble}!createPlayer@{createPlayer}}
+\index{createPlayer@{createPlayer}!scrabble.Scrabble@{scrabble.Scrabble}}
+\doxysubsubsection{\texorpdfstring{createPlayer()}{createPlayer()}}
+{\footnotesize\ttfamily void scrabble.\+Scrabble.\+create\+Player (\begin{DoxyParamCaption}\item[{String}]{name,  }\item[{int}]{player\+Number }\end{DoxyParamCaption})}
+
+Method to create a player with an inputted name
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the player \\
+\hline
+{\em player\+Number} & The index of the player in the players array \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Invalid\+Scrabble\+Exception} & If the index is out of bounds of the players array \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classscrabble_1_1_scrabble_a184e724b4ec7cf20d70e4063bbdd522b}\label{classscrabble_1_1_scrabble_a184e724b4ec7cf20d70e4063bbdd522b}} 
+\index{scrabble.Scrabble@{scrabble.Scrabble}!gameOver@{gameOver}}
+\index{gameOver@{gameOver}!scrabble.Scrabble@{scrabble.Scrabble}}
+\doxysubsubsection{\texorpdfstring{gameOver()}{gameOver()}}
+{\footnotesize\ttfamily void scrabble.\+Scrabble.\+game\+Over (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Method to subtract \mbox{\hyperlink{classscrabble_1_1_frame}{Frame}} \mbox{\hyperlink{classscrabble_1_1_tile}{Tile}} values from Players\textquotesingle{} scores at the end of the game \mbox{\Hypertarget{classscrabble_1_1_scrabble_a811099c0e9f6f91ebd218e13fa61e307}\label{classscrabble_1_1_scrabble_a811099c0e9f6f91ebd218e13fa61e307}} 
+\index{scrabble.Scrabble@{scrabble.Scrabble}!getBoard@{getBoard}}
+\index{getBoard@{getBoard}!scrabble.Scrabble@{scrabble.Scrabble}}
+\doxysubsubsection{\texorpdfstring{getBoard()}{getBoard()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classscrabble_1_1_board}{Board}} scrabble.\+Scrabble.\+get\+Board (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accessor Method for \mbox{\hyperlink{classscrabble_1_1_board}{Board}}
+
+\begin{DoxyReturn}{Returns}
+The \mbox{\hyperlink{classscrabble_1_1_board}{Board}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classscrabble_1_1_scrabble_a927081b8d3a4bacfdc154164871e4ca8}\label{classscrabble_1_1_scrabble_a927081b8d3a4bacfdc154164871e4ca8}} 
+\index{scrabble.Scrabble@{scrabble.Scrabble}!getMoveHistory@{getMoveHistory}}
+\index{getMoveHistory@{getMoveHistory}!scrabble.Scrabble@{scrabble.Scrabble}}
+\doxysubsubsection{\texorpdfstring{getMoveHistory()}{getMoveHistory()}}
+{\footnotesize\ttfamily Array\+List$<$\mbox{\hyperlink{classscrabble_1_1_move_info}{Move\+Info}}$>$ scrabble.\+Scrabble.\+get\+Move\+History (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accessor Method for Move\+History
+
+\begin{DoxyReturn}{Returns}
+The Move\+History Array\+List 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classscrabble_1_1_scrabble_a3ae095e4a2eaac35cfc47c54ba4ee3c8}\label{classscrabble_1_1_scrabble_a3ae095e4a2eaac35cfc47c54ba4ee3c8}} 
+\index{scrabble.Scrabble@{scrabble.Scrabble}!getPlayers@{getPlayers}}
+\index{getPlayers@{getPlayers}!scrabble.Scrabble@{scrabble.Scrabble}}
+\doxysubsubsection{\texorpdfstring{getPlayers()}{getPlayers()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classscrabble_1_1_player}{Player}} \mbox{[}$\,$\mbox{]} scrabble.\+Scrabble.\+get\+Players (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accessor Method for Players
+
+\begin{DoxyReturn}{Returns}
+The Players array 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classscrabble_1_1_scrabble_a135bfdfb5f9432daaee79a5746b303b9}\label{classscrabble_1_1_scrabble_a135bfdfb5f9432daaee79a5746b303b9}} 
+\index{scrabble.Scrabble@{scrabble.Scrabble}!getPool@{getPool}}
+\index{getPool@{getPool}!scrabble.Scrabble@{scrabble.Scrabble}}
+\doxysubsubsection{\texorpdfstring{getPool()}{getPool()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classscrabble_1_1_pool}{Pool}} scrabble.\+Scrabble.\+get\+Pool (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accessor Method for \mbox{\hyperlink{classscrabble_1_1_pool}{Pool}}
+
+\begin{DoxyReturn}{Returns}
+The Poll 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classscrabble_1_1_scrabble_a60c262e6962d56651385f691388b75e7}\label{classscrabble_1_1_scrabble_a60c262e6962d56651385f691388b75e7}} 
+\index{scrabble.Scrabble@{scrabble.Scrabble}!isGameOver@{isGameOver}}
+\index{isGameOver@{isGameOver}!scrabble.Scrabble@{scrabble.Scrabble}}
+\doxysubsubsection{\texorpdfstring{isGameOver()}{isGameOver()}}
+{\footnotesize\ttfamily boolean scrabble.\+Scrabble.\+is\+Game\+Over (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Method to check if the game is over
+
+\begin{DoxyReturn}{Returns}
+True if the game is over 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classscrabble_1_1_scrabble_a3961dedf966403c79059e7e04b9fff8a}\label{classscrabble_1_1_scrabble_a3961dedf966403c79059e7e04b9fff8a}} 
+\index{scrabble.Scrabble@{scrabble.Scrabble}!playerMove@{playerMove}}
+\index{playerMove@{playerMove}!scrabble.Scrabble@{scrabble.Scrabble}}
+\doxysubsubsection{\texorpdfstring{playerMove()}{playerMove()}}
+{\footnotesize\ttfamily void scrabble.\+Scrabble.\+player\+Move (\begin{DoxyParamCaption}\item[{int\mbox{[}$\,$\mbox{]}}]{start\+Position,  }\item[{User\+Input.\+Direction}]{direction,  }\item[{char\mbox{[}$\,$\mbox{]}}]{word,  }\item[{\mbox{\hyperlink{classscrabble_1_1_player}{Player}}}]{player }\end{DoxyParamCaption})}
+
+Method to complete a \mbox{\hyperlink{classscrabble_1_1_player}{Player}} move
+
+
+\begin{DoxyParams}{Parameters}
+{\em start\+Position} & Start position of the \mbox{\hyperlink{classscrabble_1_1_word}{Word}} \\
+\hline
+{\em direction} & Direction of the \mbox{\hyperlink{classscrabble_1_1_word}{Word}} \\
+\hline
+{\em word} & \mbox{\hyperlink{classscrabble_1_1_word}{Word}} in char array form \\
+\hline
+{\em player} & \mbox{\hyperlink{classscrabble_1_1_player}{Player}} making the move \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/scrabble/Scrabble.\+java\end{DoxyCompactItemize}
