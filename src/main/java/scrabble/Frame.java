@@ -47,7 +47,7 @@ public class Frame {
 
         // Checks if the Frame already has 7 Tiles in it, if so the user is told
         if(this.playerFrame.size() == FRAME_SIZE){
-            System.out.println("The frame was full");
+            System.out.println("The frame is currently full");
         }
 
         // Adds Tiles to the Frame until the Frame size cap has been reached
@@ -92,7 +92,7 @@ public class Frame {
         else{
 
             // Throws a InvalidTile Exception if the index is not in the range of the Frame size
-            throw new InvalidFrameException("Index not in range of Frame.\n");
+            throw new InvalidFrameException("Index not in range of the frame");
         }
     }
 
@@ -114,7 +114,7 @@ public class Frame {
                 return;
             }
         }
-        throw new InvalidFrameException("Tile not in frame.\n");
+        throw new InvalidFrameException("Tile not in frame");
     }
 
     /**
@@ -144,7 +144,7 @@ public class Frame {
 
         //If the word is invalidly long
         if(word.length > FRAME_SIZE){
-            throw new IllegalArgumentException("Invalid number of characters to find in remove in Frame.\n");
+            throw new IllegalArgumentException("Invalid number of characters to remove from frame");
         }
         //If the word is in the frame
         else if(checkTiles(word)){
@@ -155,7 +155,7 @@ public class Frame {
             }
         }
         else{
-            throw new InvalidFrameException("Tiles not in the frame, therefore tiles cannot be removed.\n");
+            throw new InvalidFrameException("Tiles not in the frame, therefore tiles cannot be removed");
         }
 
     }
@@ -179,7 +179,7 @@ public class Frame {
 
         // If a Tiles passed in are not in the playerFrame, then a InvalidFrameException is thrown
         else{
-            throw new InvalidFrameException("Tiles not in the frame, therefore tiles cannot be removed,\n");
+            throw new InvalidFrameException("Tiles not in the frame, therefore tiles cannot be removed");
         }
 
     }
@@ -195,7 +195,7 @@ public class Frame {
 
         // Checks if the playerFrame is full, if so InvalidFrameException is thrown
         if (playerFrame.size() == FRAME_SIZE) {
-            throw new InvalidFrameException("Frame can't contain more than 7 tiles.\n");
+            throw new InvalidFrameException("Frame can't contain more than 7 tiles");
         }
 
         // Adds the Tile to the playerFrame
@@ -214,7 +214,7 @@ public class Frame {
     public boolean checkTiles(ArrayList<Tile> tiles){
 
         if(tiles.isEmpty()){
-            throw new InvalidFrameException("Cannot check for 0 tiles in Frame.\n");
+            throw new InvalidFrameException("Cannot check for 0 tiles in Frame");
         }
 
         Frame temp = this;
@@ -242,7 +242,7 @@ public class Frame {
     public boolean checkTiles(char[] word){
 
         if(word.length == 0){
-            throw new InvalidFrameException("Cannot check for 0 tiles in Frame.\n");
+            throw new InvalidFrameException("Cannot check for 0 tiles in Frame");
         }
         // Loops through each Character passed in
 
@@ -304,7 +304,7 @@ public class Frame {
 
             }
         }
-        throw new InvalidFrameException("Tiles are not in the players frame.\n");
+        throw new InvalidFrameException("Tiles are not in the players frame");
     }
 
     /**
@@ -316,7 +316,7 @@ public class Frame {
      */
     public Tile getTile(int i){
         if(i < 0 || i > 6){
-            throw new InvalidFrameException("Index not in range of Board.\n");
+            throw new InvalidFrameException("Index not in range of Board");
         }
         return playerFrame.get(i);
     }
@@ -343,7 +343,7 @@ public class Frame {
         }
 
         else{
-            throw new InvalidFrameException("Frame doesn't have the requested tiles.\n");
+            throw new InvalidFrameException("Frame doesn't have the requested tiles");
         }
 
         // Returns the ArrayList
@@ -407,7 +407,7 @@ public class Frame {
             }
         }
         else{
-            throw new InvalidFrameException("There can only be a max of 2 Blank Tiles.\n");
+            throw new InvalidFrameException("There can only be a max of 2 Blank Tiles");
         }
 
     }
@@ -423,7 +423,11 @@ public class Frame {
         }
     }
 
-    public boolean hasBlank(){
+    /**
+     * Method to check if the Frame has any blank tiles
+     * @return Boolean result to if the Frame has any blank tiles
+     */
+    public boolean hasBlank() {
 
         for (Tile tile : playerFrame) {
             if (tile.getValue() == 0) {

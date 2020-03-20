@@ -78,10 +78,14 @@ public class UserInterface extends Application{
         gameFrame.add(gameTextLog,1,0);
         gameFrame.add(gameTextInput,1,1);
 
-        // Sets up the javaFx scene
-        Scene gameScene = new Scene(gameFrame, Screen.getPrimary().getBounds().getMaxX(),Screen.getPrimary().getBounds().getMaxY());
+        // Sets up the javaFx scene and size
+        Scene gameScene = new Scene(gameFrame, Screen.getPrimary().getBounds().getMaxX() * .85,Screen.getPrimary().getBounds().getMaxY() * .85);
 
         gameStage.setScene(gameScene);
+
+        // Sets minimum size of screen
+        gameStage.setMinHeight(480);
+        gameStage.setMinWidth(720);
 
         // Displays the javaFx scene
         gameStage.show();
@@ -573,7 +577,7 @@ public class UserInterface extends Application{
                 "- HELP: Prints out the list of available commands\n" +
                 "- PASS: Passes the current players turn\n" +
                 "- QUIT: Ends the current game of scrabble\n" +
-                "- EXCHANGE <Letters>: Exchanges the letters in the frame with random letters in the pool\n" +
+                "- EXCHANGE <Characters>: Exchanges the letters in the frame with random letters in the pool\n" +
                 "- BLANK <Letter>: Sets the blank tile in a players frame to a letter\n" +
                 "- CHALLENGE <Y/N>: Command at the end of each turn to challenge the other player move\n" +
                 "- RESTART: Launches a new game, can only be called at the end of a game\n" +
@@ -678,6 +682,9 @@ public class UserInterface extends Application{
 
                 // Skips the turn of the player who made the challenge
                 gameTextLog.appendText("- " + scrabble.getPlayers()[playerTurn % 2].getName() + "s move (" + scrabble.getPlayers()[playerTurn % 2].getScore() + ") \n- " + scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().toString() + "\n");
+
+                // Ends the challenge event
+                challengeMade = false;
             }
 
             // Check if the input for is not Y or N, if not the player is informed
