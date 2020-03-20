@@ -78,7 +78,7 @@ public class Pool {
      */
     public Tile removeTile () throws InvalidPoolException{
         if (isEmpty()){
-            throw new InvalidPoolException("There is no tiles to remove.\n");
+            throw new InvalidPoolException("There is no tiles to remove.");
         }
         else {
 

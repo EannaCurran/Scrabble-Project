@@ -113,7 +113,7 @@ public class MoveInfo {
             player = p;
         }
         else{
-            throw new InvalidMoveInfoException("Player can not be Null\n");
+            throw new InvalidMoveInfoException("Player can not be Null");
         }
 
     }
@@ -127,7 +127,7 @@ public class MoveInfo {
      */
     protected void setScore(int score){
         if (score < 0){
-            throw new InvalidMoveInfoException("Invalid Move Score score must be positive\n");
+            throw new InvalidMoveInfoException("Invalid Move Score score must be positive");
         }
         else{
             moveScore = score;
@@ -157,7 +157,7 @@ public class MoveInfo {
             this.requiredTilesPositions = requiredTilesPositions;
         }
         else{
-            throw new InvalidMoveInfoException("There must be between 1-7 required Tiles and must be positions for each Tile\n");
+            throw new InvalidMoveInfoException("There must be between 1-7 required Tiles and must be positions for each Tile");
         }
     }
 

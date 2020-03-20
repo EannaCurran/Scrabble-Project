@@ -44,7 +44,7 @@ public class Player {
             this.playerFrame = new Frame(poolRef);
         }
         else{
-            throw new InvalidPlayerNameException("Invalid name for Player.\nPlayer's name must be less than of equal to 24 characters\nPlayer's can only contain letters and digits\nPlayer's name can not be null\nInputted name: " + namePlayer + "\n");
+            throw new InvalidPlayerNameException("Invalid name for Player.\nPlayer's name must be less than of equal to 24 characters\nPlayer's can only contain letters and digits\nPlayer's name can not be null\nInputted name: " + namePlayer);
         }
     }
 
@@ -89,7 +89,7 @@ public class Player {
             this.name = newName;
         }
         else{
-            throw new InvalidPlayerNameException("Invalid name for Player.\nPlayer's name must be less than of equal to 24 characters\nPlayer's can only contain letters and digits\nPlayer's name can not be null\nInputted name: " + newName + "\n");
+            throw new InvalidPlayerNameException("Invalid name for Player.\nPlayer's name must be less than of equal to 24 characters\nPlayer's can only contain letters and digits\nPlayer's name can not be null\nInputted name: " + newName);
         }
     }
 
@@ -117,7 +117,7 @@ public class Player {
             this.name = name;
         }
         else{
-            throw new InvalidPlayerNameException("Invalid name for Player.\nPlayer's name must be less than of equal to 24 characters\nPlayer's can only contain letters and digits\nPlayer's name can not be null\nInputted name: " + name + "\n");
+            throw new InvalidPlayerNameException("Invalid name for Player.\nPlayer's name must be less than of equal to 24 characters\nPlayer's can only contain letters and digits\nPlayer's name can not be null\nInputted name: " + name);
         }
     }
 
@@ -144,7 +144,7 @@ public class Player {
             this.score += scoreIncrease;
         }
         else {
-            throw new InvalidPlayerScoreException("Players Score can not be increased by a negative value\n");
+            throw new InvalidPlayerScoreException("Players Score can not be increased by a negative value");
         }
     }
 
@@ -161,7 +161,7 @@ public class Player {
             this.score -= scoreDecrease;
         }
         else {
-            throw new InvalidPlayerScoreException("Players Score can not be decreased by a negative value\n");
+            throw new InvalidPlayerScoreException("Players Score can not be decreased by a negative value");
         }
     }
 

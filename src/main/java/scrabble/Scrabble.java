@@ -102,7 +102,7 @@ public class Scrabble {
             players[playerNumber] = new Player(name, pool);
         }
         else{
-            throw new InvalidScrabbleException("Please select either player 1 or 2.\n");
+            throw new InvalidScrabbleException("Please select either player 1 or 2.");
         }
     }
 
@@ -126,7 +126,7 @@ public class Scrabble {
 
         }
         else {
-            throw new InvalidScrabbleException("Invalid Start Position Inputted.\n");
+            throw new InvalidScrabbleException("Invalid Start Position Inputted.");
         }
     }
 
