@@ -10,7 +10,19 @@
 
 **How To Play**
 
+The Scrabble game works by imputing commands in to a text box on the right side of the screen.
+The Board is visualised on the left side of the screen.
 
+Commands: That can be inputted into the Scrabble Game text box
+
+- HELP: Prints out the list of available commands
+- PASS: Passes the current players turn
+- QUIT: Ends the current game of Scrabble
+- EXCHANGE <Characters>: Exchanges the letters in the frame with random letters in the pool
+- BLANK <Letter>: Sets the blank tiles in a players frame to a letter
+- CHALLENGE <Y/N>: Command at the end of each turn to challenge the other player move
+- RESTART: Launches a new game, can only be called at the end of a game
+- <Grid Reference> <Direction> <Letters>: Places the letters starting at the grid reference and going in the given direction (Eg H7 A HELLO)
 
 **Classes**
 

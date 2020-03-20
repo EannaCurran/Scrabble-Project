@@ -579,7 +579,7 @@ public class UserInterface extends Application{
                 "- PASS: Passes the current players turn\n" +
                 "- QUIT: Ends the current game of scrabble\n" +
                 "- EXCHANGE <Characters>: Exchanges the letters in the frame with random letters in the pool\n" +
-                "- BLANK <Letter>: Sets the blank tile in a players frame to a letter\n" +
+                "- BLANK <Letters>: Sets the blank tile in a players frame to a letter\n" +
                 "- CHALLENGE <Y/N>: Command at the end of each turn to challenge the other player move\n" +
                 "- RESTART: Launches a new game, can only be called at the end of a game\n" +
                 "- <Grid Reference> <Direction> <Letters>: Places the letters starting at the grid reference and going in the given direction (Eg H7 A HELLO)\n";
