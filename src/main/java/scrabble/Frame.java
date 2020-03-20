@@ -304,7 +304,7 @@ public class Frame {
 
             }
         }
-        throw new InvalidFrameException("Tile not in board.\n");
+        throw new InvalidFrameException("Tiles are not in the players frame.\n");
     }
 
     /**
@@ -416,12 +416,21 @@ public class Frame {
      * Method to set all Blank Tiles to Null
      */
     public void setToBlank(){
-        for (int i = 0; i < playerFrame.size(); i++) {
-            if (playerFrame.get(i).getValue() == 0){
-                playerFrame.get(i).setNull();
-                playerFrame.get(i).setNull();
+        for (Tile tile : playerFrame) {
+            if (tile.getValue() == 0) {
+                tile.setNull();
             }
         }
+    }
+
+    public boolean hasBlank(){
+
+        for (Tile tile : playerFrame) {
+            if (tile.getValue() == 0) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

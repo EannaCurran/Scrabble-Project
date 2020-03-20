@@ -115,65 +115,21 @@ public class Scrabble {
      * @param player Player making the move
      */
     public void playerMove(int[] startPosition, UserInput.Direction direction, char[] word, Player player){
-        if (startPosition.length == 2 && board.checkValidPosition(startPosition)) {
+        if (startPosition.length == 2 && Board.checkValidPosition(startPosition)) {
 
             MoveInfo move = new MoveInfo(player, startPosition, direction, word);
             board.placeTiles(move);
+            player.getPlayerFrame().removeTiles(move.getRequiredTiles());
+            moveHistory.add(move);
 
-            player.increaseScore(move.getMoveScore());
-            /*
-            CHALLENGE c = challenge()
+             player.getPlayerFrame().setToBlank();
 
-             if(c == SUCCESS){
-
-                board.removeMove(move);
-
-                player.decreaseScore(moveHistory.get(0).getMoveScore());
-
-                player.getPlayerFrame().setToBlank();
-             }
-            //Fail or didnt happen
-             else {
-
-                if (c == FAIL){
-                   skip(opossingPlay)
-                }
-
-               board.setWordSquaresNormal(moveHistory.get(0).getPrimaryWord());
-
-                player.getPlayerFrame().removeTiles(move.getRequiredTiles());
-                player.getPlayerFrame().fillFrame();
-                player.getPlayerFrame().setToBlank();
-
-                moveHistory.add(move);
-
-
-                Frame frame1 = test.getPlayers[0].getFrame;
-                while(!pool.isEmpty){
-                    pool.removeTile();
-                }
-                frame1.returnFame().clear();
-
-                frame2.returnFame().clear();
-                frame2.addTile(new Tile('A');
-                frame2.addTile(new Tile('B');
-                frame2.addTile(new Tile('C');
-
-             }
-            */
         }
         else {
             throw new InvalidScrabbleException("Invalid Start Position Inputted.\n");
         }
     }
 
-    public boolean challenge(){
-        boolean challenge = false;
-
-        //TODO
-
-        return challenge;
-    }
 
     /**
      * Method to check if the game is over
