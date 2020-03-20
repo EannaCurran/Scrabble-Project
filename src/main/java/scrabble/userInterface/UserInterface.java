@@ -384,6 +384,7 @@ public class UserInterface extends Application{
                         try {
 
                             // Swaps the tiles inputted in text with random tiles in the pool
+                            scrabble.getPlayers()[playerTurn].getPlayerFrame().checkTiles(text.getWord());
                             scrabble.getPlayers()[playerTurn].getPlayerFrame().swapTiles(text.getWord());
 
                             // Displays that the swap has been made and goes to the next players turn

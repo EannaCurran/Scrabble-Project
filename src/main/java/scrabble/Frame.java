@@ -304,7 +304,7 @@ public class Frame {
 
             }
         }
-        throw new InvalidFrameException("Tile not in board.\n");
+        throw new InvalidFrameException("Tiles are not in the players frame.\n");
     }
 
     /**
