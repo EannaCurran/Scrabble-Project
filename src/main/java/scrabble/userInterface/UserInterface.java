@@ -38,7 +38,7 @@ public class UserInterface extends Application{
 
     /**
      * Main method to launch application
-     * @param args: empty argumant
+     * @param args: empty argument
      */
     public static void main(String[] args) {
 
@@ -295,6 +295,7 @@ public class UserInterface extends Application{
      */
     private void setUpEvent(TextField gameText) {
 
+
         // Try catch to handles errors when setting up the each player
         try {
 
@@ -332,16 +333,19 @@ public class UserInterface extends Application{
      */
     private void gameEvent(TextField gameText) {
 
-        // Try catch for Parsing game event
+        // Variable to hold the parsed form of the players input
+        UserInput text;
+
+        // Try catch for parsing game event
         try {
 
             // Parses the gameText input
-            UserInput text = UserInput.parseInput(gameText.getCharacters().toString());
+            text = UserInput.parseInput(gameText.getCharacters().toString());
 
             // Check for if a challenge can be made
             if(!challenge) {
 
-                // Switch statement to get the type of input from the user
+                // Switch statement to get the type of input from the player
                 switch (text.getInputType()) {
 
                     // Case for when input is type HELP
@@ -558,9 +562,10 @@ public class UserInterface extends Application{
 
     }
 
+
     /**
      * Method to return a string containing information about each command in the game
-     * @return String
+     * @return String containing the commands of the game
      */
     private String gameHelp(){
         return "- Commands:\n" +
@@ -581,64 +586,135 @@ public class UserInterface extends Application{
      */
     private void gameOverEvent(TextField gameText){
 
+        // Variable to hold the parsed form of the players input
         UserInput text;
+
+        // Try catch for parsing end of game events
         try {
+
+            // Parses the gameText input
             text = UserInput.parseInput(gameText.getCharacters().toString());
-            switch (text.getInputType()){
+
+            // Switch statement to get the type of input from the player
+            switch (text.getInputType()) {
+
+                // Case for when the input is type QUIT
                 case QUIT:
+
+                    // Program is exited
                     System.exit(0);
                     break;
+
+                // Case for when the input is type RESTART
                 case RESTART:
+
+                    // Closes the current stage and launches a new stage
                     gameStage.close();
                     Platform.runLater(() -> new UserInterface().start(new Stage()));
                     break;
+
+                // Case for any unknown input type
                 default:
                     gameTextLog.appendText("- Error: Unknown command for end of game (QUIT/RESTART)\n");
             }
-        }catch(Exception e){
+
+        // Catches and displays any exceptions thrown
+        } catch(Exception e) {
 
             gameTextLog.appendText("- Error: " + e.getMessage() + "\n");
         }
 
+        // Clears input in gameText
         gameText.setText("");
 
     }
 
-    private  void challengeEvent(TextField gameText){
 
-            //TODO Check Dictionary for Word - Sprint 4
+    /**
+     * Method to handle events if a challenge has been made
+     * @param gameText: TextField containing the players input
+     */
+    private  void challengeEvent(TextField gameText){
+        //TODO Check Dictionary for Word - Sprint 4
+
+        // Try catch for challenge event
+        try {
+
+            // Parses the players input for challenge
             String input = gameText.getCharacters().toString();
-            System.out.println(input.equals("Y"));
-            if(input.equals("Y")){
-                gameTextLog.appendText("- Challenge has passed\n");
+
+            // Checks if the challenge is successful
+            if (input.equals("Y")) {
+
+                // Displays to the players that the challenge was successful
+                gameTextLog.appendText("- Challenge has passed, players turn has been skipped\n");
+
+                // Removes the move from the board
                 scrabble.getBoard().removeMove(currentMove);
+
+                // Updates the current players frame
                 scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().setToBlank();
+
+                // Updates the visuals of the board
                 updateBoard();
-                playerTurn = (playerTurn%2) + 1;
-                gameTextLog.appendText("- " + scrabble.getPlayers()[playerTurn % 2].getName() +"s move (" + scrabble.getPlayers()[playerTurn % 2].getScore() + ") \n- " + scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().toString() + "\n");
+
+                // Moves onto the next players turn and displays their frame
+                playerTurn = (playerTurn % 2) + 1;
+                gameTextLog.appendText("- " + scrabble.getPlayers()[playerTurn % 2].getName() + "s move (" + scrabble.getPlayers()[playerTurn % 2].getScore() + ") \n- " + scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().toString() + "\n");
+
+                // Ends the challenge event
                 challengeMade = false;
             }
-            else if(input.equals("N")){
-                gameTextLog.appendText("- Challenge has failed, players turn has been skipped\n");
+
+            // Checks if the challenge was unsuccessful
+            else if (input.equals("N")) {
+
+                // Displays the result to the players
+                gameTextLog.appendText("- Challenge has failed, challengers turn has been skipped\n");
+
+                /// Calls the makeMove method to carry out the most recent move
                 makeMove();
-                gameTextLog.appendText("- " + scrabble.getPlayers()[playerTurn % 2].getName() +"s move (" + scrabble.getPlayers()[playerTurn % 2].getScore() + ") \n- " + scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().toString() + "\n");
+
+                // Skips the turn of the player who made the challenge
+                gameTextLog.appendText("- " + scrabble.getPlayers()[playerTurn % 2].getName() + "s move (" + scrabble.getPlayers()[playerTurn % 2].getScore() + ") \n- " + scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().toString() + "\n");
             }
-            else{
+
+            // Check if the input for is not Y or N, if not the player is informed
+            else {
+
                 gameTextLog.appendText("- Error: Unknown command for challenge (Y/N)\n");
             }
-            gameText.setText("");
 
+        // Catches any exceptions thrown during challenge event and is displayed to the players
+        } catch(Exception e) {
+            gameTextLog.appendText("- Error: "+ e.getMessage() + "\n");
+        }
 
+        // Clears input in gameText
+        gameText.setText("");
     }
 
-
+    /**
+     * Method to execute the most recent move a player has made
+     */
     private void makeMove(){
+
+        // Removes the tiles for the move from the players frame
         scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().removeTiles(currentMove.getRequiredTiles());
+
+        // Increases the players score by the amount of points the move has made
         scrabble.getPlayers()[playerTurn % 2].increaseScore(currentMove.getMoveScore());
+
+        // Refills the players frame
         scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().fillFrame();
+
+        // Displays the points scored by the move to the player
         gameTextLog.appendText("- " + scrabble.getPlayers()[playerTurn % 2].getName() + " move scored "+ currentMove.getMoveScore()+". Total score: "+scrabble.getPlayers()[playerTurn % 2].getScore()+ "\n");
+
+        // Sets any squares that tiles have been placed on in the move to a normal type square
         scrabble.getBoard().setWordSquaresNormal(currentMove.getPrimaryWord());
+
+        // Resets any blank tiles in the players frame
         scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().setToBlank();
     }
-
 }
