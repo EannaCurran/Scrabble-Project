@@ -318,7 +318,8 @@ public class UserInterface extends Application{
         if(playerTurn == 2) {
 
             // PlayerTurn set to a random player, now is used to contain which players turn it is
-            playerTurn = (int) Math.round(Math.random());
+            Random r = new Random();
+            playerTurn = r.nextInt(2);
 
             // Displays the rules to the user at the start of the game alongside the first players frame
             gameTextLog.appendText(gameHelp());

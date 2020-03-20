@@ -51,7 +51,7 @@ public class Frame {
         }
 
         // Adds Tiles to the Frame until the Frame size cap has been reached
-        while(this.playerFrame.size() < FRAME_SIZE){
+        while(this.playerFrame.size() < FRAME_SIZE && !framePool.isEmpty()){
             this.addTile(framePool.removeTile());
         }
     }
