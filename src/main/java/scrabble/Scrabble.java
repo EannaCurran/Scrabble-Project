@@ -1,7 +1,9 @@
 package scrabble;
 
 import scrabble.exceptions.InvalidScrabbleException;
+
 import java.util.ArrayList;
+
 
 public class Scrabble {
 
@@ -26,7 +28,7 @@ public class Scrabble {
      * False player one goes first
      * True Player two goes First
      */
-    private Boolean playerOrder;
+    private boolean playerOrder;
 
     /**
      * ArrayList to store a history of all previous moves
