@@ -16,6 +16,8 @@ import scrabble.*;
 import scrabble.exceptions.InvalidFrameException;
 import scrabble.exceptions.InvalidScrabbleException;
 
+import java.util.Random;
+
 
 public class UserInterface extends Application{
 
@@ -316,8 +318,8 @@ public class UserInterface extends Application{
         // If two players have been created the beginning of the game is displayed
         if(playerTurn == 2) {
 
-            // PlayerTurn set to 0, now is used to contain which players turn it is
-            playerTurn = 0;
+            // PlayerTurn set to a random player, now is used to contain which players turn it is
+            playerTurn = (int) Math.round(Math.random());
 
             // Displays the rules to the user at the start of the game alongside the first players frame
             gameTextLog.appendText(gameHelp());
