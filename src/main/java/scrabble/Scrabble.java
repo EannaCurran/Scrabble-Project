@@ -162,7 +162,7 @@ public class Scrabble {
             String currentWord;
 
             //Create scanner for the dictionary text file
-            Scanner scanner = new Scanner(getClass().getResourceAsStream("test.txt"));
+            Scanner scanner = new Scanner(getClass().getResourceAsStream("sowpods.txt"));
 
             //While loop to scan in each word in the dictionary file
             while (scanner.hasNext()) {
