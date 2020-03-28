@@ -2,20 +2,29 @@ package scrabble;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.io.FileNotFoundException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
 public class ScrabbleTest {
 
     Scrabble Test;
+    MoveInfo moveTest;
+    Word wordTest;
 
     @BeforeEach
     void setup()
     {
         //Initialising a game of scrabble and assigning names to the players
-        Test = new Scrabble();
-        Test.createPlayer("Killian", 0);
-        Test.createPlayer("John", 1);
+        try {
+            Test = new Scrabble();
+            Test.createPlayer("Killian", 0);
+            Test.createPlayer("John", 1);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -105,10 +114,35 @@ public class ScrabbleTest {
         assertEquals(84, PlayerTest[1].getScore(), "The final score of player 1 was the not the expected score after points were deduced after the game ended.");
     }
 
+
+    //Test to check that dictionaryWords returns true for a valid word
+    @Test
+    @DisplayName("Test to check that dictionaryWords returns true for a valid word")
     void scrabbleTestDictionaryWords(){
 
+        int[] coordinateTest = {8,8};
+        Player[] PlayerTest = Test.getPlayers();
+        char[] wordTest = "TEST".toCharArray();
+        moveTest = new MoveInfo(PlayerTest[0], coordinateTest, UserInput.Direction.HORIZONTAL, wordTest);
+        assertTrue(Test.dictionaryWords(moveTest));
+    }
+
+    //Test to check that dictionaryWords returns true for a valid word
+    @Test
+    @DisplayName("Test to check that dictionaryWords returns true for a valid word")
+    void AuxiliaryDictionaryWordTest(){
+
+        int[] coordinateTest = {8,8};
+        Player[] PlayerTest = Test.getPlayers();
+        char[] word = "TEST".toCharArray();
+
+        wordTest = new Word(coordinateTest, UserInput.Direction.VERTICAL, word);
+        moveTest.addAuxiliaryWord(wordTest);
+
+        moveTest = new MoveInfo(PlayerTest[0], coordinateTest, UserInput.Direction.HORIZONTAL, word);
 
 
+        assertTrue(Test.dictionaryWords(moveTest));
     }
 
 }
