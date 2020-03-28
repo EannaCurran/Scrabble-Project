@@ -16,6 +16,7 @@ import scrabble.*;
 import scrabble.exceptions.InvalidFrameException;
 import scrabble.exceptions.InvalidScrabbleException;
 
+import java.io.FileNotFoundException;
 import java.util.Random;
 
 
@@ -56,7 +57,11 @@ public class UserInterface extends Application{
     public void start(Stage gameStage) {
 
         // Creates a new instance of scrabble
-        scrabble = new Scrabble();
+        try {
+            scrabble = new Scrabble();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
         // Assigns the gameStage
         this.gameStage = gameStage;

@@ -2,7 +2,10 @@ package scrabble;
 
 import scrabble.exceptions.InvalidScrabbleException;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Scanner;
 
 
 public class Scrabble {
@@ -11,6 +14,11 @@ public class Scrabble {
      * The Scrabble Board
      */
     private Board board;
+
+    /**
+     * HashSet to store the dictionary of valid words
+     */
+    private HashSet<String> dictionary;
 
     /**
      * The Pool of Tiles for the Scrabble Game
@@ -23,14 +31,6 @@ public class Scrabble {
     private Player[] players;
 
     /**
-     * Player turn order
-     *
-     * False player one goes first
-     * True Player two goes First
-     */
-    private boolean playerOrder;
-
-    /**
      * ArrayList to store a history of all previous moves
      */
     private ArrayList<MoveInfo> moveHistory;
@@ -40,16 +40,18 @@ public class Scrabble {
      *
      * Creates a new game of Scrabble
      */
-    public Scrabble(){
+    public Scrabble() throws FileNotFoundException {
         board = new Board();
 
         pool = new Pool();
 
         players = new Player[2];
 
-        playerOrder = false;
-
         moveHistory = new ArrayList<>();
+
+        dictionary = new HashSet(2677753);
+
+        loadDictionary();
     }
 
     /**
@@ -150,6 +152,60 @@ public class Scrabble {
         }
     }
 
+    /**
+     * Method to scan in the dictionary for the game of Scrabble
+     *
+     * @throws FileNotFoundException
+     */
+    private void loadDictionary() throws FileNotFoundException {
 
+            String currentWord;
+
+            //Create scanner for the dictionary text file
+            Scanner scanner = new Scanner(getClass().getResourceAsStream("test.txt"));
+
+            //While loop to scan in each word in the dictionary file
+            while (scanner.hasNext()) {
+                currentWord = scanner.nextLine().toUpperCase();
+
+                if (currentWord != null) {
+                    //Add the word to the dictionary HashSet
+                    dictionary.add(currentWord);
+                }
+            }
+
+            scanner.close();
+    }
+
+    /**
+     * Method to validate the words created in a move
+     *
+     * @param move The move to validate
+     * @return
+     */
+    public boolean dictionaryWords(MoveInfo move){
+        boolean result = true;
+        //First word is the primary word of the move
+        String currentWord = new String(move.getPrimaryWord().getWord());
+
+        //If the primary word is not in the dictionary
+        if (!dictionary.contains(currentWord)){
+            result = false;
+        }
+        else {
+            //For loop to check each auxiliary word is in the for loop
+            for (int i = 0; i < move.getAuxiliaryWords().size() && result; i++) {
+
+                currentWord = new String(move.getAuxiliaryWords().get(i).getWord());
+
+                //If word is not in the dictionary
+                if (!dictionary.contains(currentWord)){
+                    result = false;
+                }
+            }
+        }
+
+        return result;
+    }
 
 }
