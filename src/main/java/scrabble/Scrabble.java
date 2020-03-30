@@ -49,7 +49,7 @@ public class Scrabble {
 
         moveHistory = new ArrayList<>();
 
-        dictionary = new HashSet(2677753);
+        dictionary = new HashSet(267753);
 
         loadDictionary();
     }
