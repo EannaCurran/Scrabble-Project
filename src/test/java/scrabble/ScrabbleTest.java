@@ -120,29 +120,114 @@ public class ScrabbleTest {
     @DisplayName("Test to check that dictionaryWords returns true for a valid word")
     void scrabbleTestDictionaryWords(){
 
+        //Initalising coordinate and word array
         int[] coordinateTest = {8,8};
+        //Creating reference to players
         Player[] PlayerTest = Test.getPlayers();
         char[] wordTest = "TEST".toCharArray();
+
+        //Initalising moveTest object
         moveTest = new MoveInfo(PlayerTest[0], coordinateTest, UserInput.Direction.HORIZONTAL, wordTest);
-        assertTrue(Test.dictionaryWords(moveTest));
+        assertTrue(Test.dictionaryWords(moveTest), "The placed word was expected to be true");
     }
 
-    //Test to check that dictionaryWords returns true for a valid word
+    //Test to check that dictionaryWords returns true for a valid word connected to another valid word
     @Test
-    @DisplayName("Test to check that dictionaryWords returns true for a valid word")
+    @DisplayName("Test to check that dictionaryWords returns true for a valid word connected to another valid word")
     void AuxiliaryDictionaryWordTest(){
 
+        //Initalising coordinate and word array
         int[] coordinateTest = {8,8};
+        //Creating reference to players
         Player[] PlayerTest = Test.getPlayers();
         char[] word = "TEST".toCharArray();
 
+        //Initalising a new word
         wordTest = new Word(coordinateTest, UserInput.Direction.VERTICAL, word);
-        moveTest.addAuxiliaryWord(wordTest);
-
+        //Initalising moveTest object
         moveTest = new MoveInfo(PlayerTest[0], coordinateTest, UserInput.Direction.HORIZONTAL, word);
+        //Adds auxiliary word
+        moveTest.addAuxiliaryWord(wordTest);
+        assertTrue(Test.dictionaryWords(moveTest), "The placed word and it's auxiliary word was expected to be a valid dictionary word");
+    }
 
 
-        assertTrue(Test.dictionaryWords(moveTest));
+    //Test to check that dictionaryWords returns true for a valid word that extends another valid word
+    @Test
+    @DisplayName("Test to check that dictionaryWords returns true for a valid word that extends another valid word")
+    void AuxiliaryDictionaryWordExtensionTest(){
+
+        //Initalising coordinate and word array
+        int[] coordinateTest = {8,8};
+        //Creating reference to players
+        Player[] PlayerTest = Test.getPlayers();
+        char[] word = "TEST".toCharArray();
+        char[] extension = "TESTS".toCharArray();
+
+        //Initalising a new word
+        wordTest = new Word(coordinateTest, UserInput.Direction.VERTICAL, word);
+        //Initalising moveTest object
+        moveTest = new MoveInfo(PlayerTest[0], coordinateTest, UserInput.Direction.VERTICAL, extension);
+        //Adds auxiliary word
+        moveTest.addAuxiliaryWord(wordTest);
+        assertTrue(Test.dictionaryWords(moveTest), "The placed word and its auxiliary word was expected to be a valid dictionary word");
+    }
+
+    //Test to check that dictionaryWords returns false for a invalid word
+    @Test
+    @DisplayName("Test to check that dictionaryWords returns false for a invalid word")
+    void scrabbleTestInvalidDictionaryWords(){
+
+        //Initalising coordinate and word array
+        int[] coordinateTest = {8,8};
+        //Creating reference to players
+        Player[] PlayerTest = Test.getPlayers();
+        char[] wordTest = "YABBL".toCharArray();
+        //Initalising moveTest object
+        moveTest = new MoveInfo(PlayerTest[0], coordinateTest, UserInput.Direction.HORIZONTAL, wordTest);
+        assertFalse(Test.dictionaryWords(moveTest), "The placed word was expected to be a invalid dictionary word");
+    }
+
+    //Test to check that dictionaryWords returns false for a invalid word connected to another valid word
+    @Test
+    @DisplayName("Test to check that dictionaryWords returns false for a invalid word connected to another valid word")
+    void InvalidAuxiliaryDictionaryWordTest(){
+
+        //Initalising coordinate and word array
+        int[] coordinateTest = {8,8};
+        //Creating reference to players
+        Player[] PlayerTest = Test.getPlayers();
+        char[] word = "TEEER".toCharArray();
+        char[] auxWord = "TEST".toCharArray();
+
+        //Initalising a new word
+        wordTest = new Word(coordinateTest, UserInput.Direction.VERTICAL, auxWord);
+        //Initalising moveTest object
+        moveTest = new MoveInfo(PlayerTest[0], coordinateTest, UserInput.Direction.HORIZONTAL, word);
+        //Adds auxiliary word
+        moveTest.addAuxiliaryWord(wordTest);
+        assertFalse(Test.dictionaryWords(moveTest), "The placed word was expected to be a invalid dictionary word");
+    }
+
+    //Test to check that dictionaryWords returns false for a invalid word that extends another valid word
+    @Test
+    @DisplayName("Test to check that dictionaryWords returns false for a invalid word that extends another invalid word")
+    void InvaildAuxiliaryDictionaryWordExtensionTest(){
+
+        //Initalising coordinate and word array
+        int[] coordinateTest = {8,8};
+        //Creating reference to players
+        Player[] PlayerTest = Test.getPlayers();
+        char[] word = "TEST".toCharArray();
+        char[] extension = "TESTINGER".toCharArray();
+
+        //Initalising a new word
+        wordTest = new Word(coordinateTest, UserInput.Direction.VERTICAL, word);
+        //Initalising moveTest object
+        moveTest = new MoveInfo(PlayerTest[0], coordinateTest, UserInput.Direction.VERTICAL, extension);
+        //Adds auxiliary word
+        moveTest.addAuxiliaryWord(wordTest);
+        assertFalse(Test.dictionaryWords(moveTest), "The placed word was expected to be a invalid dictionary word");
     }
 
 }
