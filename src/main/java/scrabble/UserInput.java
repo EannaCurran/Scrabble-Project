@@ -13,6 +13,8 @@ public class UserInput {
     private int[] startPosition = null;
     //A enum type that stores the direction that word is to be placed
     private Direction wordDirection = null;
+    //Stores the name of the user
+    private String name;
 
 
     //Constructors
@@ -40,6 +42,17 @@ public class UserInput {
         else{
            throw new InvalidInputException("Invalid characters for tile exchange");
         }
+    }
+
+    /**
+     *
+     * @param type The UserInputType
+     * @param UserName A String that the User inputted for their name
+     */
+    public UserInput(UserInputType type, String UserName)
+    {
+        inputType = type;
+        name = UserName;
     }
 
     /**
@@ -110,7 +123,8 @@ public class UserInput {
         ERROR,
         BLANK,
         CHALLENGE,
-        RESTART
+        RESTART,
+        NAME
     }
 
     /**
@@ -209,6 +223,12 @@ public class UserInput {
                             inputData = new UserInput(UserInputType.ERROR);
                         }
                         break;
+                    case "Name":
+                    case "NAME":
+                    case "name":
+                        //The name of the user is stored in inputData
+                        inputData = new UserInput(UserInputType.NAME, tokens[1]);
+
                     //Default case deals with if the user wants to place a tile
                     default:
                         //Checks if the first token is a row coordinate (A to O) and a column coordinate (a number)
