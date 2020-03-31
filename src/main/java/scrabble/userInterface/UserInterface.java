@@ -34,7 +34,6 @@ public class UserInterface extends Application{
     private int playerTurn = 0;
     private boolean setup = true;
     private boolean challenge = false;
-    private boolean challengeMade = false;
     private boolean gameOver = false;
     private MoveInfo currentMove;
 
@@ -281,12 +280,6 @@ public class UserInterface extends Application{
                     gameOverEvent(gameText);
                 }
 
-                // Checks if a challenge has been made, if so challengeEvent is called to handle the event
-                else if(challengeMade){
-
-                    challengeEvent(gameText);
-                }
-
                 // Otherwise the gameEvent method is called to handle the input
                 else {
 
@@ -498,8 +491,37 @@ public class UserInterface extends Application{
 
                         // Displays this to the player and sets boolean challengeMade to true to enter the challengeEvent
                         gameTextLog.appendText("- Challenge has been made\n");
-                        gameTextLog.appendText("- Challenge is currently handled manually, enter Y if challenge was successful or N if not\n");
-                        challengeMade = true;
+
+                        // Checks if the word is in the dictionary
+                        boolean checkChallenge = scrabble.dictionaryWords(currentMove);
+
+                        // Checks if the challenge was successful
+                        if (!checkChallenge) {
+
+                            // Displays to the players that the challenge was successful
+                            gameTextLog.appendText("- Challenge was successful, players move has been removed\n");
+
+                            // Removes the move from the board
+                            scrabble.getBoard().removeMove(currentMove);
+
+                            // Updates the current players frame
+                            scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().setToBlank();
+
+                            // Updates the visuals of the board
+                            updateBoard();
+
+                            // Moves onto the next players turn and displays their frame
+                            playerTurn = (playerTurn % 2) + 1;
+                        } else {
+                            // Displays the result to the players
+                            gameTextLog.appendText("- Challenge has failed, challengers turn has been skipped\n");
+
+                            /// Calls the makeMove method to carry out the most recent move
+                            makeMove();
+
+                            // Skips the turn of the player who made the challenge
+                        }
+                        gameTextLog.appendText("- " + scrabble.getPlayers()[playerTurn % 2].getName() + "s move (" + scrabble.getPlayers()[playerTurn % 2].getScore() + ") \n- " + scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().toString() + "\n");
                         challenge = false;
                     }
 
@@ -507,7 +529,7 @@ public class UserInterface extends Application{
                     else if(text.getWord()[0] =='N') {
 
                         // Displays this to the players
-                        gameTextLog.appendText("- Challenged has not been made\n");
+                        gameTextLog.appendText("- Challenge has not been made\n");
 
                         // Calls the makeMove method to carry out the most recent move
                         makeMove();
@@ -640,74 +662,6 @@ public class UserInterface extends Application{
         // Clears input in gameText
         gameText.setText("");
 
-    }
-
-
-    /**
-     * Method to handle events if a challenge has been made
-     * @param gameText: TextField containing the players input
-     */
-    private  void challengeEvent(TextField gameText){
-        //TODO Check Dictionary for Word - Sprint 4
-
-        // Try catch for challenge event
-        try {
-
-            // Parses the players input for challenge
-            String input = gameText.getCharacters().toString();
-
-            // Checks if the challenge is successful
-            if (input.equals("Y")) {
-
-                // Displays to the players that the challenge was successful
-                gameTextLog.appendText("- Challenge has passed, players turn has been skipped\n");
-
-                // Removes the move from the board
-                scrabble.getBoard().removeMove(currentMove);
-
-                // Updates the current players frame
-                scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().setToBlank();
-
-                // Updates the visuals of the board
-                updateBoard();
-
-                // Moves onto the next players turn and displays their frame
-                playerTurn = (playerTurn % 2) + 1;
-                gameTextLog.appendText("- " + scrabble.getPlayers()[playerTurn % 2].getName() + "s move (" + scrabble.getPlayers()[playerTurn % 2].getScore() + ") \n- " + scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().toString() + "\n");
-
-                // Ends the challenge event
-                challengeMade = false;
-            }
-
-            // Checks if the challenge was unsuccessful
-            else if (input.equals("N")) {
-
-                // Displays the result to the players
-                gameTextLog.appendText("- Challenge has failed, challengers turn has been skipped\n");
-
-                /// Calls the makeMove method to carry out the most recent move
-                makeMove();
-
-                // Skips the turn of the player who made the challenge
-                gameTextLog.appendText("- " + scrabble.getPlayers()[playerTurn % 2].getName() + "s move (" + scrabble.getPlayers()[playerTurn % 2].getScore() + ") \n- " + scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().toString() + "\n");
-
-                // Ends the challenge event
-                challengeMade = false;
-            }
-
-            // Check if the input for is not Y or N, if not the player is informed
-            else {
-
-                gameTextLog.appendText("- Error: Unknown command for challenge (Y/N)\n");
-            }
-
-        // Catches any exceptions thrown during challenge event and is displayed to the players
-        } catch(Exception e) {
-            gameTextLog.appendText("- Error: "+ e.getMessage() + "\n");
-        }
-
-        // Clears input in gameText
-        gameText.setText("");
     }
 
     /**

@@ -39,7 +39,7 @@ public class Word {
             direction = d;
             word = w;
         }else {
-            throw new InvalidWordException("The word co-ordinates must be on the Board.\nThe word must between 1 - 15 capital letters long.");
+            throw new InvalidWordException("The word co-ordinates must be on the Board.\nThe word must between 2 - 15 capital letters long.");
         }
     }
 
@@ -77,8 +77,8 @@ public class Word {
      * @return True if valid Word
      */
     private boolean validWord(char[] w){
-        //A word must have between 1 - 15 letters and contain only capital letters
-        return new String(w).matches("^[A-Z]{1,15}+");
+        //A word must have between 2 - 15 letters and contain only capital letters
+        return new String(w).matches("^[A-Z]{2,15}+");
     }
 
     /**
