@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import scrabble.exceptions.InvalidInputException;
 
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class UserInputTest {
@@ -75,6 +77,7 @@ public class UserInputTest {
     void exchangeTest()
     {
         inputTest = UserInput.parseInput("exchange KILLIAN");
+        //Initalising array for the expected results
         char[] expectedResult = {'K', 'I', 'L', 'L', 'I', 'A', 'N'};
         assertEquals(UserInput.UserInputType.EXCHANGE, inputTest.getInputType());
         assertArrayEquals(expectedResult, inputTest.getWord(), "The parsed input did not give the expected result." );
@@ -120,6 +123,7 @@ public class UserInputTest {
     void blankTest()
     {
         inputTest = UserInput.parseInput("BLANK ABC");
+        //Initalising array for the expected results
         char[] expectedResult = {'A', 'B', 'C'};
         assertEquals(UserInput.UserInputType.BLANK, inputTest.getInputType(), "\nThe user input 'BLANK' did not give the input type 'BLANK'");
         assertArrayEquals(expectedResult, inputTest.getWord(), "The parsed input did not give the expected result." );
@@ -133,10 +137,9 @@ public class UserInputTest {
     void inputPlaceWordTest()
     {
         inputTest = UserInput.parseInput("I8 A TEST");
+        //Initalising arrays for the expected results
         int[] coordinateTest = {8, 8};
         char[] wordTest = {'T', 'E', 'S', 'T'};
-        System.out.println("GET WORD" + inputTest.getWord());
-        System.out.println(wordTest);
 
         assertAll("Testing the input for placing a word is stored correctly.",
                 () -> assertArrayEquals(coordinateTest, inputTest.getStartPosition(), "\nThe coordinates inputted and parsed are not the expected coordinates."),
@@ -155,7 +158,7 @@ public class UserInputTest {
         inputTest = UserInput.parseInput("P12 A TEST");
 
         //Invalid Command
-        UserInput commandTest = UserInput.parseInput("HELPME");;
+        UserInput commandTest = UserInput.parseInput("HELPME");
 
         assertAll("Testing the different invalid inputs\n",
                 () -> assertEquals(UserInput.UserInputType.ERROR, inputTest.getInputType(), "\nThe invalid user input did not give the input type 'ERROR'."),
