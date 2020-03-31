@@ -191,6 +191,7 @@ public class UserInputTest {
     {
         inputTest = UserInput.parseInput("BLANK ABC");
         char[] expectedResult = {'A', 'B', 'C'};
+
         assertEquals(UserInput.UserInputType.BLANK, inputTest.getInputType(), "\nThe user input 'BLANK' did not give the input type 'BLANK'");
         assertArrayEquals(expectedResult, inputTest.getWord(), "The parsed input did not give the expected result." );
 
@@ -201,16 +202,46 @@ public class UserInputTest {
     @DisplayName("Testing the input 'RESTART' returns the input type 'RESTART'")
     void inputRESTART()
     {
-        inputTest= UserInput.parseInput("RESTART");
+        inputTest = UserInput.parseInput("RESTART");
         UserInput RestartTest = UserInput.parseInput("Restart");
         UserInput restartTest = UserInput.parseInput("restart");
 
         assertAll("Testing the different ways to input PASS\n",
                 () -> assertEquals(UserInput.UserInputType.RESTART, inputTest.getInputType(), "\nThe user input 'RESTART' did not give the input type 'RESTART'"),
-                () -> assertEquals(UserInput.UserInputType.RESTART, RestartTest.getInputType(), "\nThe user input 'Pass' did not give the input type 'RESTART'"),
-                () -> assertEquals(UserInput.UserInputType.RESTART, restartTest.getInputType(), "\nThe user input 'pass' did not give the input type 'RESTART'")
+                () -> assertEquals(UserInput.UserInputType.RESTART, RestartTest.getInputType(), "\nThe user input 'Restart' did not give the input type 'RESTART'"),
+                () -> assertEquals(UserInput.UserInputType.RESTART, restartTest.getInputType(), "\nThe user input 'restart' did not give the input type 'RESTART'")
         );
 
+    }
+
+    //Test to check when user inputs name, the programme returns the NAME type enum.
+    @Test
+    @DisplayName("Test to check when user inputs name, the programme returns the NAME type enum")
+    void inputName()
+    {
+        inputTest = UserInput.parseInput("NAME KILLIAN");
+        UserInput NameTest = UserInput.parseInput("Name Killian");
+        UserInput nameTest = UserInput.parseInput("name killian");
+
+        assertAll("Testing the different ways to input NAME\n",
+                () -> assertEquals(UserInput.UserInputType.NAME, inputTest.getInputType(), "\nThe user input 'NAME' did not give the input type 'NAME'"),
+                () -> assertEquals(UserInput.UserInputType.NAME, NameTest.getInputType(), "\nThe user input 'Name' did not give the input type 'NAME'"),
+                () -> assertEquals(UserInput.UserInputType.NAME, nameTest.getInputType(), "\nThe user input 'name' did not give the input type 'NAME'")
+        );
+    }
+
+    //Tests to check if the inputted name for a player is stored correctly
+    @Test
+    @DisplayName("Check if the inputted name for a player is stored correctly")
+    void nameTest()
+    {
+        inputTest = UserInput.parseInput("NAME Killian");
+        UserInput nameTest = UserInput.parseInput("Name xXx_QuIcKsCoPeR_420_xXx");
+
+        assertAll("Testing that an inputted name for a player is stored correctly",
+                () -> assertEquals("Killian", inputTest.getName(), "\nThe parsed input of a user's name did not give the expected result."),
+                () -> assertEquals("xXx_QuIcKsCoPeR_420_xXx", nameTest.getName(), "\nThe parsed input of a user's name did not give the expected result.")
+    );
     }
 
 

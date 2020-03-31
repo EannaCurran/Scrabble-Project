@@ -88,6 +88,14 @@ public class UserInput {
     }
 
     /**
+     * Accessor method for getting the name of the player that the user inputted
+     * @return Returns a string which contains the inputted user name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
      * Accessor method for getting the coordinates of the first Tile of the word the user wants to place on the board
      * @return Returns the coordinates of the first Tile of the word the user wants to place on the board
      */
@@ -228,6 +236,7 @@ public class UserInput {
                     case "name":
                         //The name of the user is stored in inputData
                         inputData = new UserInput(UserInputType.NAME, tokens[1]);
+                        break;
 
                     //Default case deals with if the user wants to place a tile
                     default:
