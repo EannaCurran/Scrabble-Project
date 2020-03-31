@@ -471,12 +471,33 @@ public class UserInterface extends Application{
 
                         // Displays the conditions needed to restart to the user
                         gameTextLog.appendText("- Cannot restart a game that has not ended (QUIT to end game)\n");
-                        gameTextLog.appendText("- " + scrabble.getPlayers()[playerTurn % 2].getName() +"s move (" + scrabble.getPlayers()[playerTurn % 2].getScore() + ") \n- " + scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().toString() + "\n");
+                        gameTextLog.appendText("- " + scrabble.getPlayers()[playerTurn % 2].getName() + "s move (" + scrabble.getPlayers()[playerTurn % 2].getScore() + ") \n- " + scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().toString() + "\n");
+                        break;
+
+                    // Case from when the input is NAME
+                    case NAME:
+
+                        try {
+
+                            // Gets the current players name and sets it to the new name
+                            String temp = scrabble.getPlayers()[playerTurn % 2].getName();
+                            scrabble.getPlayers()[playerTurn % 2].setName(text.getName());
+
+                            // Displays name
+                            gameTextLog.appendText("- " + temp + " name set to " + scrabble.getPlayers()[playerTurn % 2].getName() + "\n");
+
+
+                            // Catches any exceptions thrown
+                        } catch (Exception e) {
+                            gameTextLog.appendText("- Error: " + e.getMessage() + "\n");
+                        }
+
+                        gameTextLog.appendText("- " + scrabble.getPlayers()[playerTurn % 2].getName() + "s move (" + scrabble.getPlayers()[playerTurn % 2].getScore() + ") \n- " + scrabble.getPlayers()[playerTurn % 2].getPlayerFrame().toString() + "\n");
                         break;
 
                     // Case for any unknown input type
                     default:
-                            gameTextLog.appendText("- Error: Unknown command\n");
+                        gameTextLog.appendText("- Error: Unknown command\n");
                 }
             }
 
