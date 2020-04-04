@@ -632,7 +632,8 @@ public class UserInterface extends Application{
                 "- BLANK [Characters]: Sets the blank tiles in a players frame to a letter, only functional if a blank tile is in the players frame (Eg: BLANK A).\n" +
                 "- CHALLENGE [Y/N]: Allows the opponent to challenge a move to be made by the other player, only available after a player has inputted a move.\n" +
                 "- RESTART: Launches a new game, can only be called at the end of a game.\n" +
-                "- [Grid Reference] [Direction] [Characters] : Places the characters starting at the grid reference and going in the given direction onto the board (Eg: H7 A HELLO).\n";
+                "- [Grid Reference] [Direction] [Characters] : Places the characters starting at the grid reference and going in the given direction onto the board (Eg: H7 A HELLO).\n" +
+                "- NAME [UserName]: Sets the name of the player.";
     }
 
 

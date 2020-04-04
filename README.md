@@ -24,6 +24,7 @@ Valid commands that can be inputted into the text box:
 - CHALLENGE [Y/N]: Allows the opponent to challenge a move to be made by the other player, only available after a player has inputted a move.
 - RESTART: Launches a new game, can only be called at the end of a game.
 - [Grid Reference] [Direction] [Characters] : Places the characters starting at the grid reference and going in the given direction onto the board (Eg: H7 A HELLO).
+- NAME [UserName]: Sets the name of the player.
 
 **Classes**
 
