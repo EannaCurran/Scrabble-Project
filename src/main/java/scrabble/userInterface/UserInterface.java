@@ -65,7 +65,7 @@ public class UserInterface extends Application{
         // Assigns the gameStage
         this.gameStage = gameStage;
 
-        gameStage.setTitle("Scrabble");
+        gameStage.setTitle("scrabble");
 
         // Setting up of the JavaFx Elements
         gameFrame = new GridPane();

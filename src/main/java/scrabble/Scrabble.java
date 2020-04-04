@@ -2,6 +2,7 @@ package scrabble;
 
 import scrabble.exceptions.InvalidScrabbleException;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -39,6 +40,7 @@ public class Scrabble {
      * Scrabble Game Constructor
      *
      * Creates a new game of Scrabble
+     * @throws FileNotFoundException If Scanner fails to find Scrabble Dictionary
      */
     public Scrabble() throws FileNotFoundException {
         board = new Board();
@@ -162,7 +164,7 @@ public class Scrabble {
             String currentWord;
 
             //Create scanner for the dictionary text file
-            Scanner scanner = new Scanner(getClass().getResourceAsStream("sowpods.txt"));
+            Scanner scanner = new Scanner(Scrabble.class.getResourceAsStream("sowpods.txt"));
 
             //While loop to scan in each word in the dictionary file
             while (scanner.hasNext()) {
@@ -181,7 +183,7 @@ public class Scrabble {
      * Method to validate the words created in a move
      *
      * @param move The move to validate
-     * @return
+     * @return True if all words are valid
      */
     public boolean dictionaryWords(MoveInfo move){
         boolean result = true;
