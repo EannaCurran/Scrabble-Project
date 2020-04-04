@@ -3,7 +3,7 @@
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classscrabble_1_1_scrabble_aedf5e6d4828b7a7cda3881a2a2f1ddc0}{Scrabble}} ()
+\mbox{\hyperlink{classscrabble_1_1_scrabble_aedf5e6d4828b7a7cda3881a2a2f1ddc0}{Scrabble}} ()  throws File\+Not\+Found\+Exception 
 \item 
 \mbox{\hyperlink{classscrabble_1_1_board}{Board}} \mbox{\hyperlink{classscrabble_1_1_scrabble_a811099c0e9f6f91ebd218e13fa61e307}{get\+Board}} ()
 \item 
@@ -20,6 +20,8 @@ void \mbox{\hyperlink{classscrabble_1_1_scrabble_a3961dedf966403c79059e7e04b9fff
 boolean \mbox{\hyperlink{classscrabble_1_1_scrabble_a60c262e6962d56651385f691388b75e7}{is\+Game\+Over}} ()
 \item 
 void \mbox{\hyperlink{classscrabble_1_1_scrabble_a184e724b4ec7cf20d70e4063bbdd522b}{game\+Over}} ()
+\item 
+boolean \mbox{\hyperlink{classscrabble_1_1_scrabble_aa14f509da98592fc99beffe4ccb5c3e9}{dictionary\+Words}} (\mbox{\hyperlink{classscrabble_1_1_move_info}{Move\+Info}} move)
 \end{DoxyCompactItemize}
 
 
@@ -28,11 +30,16 @@ void \mbox{\hyperlink{classscrabble_1_1_scrabble_a184e724b4ec7cf20d70e4063bbdd52
 \index{scrabble.Scrabble@{scrabble.Scrabble}!Scrabble@{Scrabble}}
 \index{Scrabble@{Scrabble}!scrabble.Scrabble@{scrabble.Scrabble}}
 \doxysubsubsection{\texorpdfstring{Scrabble()}{Scrabble()}}
-{\footnotesize\ttfamily scrabble.\+Scrabble.\+Scrabble (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily scrabble.\+Scrabble.\+Scrabble (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) throws File\+Not\+Found\+Exception}
 
 \mbox{\hyperlink{classscrabble_1_1_scrabble}{Scrabble}} Game Constructor
 
 Creates a new game of \mbox{\hyperlink{classscrabble_1_1_scrabble}{Scrabble}} 
+\begin{DoxyExceptions}{Exceptions}
+{\em File\+Not\+Found\+Exception} & If Scanner fails to find \mbox{\hyperlink{classscrabble_1_1_scrabble}{Scrabble}} Dictionary \\
+\hline
+\end{DoxyExceptions}
+
 
 \doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{classscrabble_1_1_scrabble_a5ef55a68522090747af0baf4b594f2a7}\label{classscrabble_1_1_scrabble_a5ef55a68522090747af0baf4b594f2a7}} 
@@ -55,6 +62,22 @@ Method to create a player with an inputted name
 {\em Invalid\+Scrabble\+Exception} & If the index is out of bounds of the players array \\
 \hline
 \end{DoxyExceptions}
+\mbox{\Hypertarget{classscrabble_1_1_scrabble_aa14f509da98592fc99beffe4ccb5c3e9}\label{classscrabble_1_1_scrabble_aa14f509da98592fc99beffe4ccb5c3e9}} 
+\index{scrabble.Scrabble@{scrabble.Scrabble}!dictionaryWords@{dictionaryWords}}
+\index{dictionaryWords@{dictionaryWords}!scrabble.Scrabble@{scrabble.Scrabble}}
+\doxysubsubsection{\texorpdfstring{dictionaryWords()}{dictionaryWords()}}
+{\footnotesize\ttfamily boolean scrabble.\+Scrabble.\+dictionary\+Words (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classscrabble_1_1_move_info}{Move\+Info}}}]{move }\end{DoxyParamCaption})}
+
+Method to validate the words created in a move
+
+
+\begin{DoxyParams}{Parameters}
+{\em move} & The move to validate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if all words are valid 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classscrabble_1_1_scrabble_a184e724b4ec7cf20d70e4063bbdd522b}\label{classscrabble_1_1_scrabble_a184e724b4ec7cf20d70e4063bbdd522b}} 
 \index{scrabble.Scrabble@{scrabble.Scrabble}!gameOver@{gameOver}}
 \index{gameOver@{gameOver}!scrabble.Scrabble@{scrabble.Scrabble}}

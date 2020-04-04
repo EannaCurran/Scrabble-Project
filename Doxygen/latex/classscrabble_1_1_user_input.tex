@@ -14,11 +14,15 @@ enum \mbox{\hyperlink{enumscrabble_1_1_user_input_1_1_user_input_type}{User\+Inp
 \item 
 \mbox{\hyperlink{classscrabble_1_1_user_input_a18f280873ed84002cb847b18cdfe8759}{User\+Input}} (\mbox{\hyperlink{enumscrabble_1_1_user_input_1_1_user_input_type}{User\+Input\+Type}} type, char\mbox{[}$\,$\mbox{]} tile\+Exchange)
 \item 
+\mbox{\hyperlink{classscrabble_1_1_user_input_a38cf05d4bb7b394f165b847758429f3a}{User\+Input}} (\mbox{\hyperlink{enumscrabble_1_1_user_input_1_1_user_input_type}{User\+Input\+Type}} type, String User\+Name)
+\item 
 \mbox{\hyperlink{classscrabble_1_1_user_input_a1acb0aca14e9b3be0d42b364869a3bc8}{User\+Input}} (\mbox{\hyperlink{enumscrabble_1_1_user_input_1_1_user_input_type}{User\+Input\+Type}} type, char\mbox{[}$\,$\mbox{]} w, int\mbox{[}$\,$\mbox{]} position, \mbox{\hyperlink{enumscrabble_1_1_user_input_1_1_direction}{Direction}} d)
 \item 
 \mbox{\hyperlink{enumscrabble_1_1_user_input_1_1_user_input_type}{User\+Input\+Type}} \mbox{\hyperlink{classscrabble_1_1_user_input_ac4a5c47b20a791b7c8338647830f457a}{get\+Input\+Type}} ()
 \item 
 char\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{classscrabble_1_1_user_input_ad93441c634d345253420b66880e7a962}{get\+Word}} ()
+\item 
+String \mbox{\hyperlink{classscrabble_1_1_user_input_abef11a1de7bf7ba052f84ce3c1ede0c4}{get\+Name}} ()
 \item 
 int\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{classscrabble_1_1_user_input_a62eb6035e8b98867a314857772a55192}{get\+Start\+Position}} ()
 \item 
@@ -35,7 +39,7 @@ static \mbox{\hyperlink{classscrabble_1_1_user_input}{User\+Input}} \mbox{\hyper
 \mbox{\Hypertarget{classscrabble_1_1_user_input_a5567568fb4c02de589b3da0c3500bf4e}\label{classscrabble_1_1_user_input_a5567568fb4c02de589b3da0c3500bf4e}} 
 \index{scrabble.UserInput@{scrabble.UserInput}!UserInput@{UserInput}}
 \index{UserInput@{UserInput}!scrabble.UserInput@{scrabble.UserInput}}
-\doxysubsubsection{\texorpdfstring{UserInput()}{UserInput()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+\doxysubsubsection{\texorpdfstring{UserInput()}{UserInput()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
 {\footnotesize\ttfamily scrabble.\+User\+Input.\+User\+Input (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{enumscrabble_1_1_user_input_1_1_user_input_type}{User\+Input\+Type}}}]{type }\end{DoxyParamCaption})}
 
 Constructor for cases with one token such as \textquotesingle{}H\+E\+LP\textquotesingle{} or \textquotesingle{}P\+A\+SS\textquotesingle{} 
@@ -46,7 +50,7 @@ Constructor for cases with one token such as \textquotesingle{}H\+E\+LP\textquot
 \mbox{\Hypertarget{classscrabble_1_1_user_input_a18f280873ed84002cb847b18cdfe8759}\label{classscrabble_1_1_user_input_a18f280873ed84002cb847b18cdfe8759}} 
 \index{scrabble.UserInput@{scrabble.UserInput}!UserInput@{UserInput}}
 \index{UserInput@{UserInput}!scrabble.UserInput@{scrabble.UserInput}}
-\doxysubsubsection{\texorpdfstring{UserInput()}{UserInput()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+\doxysubsubsection{\texorpdfstring{UserInput()}{UserInput()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
 {\footnotesize\ttfamily scrabble.\+User\+Input.\+User\+Input (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{enumscrabble_1_1_user_input_1_1_user_input_type}{User\+Input\+Type}}}]{type,  }\item[{char\mbox{[}$\,$\mbox{]}}]{tile\+Exchange }\end{DoxyParamCaption})}
 
 Constructor for when user is swapping a Tile(s) 
@@ -61,10 +65,23 @@ Constructor for when user is swapping a Tile(s)
 {\em Invalid\+Input\+Exception} & If user input are not valid tiles \\
 \hline
 \end{DoxyExceptions}
+\mbox{\Hypertarget{classscrabble_1_1_user_input_a38cf05d4bb7b394f165b847758429f3a}\label{classscrabble_1_1_user_input_a38cf05d4bb7b394f165b847758429f3a}} 
+\index{scrabble.UserInput@{scrabble.UserInput}!UserInput@{UserInput}}
+\index{UserInput@{UserInput}!scrabble.UserInput@{scrabble.UserInput}}
+\doxysubsubsection{\texorpdfstring{UserInput()}{UserInput()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily scrabble.\+User\+Input.\+User\+Input (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{enumscrabble_1_1_user_input_1_1_user_input_type}{User\+Input\+Type}}}]{type,  }\item[{String}]{User\+Name }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The \mbox{\hyperlink{enumscrabble_1_1_user_input_1_1_user_input_type}{User\+Input\+Type}} \\
+\hline
+{\em User\+Name} & A String that the User inputted for their name \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{classscrabble_1_1_user_input_a1acb0aca14e9b3be0d42b364869a3bc8}\label{classscrabble_1_1_user_input_a1acb0aca14e9b3be0d42b364869a3bc8}} 
 \index{scrabble.UserInput@{scrabble.UserInput}!UserInput@{UserInput}}
 \index{UserInput@{UserInput}!scrabble.UserInput@{scrabble.UserInput}}
-\doxysubsubsection{\texorpdfstring{UserInput()}{UserInput()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+\doxysubsubsection{\texorpdfstring{UserInput()}{UserInput()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
 {\footnotesize\ttfamily scrabble.\+User\+Input.\+User\+Input (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{enumscrabble_1_1_user_input_1_1_user_input_type}{User\+Input\+Type}}}]{type,  }\item[{char\mbox{[}$\,$\mbox{]}}]{w,  }\item[{int\mbox{[}$\,$\mbox{]}}]{position,  }\item[{\mbox{\hyperlink{enumscrabble_1_1_user_input_1_1_direction}{Direction}}}]{d }\end{DoxyParamCaption})}
 
 Constructor for when the user wants to place a word on the \mbox{\hyperlink{classscrabble_1_1_board}{Board}} 
@@ -89,6 +106,15 @@ Constructor for when the user wants to place a word on the \mbox{\hyperlink{clas
 
 Accessor method for getting the type of input \begin{DoxyReturn}{Returns}
 Returns the input type 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classscrabble_1_1_user_input_abef11a1de7bf7ba052f84ce3c1ede0c4}\label{classscrabble_1_1_user_input_abef11a1de7bf7ba052f84ce3c1ede0c4}} 
+\index{scrabble.UserInput@{scrabble.UserInput}!getName@{getName}}
+\index{getName@{getName}!scrabble.UserInput@{scrabble.UserInput}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily String scrabble.\+User\+Input.\+get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accessor method for getting the name of the player that the user inputted \begin{DoxyReturn}{Returns}
+Returns a string which contains the inputted user name 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classscrabble_1_1_user_input_a62eb6035e8b98867a314857772a55192}\label{classscrabble_1_1_user_input_a62eb6035e8b98867a314857772a55192}} 
 \index{scrabble.UserInput@{scrabble.UserInput}!getStartPosition@{getStartPosition}}

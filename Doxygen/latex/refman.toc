@@ -118,72 +118,75 @@
 \contentsline {subsubsection}{\numberline {3.20.3.6}toString()}{34}{subsubsection.3.20.3.6}%
 \contentsline {section}{\numberline {3.21}scrabble.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pool\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Test Class Reference}{34}{section.3.21}%
 \contentsline {section}{\numberline {3.22}scrabble.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Scrabble Class Reference}{34}{section.3.22}%
-\contentsline {subsection}{\numberline {3.22.1}Constructor \& Destructor Documentation}{35}{subsection.3.22.1}%
-\contentsline {subsubsection}{\numberline {3.22.1.1}Scrabble()}{35}{subsubsection.3.22.1.1}%
+\contentsline {subsection}{\numberline {3.22.1}Constructor \& Destructor Documentation}{34}{subsection.3.22.1}%
+\contentsline {subsubsection}{\numberline {3.22.1.1}Scrabble()}{34}{subsubsection.3.22.1.1}%
 \contentsline {subsection}{\numberline {3.22.2}Member Function Documentation}{35}{subsection.3.22.2}%
 \contentsline {subsubsection}{\numberline {3.22.2.1}createPlayer()}{35}{subsubsection.3.22.2.1}%
-\contentsline {subsubsection}{\numberline {3.22.2.2}gameOver()}{35}{subsubsection.3.22.2.2}%
-\contentsline {subsubsection}{\numberline {3.22.2.3}getBoard()}{35}{subsubsection.3.22.2.3}%
-\contentsline {subsubsection}{\numberline {3.22.2.4}getMoveHistory()}{36}{subsubsection.3.22.2.4}%
-\contentsline {subsubsection}{\numberline {3.22.2.5}getPlayers()}{36}{subsubsection.3.22.2.5}%
-\contentsline {subsubsection}{\numberline {3.22.2.6}getPool()}{36}{subsubsection.3.22.2.6}%
-\contentsline {subsubsection}{\numberline {3.22.2.7}isGameOver()}{36}{subsubsection.3.22.2.7}%
-\contentsline {subsubsection}{\numberline {3.22.2.8}playerMove()}{36}{subsubsection.3.22.2.8}%
+\contentsline {subsubsection}{\numberline {3.22.2.2}dictionaryWords()}{35}{subsubsection.3.22.2.2}%
+\contentsline {subsubsection}{\numberline {3.22.2.3}gameOver()}{36}{subsubsection.3.22.2.3}%
+\contentsline {subsubsection}{\numberline {3.22.2.4}getBoard()}{36}{subsubsection.3.22.2.4}%
+\contentsline {subsubsection}{\numberline {3.22.2.5}getMoveHistory()}{36}{subsubsection.3.22.2.5}%
+\contentsline {subsubsection}{\numberline {3.22.2.6}getPlayers()}{36}{subsubsection.3.22.2.6}%
+\contentsline {subsubsection}{\numberline {3.22.2.7}getPool()}{36}{subsubsection.3.22.2.7}%
+\contentsline {subsubsection}{\numberline {3.22.2.8}isGameOver()}{37}{subsubsection.3.22.2.8}%
+\contentsline {subsubsection}{\numberline {3.22.2.9}playerMove()}{37}{subsubsection.3.22.2.9}%
 \contentsline {section}{\numberline {3.23}scrabble.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Scrabble\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Test Class Reference}{37}{section.3.23}%
 \contentsline {section}{\numberline {3.24}scrabble.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Square Class Reference}{37}{section.3.24}%
-\contentsline {subsection}{\numberline {3.24.1}Detailed Description}{37}{subsection.3.24.1}%
-\contentsline {subsection}{\numberline {3.24.2}Constructor \& Destructor Documentation}{37}{subsection.3.24.2}%
-\contentsline {subsubsection}{\numberline {3.24.2.1}Square()}{37}{subsubsection.3.24.2.1}%
+\contentsline {subsection}{\numberline {3.24.1}Detailed Description}{38}{subsection.3.24.1}%
+\contentsline {subsection}{\numberline {3.24.2}Constructor \& Destructor Documentation}{38}{subsection.3.24.2}%
+\contentsline {subsubsection}{\numberline {3.24.2.1}Square()}{38}{subsubsection.3.24.2.1}%
 \contentsline {subsection}{\numberline {3.24.3}Member Function Documentation}{38}{subsection.3.24.3}%
 \contentsline {subsubsection}{\numberline {3.24.3.1}getTile()}{38}{subsubsection.3.24.3.1}%
-\contentsline {subsubsection}{\numberline {3.24.3.2}getType()}{38}{subsubsection.3.24.3.2}%
-\contentsline {subsubsection}{\numberline {3.24.3.3}isEmpty()}{38}{subsubsection.3.24.3.3}%
-\contentsline {subsubsection}{\numberline {3.24.3.4}setEmpty()}{38}{subsubsection.3.24.3.4}%
+\contentsline {subsubsection}{\numberline {3.24.3.2}getType()}{39}{subsubsection.3.24.3.2}%
+\contentsline {subsubsection}{\numberline {3.24.3.3}isEmpty()}{39}{subsubsection.3.24.3.3}%
+\contentsline {subsubsection}{\numberline {3.24.3.4}setEmpty()}{39}{subsubsection.3.24.3.4}%
 \contentsline {subsubsection}{\numberline {3.24.3.5}setNormal()}{39}{subsubsection.3.24.3.5}%
-\contentsline {subsubsection}{\numberline {3.24.3.6}setTile()}{39}{subsubsection.3.24.3.6}%
-\contentsline {subsubsection}{\numberline {3.24.3.7}toString()}{39}{subsubsection.3.24.3.7}%
+\contentsline {subsubsection}{\numberline {3.24.3.6}setTile()}{40}{subsubsection.3.24.3.6}%
+\contentsline {subsubsection}{\numberline {3.24.3.7}toString()}{40}{subsubsection.3.24.3.7}%
 \contentsline {section}{\numberline {3.25}scrabble.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Square\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Test Class Reference}{40}{section.3.25}%
 \contentsline {section}{\numberline {3.26}scrabble.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Square.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Square\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Type Enum Reference}{40}{section.3.26}%
-\contentsline {subsection}{\numberline {3.26.1}Detailed Description}{40}{subsection.3.26.1}%
-\contentsline {section}{\numberline {3.27}scrabble.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Tile Class Reference}{40}{section.3.27}%
+\contentsline {subsection}{\numberline {3.26.1}Detailed Description}{41}{subsection.3.26.1}%
+\contentsline {section}{\numberline {3.27}scrabble.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Tile Class Reference}{41}{section.3.27}%
 \contentsline {subsection}{\numberline {3.27.1}Detailed Description}{41}{subsection.3.27.1}%
 \contentsline {subsection}{\numberline {3.27.2}Constructor \& Destructor Documentation}{41}{subsection.3.27.2}%
 \contentsline {subsubsection}{\numberline {3.27.2.1}Tile()}{41}{subsubsection.3.27.2.1}%
-\contentsline {subsection}{\numberline {3.27.3}Member Function Documentation}{41}{subsection.3.27.3}%
-\contentsline {subsubsection}{\numberline {3.27.3.1}compareTo()}{41}{subsubsection.3.27.3.1}%
+\contentsline {subsection}{\numberline {3.27.3}Member Function Documentation}{42}{subsection.3.27.3}%
+\contentsline {subsubsection}{\numberline {3.27.3.1}compareTo()}{42}{subsubsection.3.27.3.1}%
 \contentsline {subsubsection}{\numberline {3.27.3.2}equals()}{42}{subsubsection.3.27.3.2}%
-\contentsline {subsubsection}{\numberline {3.27.3.3}getCharacter()}{42}{subsubsection.3.27.3.3}%
-\contentsline {subsubsection}{\numberline {3.27.3.4}getValue()}{42}{subsubsection.3.27.3.4}%
-\contentsline {subsubsection}{\numberline {3.27.3.5}main()}{42}{subsubsection.3.27.3.5}%
+\contentsline {subsubsection}{\numberline {3.27.3.3}getCharacter()}{43}{subsubsection.3.27.3.3}%
+\contentsline {subsubsection}{\numberline {3.27.3.4}getValue()}{43}{subsubsection.3.27.3.4}%
+\contentsline {subsubsection}{\numberline {3.27.3.5}main()}{43}{subsubsection.3.27.3.5}%
 \contentsline {subsubsection}{\numberline {3.27.3.6}setCharacter()}{43}{subsubsection.3.27.3.6}%
-\contentsline {subsubsection}{\numberline {3.27.3.7}setNull()}{43}{subsubsection.3.27.3.7}%
-\contentsline {subsubsection}{\numberline {3.27.3.8}toString()}{43}{subsubsection.3.27.3.8}%
+\contentsline {subsubsection}{\numberline {3.27.3.7}setNull()}{44}{subsubsection.3.27.3.7}%
+\contentsline {subsubsection}{\numberline {3.27.3.8}toString()}{44}{subsubsection.3.27.3.8}%
 \contentsline {section}{\numberline {3.28}scrabble.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}User\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Input Class Reference}{44}{section.3.28}%
-\contentsline {subsection}{\numberline {3.28.1}Constructor \& Destructor Documentation}{44}{subsection.3.28.1}%
-\contentsline {subsubsection}{\numberline {3.28.1.1}UserInput()\hspace {0.1cm}{\footnotesize \ttfamily [1/3]}}{44}{subsubsection.3.28.1.1}%
-\contentsline {subsubsection}{\numberline {3.28.1.2}UserInput()\hspace {0.1cm}{\footnotesize \ttfamily [2/3]}}{44}{subsubsection.3.28.1.2}%
-\contentsline {subsubsection}{\numberline {3.28.1.3}UserInput()\hspace {0.1cm}{\footnotesize \ttfamily [3/3]}}{45}{subsubsection.3.28.1.3}%
-\contentsline {subsection}{\numberline {3.28.2}Member Function Documentation}{45}{subsection.3.28.2}%
-\contentsline {subsubsection}{\numberline {3.28.2.1}getInputType()}{45}{subsubsection.3.28.2.1}%
-\contentsline {subsubsection}{\numberline {3.28.2.2}getStartPosition()}{46}{subsubsection.3.28.2.2}%
-\contentsline {subsubsection}{\numberline {3.28.2.3}getWord()}{46}{subsubsection.3.28.2.3}%
-\contentsline {subsubsection}{\numberline {3.28.2.4}getWordDirection()}{46}{subsubsection.3.28.2.4}%
-\contentsline {subsubsection}{\numberline {3.28.2.5}parseInput()}{46}{subsubsection.3.28.2.5}%
-\contentsline {section}{\numberline {3.29}scrabble.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}User\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Input\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Test Class Reference}{47}{section.3.29}%
-\contentsline {section}{\numberline {3.30}scrabble.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}User\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Input.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}User\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Input\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Type Enum Reference}{47}{section.3.30}%
-\contentsline {subsection}{\numberline {3.30.1}Detailed Description}{47}{subsection.3.30.1}%
-\contentsline {section}{\numberline {3.31}scrabble.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}user\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Interface.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}User\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Interface Class Reference}{47}{section.3.31}%
-\contentsline {subsection}{\numberline {3.31.1}Member Function Documentation}{48}{subsection.3.31.1}%
-\contentsline {subsubsection}{\numberline {3.31.1.1}main()}{48}{subsubsection.3.31.1.1}%
-\contentsline {subsubsection}{\numberline {3.31.1.2}start()}{48}{subsubsection.3.31.1.2}%
-\contentsline {section}{\numberline {3.32}scrabble.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Word Class Reference}{48}{section.3.32}%
-\contentsline {subsection}{\numberline {3.32.1}Detailed Description}{49}{subsection.3.32.1}%
-\contentsline {subsection}{\numberline {3.32.2}Constructor \& Destructor Documentation}{49}{subsection.3.32.2}%
-\contentsline {subsubsection}{\numberline {3.32.2.1}Word()}{49}{subsubsection.3.32.2.1}%
-\contentsline {subsection}{\numberline {3.32.3}Member Function Documentation}{49}{subsection.3.32.3}%
-\contentsline {subsubsection}{\numberline {3.32.3.1}getDirection()}{49}{subsubsection.3.32.3.1}%
-\contentsline {subsubsection}{\numberline {3.32.3.2}getStartPosition()}{50}{subsubsection.3.32.3.2}%
-\contentsline {subsubsection}{\numberline {3.32.3.3}getWord()}{50}{subsubsection.3.32.3.3}%
-\contentsline {subsubsection}{\numberline {3.32.3.4}toString()}{50}{subsubsection.3.32.3.4}%
-\contentsline {section}{\numberline {3.33}scrabble.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Word\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Test Class Reference}{50}{section.3.33}%
-\contentsline {chapter}{Index}{51}{section*.51}%
+\contentsline {subsection}{\numberline {3.28.1}Constructor \& Destructor Documentation}{45}{subsection.3.28.1}%
+\contentsline {subsubsection}{\numberline {3.28.1.1}UserInput()\hspace {0.1cm}{\footnotesize \ttfamily [1/4]}}{45}{subsubsection.3.28.1.1}%
+\contentsline {subsubsection}{\numberline {3.28.1.2}UserInput()\hspace {0.1cm}{\footnotesize \ttfamily [2/4]}}{45}{subsubsection.3.28.1.2}%
+\contentsline {subsubsection}{\numberline {3.28.1.3}UserInput()\hspace {0.1cm}{\footnotesize \ttfamily [3/4]}}{45}{subsubsection.3.28.1.3}%
+\contentsline {subsubsection}{\numberline {3.28.1.4}UserInput()\hspace {0.1cm}{\footnotesize \ttfamily [4/4]}}{46}{subsubsection.3.28.1.4}%
+\contentsline {subsection}{\numberline {3.28.2}Member Function Documentation}{46}{subsection.3.28.2}%
+\contentsline {subsubsection}{\numberline {3.28.2.1}getInputType()}{46}{subsubsection.3.28.2.1}%
+\contentsline {subsubsection}{\numberline {3.28.2.2}getName()}{46}{subsubsection.3.28.2.2}%
+\contentsline {subsubsection}{\numberline {3.28.2.3}getStartPosition()}{47}{subsubsection.3.28.2.3}%
+\contentsline {subsubsection}{\numberline {3.28.2.4}getWord()}{47}{subsubsection.3.28.2.4}%
+\contentsline {subsubsection}{\numberline {3.28.2.5}getWordDirection()}{47}{subsubsection.3.28.2.5}%
+\contentsline {subsubsection}{\numberline {3.28.2.6}parseInput()}{47}{subsubsection.3.28.2.6}%
+\contentsline {section}{\numberline {3.29}scrabble.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}User\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Input\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Test Class Reference}{48}{section.3.29}%
+\contentsline {section}{\numberline {3.30}scrabble.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}User\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Input.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}User\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Input\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Type Enum Reference}{48}{section.3.30}%
+\contentsline {subsection}{\numberline {3.30.1}Detailed Description}{48}{subsection.3.30.1}%
+\contentsline {section}{\numberline {3.31}scrabble.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}user\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Interface.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}User\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Interface Class Reference}{48}{section.3.31}%
+\contentsline {subsection}{\numberline {3.31.1}Member Function Documentation}{49}{subsection.3.31.1}%
+\contentsline {subsubsection}{\numberline {3.31.1.1}main()}{49}{subsubsection.3.31.1.1}%
+\contentsline {subsubsection}{\numberline {3.31.1.2}start()}{49}{subsubsection.3.31.1.2}%
+\contentsline {section}{\numberline {3.32}scrabble.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Word Class Reference}{49}{section.3.32}%
+\contentsline {subsection}{\numberline {3.32.1}Detailed Description}{50}{subsection.3.32.1}%
+\contentsline {subsection}{\numberline {3.32.2}Constructor \& Destructor Documentation}{50}{subsection.3.32.2}%
+\contentsline {subsubsection}{\numberline {3.32.2.1}Word()}{50}{subsubsection.3.32.2.1}%
+\contentsline {subsection}{\numberline {3.32.3}Member Function Documentation}{50}{subsection.3.32.3}%
+\contentsline {subsubsection}{\numberline {3.32.3.1}getDirection()}{50}{subsubsection.3.32.3.1}%
+\contentsline {subsubsection}{\numberline {3.32.3.2}getStartPosition()}{51}{subsubsection.3.32.3.2}%
+\contentsline {subsubsection}{\numberline {3.32.3.3}getWord()}{51}{subsubsection.3.32.3.3}%
+\contentsline {subsubsection}{\numberline {3.32.3.4}toString()}{51}{subsubsection.3.32.3.4}%
+\contentsline {section}{\numberline {3.33}scrabble.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Word\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Test Class Reference}{51}{section.3.33}%
+\contentsline {chapter}{Index}{53}{section*.51}%
