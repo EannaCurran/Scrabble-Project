@@ -75,6 +75,8 @@ Then navigate in command line to the project folder and run "gradlew test".
 The output of the unit test is in a html file at "ProjectFolder"/build/reports/tests/test/index.html
 (Where ProjectFolder is the folder where the project is stored).
 
+Note: gradlew will require you to run Java 11 for compatibility.
+
 The executable jar file run the UserInterface Class that runs the Scrabble game.
 
 The Scrabble game can also be rum buy building the Gradle project see above. The running the command "gradlew run"
