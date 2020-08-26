@@ -2,9 +2,9 @@
 
 **Authors:**
 
-    John O'Donnell
-    Éanna Curran
-    Killian Callaghan
+- John O'Donnell
+- Éanna Curran
+- Killian Callaghan
 
 ### **Scrabble Game**
 
