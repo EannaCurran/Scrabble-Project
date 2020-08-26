@@ -1,10 +1,10 @@
-# The-Good-The-Bad-and-The-Ugly
+# Scrabble
 
-**Authors:** Group 9: The Good, The Bad and The Ugly
+**Authors:**
 
-    John O'Donnell - 18368983
-    Éanna Curran - 18311676
-    Killian Callaghan - 18332783
+    John O'Donnell
+    Éanna Curran
+    Killian Callaghan
 
 ### **Scrabble Game**
 
